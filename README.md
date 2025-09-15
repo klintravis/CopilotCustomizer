@@ -1,4 +1,20 @@
-# Copilot Customizer
+# CopilotCustomizer
+
+> Professional GitHub Copilot customizations for better AI-generated code
+
+[![Support via PayPal](https://img.shields.io/badge/Support-PayPal-blue?logo=paypal)](https://www.paypal.me/klintravis)
+[![GitHub Stars](https://img.shields.io/github/stars/klintravis/CopilotCustomizer?style=social)](https://github.com/klintravis/CopilotCustomizer)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+---
+
+## ⭐ Finding This Useful?
+
+**Support development**: [![PayPal](https://img.shields.io/badge/PayPal-00457C?logo=paypal&logoColor=white)](https://www.paypal.me/klintravis)
+
+*Your support keeps this project maintained and growing!*
+
+---
 
 A comprehensive VS Code GitHub Copilot customization system that provides specialized chat modes, instruction files, prompt files, and templates for enhanced AI-assisted development workflows.
 
@@ -185,11 +201,32 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - **GitHub Copilot** - For enabling AI-assisted development workflows
 - **Community Contributors** - For feedback and improvements
 
-## 📞 Support
+## � Support & Sponsorship
+
+### Ways to Support This Project
+
+[![GitHub Sponsors](https://img.shields.io/badge/GitHub-Sponsors-ff69b4?logo=github)](https://github.com/sponsors/klintravis)
+[![PayPal](https://img.shields.io/badge/PayPal-Donate-blue?logo=paypal)](https://paypal.me/klintravis)
+
+- **⭐ Star this repository** - It's free and helps with visibility!
+- **🔀 Fork and contribute** - Help improve the project
+- **💰 Sponsor on GitHub** - Recurring support for ongoing development
+- **📢 Share with others** - Spread the word about Copilot Customizer
+
+### What Your Support Enables
+- 🚀 Faster feature development
+- 🐛 Quicker bug fixes and improvements  
+- 📚 Better documentation and tutorials
+- 🎯 New asset types and customization options
+- 🤝 More responsive community support
+
+## �📞 Support
 
 - **Documentation**: Check the [HOW-TO.md](HOW-TO.md) guide
+- **Setup Help**: See [GITHUB-SETUP.md](GITHUB-SETUP.md) for publishing guidance
 - **Issues**: Report problems via GitHub Issues
 - **Discussions**: Join community discussions for questions and ideas
+- **Sponsorship**: Reach out for enterprise support and custom development
 
 ## 🔄 Version History
 
