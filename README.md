@@ -171,26 +171,6 @@ Interactive improvement commands:
 - `refine: optimize` - Enhance maintainability
 - `refine: concise` - Generate executive summaries
 
-## 🤝 Contributing
-
-### Development Guidelines
-1. Follow the asset schema standards defined in instruction files
-2. Maintain compatibility with existing customizations
-3. Include proper versioning and metadata
-4. Test all generated assets before committing
-
-### Asset Standards
-- Use semantic versioning for schema updates
-- Include refinement commands and depth modes where applicable
-- Follow the established file naming conventions
-- Maintain clear documentation and examples
-
-### Pull Request Process
-1. Run asset validation using the built-in audit tools
-2. Ensure all cross-references remain intact
-3. Update documentation for any new features
-4. Test customizations in a clean VS Code environment
-
 ## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
@@ -201,7 +181,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - **GitHub Copilot** - For enabling AI-assisted development workflows
 - **Community Contributors** - For feedback and improvements
 
-## � Support & Sponsorship
+## 💝 Support & Sponsorship
 
 ### Ways to Support This Project
 
@@ -220,7 +200,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - 🎯 New asset types and customization options
 - 🤝 More responsive community support
 
-## �📞 Support
+## 📞 Support
 
 - **Documentation**: Check the [HOW-TO.md](HOW-TO.md) guide
 - **Setup Help**: See [GITHUB-SETUP.md](GITHUB-SETUP.md) for publishing guidance
