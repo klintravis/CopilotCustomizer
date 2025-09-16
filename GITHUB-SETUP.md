@@ -2,7 +2,11 @@
 
 > Simple guide to adding CopilotCustomizer to any project for enhanced AI-assisted development
 
-[![Framework Version](https://img.shields.io/badge/Framework-v1.0-blue)](#)
+[![Framework Version](h## 📚 More Resources
+
+- **[Asset Reference](/.github/ASSETS.md)** - Complete documentation of all asset types
+- **[HOW-TO.md](/HOW-TO.md)** - Detailed usage guide and tutorials  
+- **[VS Code Copilot Docs](https://code.visualstudio.com/docs/copilot/customization/)** - Official Microsoft documentation//img.shields.io/badge/Framework-v1.0-blue)](#)
 [![VS Code Ready](https://img.shields.io/badge/VS%20Code-Ready-orange)](#)
 
 ---

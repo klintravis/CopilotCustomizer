@@ -1,6 +1,6 @@
-# Asset Reference Documentation
+# CopilotCustomizer Assets Reference
 
-> Comprehensive guide to CopilotCustomizer asset types, schemas, and implementation patterns
+> Comprehensive guide to .github folder assets: chat modes, instructions, prompts, and templates
 
 [![Framework Version](https://img.shields.io/badge/Framework-v1.0-blue)](#version-information)
 [![Schema Compliance](https://img.shields.io/badge/Schema-VS%20Code%20Copilot%20v1.101-green)](#schema-compliance)

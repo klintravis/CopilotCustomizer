@@ -130,7 +130,7 @@ CopilotCustomizer/
 ## 📚 Documentation
 
 - **[HOW-TO.md](HOW-TO.md)** - Comprehensive usage guide and tutorials
-- **[Asset Reference](/.github/README.md)** - Detailed documentation of all asset types
+- **[Asset Reference](/.github/ASSETS.md)** - Detailed documentation of all asset types
 - **[VS Code Copilot Customization Docs](https://code.visualstudio.com/docs/copilot/customization/overview)** - Official Microsoft documentation
 
 ## 🎯 Key Workflows
