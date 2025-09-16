@@ -178,7 +178,7 @@ Use when complexity varies significantly:
 **Version**: Harmony v1.0-h1  
 **Harmonized With**: NewChatmode.prompt.md  
 **Binding Version**: harmony-v1.0  
-**Last Harmonized**: 2025-01-27  
+**Last Harmonized**: 2025-09-15  
 **Preservation Level**: medium
 
 ### Standards Compliance & Processing Metadata

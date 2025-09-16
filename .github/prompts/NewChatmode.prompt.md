@@ -8,7 +8,7 @@ mode: CopilotCustomizer
 
 <!-- Harmony Metadata -->
 **Schema Compliance**: VS Code Prompt Files Schema v1.0  
-**Harmonization Metadata**: schemaVersion: "1.0" | harmonizationDate: "2025-01-27" | bindingStrength: "standard"  
+**Harmonization Metadata**: schemaVersion: "1.0" | harmonizationDate: "2025-09-15" | bindingStrength: "standard"  
 **Harmonized Assets**: GenerateChatmode.instructions.md, NewChatmode.prompt.md
 
 ### Harmonized Assets

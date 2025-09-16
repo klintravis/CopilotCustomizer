@@ -491,7 +491,7 @@ Some assets (like `AgentResume.prompt.md`) are designed for cross-repository usa
 **License**: MIT - See [LICENSE](../LICENSE) for full text  
 **Framework**: CopilotCustomizer v1.0  
 **Compliance**: VS Code GitHub Copilot Customization Standards v1.101  
-**Generated**: 2025-01-27 via Asset Reference Documentation Framework
+**Generated**: 2025-09-15 via Asset Reference Documentation Framework
 
 ---
 

@@ -181,7 +181,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - **GitHub Copilot** - For enabling AI-assisted development workflows
 - **Community Contributors** - For feedback and improvements
 
-## � Support & Sponsorship
+## 💝 Support & Sponsorship
 
 ### Ways to Support This Project
 
@@ -200,7 +200,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - 🎯 New asset types and customization options
 - 🤝 More responsive community support
 
-## �📞 Support
+## 📞 Support
 
 - **Documentation**: Check the [HOW-TO.md](HOW-TO.md) guide
 - **Setup Help**: See [GITHUB-SETUP.md](GITHUB-SETUP.md) for publishing guidance

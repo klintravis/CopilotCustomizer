@@ -45,7 +45,7 @@ Transform existing Copilot customization files to comply with current VS Code Gi
 - **Unknown Property Prevention**: Remove any custom/non-standard fields that cause "unknown property" errors
 - **Required Fields**: Ensure all required fields per asset type are present and valid
 - **Optional Fields**: Include only documented optional fields from official VS Code Copilot schema
-- **Custom Metadata**: Move non-standard fields (schemaVersion, depthModes, etc.) to markdown content
+- **Custom Metadata**: For all assets, ensure only officially supported fields are present in YAML front matter; move all custom/non-standard fields (such as schemaVersion, depthModes, refinementCommands, etc.) to markdown content to maintain schema compliance and consistency.
 - **Post-Processing Validation**: Verify no YAML parsing errors after formatting
 
 **Markdown Structure**:

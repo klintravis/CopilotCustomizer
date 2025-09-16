@@ -200,11 +200,10 @@ lastHarmonized: 'YYYY-MM-DD'
 ~~~markdown
 <!-- Harmony: Cross-reference injection -->
 **Harmonized Assets**:
-<ingnore the following 3 lines from the markdown linter>
+<!-- markdown-linter-ignore-next-4-lines -->
 - Instructions: [filename.instructions.md](path/to/file)
 - Prompts: [filename.prompt.md](path/to/file)
 - Chat Mode: [filename.chatmode.md](path/to/file)
-
 *Last harmonized: YYYY-MM-DD*
 ~~~
 
