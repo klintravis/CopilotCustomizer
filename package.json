@@ -1,0 +1,420 @@
+{
+  "name": "copilot-customizer-extension",
+  "displayName": "Copilot Customizer",
+  "description": "Create and manage GitHub Copilot customization assets (chat modes, instructions, prompts) with validation, harmonization, and formatting tools.",
+  "version": "0.1.0",
+  "publisher": "your-publisher-id",
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "workspaceContains:.github/chatmodes/*.chatmode.md",
+    "workspaceContains:.github/instructions/*.instructions.md",
+    "workspaceContains:.github/prompts/*.prompt.md",
+    "onStartupFinished",
+    "onChatParticipant:copilot-customizer"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "configuration": {
+      "title": "Copilot Customizer",
+      "properties": {
+        "copilotCustomizer.context.includeChatMode": {
+          "type": "boolean",
+          "default": true,
+          "description": "Include the CopilotCustomizer chat mode file as context for all commands by default."
+        },
+        "copilotCustomizer.context.includePromptTemplate": {
+          "type": "boolean",
+          "default": true,
+          "description": "Include the prompt template file as context for all commands by default."
+        },
+        "copilotCustomizer.context.instructionInclude": {
+          "type": "array",
+          "items": { "type": "string" },
+          "default": ["*.instructions.md"],
+          "description": "Filename patterns to include for instruction files (match on base filename). Use '*' and '?' wildcards."
+        },
+        "copilotCustomizer.context.instructionExclude": {
+          "type": "array",
+          "items": { "type": "string" },
+          "default": [],
+          "description": "Filename patterns to exclude for instruction files (evaluated after includes)."
+        },
+        "copilotCustomizer.context.autoConfirm": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically proceed without asking the user to confirm. Injects a directive and a confirm token to satisfy multi-step templates."
+        },
+        "copilotCustomizer.context.autoConfirmToken": {
+          "type": "string",
+          "default": "confirm",
+          "description": "The token appended to the user's prompt when autoConfirm is enabled."
+        },
+        "copilotCustomizer.context.commands.generateChatMode.includeChatMode": {
+          "type": "boolean",
+          "default": true,
+          "description": "Override: include chat mode for Generate Chat Mode command."
+        },
+        "copilotCustomizer.context.commands.generateChatMode.includePromptTemplate": {
+          "type": "boolean",
+          "default": true,
+          "description": "Override: include prompt template for Generate Chat Mode command."
+        },
+        "copilotCustomizer.context.commands.generateChatMode.instructionInclude": {
+          "type": "array",
+          "items": { "type": "string" },
+          "default": ["*.instructions.md"],
+          "description": "Override includes for Generate Chat Mode."
+        },
+        "copilotCustomizer.context.commands.generateChatMode.instructionExclude": {
+          "type": "array",
+          "items": { "type": "string" },
+          "default": [],
+          "description": "Override excludes for Generate Chat Mode."
+        },
+        "copilotCustomizer.context.commands.generateChatMode.autoConfirm": {
+          "type": "boolean",
+          "default": true,
+          "description": "Override: auto-confirm for Generate Chat Mode."
+        },
+        "copilotCustomizer.context.commands.generateChatMode.autoConfirmToken": {
+          "type": "string",
+          "default": "confirm",
+          "description": "Override: confirm token for Generate Chat Mode."
+        },
+        "copilotCustomizer.context.commands.generateInstructions.includeChatMode": {
+          "type": "boolean",
+          "default": true,
+          "description": "Override: include chat mode for Generate Instructions command."
+        },
+        "copilotCustomizer.context.commands.generateInstructions.includePromptTemplate": {
+          "type": "boolean",
+          "default": true,
+          "description": "Override: include prompt template for Generate Instructions command."
+        },
+        "copilotCustomizer.context.commands.generateInstructions.instructionInclude": {
+          "type": "array",
+          "items": { "type": "string" },
+          "default": ["*.instructions.md"],
+          "description": "Override includes for Generate Instructions."
+        },
+        "copilotCustomizer.context.commands.generateInstructions.instructionExclude": {
+          "type": "array",
+          "items": { "type": "string" },
+          "default": [],
+          "description": "Override excludes for Generate Instructions."
+        },
+        "copilotCustomizer.context.commands.generateInstructions.autoConfirm": {
+          "type": "boolean",
+          "default": true,
+          "description": "Override: auto-confirm for Generate Instructions."
+        },
+        "copilotCustomizer.context.commands.generateInstructions.autoConfirmToken": {
+          "type": "string",
+          "default": "confirm",
+          "description": "Override: confirm token for Generate Instructions."
+        },
+        "copilotCustomizer.context.commands.generatePrompt.includeChatMode": {
+          "type": "boolean",
+          "default": true,
+          "description": "Override: include chat mode for Generate Prompt command."
+        },
+        "copilotCustomizer.context.commands.generatePrompt.includePromptTemplate": {
+          "type": "boolean",
+          "default": true,
+          "description": "Override: include prompt template for Generate Prompt command."
+        },
+        "copilotCustomizer.context.commands.generatePrompt.instructionInclude": {
+          "type": "array",
+          "items": { "type": "string" },
+          "default": ["*.instructions.md"],
+          "description": "Override includes for Generate Prompt."
+        },
+        "copilotCustomizer.context.commands.generatePrompt.instructionExclude": {
+          "type": "array",
+          "items": { "type": "string" },
+          "default": [],
+          "description": "Override excludes for Generate Prompt."
+        },
+        "copilotCustomizer.context.commands.generatePrompt.autoConfirm": {
+          "type": "boolean",
+          "default": true,
+          "description": "Override: auto-confirm for Generate Prompt."
+        },
+        "copilotCustomizer.context.commands.generatePrompt.autoConfirmToken": {
+          "type": "string",
+          "default": "confirm",
+          "description": "Override: confirm token for Generate Prompt."
+        },
+        "copilotCustomizer.context.commands.harmonize.includeChatMode": {
+          "type": "boolean",
+          "default": true,
+          "description": "Override: include chat mode for Harmonize command."
+        },
+        "copilotCustomizer.context.commands.harmonize.includePromptTemplate": {
+          "type": "boolean",
+          "default": true,
+          "description": "Override: include prompt template for Harmonize command."
+        },
+        "copilotCustomizer.context.commands.harmonize.instructionInclude": {
+          "type": "array",
+          "items": { "type": "string" },
+          "default": ["*.instructions.md"],
+          "description": "Override includes for Harmonize."
+        },
+        "copilotCustomizer.context.commands.harmonize.instructionExclude": {
+          "type": "array",
+          "items": { "type": "string" },
+          "default": [],
+          "description": "Override excludes for Harmonize."
+        },
+        "copilotCustomizer.context.commands.harmonize.autoConfirm": {
+          "type": "boolean",
+          "default": true,
+          "description": "Override: auto-confirm for Harmonize."
+        },
+        "copilotCustomizer.context.commands.harmonize.autoConfirmToken": {
+          "type": "string",
+          "default": "confirm",
+          "description": "Override: confirm token for Harmonize."
+        },
+        "copilotCustomizer.context.commands.optimize.includeChatMode": {
+          "type": "boolean",
+          "default": true,
+          "description": "Override: include chat mode for Optimize command."
+        },
+        "copilotCustomizer.context.commands.optimize.includePromptTemplate": {
+          "type": "boolean",
+          "default": true,
+          "description": "Override: include prompt template for Optimize command."
+        },
+        "copilotCustomizer.context.commands.optimize.instructionInclude": {
+          "type": "array",
+          "items": { "type": "string" },
+          "default": ["*.instructions.md"],
+          "description": "Override includes for Optimize."
+        },
+        "copilotCustomizer.context.commands.optimize.instructionExclude": {
+          "type": "array",
+          "items": { "type": "string" },
+          "default": [],
+          "description": "Override excludes for Optimize."
+        },
+        "copilotCustomizer.context.commands.optimize.autoConfirm": {
+          "type": "boolean",
+          "default": true,
+          "description": "Override: auto-confirm for Optimize."
+        },
+        "copilotCustomizer.context.commands.optimize.autoConfirmToken": {
+          "type": "string",
+          "default": "confirm",
+          "description": "Override: confirm token for Optimize."
+        },
+        "copilotCustomizer.context.commands.repoReview.includeChatMode": {
+          "type": "boolean",
+          "default": true,
+          "description": "Override: include chat mode for Repo Review command."
+        },
+        "copilotCustomizer.context.commands.repoReview.includePromptTemplate": {
+          "type": "boolean",
+          "default": true,
+          "description": "Override: include prompt template for Repo Review command."
+        },
+        "copilotCustomizer.context.commands.repoReview.instructionInclude": {
+          "type": "array",
+          "items": { "type": "string" },
+          "default": ["*.instructions.md"],
+          "description": "Override includes for Repo Review."
+        },
+        "copilotCustomizer.context.commands.repoReview.autoConfirm": {
+          "type": "boolean",
+          "default": true,
+          "description": "Override: auto-confirm for Repo Review."
+        },
+        "copilotCustomizer.context.commands.repoReview.autoConfirmToken": {
+          "type": "string",
+          "default": "confirm",
+          "description": "Override: confirm token for Repo Review."
+        },
+        "copilotCustomizer.context.commands.repoReview.instructionExclude": {
+          "type": "array",
+          "items": { "type": "string" },
+          "default": [],
+          "description": "Override excludes for Repo Review."
+        }
+      }
+    },
+    "chatParticipants": [
+      {
+        "id": "copilot-customizer",
+        "name": "CopilotCustomizer",
+        "fullName": "Copilot Customizer",
+        "description": "Create and manage Copilot assets; generate, validate, harmonize, and optimize.",
+        "isSticky": true,
+        "commands": [
+          { "name": "help", "description": "List available commands and modes" },
+          { "name": "open", "description": "Open the Asset Generator webview" },
+          { "name": "generate-chatmode", "description": "Generate a chat mode using workspace prompts/instructions" },
+          { "name": "generate-instructions", "description": "Generate instructions using workspace assets" },
+          { "name": "generate-prompt", "description": "Generate a prompt using workspace assets" },
+          { "name": "validate", "description": "Validate all Copilot assets" },
+          { "name": "harmonize", "description": "Harmonize assets using HarmonizeAssets prompt" },
+          { "name": "optimize", "description": "Optimize assets using AssetOptimization prompt" },
+          { "name": "repo-review", "description": "Run repository review using RepoReview prompt" }
+        ]
+      }
+    ],
+    "commands": [
+      {
+        "command": "copilotCustomizer.generateChatMode",
+        "title": "Copilot Customizer: Generate Chat Mode"
+      },
+      {
+        "command": "copilotCustomizer.generateInstructions",
+        "title": "Copilot Customizer: Generate Instructions"
+      },
+      {
+        "command": "copilotCustomizer.generatePrompt",
+        "title": "Copilot Customizer: Generate Prompt"
+      },
+      {
+        "command": "copilotCustomizer.openGenerator",
+        "title": "Copilot Customizer: Open Asset Generator"
+      },
+      {
+        "command": "copilotCustomizer.harmonizeAssets",
+        "title": "Copilot Customizer: Harmonize Assets"
+      },
+      {
+        "command": "copilotCustomizer.validateAssets",
+        "title": "Copilot Customizer: Validate Assets"
+      },
+      {
+        "command": "copilotCustomizer.optimizeAssets",
+        "title": "Copilot Customizer: Optimize Assets"
+      },
+      {
+        "command": "copilotCustomizer.refreshAssetExplorer",
+        "title": "Copilot Customizer: Refresh Asset Explorer"
+      },
+      {
+        "command": "copilotCustomizer.installBundledChatMode",
+        "title": "Copilot Customizer: Install Bundled Chat Mode"
+      },
+      {
+        "command": "copilotCustomizer.openCopilotChat",
+        "title": "Copilot Customizer: Open Copilot Chat"
+      },
+      {
+        "command": "copilotCustomizer.useChatModeNow",
+        "title": "Copilot Customizer: Use Chat Mode Now"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "copilot-customizer",
+          "title": "Copilot Customizer",
+          "icon": "resources/icons/copilot-customizer.svg"
+        }
+      ]
+    },
+    "views": {
+      "copilot-customizer": [
+        {
+          "id": "assetExplorer",
+          "name": "Asset Explorer",
+          "icon": "resources/icons/copilot-customizer.svg"
+        }
+      ]
+    },
+    "viewsWelcome": [
+      {
+        "view": "assetExplorer",
+        "contents": "Welcome to Copilot Customizer!\\n\\n$(flame) Generate assets: [Open Asset Generator](command:copilotCustomizer.openGenerator)\\n\\n$(comment-discussion) Use your chat mode: [Use CopilotCustomizer in Chat](command:copilotCustomizer.useChatModeNow)"
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "copilotCustomizer.validateAssets",
+          "group": "navigation@1"
+        },
+        {
+          "command": "copilotCustomizer.harmonizeAssets",
+          "group": "navigation@2"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "copilotCustomizer.openGenerator",
+          "when": "true"
+        },
+        {
+          "command": "copilotCustomizer.openCopilotChat",
+          "when": "true"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "copilotCustomizer.validateAssets",
+          "when": "view == assetExplorer",
+          "group": "inline@1"
+        },
+        {
+          "command": "copilotCustomizer.harmonizeAssets",
+          "when": "view == assetExplorer",
+          "group": "inline@2"
+        }
+      ],
+      "view/title": [
+        {
+          "command": "copilotCustomizer.refreshAssetExplorer",
+          "when": "view == assetExplorer",
+          "group": "navigation@1"
+        },
+        {
+          "command": "copilotCustomizer.installBundledChatMode",
+          "when": "view == assetExplorer && !copilotCustomizer.hasMode",
+          "group": "navigation@2"
+        },
+        {
+          "command": "copilotCustomizer.openCopilotChat",
+          "when": "view == assetExplorer",
+          "group": "navigation@3"
+        },
+        {
+          "command": "copilotCustomizer.useChatModeNow",
+          "when": "view == assetExplorer && copilotCustomizer.hasMode",
+          "group": "navigation@4"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "webpack --mode production",
+    "package": "webpack --mode production",
+    "compile": "webpack --mode development",
+    "watch": "webpack --mode development --watch",
+    "lint": "eslint . --ext .ts -c .eslintrc.cjs",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "minimatch": "^9.0.5",
+    "@types/node": "^20.11.30",
+    "@types/vscode": "^1.90.0",
+    "@typescript-eslint/eslint-plugin": "^7.8.0",
+    "@typescript-eslint/parser": "^7.8.0",
+    "@vscode/test-cli": "^0.0.8",
+    "@vscode/test-electron": "^2.5.2",
+    "eslint": "^8.57.0",
+    "ts-loader": "^9.5.1",
+    "typescript": "^5.5.4",
+    "webpack": "^5.91.0",
+    "webpack-cli": "^5.1.4"
+  }
+}

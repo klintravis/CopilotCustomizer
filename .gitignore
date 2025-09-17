@@ -1,1 +1,10 @@
+out/
+node_modules/
+.vscode-test/
+*.vsix
+dist/
+coverage/
+*.log
+/.DS_Store
+Thumbs.db
 .github/output
