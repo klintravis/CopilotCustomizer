@@ -18,7 +18,13 @@
 
 A comprehensive VS Code GitHub Copilot customization system that provides specialized chat modes, instruction files, prompt files, and templates for enhanced AI-assisted development workflows.
 
-## 🚀 Overview
+## � Documentation
+
+- **[📘 User Guide](USER-GUIDE.md)** - Complete step-by-step instructions for using the extension
+- **[🛠️ Developer Guide](HOW-TO.md)** - Technical implementation and customization details  
+- **[📋 Setup Guide](GITHUB-SETUP.md)** - Installation and configuration instructions
+
+## �🚀 Overview
 
 Copilot Customizer is a production-ready framework for creating, managing, and optimizing GitHub Copilot customizations in VS Code. It includes:
 

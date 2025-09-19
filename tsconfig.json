@@ -9,11 +9,12 @@
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "noUncheckedIndexedAccess": true,
+    "removeComments": true,
     "esModuleInterop": true,
     "sourceMap": true,
     "skipLibCheck": true,
     "types": ["node", "vscode"]
   },
   "include": ["src/**/*"],
-  "exclude": ["node_modules", ".vscode-test", "out"]
+  "exclude": ["node_modules", ".vscode-test", "out", "src/utils", "src/types"]
 }

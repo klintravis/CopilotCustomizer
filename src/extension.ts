@@ -119,10 +119,10 @@ export function activate(context: vscode.ExtensionContext) {
   }
 
   // Register commands
-  registerAssetCommands(context, output);
-  registerOptimizationCommands(context, output);
-  registerValidationCommands(context, output);
-  registerHarmonizationCommands(context, output);
+  registerAssetCommands(context);
+  registerOptimizationCommands(context);
+  registerValidationCommands(context);
+  registerHarmonizationCommands(context);
 
   // Register tree view
   const provider = new AssetTreeProvider();

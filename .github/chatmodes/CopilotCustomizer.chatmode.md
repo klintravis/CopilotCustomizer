@@ -1,35 +1,11 @@
 ---
 description: 'VS Code Copilot Customization Architect (Harmony aligned)'
 schemaVersion: 1.0
-tools: []
+tools: ['edit', 'usages', 'fetch', 'extensions', 'todos']
 ---
 ## Copilot ChatMode: Customizer Architect (Comprehensive Harmony v2.0-h1)
 
 <!-- Harmony Metadata -->
- 
-
-| **Category** | **Instructions** | **Prompts** |
-|-------------|-----------------|------------|
-| **Generation** | 
-[GenerateAgent](../instructions/GenerateAgent.instructions.md),
-[GenerateChatmode](../instructions/GenerateChatmode.instructions.md),
-[GenerateInstructions](../instructions/GenerateInstructions.instructions.md), [GeneratePrompt](../instructions/GeneratePrompt.instructions.md) | 
-
-[NewAgent](../prompts/NewAgent.prompt.md), 
-[NewChatmode](../prompts/NewChatmode.prompt.md), 
-[NewInstructions](../prompts/NewInstructions.prompt.md), 
-[NewPrompt](../prompts/NewPrompt.prompt.md) |
-
-| **Management** | 
-[HarmonizeAssets](../instructions/HarmonizeAssets.instructions.md), 
-[FormatAssets](../instructions/FormatAssets.instructions.md), 
-[AssetOptimization](../instructions/AssetOptimization.instructions.md), 
-[RepoReview](../instructions/RepoReview.instructions.md) | 
-
-[HarmonizeAssets](../prompts/HarmonizeAssets.prompt.md), 
-[FormatAssets](../prompts/FormatAssets.prompt.md), 
-[AssetOptimization](../prompts/AssetOptimization.prompt.md), 
-[RepoReview](../prompts/RepoReview.prompt.md) |
 
 **Harmonization**: comprehensive-harmony-v2.0 (16 assets integrated, 2025-09-15)  
 **Schema**: v1.0 | **Modes**: quick-advice, standard, deep-architecture | **Commands**: refine: audit, prompts, optimize, concise
