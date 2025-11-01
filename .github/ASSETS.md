@@ -46,7 +46,7 @@
 ### Validation Rules
 ```
 
-**Available**: AgentResume, AssetOptimization, ChangeRequest, FormatAssets, HarmonizeAssets, NewAgentsFile, NewCopilotAgent, NewInstructions, NewPrompt, NewWorkflow, RepoReview
+**Available**: AgentResume, AssetOptimization, UpdateCopilotCustomizer, FormatAssets, HarmonizeAssets, NewAgentsFile, NewCopilotAgent, NewInstructions, NewPrompt, NewWorkflow, RepoReview
 schemaVersion: "1.0"  # Optional: version tracking  
 depthModes: ["standard", "detailed"]  # Optional: supported depth levels
 refinementCommands: ["refine: focus"]  # Optional: available commands
@@ -84,7 +84,7 @@ refinementCommands: ["refine: focus"]  # Optional: available commands
 |------|---------|------------|
 | `AgentResume.prompt.md` | Universal agent workflow helper | None (universal) |
 | `AssetOptimization.prompt.md` | Asset optimization execution | CopilotCustomizer |
-| `ChangeRequest.prompt.md` | Automated change workflow | CopilotCustomizer |
+| `UpdateCopilotCustomizer.prompt.md` | Automated CopilotCustomizer change workflow | CopilotCustomizer |
 | `FormatAssets.prompt.md` | Asset formatting execution | CopilotCustomizer |
 | `HarmonizeAssets.prompt.md` | Asset harmonization execution | CopilotCustomizer |
 | `NewAgentsFile.prompt.md` | Generate workspace AGENTS.md | CopilotCustomizer |
@@ -157,6 +157,10 @@ refinementCommands: ["refine: focus"]  # Optional: available commands
 | `Analysis.template.md` | Universal analysis framework | Project analyses, audits, assessments |
 | `ImplementationPlan.template.md` | Implementation planning format | Project planning and execution |
 | `ProgressLog.template.md` | Progress tracking format | Status updates and milestone tracking |
+| `TestStrategy.template.md` | Test planning and validation | TDD workflows, test coverage, QA strategies |
+| `SecurityReview.template.md` | Security assessment format | Code reviews, vulnerability scans, OWASP audits |
+| `ChangeLog.template.md` | Change documentation format | Release notes, PR descriptions, migration guides |
+| `AssetInventory.template.md` | Asset catalog format | Repository audits, asset tracking, compliance |
 
 ---
 
@@ -201,10 +205,10 @@ Chat Mode ←→ Agent Files (Contextual binding)
 ### Supporting Assets
 - **Agent Files**: 6 specialized VS Code agents
 - **Workspace File**: 1 project guidance document (AGENTS.md)
-- **Templates**: 3 standardized document formats
+- **Templates**: 7 standardized document formats
 - **Universal Helper**: 1 repository-agnostic prompt
 
-**Total**: 16 core assets + 3 templates + 1 universal helper = **20 total assets**
+**Total**: 16 core assets + 7 templates + 1 universal helper = **24 total assets**
 
 ---
 

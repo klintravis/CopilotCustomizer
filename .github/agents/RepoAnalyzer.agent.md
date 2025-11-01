@@ -1,5 +1,6 @@
 ---
 description: 'Repository analyzer for change impact assessment and context gathering'
+model: auto
 tools: ['search', 'search/codebase', 'changes', 'problems']
 handoffs:
   - label: 'Create Implementation Plan'
@@ -31,6 +32,7 @@ Deep repository analysis specialist who examines codebase structure, dependencie
 *Framework patterns: [CopilotFramework.instructions.md](../instructions/CopilotFramework.instructions.md)*  
 *Audit dimensions: [CopilotAudit.instructions.md](../instructions/CopilotAudit.instructions.md)*  
 *Asset standards: [FormatAssets.instructions.md](../instructions/FormatAssets.instructions.md)*
+*Repository review: [RepoReview.instructions.md](../instructions/RepoReview.instructions.md)*
 
 ### Analysis Output Structure
 ```

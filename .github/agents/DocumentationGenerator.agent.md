@@ -1,5 +1,6 @@
 ---
 description: 'Documentation generator that creates comprehensive change summaries for user review'
+model: auto
 tools: ['search', 'changes']
 ---
 

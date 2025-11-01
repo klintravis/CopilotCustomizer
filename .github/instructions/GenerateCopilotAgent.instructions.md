@@ -31,8 +31,8 @@ Standardized approach for creating VS Code Copilot `.agent.md` files (chat modes
 ```markdown
 ---
 description: 'Brief agent role description'
+model: auto
 tools: ['edit', 'search', 'terminal']
-model: 'Claude Sonnet 4'
 handoffs:
   - label: 'Generate Code'
     agent: 'generator'

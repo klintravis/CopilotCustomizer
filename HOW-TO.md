@@ -177,7 +177,16 @@ npm run lint
 
 ### Template Files (`*.template.md`)
 
-Templates provide standardized formats for analysis and documentation.
+Templates provide standardized formats for analysis, documentation, testing, security, and asset management.
+
+**Available Templates**:
+- **Analysis.template.md**: Universal analysis and assessment framework
+- **ImplementationPlan.template.md**: Project planning and execution format
+- **ProgressLog.template.md**: Quick progress tracking format
+- **TestStrategy.template.md**: Test planning and TDD workflow structure
+- **SecurityReview.template.md**: Security assessment and OWASP audit format
+- **ChangeLog.template.md**: Release notes and change documentation
+- **AssetInventory.template.md**: Comprehensive asset catalog and tracking
 
 ## 🎯 Creating Custom Assets
 

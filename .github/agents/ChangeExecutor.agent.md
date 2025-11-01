@@ -1,5 +1,6 @@
 ---
 description: 'Change executor that implements approved modifications across repository'
+model: auto
 tools: ['edit', 'new', 'search', 'changes']
 handoffs:
   - label: 'Verify Implementation'

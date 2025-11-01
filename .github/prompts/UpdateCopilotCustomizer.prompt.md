@@ -2,7 +2,7 @@
 agent: CopilotCustomizer
 ---
 
-## Change Request Entry Point (v1.0)
+## Update CopilotCustomizer Entry Point (v1.0)
 
 ### Task Intent
 Initiate automated change workflow: analysis → planning → implementation → verification → documentation.
@@ -34,7 +34,7 @@ Reply `confirm` after Phase 2 to proceed.
 
 ### Handoff Chain
 ```
-ChangeRequest → RepoAnalyzer → ImplementationPlanner → [USER GATE] → ChangeExecutor → VerificationAgent → DocumentationGenerator → Complete
+UpdateCopilotCustomizer → RepoAnalyzer → ImplementationPlanner → [USER GATE] → ChangeExecutor → VerificationAgent → DocumentationGenerator → Complete
 ```
 
 ### Notes
