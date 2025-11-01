@@ -27,13 +27,67 @@ Standardized approach for creating VS Code Copilot `.agent.md` files (chat modes
 | Tool Integration | Conditional | Approved tools and usage |
 | Handoffs | Optional | Agent transitions |
 
-### Agent Template
-```markdown
----
-description: 'Brief agent role description'
-model: auto
-tools: ['edit', 'search', 'terminal']
-handoffs:
+### Tool Selection Guide
+
+**Common Tools by Agent Type**:
+
+| Agent Type | Required Tools | Optional Tools | Rationale |
+|------------|----------------|----------------|-----------|
+| **Code Generator** | `edit`, `new`, `search` | `terminal`, `problems` | Create/modify files, find patterns, run commands |
+| **Analyzer/Reviewer** | `search`, `problems`, `changes` | `search/codebase` | Inspect code, find issues, review diffs |
+| **Tester** | `new`, `edit`, `terminal` | `testFailure`, `problems` | Create tests, run test commands, analyze failures |
+| **Documentation** | `new`, `edit`, `search` | `fetch`, `openSimpleBrowser` | Create docs, research external sources |
+| **Planner/Architect** | `search`, `search/codebase` | `todos`, `usages` | Understand codebase structure, track tasks |
+| **Debugger** | `search`, `problems`, `terminal` | `testFailure`, `changes` | Find errors, run debug commands |
+| **Security Reviewer** | `search`, `search/codebase`, `problems` | `changes` | Scan for vulnerabilities, review changes |
+
+**Available VS Code Tools**:
+- `edit` - Modify existing files
+- `new` - Create new files
+- `search` - Search within files
+- `search/codebase` - Semantic codebase search
+- `terminal` - Run shell commands (requires approval)
+- `problems` - Access VS Code problems panel
+- `changes` - View git changes/diffs
+- `testFailure` - Access test failure information
+- `todos` - Manage task lists
+- `usages` - Find code references
+- `fetch` - Fetch web content
+- `openSimpleBrowser` - Open URLs in VS Code
+- `runCommands` - Execute VS Code commands
+- `runTasks` - Run VS Code tasks
+- `vscodeAPI` - Access VS Code extension API
+- `extensions` - Manage VS Code extensions
+- `githubRepo` - Search GitHub repositories
+
+**Tool Selection Principles**:
+1. **Minimal Set**: Include only tools needed for core objectives
+2. **Task-Aligned**: Match tools to agent's workflow steps
+3. **Security**: Avoid `terminal` unless necessary (requires user approval)
+4. **Progressive**: Start minimal, add tools based on actual needs
+
+### Quality Guidelines
+- Clear expertise boundaries
+- Concrete workflow steps
+- Proper framework references
+- Valid YAML and markdown
+- **Tools matched to tasks** (use Tool Selection Guide above)
+- Minimal tool set (only what's needed)
+- Clear handoff conditions
+
+### Tool Integration Best Practices
+**Do**:
+✅ Choose tools that directly support core objectives  
+✅ Start with minimal set (`search`, `edit`, `new`)  
+✅ Add `terminal` only if agent needs to run commands  
+✅ Use `problems` for error analysis agents  
+✅ Use `changes` for review/diff agents  
+
+**Don't**:
+❌ Include all available tools "just in case"  
+❌ Add `terminal` without security justification  
+❌ Use tools unrelated to agent's domain  
+❌ Forget to document why specific tools are needed
   - label: 'Generate Code'
     agent: 'generator'
     prompt: 'Create implementation.'
