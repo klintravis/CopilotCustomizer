@@ -1,83 +1,73 @@
 ---
-mode: CopilotCustomizer
+agent: CopilotCustomizer
 ---
 
 # HarmonizeAssets.prompt.md
 
-## Asset Harmonization Executor Prompt (v1.0-h1)
+## Asset Harmonization Executor (v1.0)
 
-<!-- Harmony Metadata -->
-**Schema Compliance**: VS Code Prompt Files Schema v1.0  
-**Harmonization Metadata**: schemaVersion: "1.0" | harmonizationDate: "2025-09-15" | bindingStrength: "standard"  
-**Harmonized Assets**: HarmonizeAssets.instructions.md, HarmonizeAssets.prompt.md
+**Paired Instructions**: [HarmonizeAssets.instructions.md](../instructions/HarmonizeAssets.instructions.md)
 
-### Harmonized Assets
-**Paired Instructions**: [HarmonizeAssets.instructions.md](../instructions/HarmonizeAssets.instructions.md) - Comprehensive asset harmonization framework with minimal invasive cross-binding  
-**Related Assets**: [CopilotCustomizer.chatmode.md](../chatmodes/CopilotCustomizer.chatmode.md) - Core customization framework  
-**Asset Ecosystem**: Part of 16-asset Copilot customization framework
+### Task
+Harmonize 2-3 Copilot files with guaranteed output, minimal changes, and cross-reference binding.
 
-**Harmonization**: comprehensive-harmony-v1.0 (enhanced cross-references)  
-**Binding Strength**: standard | **Preservation Level**: medium  
-**Content Changes**: <10% (YAML front matter + cross-references)
+### Usage
+1. Review [HarmonizeAssets.instructions.md](../instructions/HarmonizeAssets.instructions.md)
+2. Provide `INPUT_FILES` (2-3 paths)
+3. Confirm when ready
+4. Monitor output confirmation
 
-### Chat Mode Binding
-`chatmodes/CopilotCustomizer.chatmode.md` - Framework integration point
-
-### Task Intent
-Execute harmonization of 2-3 Copilot customization files following [HarmonizeAssets.instructions.md](../instructions/HarmonizeAssets.instructions.md) with guaranteed file output and minimal content changes while establishing cross-references and unified functionality.
-
-### Usage Instructions
-1. Review [HarmonizeAssets.instructions.md](../instructions/HarmonizeAssets.instructions.md) for detailed harmonization rules and framework
-2. Provide required variables (INPUT_FILES minimum) and send
-3. Respond to clarifiers or `ready-to-harmonize`; then reply `confirm`
-4. Monitor file output confirmation and harmonization report
-5. Use refinement commands to adjust preservation or binding levels
-6. Leverage [CopilotCustomizer.chatmode.md](../chatmodes/CopilotCustomizer.chatmode.md) for quality assurance
-
-### Variable Block
+### Variables
 ---
-**Input Files** (2-3 file paths, comma-separated) [REQUIRED]: "{INPUT_FILES}"
+**Input Files** (2-3, comma-separated) [REQUIRED]: "{INPUT_FILES}"
 **Output Directory** (default: .github/output): "{OUTPUT_DIRECTORY}"
-**Preservation Level** (minimal|medium|maximum | default: medium): {PRESERVATION_LEVEL}
-**Binding Strength** (light|standard|deep | default: standard): {BINDING_STRENGTH}
-**Output Naming** (harmonized-suffix|overwrite-original|timestamped | default: harmonized-suffix): {OUTPUT_NAMING}
-**Cross-Reference Style** (inline|section|front-matter | default: inline): {CROSS_REF_STYLE}
-**Validation Level** (basic|standard|strict | default: standard): {VALIDATION_LEVEL}
-**Backup Creation** (true|false | default: true): {BACKUP_CREATION}
-**Report Detail** (summary|detailed|verbose | default: detailed): {REPORT_DETAIL}
-**Force Overwrite** (true|false | default: false): {FORCE_OVERWRITE}
+**Preservation Level** (minimal|medium|maximum): {PRESERVATION_LEVEL}
+**Binding Strength** (light|standard|deep): {BINDING_STRENGTH}
+**Backup** (true|false): {BACKUP_CREATION}
 ---
 
-### Validation Rules
-- Required: `{INPUT_FILES}` must contain 2-3 valid file paths per [HarmonizeAssets.instructions.md](../instructions/HarmonizeAssets.instructions.md) standards
-- Supported file types: `*.instructions.md`, `*.prompt.md`, `*.chatmode.md`
-- Default `{OUTPUT_DIRECTORY}` to `.github/output` for consistent organization
-- Preserve all existing chat mode bindings, instruction references, and cross-file links
-- Maintain version compatibility and schema requirements per VS Code Copilot documentation
-- Validate preservation level aligns with user expectations for content changes
+### Validation
+- Required: 2-3 files
+- Supported: `*.instructions.md`, `*.prompt.md`, `*.chatmode.md`
+- Preserve all bindings, references
 
 ### Generation Gate
-Before harmonization, respond with:
-- File analysis and harmonization opportunity identification following [HarmonizeAssets.instructions.md](../instructions/HarmonizeAssets.instructions.md) protocol
-- Cross-reference injection points and binding metadata requirements
-- Estimated content change percentage and processing sequence
-- Identified links/references that must be preserved during harmonization
-- `ready-to-harmonize` confirmation request
+Respond with:
+- File analysis
+- Cross-reference points
+- Content change %
+- `ready-to-harmonize`
 
-Only proceed with full harmonization after explicit `confirm`.
+Wait for `confirm`.
 
-### Output Requirements (On Confirm)
-**Following [HarmonizeAssets.instructions.md](../instructions/HarmonizeAssets.instructions.md) Standards**:
+### Output Requirements
+1. File analysis report
+2. Harmonization plan
+3. **Harmonized files** (MANDATORY - all saved)
+4. Change summary
+5. Success confirmation with paths
 
-Generate the following mandatory outputs in order:
+### Preservation Levels
+- **Minimal**: <5% change
+- **Medium**: <10% change
+- **Maximum**: <15% change
 
-#### 1. File Analysis Report
-- Input file inventory with metadata and structure analysis
-- Content structure analysis and existing cross-reference detection
-- Harmonization opportunity identification and binding point assessment
-- Repository context analysis and framework alignment requirements
+### Refinement Commands
+- `refine: preserve` - Minimize changes
+- `refine: bind` - Strengthen connections
+- `refine: minimal` - Reduce footprint
 
-#### 2. Harmonization Plan
+### Quality Checklist
+- [ ] All files written
+- [ ] Cross-references resolve
+- [ ] Change % within limits
+- [ ] Original intent preserved
+
+*Instructions: [HarmonizeAssets.instructions.md](../instructions/HarmonizeAssets.instructions.md)*  
+*Framework: [CopilotCustomizer.agent.md](../agents/CopilotCustomizer.agent.md)*  
+*VS Code: [Prompt Files](https://code.visualstudio.com/docs/copilot/customization/prompt-files)*
+
+**Generated using**: [HarmonizeAssets.instructions.md](../instructions/HarmonizeAssets.instructions.md)
 - Cross-reference injection points with minimal invasive approach
 - Binding metadata additions per preservation level requirements
 - Estimated content change percentage within framework limits
@@ -126,20 +116,19 @@ Generate the following mandatory outputs in order:
 - **Framework Alignment**: Establish connections with related instruction files
 - **Enforcement Rules**: Maintain all compliance requirements and validation rules
 
-#### Chat Mode Files (`*.chatmode.md`)
+#### Agent Files (`*.agent.md`)
 - **Description Enhancement**: Preserve role definitions and capabilities documentation
 - **Workflow Integration**: Maintain refinement commands and depth mode specifications
 - **Tool Configuration**: Preserve tool arrays and model specifications
-- **Cross-Mode Binding**: Establish connections with related chat modes and instructions
-
+- **Cross-Mode Binding**: Establish connections with related agents and instructions
 #### Prompt Files (`*.prompt.md`)
 - **Mode Preservation**: Maintain ask/agent/generate mode specifications
 - **Variable Block Integrity**: Preserve all variable definitions and validation rules
 - **Usage Instructions**: Maintain workflow steps and confirmation gates
-- **Chat Mode Binding**: Preserve and enhance chat mode integration patterns
+- **Agent Binding**: Preserve and enhance agent integration patterns
 
 ### Workflow Integration
-**Quality Assurance via [CopilotCustomizer.chatmode.md](../chatmodes/CopilotCustomizer.chatmode.md)**:
+**Quality Assurance via [CopilotCustomizer.agent.md](../agents/CopilotCustomizer.agent.md)**:
 - Use `refine: audit` for comprehensive structural validation
 - Apply `refine: optimize` for enhanced token efficiency and clarity
 - Leverage `refine: concise` for executive summaries when needed
@@ -223,7 +212,7 @@ FORCE_OVERWRITE: false
 
 ### Binding References
 - **Instructions**: [HarmonizeAssets.instructions.md](../instructions/HarmonizeAssets.instructions.md) - Complete harmonization framework
-- **Framework**: [CopilotCustomizer.chatmode.md](../chatmodes/CopilotCustomizer.chatmode.md) - Core customization architecture
+- **Framework**: [CopilotCustomizer.agent.md](../agents/CopilotCustomizer.agent.md) - Core customization architecture
 - **Standards**: [GeneratePrompt.instructions.md](../instructions/GeneratePrompt.instructions.md) - Prompt authoring guidelines
 - **Formatting**: [FormatAssets.instructions.md](../instructions/FormatAssets.instructions.md) - Asset formatting compliance
 
@@ -239,7 +228,7 @@ FORCE_OVERWRITE: false
 - [VS Code Prompt Files](https://code.visualstudio.com/docs/copilot/customization/prompt-files)
 - [VS Code Copilot Documentation](https://code.visualstudio.com/docs/copilot/customization/)
 - [VS Code Custom Instructions](https://code.visualstudio.com/docs/copilot/customization/custom-instructions)
-- [VS Code Custom Chat Modes](https://code.visualstudio.com/docs/copilot/customization/custom-chat-modes)
+- [VS Code Agent Documentation](https://code.visualstudio.com/docs/copilot/customization/agent-chat-participants)
 
 **Processing Metadata**:
 - **Standards Version**: VS Code Copilot v2025.09 (Prompt Files latest)

@@ -1,5 +1,5 @@
 ---
-mode: CopilotCustomizer
+agent: CopilotCustomizer
 ---
 
 # AGENTS.md Scaffold Prompt (v1.0)

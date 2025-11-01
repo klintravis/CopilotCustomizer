@@ -81,7 +81,7 @@ FOCUS_AREA: "all assets"
 
 ### 4. Or Use Any Ready-to-Run Prompt
 - `RepoReview.prompt.md` - Comprehensive repository analysis
-- `NewChatmode.prompt.md` - Create custom chat modes
+- `NewCopilotAgent.prompt.md` - Create VS Code Copilot agents
 - `AssetOptimization.prompt.md` - Optimize existing assets  
 - `AgentResume.prompt.md` - Universal project helper
 
@@ -116,7 +116,7 @@ FOCUS_AREA: "all assets"
 ### Create New Assets
 ```
 @CopilotCustomizer Create a database optimization expert mode
-# Uses NewChatmode.prompt.md automatically
+# Uses NewCopilotAgent.prompt.md automatically
 
 @CopilotCustomizer Generate instructions for React testing
 # Uses NewInstructions.prompt.md automatically
