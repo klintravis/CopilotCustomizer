@@ -1,20 +1,16 @@
 # GitHub Setup Guide
 
-> Simple guide to adding CopilotCustomizer to any project for enhanced AI-assisted development
+> Enterprise guide for adding CopilotCustomizer framework to projects
 
-[![Framework Version](h## 📚 More Resources
-
-- **[Asset Reference](/.github/ASSETS.md)** - Complete documentation of all asset types
-- **[HOW-TO.md](/HOW-TO.md)** - Detailed usage guide and tutorials  
-- **[VS Code Copilot Docs](https://code.visualstudio.com/docs/copilot/customization/)** - Official Microsoft documentation//img.shields.io/badge/Framework-v1.0-blue)](#)
+[![Framework Version](https://img.shields.io/badge/Framework-v1.0-blue)](#)
 [![VS Code Ready](https://img.shields.io/badge/VS%20Code-Ready-orange)](#)
 
 ---
 
-## � Quick Start (3 Steps)
+## 📋 Quick Start (3 Steps)
 
-1. **Clone CopilotCustomizer** to your project
-2. **Switch to @CopilotCustomizer mode** (recommend Sonnet 4)
+1. **Add CopilotCustomizer framework** to your project
+2. **Configure chat mode** (when agent extensions become available)
 3. **Use ready-to-run prompts** (start with RepoReview)
 
 ---
@@ -27,34 +23,28 @@
 
 ### Installation (Choose One Method)
 
-**Option 1: Direct Clone (Recommended)**
+**Option 1: Direct Copy (Recommended)**
 ```bash
 # Navigate to your project directory
 cd /path/to/your/project
 
-# Clone CopilotCustomizer framework
-git clone https://github.com/klintravis/CopilotCustomizer.git .copilot
-
-# Copy assets to your project
-cp -r .copilot/.github .
-cp .copilot/AGENTS.md .
-
-# Clean up (optional)
-rm -rf .copilot
+# Copy framework assets to your project
+cp -r /path/to/CopilotCustomizer/.github .
+cp /path/to/CopilotCustomizer/AGENTS.md .
 ```
 
 **Option 2: Git Submodule**
 ```bash
 # Add as submodule (keeps connection to updates)
-git submodule add https://github.com/klintravis/CopilotCustomizer.git copilot-framework
+git submodule add https://your-organization/CopilotCustomizer.git copilot-framework
 
 # Copy assets to your project
 cp -r copilot-framework/.github .
 cp copilot-framework/AGENTS.md .
 ```
 
-**Option 3: Download & Extract**
-1. Download: [Latest Release](https://github.com/klintravis/CopilotCustomizer/releases)
+**Option 3: Internal Distribution**
+1. Obtain framework from internal repository
 2. Extract to your project directory
 3. Copy `.github/` folder and `AGENTS.md` to your project root
 
@@ -64,17 +54,16 @@ cp copilot-framework/AGENTS.md .
 
 ### 1. Open VS Code Copilot Chat
 - Press `Ctrl+Shift+I` (Windows/Linux) or `Cmd+Shift+I` (Mac)
-- The CopilotCustomizer chat mode will be automatically detected
+- The CopilotCustomizer chat mode will be detected when agent extensions are available
 
-### 2. Switch to CopilotCustomizer Mode
-```
-@CopilotCustomizer
-```
-**💡 Tip**: Use **Claude 3.5 Sonnet** model for best results (if available in your region)
+### 2. Access CopilotCustomizer Mode
+**Note**: Agent-based chat modes via `@` syntax require VS Code extensions not yet available. Use direct prompt files until then.
+
+**💡 Tip**: Use **Claude 3.5 Sonnet** model for best results (if available)
 
 ### 3. Start with Repository Review
+Open `.github/prompts/RepoReview.prompt.md` and follow the structured workflow:
 ```
-@CopilotCustomizer Use RepoReview.prompt.md with:
 TARGET_PATH: "."
 FOCUS_AREA: "all assets"
 ```
@@ -94,9 +83,9 @@ After installation, your project will have:
 ```
 your-project/
 ├── .github/
-│   ├── chatmodes/              # CopilotCustomizer AI persona  
-│   ├── instructions/           # Framework guidance (8 files)
-│   ├── prompts/               # Ready-to-run prompts (9 files)
+│   ├── agents/                # CopilotCustomizer AI agent
+│   ├── instructions/          # Framework guidance (12 files)
+│   ├── prompts/               # Ready-to-run prompts (11 files)
 │   └── templates/             # Analysis & planning templates
 ├── AGENTS.md                  # Project development guide
 └── [your existing project files]
@@ -107,43 +96,38 @@ your-project/
 ## 🚀 Common Workflows
 
 ### Repository Analysis
+Use CopilotCustomizer mode (when available) or open RepoReview.prompt.md:
 ```
-@CopilotCustomizer Use RepoReview.prompt.md with:
 TARGET_PATH: "."
 FOCUS_AREA: "all assets"
 ```
 
 ### Create New Assets
-```
-@CopilotCustomizer Create a database optimization expert mode
-# Uses NewCopilotAgent.prompt.md automatically
-
-@CopilotCustomizer Generate instructions for React testing
-# Uses NewInstructions.prompt.md automatically
-```
+Use structured prompts in `.github/prompts/`:
+- NewCopilotAgent.prompt.md for agent files
+- NewInstructions.prompt.md for instruction files
+- NewPrompt.prompt.md for prompt templates
 
 ### Optimize Existing Assets
-```
-@CopilotCustomizer refine: audit
-# Runs comprehensive asset analysis
-
-@CopilotCustomizer refine: optimize
-# Applies performance improvements
-```
+Use CopilotCustomizer mode (when available):
+- "refine: audit" for comprehensive analysis
+- "refine: optimize" for performance improvements
 
 ---
 
 ## 🛠️ Troubleshooting
 
 **Chat mode not appearing?**
-- Restart VS Code
-- Check `.github/chatmodes/CopilotCustomizer.chatmode.md` exists
+- Note: `@` chat mode syntax requires VS Code agent extensions not yet available
+- Use direct prompt files in `.github/prompts/` until extensions release
+- Restart VS Code after adding framework files
+- Check `.github/agents/CopilotCustomizer.agent.md` exists
 - Verify YAML front matter starts with `---`
 
 **Assets not loading?**
 - Ensure `.github/` folder is in your project root
 - Check file permissions (should be readable)
-- Try `@CopilotCustomizer help` to test connection
+- Verify framework files copied correctly
 
 ---
 
@@ -155,11 +139,12 @@ FOCUS_AREA: "all assets"
 
 ## 💡 Tips
 
-- **Use Sonnet 4** model when available for best CopilotCustomizer results
-- **Start with RepoReview** to understand your project's current state
-- **Explore ready-to-run prompts** - they're designed to work immediately
+- **Use Claude** models when available for best results
+- **Start with RepoReview** prompt to understand your project's current state
+- **Explore ready-to-run prompts** in `.github/prompts/` directory
 - **Check AGENTS.md** for project-specific development guidance
+- **Agent extensions coming**: `@` chat mode syntax will work when VS Code agent extensions release
 
 ---
 
-*Simple setup, powerful results. That's CopilotCustomizer!* 🚀
+*Enterprise customization framework for VS Code GitHub Copilot* 🚀

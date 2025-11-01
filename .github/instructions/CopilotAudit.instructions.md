@@ -69,7 +69,7 @@ Universal evaluation criteria for Copilot customization assets:
 **User Experience**: Usage patterns and pain points  
 **Performance**: Response times and accuracy metrics  
 **Compliance**: VS Code Copilot standard changes  
-**Best Practices**: Community and industry improvements
+**Best Practices**: Industry standards and improvements
 
 ### Optimization Strategies
 **Token Efficiency**: Regular review and compression  

@@ -1,6 +1,6 @@
 ---
 applyTo: '.github/prompts/RepoReview.prompt.md'
-description: 'Comprehensive framework for conducting repository analysis of Copilot customization assets, providing structured assessment, prioritization, and ready-to-run improvement prompts for chatmodes, instructions, prompts, and agent files'
+description: 'Comprehensive framework for conducting repository analysis of Copilot customization assets, providing structured assessment, prioritization, and ready-to-run improvement prompts for agents, instructions, prompts, and workspace files'
 ---
 
 # RepoReview.instructions.md
@@ -16,11 +16,11 @@ Guide AI agents to audit Copilot customization assets and deliver actionable imp
 
 ### Required Inputs
 - **Target Path**: Repo root or folder
-- **Focus Area**: Optional filter (chatmodes, prompts, all)
+- **Focus Area**: Optional filter (agents, prompts, all)
 - **Output Constraints**: Exclude `.github/*`, binaries, caches
 
 ### Validation
-- Scan: `chatmodes/`, `instructions/`, `prompts/`, `AGENTS.md`
+- Scan: `agents/`, `instructions/`, `prompts/`, `AGENTS.md`
 - Assess: Completeness, Harmony compliance, versioning
 - Prioritize: High/Med/Low by impact/effort
 

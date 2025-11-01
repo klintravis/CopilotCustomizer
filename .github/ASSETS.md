@@ -5,7 +5,6 @@
 | Agent Files | `*.agent.md` | VS Code agents | `description` |
 | Instructions | `*.instructions.md` | AI guidance rules | `applyTo` |
 | Prompts | `*.prompt.md` | Interaction templates | - |
-| Chat Modes | `*.chatmode.md` | AI personas (legacy) | `description` |
 | AGENTS.md | `AGENTS.md` | Project guidance | - |
 | Templates | `*.template.md` | Document formats | - |
 
@@ -85,12 +84,14 @@ refinementCommands: ["refine: focus"]  # Optional: available commands
 |------|---------|------------|
 | `AgentResume.prompt.md` | Universal agent workflow helper | None (universal) |
 | `AssetOptimization.prompt.md` | Asset optimization execution | CopilotCustomizer |
+| `ChangeRequest.prompt.md` | Automated change workflow | CopilotCustomizer |
 | `FormatAssets.prompt.md` | Asset formatting execution | CopilotCustomizer |
 | `HarmonizeAssets.prompt.md` | Asset harmonization execution | CopilotCustomizer |
-| `NewAgent.prompt.md` | Generate new agent files | CopilotCustomizer |
-| `NewCopilotAgent.prompt.md` | Generate new VS Code agents | CopilotCustomizer |
-| `NewInstructions.prompt.md` | Generate new instruction files | CopilotCustomizer |
-| `NewPrompt.prompt.md` | Generate new prompt files | CopilotCustomizer |
+| `NewAgentsFile.prompt.md` | Generate workspace AGENTS.md | CopilotCustomizer |
+| `NewCopilotAgent.prompt.md` | Generate VS Code .agent.md | CopilotCustomizer |
+| `NewInstructions.prompt.md` | Generate instruction files | CopilotCustomizer |
+| `NewPrompt.prompt.md` | Generate prompt files | CopilotCustomizer |
+| `NewWorkflow.prompt.md` | Generate multi-agent workflows | CopilotCustomizer |
 | `RepoReview.prompt.md` | Repository analysis execution | CopilotCustomizer |
 
 ---
@@ -173,12 +174,13 @@ Chat Mode ←→ Agent Files (Contextual binding)
 
 ### Binding Relationships
 
-| Instruction File | Paired Prompt | Chat Mode | Purpose |
-|------------------|---------------|-----------|---------|
-| `GenerateAgent.instructions.md` | `NewAgent.prompt.md` | CopilotCustomizer | Agent file creation |
-| `GenerateCopilotAgent.instructions.md` | `NewCopilotAgent.prompt.md` | CopilotCustomizer | VS Code agent creation |
-| `GenerateInstructions.instructions.md` | `NewInstructions.prompt.md` | CopilotCustomizer | Instruction creation |
-| `GeneratePrompt.instructions.md` | `NewPrompt.prompt.md` | CopilotCustomizer | Prompt creation |
+| Instruction File | Paired Prompt | Agent Mode | Purpose |
+|------------------|---------------|------------|---------|
+| `GenerateAgentsFile.instructions.md` | `NewAgentsFile.prompt.md` | CopilotCustomizer | Workspace AGENTS.md creation |
+| `GenerateCopilotAgent.instructions.md` | `NewCopilotAgent.prompt.md` | CopilotCustomizer | VS Code .agent.md creation |
+| `GenerateInstructions.instructions.md` | `NewInstructions.prompt.md` | CopilotCustomizer | Instruction file creation |
+| `GeneratePrompt.instructions.md` | `NewPrompt.prompt.md` | CopilotCustomizer | Prompt file creation |
+| `GenerateWorkflow.instructions.md` | `NewWorkflow.prompt.md` | CopilotCustomizer | Multi-agent workflow creation |
 | `HarmonizeAssets.instructions.md` | `HarmonizeAssets.prompt.md` | CopilotCustomizer | Asset integration |
 | `FormatAssets.instructions.md` | `FormatAssets.prompt.md` | CopilotCustomizer | Asset formatting |
 | `AssetOptimization.instructions.md` | `AssetOptimization.prompt.md` | CopilotCustomizer | Asset optimization |
@@ -188,17 +190,17 @@ Chat Mode ←→ Agent Files (Contextual binding)
 
 ## 📊 Asset Inventory
 
-### Generation Assets (8 files)
-- **Instructions**: 4 files for creating new assets
-- **Prompts**: 4 files for executing creation workflows
+### Generation Assets (10 files)
+- **Instructions**: 5 files for creating new assets
+- **Prompts**: 5 files for executing creation workflows
 
 ### Management Assets (8 files)  
 - **Instructions**: 4 files for maintaining existing assets
 - **Prompts**: 4 files for executing maintenance workflows
 
 ### Supporting Assets
-- **Chat Mode**: 1 comprehensive architect persona
-- **Agent File**: 1 project guidance document
+- **Agent Files**: 6 specialized VS Code agents
+- **Workspace File**: 1 project guidance document (AGENTS.md)
 - **Templates**: 3 standardized document formats
 - **Universal Helper**: 1 repository-agnostic prompt
 
@@ -213,7 +215,7 @@ Chat Mode ←→ Agent Files (Contextual binding)
 1. **Choose Asset Type**: Select from chat mode, instructions, prompt, or agent
 2. **Use Generation Pair**: Apply instruction + prompt combination
 3. **Customize Variables**: Fill in project-specific details  
-4. **Execute via Chat Mode**: Run through `@CopilotCustomizer`
+4. **Execute Prompt**: Use structured workflow from prompt file
 5. **Validate Output**: Check schema compliance and functionality
 
 ### Asset Maintenance Workflow
@@ -268,8 +270,8 @@ Chat Mode ←→ Agent Files (Contextual binding)
 
 **Asset Not Loading**
 - Check YAML front matter syntax
-- Verify file is in correct directory (`.github/chatmodes/`, `.github/instructions/`, `.github/prompts/`)
-- Ensure file extension matches pattern (`*.chatmode.md`, etc.)
+- Verify file is in correct directory (`.github/agents/`, `.github/instructions/`, `.github/prompts/`)
+- Ensure file extension matches pattern (`*.agent.md`, etc.)
 
 **Chat Mode Not Available**  
 - Confirm `description` field is present in YAML
@@ -292,7 +294,7 @@ Chat Mode ←→ Agent Files (Contextual binding)
 
 ```bash
 # Check file existence and naming
-find .github -name "*.chatmode.md" -o -name "*.instructions.md" -o -name "*.prompt.md"
+find .github -name "*.agent.md" -o -name "*.instructions.md" -o -name "*.prompt.md"
 
 # Validate YAML front matter (requires yq or similar)
 for file in .github/**/*.md; do
@@ -300,8 +302,8 @@ for file in .github/**/*.md; do
   head -20 "$file" | grep -A 10 "^---$"
 done
 
-# Test asset loading in VS Code
-# Open Copilot Chat and run: @CopilotCustomizer help
+# Test asset loading in VS Code Copilot Chat
+# Access CopilotCustomizer mode when agent extensions become available
 ```
 
 ---
@@ -373,15 +375,10 @@ Some assets (like `AgentResume.prompt.md`) are designed for cross-repository usa
 - **[AGENTS.md](../AGENTS.md)** - Project development guidance
 - **[VS Code Copilot Docs](https://code.visualstudio.com/docs/copilot/customization/overview)** - Official Microsoft documentation
 
-### Community  
-- **GitHub Issues** - Report bugs and request features
-- **GitHub Discussions** - Community questions and ideas
-- **Pull Requests** - Contribute improvements and new assets
-
-### Professional Support
-- **GitHub Sponsors** - Support ongoing development
-- **PayPal Donations** - One-time contributions
-- **Enterprise Consulting** - Custom asset development and training
+### Technical Support
+- **Internal Issue Tracking** - Report bugs and request features
+- **Internal Documentation Portal** - Enterprise knowledge base
+- **Technical Training** - Custom asset development and best practices
 
 ---
 

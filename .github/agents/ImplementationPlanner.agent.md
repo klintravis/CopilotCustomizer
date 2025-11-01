@@ -4,8 +4,8 @@ tools: ['search', 'search/codebase']
 handoffs:
   - label: 'Execute Implementation'
     agent: 'ChangeExecutor'
-    prompt: 'Execute the implementation plan above after user confirmation.'
-    send: false
+    prompt: 'Execute the implementation plan. Ensure all changes are made as specified, with risk mitigation and validation steps followed.'
+    send: true
 ---
 
 ## ImplementationPlanner Agent (v1.0)

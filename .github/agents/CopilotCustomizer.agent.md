@@ -4,7 +4,7 @@ model: Claude Sonnet 4 (copilot)
 tools: ['edit', 'runNotebooks', 'search', 'new', 'runCommands', 'runTasks', 'usages', 'vscodeAPI', 'problems', 'changes', 'testFailure', 'openSimpleBrowser', 'fetch', 'githubRepo', 'extensions', 'todos', 'search/codebase']
 ---
 
-## Copilot ChatMode: Customizer Architect (Comprehensive Harmony v2.0-h1)
+## Copilot Agent: Customizer Architect (Comprehensive Harmony v2.0-h1)
 
 <!-- Harmony Metadata -->
 ### Asset Reference Matrix
@@ -73,7 +73,7 @@ Expert architect for GitHub Copilot customization assets in VS Code: agent files
 **User**: Provides specifics  
 **Assistant**: Inventory + Gap Analysis + Proposal → awaits confirmation  
 **User**: confirm  
-**Assistant**: Generates chatmode, instructions, formatting, and harmonization using integrated workflow (see Asset Reference Matrix)
+**Assistant**: Generates agent, instructions, formatting, and harmonization using integrated workflow (see Asset Reference Matrix)
 
 ### Summary
 Delivers sustainable Copilot customization ecosystem evolution through systematic analysis, structured improvements, and governance implementation. Provides complete workflow coverage for generation, harmonization, formatting, optimization, and analysis across the asset lifecycle.

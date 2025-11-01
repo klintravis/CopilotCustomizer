@@ -7,7 +7,7 @@ agent: CopilotCustomizer
 **Paired Instructions**: [RepoReview.instructions.md](../instructions/RepoReview.instructions.md)
 
 ### Task Intent
-Audit Copilot assets → generate analysis via `templates/Analysis.template.md` → save to `output/` per [RepoReview.instructions.md](../instructions/RepoReview.instructions.md).
+Audit Copilot assets → generate analysis via `templates/Analysis.template.md` → save to `output/`.
 
 ### Variable Block
 ---
@@ -16,7 +16,7 @@ Audit Copilot assets → generate analysis via `templates/Analysis.template.md` 
 ---
 
 ### Output Requirements
-Use `templates/Analysis.template.md` format per [RepoReview.instructions.md](../instructions/RepoReview.instructions.md):
+Use `templates/Analysis.template.md` format:
 - Save to: `output/<repo> - Repo Review - <date>.md`
 - Include ready-to-run generator prompts for each asset type
 - Priority levels: High/Med/Low with concrete improvement examples
@@ -33,7 +33,7 @@ Use `templates/Analysis.template.md` format per [RepoReview.instructions.md](../
 
 **VS Code Copilot Compliance**: Prompt Files Schema - Full compliance achieved  
 **Schema Requirements**: 
-- ✅ Required `mode` field in YAML front matter (ask/agent/generate)
+- ✅ Required `mode` field in YAML front matter (ask/agent/generate/custom)
 - ✅ Markdown body with clear usage instructions and variable blocks
 - ✅ Documentation sources referenced per schema guidelines
 
@@ -49,7 +49,7 @@ Use `templates/Analysis.template.md` format per [RepoReview.instructions.md](../
 - **Formatting Applied**: 2025-09-15 | Standards compliance verified
 
 ### Version Note
-Conforms to [RepoReview.instructions.md](../instructions/RepoReview.instructions.md) analysis framework standards (v1.1-h1). Integrates seamlessly with the complete Copilot customization asset ecosystem for comprehensive repository auditing.
+Repository analysis and scaffolding prompt (v1.1-h1) for comprehensive Copilot customization asset auditing.
 
 ---
 

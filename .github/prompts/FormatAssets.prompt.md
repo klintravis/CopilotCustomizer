@@ -12,24 +12,19 @@ agent: CopilotCustomizer
 Format individual Copilot asset file with mandatory output and 100% content preservation.
 
 ### Usage
-1. Review [FormatAssets.instructions.md](../instructions/FormatAssets.instructions.md)
-2. Provide `INPUT_FILE` and send
-3. Confirm when ready
-4. Monitor output confirmation
+1. Provide `INPUT_FILE` and send
+2. Confirm when ready
+3. Monitor output confirmation
 
 ### Variables
 ---
 **Input File** [REQUIRED]: "{INPUT_FILE}"
 **Output Folder** (default: .github/output): "{OUTPUT_FOLDER}"
-**Formatting Level** (minimal|standard|comprehensive): {FORMATTING_LEVEL}
-**Preservation** (strict|balanced|flexible): {CONTENT_PRESERVATION}
-**Backup** (true|false): {BACKUP_CREATION}
 ---
 
 ### Validation
-- Supported: `*.instructions.md`, `*.chatmode.md`, `*.prompt.md`, `*.agent.md`
-- Preserve all bindings, references, cross-links
-- Maintain version compatibility
+- Supported: `*.instructions.md`, `*.agent.md`, `*.prompt.md`
+- All formatting and preservation details determined automatically
 
 ### Generation Gate
 Respond with:
@@ -64,8 +59,11 @@ Wait for `confirm`.
 - [ ] Standards compliance validated
 - [ ] Cross-references resolve
 
-*Instructions: [FormatAssets.instructions.md](../instructions/FormatAssets.instructions.md)*  
 *Framework: [CopilotCustomizer.agent.md](../agents/CopilotCustomizer.agent.md)*  
 *VS Code: [Prompt Files](https://code.visualstudio.com/docs/copilot/customization/prompt-files)*
 
 **Generated using**: [FormatAssets.instructions.md](../instructions/FormatAssets.instructions.md)
+
+---
+
+*VS Code Copilot Customization Framework v1.0*

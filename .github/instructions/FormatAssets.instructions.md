@@ -75,7 +75,7 @@ Format and validate GitHub Copilot customization assets (*.instructions.md, *.ag
 ### Validation Rules
 ```
 
-**Chat Modes** (`*.chatmode.md` - Legacy, migrate to `.agent.md`)
+**Agent Files** (`*.agent.md` - Current standard, replaces legacy `.chatmode.md`)
 
 ### Standards Compliance & Validation
 
@@ -99,8 +99,8 @@ Format and validate GitHub Copilot customization assets (*.instructions.md, *.ag
 - ✅ YAML front matter with `description` field
 - ✅ Optional `tools` array for tool configuration  
 - ✅ Optional `model` specification
-- ✅ Markdown body with chat mode instructions
-- ✅ Proper file extension (`.chatmode.md`)
+- ✅ Markdown body with agent instructions
+- ✅ Proper file extension (`.agent.md`)
 
 **Prompt Files Requirements**:
 - ✅ Agent specification (`agent` field preferred over legacy `mode`)

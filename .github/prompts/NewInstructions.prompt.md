@@ -7,30 +7,23 @@ agent: CopilotCustomizer
 **Paired Instructions**: [GenerateInstructions.instructions.md](../instructions/GenerateInstructions.instructions.md)
 
 ### Task Intent
-Generate `*.instructions.md` files per [GenerateInstructions.instructions.md](../instructions/GenerateInstructions.instructions.md).
+Generate `*.instructions.md` files.
 
 ### Variable Block
 ---
-**Instruction Domain** [REQUIRED]: "{INSTRUCTION_DOMAIN}"
-**Primary Objective** [REQUIRED]: "{PRIMARY_OBJECTIVE}"
-**Tech Stack** (default: inferred): "{TECH_STACK}"
-**Security Level** (low|medium|high | default: medium): {SECURITY_LEVEL}
-**Version Tag** (default: v1.0): "{VERSION_TAG}"
+**Domain** [REQUIRED]: "{DOMAIN}"
+**Objective** [REQUIRED]: "{OBJECTIVE}"
 ---
 
 ### Validation Rules
-- Required: `{INSTRUCTION_DOMAIN}`, `{PRIMARY_OBJECTIVE}`.
-- Defaults if missing: `{CRITICAL_SECTIONS}` (use Default list), `{TECH_STACK}` (infer from domain/objective), `{KEY_CONSTRAINTS}` (derive or mark none), `{VERSION_TAG}` (`v1.0`), `{SUCCESS_CRITERIA}` (2–4 measurable targets), `{REFINEMENT_COMMANDS}` (Default set).
-- `{SECURITY_LEVEL}`=high/regulated or compliance keywords -> include Security & Compliance + Compliance subsection.
-- `{DEPTH_MODES}`=none -> omit Depth Modes table and front matter key.
-- If critical sections <3 -> append defaults until ≥3.
-- Keep ordering per schema/guide; conflicts -> clarifiers (do not generate).
+- Required: `{DOMAIN}` and `{OBJECTIVE}`
+- All other details (tech stack, security level, sections, refinement commands) inferred from domain and objective
 
 ### Generation Gate
 First respond with clarifying questions OR `ready-to-generate` + structure summary. Do not output full instructions before explicit `confirm` response.
 
 ### Output Requirements
-Generate complete `*.instructions.md` per [GenerateInstructions.instructions.md](../instructions/GenerateInstructions.instructions.md) with:
+Generate complete `*.instructions.md` with:
 - Front Matter (`applyTo` required), Title, Context, Objective, Tech Stack, Coding Standards, Security (conditional), Testing, Tooling, Documentation, Review Criteria, Refinement Commands, Change Management
 - Default refinement: `refine: concise`, `refine: expand`, `refine: security`, `refine: performance`
 

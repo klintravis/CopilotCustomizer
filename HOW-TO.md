@@ -28,38 +28,38 @@ A comprehensive guide for using, customizing, and extending the Copilot Customiz
    cp -r .github /path/to/your/project/
 
    # Option 2: Selective asset copying
-   mkdir -p your-project/.github/{chatmodes,instructions,prompts,templates}
-   cp .github/chatmodes/CopilotCustomizer.chatmode.md your-project/.github/chatmodes/
+   mkdir -p your-project/.github/{agents,instructions,prompts,templates}
+   cp .github/agents/CopilotCustomizer.agent.md your-project/.github/agents/
    ```
 
 3. **Verify Installation**:
    - Open VS Code in your project directory
    - Open Copilot Chat (`Ctrl+Shift+I`)
-   - Type: `@CopilotCustomizer help`
+   - Access CopilotCustomizer chat mode
    - You should see the customizer respond
 
 ### First Steps with the Customizer
 
 1. **Basic Health Check**:
    ```
-   @CopilotCustomizer refine: audit
+   Use CopilotCustomizer mode: "refine: audit"
    ```
 
 2. **Explore Capabilities**:
    ```
-   @CopilotCustomizer What can you help me with?
+   Use CopilotCustomizer mode: "What can you help me with?"
    ```
 
 3. **Generate Your First Asset**:
    ```
-   @CopilotCustomizer Create a simple code reviewer chat mode
+   Use CopilotCustomizer mode: "Create a simple code reviewer chat mode"
    ```
 
 ## 🧩 Understanding Asset Types
 
-### Chat Mode Files (`*.chatmode.md`)
+### Agent Files (`*.agent.md`)
 
-Chat modes define AI personas with specific behaviors, capabilities, and interaction patterns.
+Agent files define AI personas with specific behaviors, capabilities, and interaction patterns.
 
 **Structure**:
 ```markdown
@@ -69,7 +69,7 @@ depthModes: ['quick-advice', 'standard', 'deep-architecture']
 refinementCommands: ['refine: audit', 'refine: optimize']
 tools: []
 
-## Copilot ChatMode: [Name]
+## Copilot Agent: [Name]
 
 ### Role
 [Persona definition and capabilities]
@@ -126,7 +126,7 @@ Prompts are structured templates for consistent AI interactions.
 ```markdown
 mode: ask  # or 'generate', 'analyze'
 ## [Prompt Name]
-Chat Mode Binding: `chatmodes/[ChatMode].chatmode.md`
+Agent Mode Binding: `agents/[AgentMode].agent.md`
 Paired Instructions: `instructions/[Instructions].instructions.md`
 
 Task Intent: [Clear purpose statement]
@@ -185,24 +185,24 @@ Templates provide standardized formats for analysis and documentation.
 
 This is the recommended approach for most users.
 
-#### Creating a New Chat Mode
+#### Creating a New Agent File
 
 1. **Basic Generation**:
    ```
-   @CopilotCustomizer I need a chat mode for database optimization
+   Use CopilotCustomizer mode: "I need an agent for database optimization"
    ```
 
 2. **With Specific Requirements**:
    ```
-   @CopilotCustomizer Create a chat mode with these requirements:
+   Use CopilotCustomizer mode: "Create an agent with these requirements:
    - Focus: PostgreSQL performance tuning
    - Depth modes: quick-advice, standard, expert
-   - Capabilities: query analysis, index optimization, explain plan review
+   - Capabilities: query analysis, index optimization, explain plan review"
    ```
 
 3. **Using the Structured Prompt**:
    ```
-   @CopilotCustomizer Use the NewChatmode prompt with:
+   Use CopilotCustomizer mode with NewCopilotAgent prompt:
    Persona Name: Database Performance Expert
    Primary Objective: Optimize PostgreSQL databases for maximum performance
    ```
@@ -211,28 +211,28 @@ This is the recommended approach for most users.
 
 1. **Direct Request**:
    ```
-   @CopilotCustomizer Generate instructions for React component testing
+   Use CopilotCustomizer mode: "Generate instructions for React component testing"
    ```
 
 2. **With Context**:
    ```
-   @CopilotCustomizer Create instructions that enforce:
+   Use CopilotCustomizer mode: "Create instructions that enforce:
    - Jest + React Testing Library
    - 90% test coverage requirement
    - Accessibility testing with jest-axe
-   - Snapshot testing for UI components
+   - Snapshot testing for UI components"
    ```
 
 #### Creating Prompt Files
 
 1. **Interactive Creation**:
    ```
-   @CopilotCustomizer I need a prompt for generating API documentation
+   Use CopilotCustomizer mode: "I need a prompt for generating API documentation"
    ```
 
 2. **Structured Approach**:
    ```
-   @CopilotCustomizer Use NewPrompt template for:
+   Use CopilotCustomizer mode with NewPrompt template:
    Purpose: Generate OpenAPI 3.0 specifications
    Input: TypeScript interfaces and route handlers
    Output: Complete API documentation
@@ -246,7 +246,7 @@ For advanced users who want full control over the asset structure.
 
 1. **Create the File Structure**:
    ```bash
-   mkdir -p .github/{chatmodes,instructions,prompts}
+   mkdir -p .github/{agents,instructions,prompts}
    ```
 
 2. **Follow the Schema**:
@@ -258,13 +258,13 @@ For advanced users who want full control over the asset structure.
 3. **Test the Asset**:
    - Reload VS Code or restart Copilot
    - Test the new functionality
-   - Use `@CopilotCustomizer refine: audit` to validate
+   - Use CopilotCustomizer mode with "refine: audit" to validate
 
 ### Asset Naming Conventions
 
 | Asset Type | Pattern | Example |
-|------------|---------|---------|
-| Chat Modes | `[PascalCase].chatmode.md` | `DatabaseExpert.chatmode.md` |
+|------------|---------|---------||
+| Agent Files | `[PascalCase].agent.md` | `DatabaseExpert.agent.md` |
 | Instructions | `[PascalCase].instructions.md` | `ReactTesting.instructions.md` |
 | Prompts | `[PascalCase].prompt.md` | `APIDocumentation.prompt.md` |
 | Templates | `[PascalCase].template.md` | `ProjectAnalysis.template.md` |
@@ -278,29 +278,29 @@ For advanced users who want full control over the asset structure.
 
 1. **Full Repository Audit**:
    ```
-   @CopilotCustomizer refine: audit
+   Use CopilotCustomizer mode: "refine: audit"
    ```
 
 2. **Focused Asset Review**:
    ```
-   @CopilotCustomizer Audit only the chat modes in this repository
+   Use CopilotCustomizer mode: "Audit only the chat modes in this repository"
    ```
 
 3. **Optimization Analysis**:
    ```
-   @CopilotCustomizer refine: optimize
+   Use CopilotCustomizer mode: "refine: optimize"
    ```
 
 #### Batch Asset Updates
 
 1. **Version Migration**:
    ```
-   @CopilotCustomizer Update all assets to schema version 1.2
+   Use CopilotCustomizer mode: "Update all assets to schema version 1.2"
    ```
 
 2. **Standard Alignment**:
    ```
-   @CopilotCustomizer Ensure all chat modes follow the latest Harmony conventions
+   Use CopilotCustomizer mode: "Ensure all chat modes follow the latest Harmony conventions"
    ```
 
 ### Repository Analysis and Enhancement
@@ -309,17 +309,17 @@ For advanced users who want full control over the asset structure.
 
 1. **Initial Analysis**:
    ```
-   @CopilotCustomizer Analyze this repository and recommend Copilot customizations
+   Use CopilotCustomizer mode: "Analyze this repository and recommend Copilot customizations"
    ```
 
 2. **Gap Analysis**:
    ```
-   @CopilotCustomizer What customizations are missing for a TypeScript/React project?
+   Use CopilotCustomizer mode: "What customizations are missing for a TypeScript/React project?"
    ```
 
 3. **Integration Planning**:
    ```
-   @CopilotCustomizer How can I integrate this with my existing CI/CD pipeline?
+   Use CopilotCustomizer mode: "How can I integrate this with my existing CI/CD pipeline?"
    ```
 
 ### Custom Workflow Creation
@@ -329,21 +329,21 @@ For advanced users who want full control over the asset structure.
 1. **Development Workflow**:
    ```markdown
    # Example: Test-Driven Development Mode
-   @CopilotCustomizer Create a chat mode that:
+   Use CopilotCustomizer mode: "Create a chat mode that:
    - Always asks for test cases first
    - Generates failing tests
    - Implements code to pass tests
-   - Refactors for clean code
+   - Refactors for clean code"
    ```
 
 2. **Code Review Workflow**:
    ```markdown
    # Example: Security-First Review Mode
-   @CopilotCustomizer Design a reviewer that:
+   Use CopilotCustomizer mode: "Design a reviewer that:
    - Scans for security vulnerabilities
    - Checks OWASP Top 10 issues  
    - Validates input sanitization
-   - Reviews authentication/authorization
+   - Reviews authentication/authorization"
    ```
 
 ### Integration with External Tools
@@ -427,7 +427,7 @@ For advanced users who want full control over the asset structure.
 1. **Regular Auditing**:
    ```bash
    # Weekly asset health check
-   @CopilotCustomizer refine: audit
+   Use CopilotCustomizer mode: "refine: audit"
    ```
 
 2. **Version Management**:
@@ -444,13 +444,13 @@ For advanced users who want full control over the asset structure.
 
 ### Common Issues and Solutions
 
-#### Chat Mode Not Recognized
+#### Agent Mode Not Recognized
 
-**Symptoms**: `@YourChatMode` doesn't autocomplete or respond
+**Symptoms**: Agent mode doesn't autocomplete or respond
 
 **Solutions**:
-1. **Check File Location**: Ensure the `.chatmode.md` file is in `.github/chatmodes/`
-2. **Verify Syntax**: Use `@CopilotCustomizer refine: audit` to check for errors
+1. **Check File Location**: Ensure the `.agent.md` file is in `.github/agents/`
+2. **Verify Syntax**: Use CopilotCustomizer mode with "refine: audit" to check for errors
 3. **Restart VS Code**: Sometimes required after adding new modes
 4. **Check Permissions**: Ensure Copilot has access to the workspace
 
@@ -479,7 +479,7 @@ For advanced users who want full control over the asset structure.
 **Symptoms**: Slow responses or timeouts
 
 **Solutions**:
-1. **Optimize Assets**: Use `@CopilotCustomizer refine: optimize`
+1. **Optimize Assets**: Use CopilotCustomizer mode with "refine: optimize"
 2. **Reduce Complexity**: Simplify overly detailed instructions
 3. **Use Depth Modes**: Implement quick-advice modes for fast responses
 4. **Cache Strategy**: Consider caching frequently used responses
@@ -490,17 +490,17 @@ For advanced users who want full control over the asset structure.
 
 1. **Syntax Checking**:
    ```
-   @CopilotCustomizer Validate the syntax of all my chat modes
+   Use CopilotCustomizer mode: "Validate the syntax of all my agent files"
    ```
 
 2. **Cross-Reference Analysis**:
    ```
-   @CopilotCustomizer Check for broken references between assets
+   Use CopilotCustomizer mode: "Check for broken references between assets"
    ```
 
 3. **Schema Compliance**:
    ```
-   @CopilotCustomizer Verify all assets follow the latest schema requirements
+   Use CopilotCustomizer mode: "Verify all assets follow the latest schema requirements"
    ```
 
 #### Behavior Testing
@@ -537,26 +537,27 @@ For advanced users who want full control over the asset structure.
    - [VS Code Extension API](https://code.visualstudio.com/api)
 
 2. **Support Channels**:
-   - GitHub Issues for bug reports
-   - VS Code Discord for community help
-   - Stack Overflow for technical questions
+   - Internal issue tracking for bug reports
+   - VS Code documentation for technical questions
+   - Enterprise support for VS Code and Copilot issues
 
 3. **Professional Support**:
    - GitHub Support for Copilot issues
    - Microsoft Support for VS Code problems
-   - Custom development services
+   - Internal training and development resources
 
 ## 📝 Examples
 
-### Example 1: Creating a Test-Driven Development Chat Mode
+### Example 1: Creating a Test-Driven Development Agent
 
-#### Step 1: Generate the Chat Mode
+#### Step 1: Generate the Agent File
 ```
-@CopilotCustomizer Create a chat mode with:
+Use CopilotCustomizer mode:
+"Create an agent with:
 Persona Name: TDD Coach
 Primary Objective: Guide developers through test-driven development practices
 Depth Modes: quick-advice, standard, comprehensive
-Capabilities: test planning, test writing, implementation guidance, refactoring advice
+Capabilities: test planning, test writing, implementation guidance, refactoring advice"
 ```
 
 #### Step 2: Customize the Generated Asset
@@ -566,7 +567,7 @@ schemaVersion: '1.0'
 depthModes: ['quick-advice', 'standard', 'comprehensive']
 refinementCommands: ['refine: test-focus', 'refine: coverage', 'refine: patterns']
 
-## Copilot ChatMode: TDD Coach
+## Copilot Agent: TDD Coach
 
 ### Role
 Expert in test-driven development practices, guiding developers through the Red-Green-Refactor cycle with emphasis on writing effective tests first, implementing minimal code to pass, and refactoring for clean, maintainable solutions.
@@ -588,12 +589,13 @@ Expert in test-driven development practices, guiding developers through the Red-
 
 #### Step 3: Create Supporting Instructions
 ```
-@CopilotCustomizer Generate instructions for TDD practices that enforce:
+Use CopilotCustomizer mode:
+"Generate instructions for TDD practices that enforce:
 - Tests must be written before implementation
 - Each test should focus on a single behavior
 - Implementation should be minimal to pass tests
 - Refactoring should preserve all existing test behavior
-- Code coverage should be maintained above 90%
+- Code coverage should be maintained above 90%"
 ```
 
 ### Example 2: API Documentation Generator
@@ -602,7 +604,7 @@ Expert in test-driven development practices, guiding developers through the Red-
 ```markdown
 mode: generate
 ## API Documentation Generator
-Chat Mode Binding: `chatmodes/APIExpert.chatmode.md`
+Agent Mode Binding: `agents/APIExpert.agent.md`
 Paired Instructions: `instructions/APIDocumentation.instructions.md`
 
 Task Intent: Generate comprehensive API documentation from TypeScript interfaces and route handlers.
@@ -625,7 +627,7 @@ Authentication Method (default: none): "{AUTH_METHOD}"
 
 #### Step 2: Use the Prompt
 ```
-@CopilotCustomizer Use the API Documentation Generator with:
+Use CopilotCustomizer mode with API Documentation Generator:
 API Name: User Management API
 Input Files: src/routes/users.ts, src/models/User.ts
 Output Format: OpenAPI 3.0
@@ -635,14 +637,15 @@ Authentication Method: JWT Bearer
 
 ### Example 3: Security Review Workflow
 
-#### Step 1: Create Security-Focused Chat Mode
+#### Step 1: Create Security-Focused Agent
 ```
-@CopilotCustomizer Create a security reviewer chat mode that:
+Use CopilotCustomizer mode:
+"Create a security reviewer agent that:
 - Scans code for OWASP Top 10 vulnerabilities
 - Checks for proper input validation
 - Reviews authentication and authorization
 - Validates secure coding practices
-- Provides remediation guidance
+- Provides remediation guidance"
 ```
 
 #### Step 2: Set Up Automated Reviews
@@ -656,7 +659,7 @@ Authentication Method: JWT Bearer
 npm run security-scan
 
 # Use Copilot for additional review
-@SecurityReviewer Review this commit for security issues
+Use SecurityReviewer mode for commit review
 ```
 
 ### Code Review Checklist
@@ -704,7 +707,7 @@ npm run security-scan
 
 #### Using the Template
 ```
-@CopilotCustomizer Use the ProjectAnalysis template to analyze this React TypeScript project
+Use CopilotCustomizer mode with ProjectAnalysis template to analyze this React TypeScript project
 ```
 
 ## 🎓 Advanced Topics
@@ -725,7 +728,8 @@ For organizations that need specialized schemas:
 
 2. **Implement Validation Rules**:
    ```
-   @CopilotCustomizer Create instructions for validating against our custom enterprise schema
+   Use CopilotCustomizer mode:
+   "Create instructions for validating against our custom enterprise schema"
    ```
 
 ### Multi-Repository Management
@@ -740,7 +744,8 @@ For managing customizations across multiple projects:
 
 2. **Asset Synchronization**:
    ```
-   @CopilotCustomizer Generate a workflow for syncing customizations across 20+ repositories
+   Use CopilotCustomizer mode:
+   "Generate a workflow for syncing customizations across 20+ repositories"
    ```
 
 ### Performance Monitoring
@@ -749,7 +754,8 @@ Track the effectiveness of your customizations:
 
 1. **Usage Analytics**:
    ```
-   @CopilotCustomizer Create instructions for tracking chat mode usage and effectiveness
+   Use CopilotCustomizer mode:
+   "Create instructions for tracking chat mode usage and effectiveness"
    ```
 
 2. **Quality Metrics**:
@@ -765,17 +771,7 @@ Track the effectiveness of your customizations:
 - **[VS Code Copilot Customization Documentation](https://code.visualstudio.com/docs/copilot/customization/overview)**
 - **[GitHub Copilot Best Practices](https://docs.github.com/en/copilot/using-github-copilot/best-practices-for-using-github-copilot)**
 - **[Agents.md Examples](https://agents.md/#examples)**
-- **[Community Templates and Examples](https://github.com/copilot-customizations/examples)**
-
-## 🤝 Contributing to This Guide
-
-Found something unclear or missing? Help improve this guide:
-
-1. **Quick Fixes**: Edit directly and submit a PR
-2. **New Sections**: Open an issue with your suggestion
-3. **Examples**: Share your customization examples
-4. **Best Practices**: Document what works well in your organization
 
 ---
 
-*This guide is maintained by the Copilot Customizer community. Last updated: September 2025*
+*Enterprise customization framework for VS Code GitHub Copilot*
