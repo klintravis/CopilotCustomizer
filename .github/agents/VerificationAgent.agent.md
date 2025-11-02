@@ -1,7 +1,7 @@
 ---
 description: 'Verification agent that validates changes against acceptance criteria'
-model: auto
-tools: ['search', 'search/codebase', 'problems', 'changes']
+model: Auto (copilot)
+tools: ['search', 'problems', 'changes']
 handoffs:
   - label: 'Generate Documentation'
     agent: 'DocumentationGenerator'

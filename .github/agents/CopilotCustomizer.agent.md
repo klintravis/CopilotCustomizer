@@ -1,6 +1,6 @@
 ---
 description: 'VS Code Copilot Customization Architect'
-model: auto
+model: Auto (copilot)
 tools: ['edit', 'runNotebooks', 'search', 'new', 'runCommands', 'runTasks', 'usages', 'vscodeAPI', 'problems', 'changes', 'testFailure', 'openSimpleBrowser', 'fetch', 'githubRepo', 'extensions', 'todos', 'search/codebase']
 ---
 

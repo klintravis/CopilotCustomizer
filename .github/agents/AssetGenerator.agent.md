@@ -1,6 +1,6 @@
 ---
 description: 'Autonomous asset creation engine for agents, instructions, and prompts'
-model: auto
+model: Auto (copilot)
 tools: ['edit', 'new', 'search']
 handoffs:
   - label: 'Validate Assets'

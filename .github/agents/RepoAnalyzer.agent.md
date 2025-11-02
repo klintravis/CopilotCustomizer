@@ -1,6 +1,6 @@
 ---
 description: 'Repository analyzer for change impact assessment and context gathering'
-model: auto
+model: Auto (copilot)
 tools: ['search', 'search/codebase', 'changes', 'problems']
 handoffs:
   - label: 'Create Implementation Plan'

@@ -1,6 +1,6 @@
 ---
 description: 'Implementation planner that creates detailed change execution strategy'
-model: auto
+model: Auto (copilot)
 tools: ['search', 'search/codebase']
 handoffs:
   - label: 'Execute Implementation'

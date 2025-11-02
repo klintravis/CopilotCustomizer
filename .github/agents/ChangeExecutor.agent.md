@@ -1,6 +1,6 @@
 ---
 description: 'Change executor that implements approved modifications across repository'
-model: auto
+model: Auto (copilot)
 tools: ['edit', 'new', 'search', 'changes']
 handoffs:
   - label: 'Verify Implementation'

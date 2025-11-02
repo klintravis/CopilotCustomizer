@@ -1,6 +1,6 @@
 ---
 description: 'Documentation generator that creates comprehensive change summaries for user review'
-model: auto
+model: Auto (copilot)
 tools: ['search', 'changes']
 ---
 

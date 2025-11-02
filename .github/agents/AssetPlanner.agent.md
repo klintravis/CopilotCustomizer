@@ -1,6 +1,6 @@
 ---
 description: 'Strategic asset planning with single approval gate for external repository customization'
-model: auto
+model: Auto (copilot)
 tools: ['search', 'search/codebase']
 handoffs:
   - label: 'Generate Assets'
