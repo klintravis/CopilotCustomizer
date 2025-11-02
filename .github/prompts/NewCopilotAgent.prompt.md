@@ -24,6 +24,7 @@ Generate VS Code Copilot `.agent.md` chat mode file with role, tools, handoffs, 
 
 ### Validation
 - Required: `AGENT_NAME`, `DOMAIN`, `PRIMARY_ROLE`
+- If `handoffs` are included, EACH entry MUST have: `label` (string), `agent` (string), `prompt` (string), `send` (boolean)
 - All other details (tools, capabilities, handoffs, depth modes) inferred from role and domain
 
 ### Generation Gate
@@ -44,7 +45,7 @@ Complete `.agent.md` with:
 5. Depth modes
 6. Refinement commands
 7. Tool integration
-8. Handoff workflows
+ 8. Handoff workflows (if present, conform to handoffs schema: label, agent, prompt, send)
 9. Framework integration
 
 ### Agent Patterns

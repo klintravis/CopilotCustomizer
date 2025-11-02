@@ -88,10 +88,38 @@ Standardized approach for creating VS Code Copilot `.agent.md` files (chat modes
 ❌ Add `terminal` without security justification  
 ❌ Use tools unrelated to agent's domain  
 ❌ Forget to document why specific tools are needed
-  - label: 'Generate Code'
-    agent: 'generator'
-    prompt: 'Create implementation.'
+
+### Handoffs Schema Requirements (MANDATORY when `handoffs` present)
+
+When defining handoffs in the YAML front matter of an agent file, each handoff entry MUST include these fields:
+
+```yaml
+handoffs:
+  - label: "Human-readable action name"    # required (string)
+    agent: "TargetAgentName"               # required (string, matches .agent.md basename)
+    prompt: "What to send/ask the target"  # required (string, describes context transfer)
+    send: false                             # required (boolean; true = auto, false = manual)
+```
+
+Validation rules:
+- `agent` must resolve to an existing file: `.github/agents/{agent}.agent.md`
+- `send` must be boolean (not string)
+- `prompt` should describe context being transferred (avoid generic text)
+- If no handoffs are needed, omit the `handoffs` key entirely
+
+Example (valid):
+
+```yaml
+---
+description: "Security reviewer for API endpoints"
+tools: [search, problems]
+handoffs:
+  - label: "Escalate critical findings to ImplementationPlanner"
+    agent: "ImplementationPlanner"
+    prompt: "Implement remediations for the following validated issues with references to files and line ranges."
     send: false
+---
+```
 ---
 
 ## Agent Name: Specialist Role
@@ -125,8 +153,8 @@ Expert in [domain] who [capability]. [Expertise and limits].
 - Concrete workflow steps
 - Proper framework references
 - Valid YAML and markdown
-- Approved tools only
-- Clear handoff conditions
+ - Approved tools only
+ - Clear handoff conditions (see Handoffs Schema Requirements)
 
 ### Integration Patterns
 **Shared Instructions**: Framework, Security, Audit references  

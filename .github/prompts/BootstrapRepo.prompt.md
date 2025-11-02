@@ -39,9 +39,11 @@ AssetGenerator (create all assets)
   ↓
 VerificationAgent (schema validation)
   ↓
+FormatAndVerifyAssets (blocking)
+  ↓
 HarmonizationAgent (bind with metadata)
   ↓
-VerificationAgent (final check)
+WorkflowIntegrityCheck (STRICT=true) → VerificationAgent (final check)
   ↓
 DocumentationGenerator (report)
   ↓
@@ -142,11 +144,20 @@ confirm
 ✓ YAML validation: All valid
 ✓ Tool approvals: Verified
 
+[FormatAndVerifyAssets] Formatting + schema validation (blocking)...
+✓ Format applied where needed
+✓ YAML + handoffs schema: PASS
+Report: /output/format-verify-summary.md
+
 [HarmonizationAgent] Binding ecosystem...
 ✓ Cross-references: 14 added
 ✓ Metadata: Applied to all
 ✓ Handoff chains: 2 validated
 ✓ Terminology: Standardized
+
+ [WorkflowIntegrityCheck] Workflow matrix (STRICT=true)...
+✓ All workflows: PASS
+Matrix: /output/workflow-integrity-matrix.md
 
 [VerificationAgent] Final validation...
 ✓ All cross-references resolved
@@ -200,6 +211,20 @@ if (repo.name.includes("CopilotCustomizer")) {
 }
 ```
 
+**Agent Handoffs Schema (MANDATORY when present)**:
+```yaml
+handoffs[] required fields per entry:
+  - label: string
+  - agent: string (must resolve to .github/agents/{agent}.agent.md)
+  - prompt: string (describes context transfer)
+  - send: boolean (true=auto, false=manual)
+```
+
+Validation Actions:
+- Fail the run if any handoff entry is missing required fields
+- Fail the run if `agent` reference does not resolve to an existing agent file
+- Warn if `prompt` is too short or generic (< 20 chars)
+
 ## Refinement Commands
 
 After plan presentation, before confirmation:
@@ -208,6 +233,7 @@ After plan presentation, before confirmation:
 - `refine: complexity` - Simplify/expand specs
 - `add: {asset}` - Include additional asset
 - `skip: {asset}` - Remove from plan
+- `refine: validation` - Adjust strictness or report-only behavior for validation passes
 - `cancel` - Abort workflow
 
 ## Error Scenarios
@@ -237,6 +263,13 @@ Failed: SecurityReviewer.agent.md, SecurityPatterns.instructions.md
 Action: Continuing with available assets...
 ```
 
+**Validation Failure (Blocking)**:
+```
+Error: Handoffs schema validation failed
+Details: Missing 'send' in 2 entries; unresolved agent reference: QAOrchestrator
+Action: Aborting before documentation; fix generation specs and retry
+```
+
 ## Quality Guarantees
 
 **Acceptance Criteria**:
@@ -245,7 +278,10 @@ Action: Continuing with available assets...
 - [ ] Asset recommendations generated
 - [ ] <5 user interactions total (ideally 2)
 - [ ] 90%+ handoff success rate
-- [ ] Schema compliance: 100%
+ - [ ] Schema compliance: 100% (YAML + handoffs schema)
+ - [ ] Handoffs fields: 100% valid (label, agent, prompt, send)
+ - [ ] FormatAndVerifyAssets: PASS (blocking)
+ - [ ] WorkflowIntegrityCheck (STRICT=true): PASS
 - [ ] Cross-references: All resolved
 - [ ] Documentation: Complete report
 
