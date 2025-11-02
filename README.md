@@ -42,7 +42,7 @@
 #    Select your CopilotCustomizer directory
 
 # 2. Open Copilot Chat (Ctrl+Shift+I)
-#    Open: .github/prompts/ExternalRepoBootstrap.prompt.md
+#    Open: .github/prompts/BootstrapRepo.prompt.md
 #    Set: REPOSITORY_PATH: "/path/to/your-project"
 #    Type: confirm
 
@@ -108,16 +108,36 @@ VS Code Workspace
 
 ## 🎯 Available Workflows
 
-| Workflow | Purpose | Prompt File |
-|----------|---------|-------------|
-| **Bootstrap** | Complete setup for any repo | `ExternalRepoBootstrap.prompt.md` |
-| **Repository Analysis** | Analyze and recommend | `RepoReview.prompt.md` |
-| **New Agent** | Create AI specialist | `NewCopilotAgent.prompt.md` |
-| **New Instructions** | Add coding rules | `NewInstructions.prompt.md` |
-| **New Prompt** | Create template | `NewPrompt.prompt.md` |
-| **Optimize Assets** | Improve existing | `AssetOptimization.prompt.md` |
+**8 Automated Workflows** for asset generation, maintenance, and quality assurance.
+
+**Quick Access**:
+- **BootstrapRepo** - Complete repository setup (most common)
+- **QuickChange** - Fast targeted changes
+- **RepoReview** - Comprehensive analysis
+- **Asset Generators** - NewCopilotAgent, NewInstructions, NewPrompt, etc.
+
+**📋 Complete workflow index below** with docs and prompt links.
 
 **All prompts** in `.github/prompts/` - open in Copilot Chat
+
+## Workflow index
+
+- BootstrapRepo — Fully autonomous setup for a target repo in the same workspace  
+    Docs: [docs/workflows/BootstrapRepo.md](docs/workflows/BootstrapRepo.md) · Prompt: [.github/prompts/BootstrapRepo.prompt.md](.github/prompts/BootstrapRepo.prompt.md)
+- UpdateCopilotCustomizer — Automated change workflow for CopilotCustomizer repository itself  
+    Docs: [docs/workflows/UpdateCopilotCustomizer.md](docs/workflows/UpdateCopilotCustomizer.md) · Prompt: [.github/prompts/UpdateCopilotCustomizer.prompt.md](.github/prompts/UpdateCopilotCustomizer.prompt.md)
+- QuickChange — Fast, minimal-diff change with a single approval gate  
+    Docs: [docs/workflows/QuickChange.md](docs/workflows/QuickChange.md) · Prompt: [.github/prompts/QuickChange.prompt.md](.github/prompts/QuickChange.prompt.md)
+- FormatAndVerifyAssets — Standardize formatting and validate assets in one pass  
+    Docs: [docs/workflows/FormatAndVerifyAssets.md](docs/workflows/FormatAndVerifyAssets.md) · Prompt: [.github/prompts/FormatAndVerifyAssets.prompt.md](.github/prompts/FormatAndVerifyAssets.prompt.md)
+- HarmonizeAndValidate — Harmonize cross-references and validate workflow integrity  
+    Docs: [docs/workflows/HarmonizeAndValidate.md](docs/workflows/HarmonizeAndValidate.md) · Prompt: [.github/prompts/HarmonizeAndValidate.prompt.md](.github/prompts/HarmonizeAndValidate.prompt.md)
+- SecurityToolingAudit — Audit tool approvals and MCP server trust (report-only default)  
+    Docs: [docs/workflows/SecurityToolingAudit.md](docs/workflows/SecurityToolingAudit.md) · Prompt: [.github/prompts/SecurityToolingAudit.prompt.md](.github/prompts/SecurityToolingAudit.prompt.md)
+- WorkflowIntegrityCheck — Validate agent handoffs and workflow link health  
+    Docs: [docs/workflows/WorkflowIntegrityCheck.md](docs/workflows/WorkflowIntegrityCheck.md) · Prompt: [.github/prompts/WorkflowIntegrityCheck.prompt.md](.github/prompts/WorkflowIntegrityCheck.prompt.md)
+- PromptAndInstructionOptimizer — Improve clarity and token efficiency with a confirmation gate  
+    Docs: [docs/workflows/PromptAndInstructionOptimizer.md](docs/workflows/PromptAndInstructionOptimizer.md) · Prompt: [.github/prompts/PromptAndInstructionOptimizer.prompt.md](.github/prompts/PromptAndInstructionOptimizer.prompt.md)
 
 ---
 

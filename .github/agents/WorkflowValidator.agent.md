@@ -1,6 +1,6 @@
 ---
 description: 'Workflow integrity validator that tests handoff chains, context transfer, and automation patterns'
-model: auto
+model: Auto (copilot)
 tools: ['search', 'search/codebase']
 handoffs:
   - label: 'Document Workflow Analysis'
@@ -210,7 +210,7 @@ When RepoReview v1.3 identifies workflows, WorkflowValidator can be invoked to:
 
 **Usage Pattern**:
 ```
-RepoReview identifies: "ExternalRepoBootstrap workflow (7 agents, linear)"
+RepoReview identifies: "BootstrapRepo workflow (7 agents, linear)"
   ↓
 WorkflowValidator validates: Chain integrity, context transfer, gates
   ↓
@@ -221,7 +221,7 @@ DocumentationGenerator reports: Health grade + recommendations
 
 **Scenario 1: Healthy Workflow**
 ```
-ExternalRepoBootstrap Workflow
+BootstrapRepo Workflow
 ✅ 8 handoffs - all valid
 ✅ Context transfer: 95% complete
 ✅ Quality gates: 1 (optimal for autonomy)

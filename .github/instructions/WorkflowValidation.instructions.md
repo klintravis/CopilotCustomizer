@@ -370,9 +370,9 @@ Quick Stats:
 context:
   workflows_identified: [
     {
-      name: "ExternalRepoBootstrap"
-      entry_point: "ExternalRepoBootstrap.agent.md"
-      agents: ["ExternalRepoBootstrap", "RepoAnalyzer", ...]
+      name: "BootstrapRepo"
+      entry_point: "BootstrapRepo.agent.md"
+      agents: ["BootstrapRepo", "RepoAnalyzer", ...]
       handoff_count: 8
     }
   ]
@@ -383,7 +383,7 @@ request: "Validate all identified workflows"
 ```yaml
 results: [
   {
-    workflow: "ExternalRepoBootstrap"
+    workflow: "BootstrapRepo"
     status: "HEALTHY"
     grade: "A"
     automation: "87%"

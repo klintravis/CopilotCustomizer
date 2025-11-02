@@ -227,11 +227,11 @@ handoffs:
 - [NewInstructions.prompt.md](../prompts/NewInstructions.prompt.md) → Instructions
 - [NewPrompt.prompt.md](../prompts/NewPrompt.prompt.md) → Prompts
 - [NewCopilotAgent.prompt.md](../prompts/NewCopilotAgent.prompt.md) → Agents
-- [ExternalRepoBootstrap.prompt.md](../prompts/ExternalRepoBootstrap.prompt.md) → Complete workflow (NEW)
+- [BootstrapRepo.prompt.md](../prompts/BootstrapRepo.prompt.md) → Complete workflow (NEW)
 
 ### Workflow References
 **Existing Workflows**:
-- [ExternalRepoBootstrap](../../docs/workflows/ExternalRepoBootstrap.md) - Autonomous asset generation for external repos
+- [BootstrapRepo](../../docs/workflows/BootstrapRepo.md) - Autonomous asset generation for a target repo in the same workspace
 
 **Workflow Instructions**:
 - [GenerateWorkflow.instructions.md](GenerateWorkflow.instructions.md) - Multi-chain workflow framework

@@ -42,7 +42,7 @@ EXPLORER
 
 1. Open Copilot Chat: `Ctrl+Shift+I` (Windows/Linux) or `Cmd+Shift+I` (Mac)
 2. In Explorer, navigate to: `CopilotCustomizer` → `.github` → `prompts`
-3. Open `ExternalRepoBootstrap.prompt.md`
+3. Open `BootstrapRepo.prompt.md`
 4. Fill in the variable:
    ```
    REPOSITORY_PATH: "/absolute/path/to/your-project"

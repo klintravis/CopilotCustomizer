@@ -1,3 +1,7 @@
+---
+agent: CopilotCustomizer
+---
+
 # AgentResume.prompt.md
 
 ## Universal Agent Resume Helper Prompt (v2.0-universal)

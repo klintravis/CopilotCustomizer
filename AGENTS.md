@@ -20,7 +20,7 @@ code /path/to/your-project
 # File → Add Folder to Workspace → select CopilotCustomizer
 
 # 3. Use prompts to generate assets
-# Open .github/prompts/ExternalRepoBootstrap.prompt.md
+# Open .github/prompts/BootstrapRepo.prompt.md
 # Set REPOSITORY_PATH to your project
 # Type: confirm
 
@@ -80,7 +80,7 @@ VS Code Workspace
 - **ChangeExecutor**: Precise change implementation
 - **VerificationAgent**: Schema and acceptance criteria validation
 - **DocumentationGenerator**: Comprehensive change summaries
-- **ExternalRepoBootstrap**: External repository asset generation entry point
+- **BootstrapRepo**: Repository bootstrap entry point (same workspace)
 - **AssetPlanner**: Asset recommendation and specification
 - **AssetGenerator**: Multi-asset creation engine
 - **HarmonizationAgent**: Cross-reference binding and metadata
@@ -108,7 +108,7 @@ Open these from `.github/prompts/` in Copilot Chat:
 
 | Prompt File | Purpose | Usage |
 |-------------|---------|-------|
-| **ExternalRepoBootstrap** | Complete setup for any repo | `REPOSITORY_PATH: "/path/to/project"` |
+| **BootstrapRepo** | Complete setup for any repo | `REPOSITORY_PATH: "/path/to/project"` |
 | **NewCopilotAgent** | Create AI expert agent | `AGENT_NAME: "DatabaseExpert"` |
 | **NewInstructions** | Add coding rules/patterns | Specify domain and rules |
 | **NewPrompt** | Create structured template | Define variables and format |
@@ -146,21 +146,21 @@ Open these from `.github/prompts/` in Copilot Chat:
 
 ## Workflows
 
-### External Repository Bootstrap
-**Purpose**: Fully autonomous asset generation for external repositories  
-**Entry Point**: [ExternalRepoBootstrap.prompt.md](.github/prompts/ExternalRepoBootstrap.prompt.md)  
-**Documentation**: [ExternalRepoBootstrap Workflow](docs/workflows/ExternalRepoBootstrap.md)
+### BootstrapRepo
+**Purpose**: Fully autonomous asset generation for a target repository in the same workspace  
+**Entry Point**: [BootstrapRepo.prompt.md](.github/prompts/BootstrapRepo.prompt.md)  
+**Documentation**: [BootstrapRepo Workflow](docs/workflows/BootstrapRepo.md)
 
 **Usage**:
 ```
-Bootstrap Copilot assets for: /path/to/external/repo
+Bootstrap Copilot assets for: /path/to/repo
 ```
 
 **Workflow**: Analysis → Planning → [Confirm] → Generation → Validation → Harmonization → Documentation  
 **Duration**: <5 minutes | **User Input**: 2 interactions (start + confirm)
 
 **Agents Involved**:
-- ExternalRepoBootstrap (entry)
+- BootstrapRepo (entry)
 - RepoAnalyzer (analysis)
 - AssetPlanner (recommendations)
 - AssetGenerator (creation)
@@ -175,8 +175,8 @@ Bootstrap Copilot assets for: /path/to/external/repo
 
 ## Example Commands
 ```bash
-# External Repository Bootstrap (most common)
-# Open ExternalRepoBootstrap.prompt.md in Copilot Chat
+# BootstrapRepo (most common)
+# Open BootstrapRepo.prompt.md in Copilot Chat
 # Set: REPOSITORY_PATH: "/Users/dev/my-api-project"
 # Type: confirm
 # Result: Complete customization generated in your project

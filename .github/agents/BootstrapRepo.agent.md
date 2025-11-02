@@ -1,22 +1,22 @@
 ---
-description: 'Autonomous workflow for bootstrapping Copilot customization assets in external repositories'
-model: auto
+description: 'Autonomous workflow for bootstrapping Copilot customization assets in a target repository within the same workspace'
+model: Auto (copilot)
 tools: ['search', 'search/codebase', 'edit', 'new']
 handoffs:
   - label: 'Analyze Repository'
     agent: 'RepoAnalyzer'
-    prompt: 'Analyze this external repository to identify: tech stack, project patterns, existing AGENTS.md, required customization assets. Focus on determining what agent files, instructions, and prompts would benefit this project. Exclude CopilotCustomizer repository from analysis.'
+    prompt: 'Analyze the target repository (same workspace) to identify: tech stack, project patterns, existing AGENTS.md, and required customization assets. Focus on determining what agent files, instructions, and prompts would benefit this project. Exclude the CopilotCustomizer folder from analysis.'
     send: true
 ---
 
-## ExternalRepoBootstrap Agent (v1.0)
+## BootstrapRepo Agent (v1.0)
 
 ### Role
-Entry point for fully autonomous Copilot customization asset generation workflow. Gathers minimal context from user, validates target repository is not CopilotCustomizer, then orchestrates complete asset lifecycle: analysis → generation → validation → harmonization → documentation.
+Entry point for fully autonomous Copilot customization asset generation workflow. Gathers minimal context from user, validates target repository path, then orchestrates complete asset lifecycle: analysis → generation → validation → harmonization → documentation.
 
 ### Core Objectives
 1. **Minimal Input**: Single prompt with repository path
-2. **Context Validation**: Ensure target is external repository
+2. **Context Validation**: Ensure target is a separate repository (not this CopilotCustomizer folder)
 3. **Workflow Orchestration**: Manage complete 6-phase autonomous process
 4. **Zero-Touch Operation**: Requires confirmation only once after planning
 
@@ -44,7 +44,7 @@ Phase 6: Final Validation & Documentation (Auto)
 ### Entry Point Usage
 **Minimal Input Required**:
 ```
-REPOSITORY_PATH: "/path/to/external/repo"
+REPOSITORY_PATH: "/path/to/repository"
 ```
 
 **Agent Infers**:
@@ -58,7 +58,7 @@ REPOSITORY_PATH: "/path/to/external/repo"
 ```yaml
 Pre-Flight Checks:
   - Repository path exists: REQUIRED
-  - Not CopilotCustomizer: REQUIRED
+  - Target is not the CopilotCustomizer folder: REQUIRED
   - Git repository: RECOMMENDED
   - VS Code workspace: RECOMMENDED
 ```
@@ -66,7 +66,7 @@ Pre-Flight Checks:
 **Exclusion Logic**:
 ```
 if (repo.name.contains("CopilotCustomizer")) {
-  abort("This workflow is for external repositories only")
+  abort("Please target a different repository (same workspace) instead of CopilotCustomizer")
 }
 ```
 
@@ -114,7 +114,7 @@ Documentation: /output/Bootstrap-Report-2025-11-01.md"
 
 ### Handoff Chain
 ```
-ExternalRepoBootstrap
+BootstrapRepo
   ↓
 RepoAnalyzer (analysis complete)
   ↓
@@ -135,7 +135,7 @@ COMPLETE
 **Repository Validation Failure**:
 ```
 if (isCopilotCustomizer) {
-  return "⚠️ This workflow is for external repositories only. Use CopilotCustomizer agent for internal work."
+  return "⚠️ Target should be a different repository in the same workspace. Avoid running on CopilotCustomizer itself."
 }
 ```
 
@@ -163,6 +163,6 @@ All other phases run autonomously with automatic handoffs.
 
 ---
 
-*Entry point for autonomous external repository asset generation*  
+*Entry point for autonomous repository bootstrap (same workspace)*  
 *70%+ instruction reuse from CopilotCustomizer framework*  
 *<5 user interactions guarantee*

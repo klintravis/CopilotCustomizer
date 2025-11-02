@@ -1,6 +1,6 @@
 ---
 description: 'Harmonization specialist for binding generated assets with metadata and cross-references'
-model: auto
+model: Auto (copilot)
 tools: ['edit', 'search']
 handoffs:
   - label: 'Final Validation'

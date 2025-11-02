@@ -89,7 +89,7 @@ Use when starting fresh with a new repository.
 
 **Steps**:
 1. Open Copilot Chat (`Ctrl+Shift+I` or `Cmd+Shift+I`)
-2. Open `.github/prompts/ExternalRepoBootstrap.prompt.md` from CopilotCustomizer
+2. Open `.github/prompts/BootstrapRepo.prompt.md` from CopilotCustomizer
 3. Follow the prompt with your project path:
    ```
    REPOSITORY_PATH: "/path/to/your-project"
@@ -327,7 +327,7 @@ code .
 # File → Add Folder to Workspace → select CopilotCustomizer
 
 # Bootstrap customization
-# Open .github/prompts/ExternalRepoBootstrap.prompt.md
+# Open .github/prompts/BootstrapRepo.prompt.md
 # Use REPOSITORY_PATH: "/path/to/my-react-app"
 # Confirm generation
 
@@ -367,7 +367,7 @@ code .
 # File → Add Folder to Workspace
 
 # Bootstrap full customization
-# Open ExternalRepoBootstrap.prompt.md
+# Open BootstrapRepo.prompt.md
 # REPOSITORY_PATH: "C:\Projects\MyMicroservice"
 
 # Get .NET-specific agents:

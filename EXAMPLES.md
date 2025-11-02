@@ -26,7 +26,7 @@ code .
 ### Generate Assets
 ```bash
 # In Copilot Chat:
-# Open ExternalRepoBootstrap.prompt.md
+# Open BootstrapRepo.prompt.md
 # Fill in:
 REPOSITORY_PATH: "/Users/dev/my-react-app"
 
@@ -86,7 +86,7 @@ code .
 ### Generate Assets
 ```bash
 # In Copilot Chat:
-# Open ExternalRepoBootstrap.prompt.md
+# Open BootstrapRepo.prompt.md
 REPOSITORY_PATH: "/home/dev/my-api"
 
 # Type: confirm
@@ -145,7 +145,7 @@ code .
 ### Generate Assets
 ```bash
 # In Copilot Chat:
-# Open ExternalRepoBootstrap.prompt.md
+# Open BootstrapRepo.prompt.md
 REPOSITORY_PATH: "C:\Projects\MyApi"
 
 # Type: confirm
@@ -205,7 +205,7 @@ code .
 ### Generate Assets
 ```bash
 # In Copilot Chat:
-# Open ExternalRepoBootstrap.prompt.md
+# Open BootstrapRepo.prompt.md
 REPOSITORY_PATH: "/Users/dev/my-express-api"
 
 # Type: confirm
@@ -265,7 +265,7 @@ code .
 TARGET_PATH: "/var/www/my-laravel-app"
 
 # Review recommendations, then:
-# Open ExternalRepoBootstrap.prompt.md
+# Open BootstrapRepo.prompt.md
 REPOSITORY_PATH: "/var/www/my-laravel-app"
 
 # Type: confirm

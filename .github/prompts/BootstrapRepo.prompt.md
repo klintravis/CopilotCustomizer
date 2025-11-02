@@ -1,26 +1,25 @@
----
-agent: ExternalRepoBootstrap
+agent: BootstrapRepo
 ---
 
-# External Repository Bootstrap Workflow (v1.0)
+# BootstrapRepo Workflow (v1.0)
 
-**Paired Agent**: [ExternalRepoBootstrap.agent.md](../agents/ExternalRepoBootstrap.agent.md)
+**Paired Agent**: [BootstrapRepo.agent.md](../agents/BootstrapRepo.agent.md)
 
 ## Purpose
-Fully autonomous workflow for generating Copilot customization assets in external repositories. Single entry point that orchestrates complete lifecycle: analysis → planning → generation → validation → harmonization → documentation.
+Fully autonomous workflow for generating Copilot customization assets for a target repository in the same workspace. Single entry point that orchestrates complete lifecycle: analysis → planning → generation → validation → harmonization → documentation.
 
-**Constraint**: Only runs on external repositories (excludes CopilotCustomizer itself).
+**Constraint**: Do not target the CopilotCustomizer folder itself (use a different repository in the same workspace).
 
 ## Usage
 
 ### Minimal Input (One Command)
 ```
-Bootstrap Copilot assets for: /path/to/external/repository
+Bootstrap Copilot assets for: /path/to/repository
 ```
 
 ### Variables
 ---
-**REPOSITORY_PATH** [REQUIRED]: "{Absolute path to external repository}"
+**REPOSITORY_PATH** [REQUIRED]: "{Absolute path to target repository}"
 ---
 
 **That's it!** Everything else is inferred automatically.
@@ -30,7 +29,7 @@ Bootstrap Copilot assets for: /path/to/external/repository
 ```
 User Input (REPOSITORY_PATH)
   ↓
-ExternalRepoBootstrap (validation)
+BootstrapRepo (validation)
   ↓
 RepoAnalyzer (tech stack detection)
   ↓
@@ -78,7 +77,7 @@ Bootstrap Copilot assets for: /Users/dev/projects/my-api-server
 ### Phase 1: Validation (Instant)
 ```
 ✓ Repository exists
-✓ Not CopilotCustomizer (external repo)
+✓ Not CopilotCustomizer (separate repo in same workspace)
 ✓ Git repository detected
 ✓ VS Code workspace compatible
 
@@ -196,8 +195,8 @@ Recommended:
 **Repository Exclusion**:
 ```
 if (repo.name.includes("CopilotCustomizer")) {
-  ABORT: "This workflow is for external repositories only.
-          Use CopilotCustomizer agent for internal work."
+  ABORT: "Target should be a separate repository in the same workspace.
+            Avoid running on CopilotCustomizer itself."
 }
 ```
 
@@ -221,8 +220,8 @@ Action: Please verify path and try again
 
 **CopilotCustomizer Detection**:
 ```
-Error: This workflow is for external repositories only
-Action: Use CopilotCustomizer agent directly for internal work
+Error: Target is the CopilotCustomizer folder
+Action: Choose a different repository in the same workspace
 ```
 
 **Cannot Detect Tech Stack**:
@@ -241,7 +240,7 @@ Action: Continuing with available assets...
 ## Quality Guarantees
 
 **Acceptance Criteria**:
-- [ ] Repository validated as external
+- [ ] Repository path validated (not CopilotCustomizer)
 - [ ] Tech stack detected (or manual input accepted)
 - [ ] Asset recommendations generated
 - [ ] <5 user interactions total (ideally 2)
@@ -271,7 +270,7 @@ Action: Continuing with available assets...
 - [CopilotAudit.instructions.md](../instructions/CopilotAudit.instructions.md) - Quality validation
 
 **Agent Chain**:
-- [ExternalRepoBootstrap.agent.md](../agents/ExternalRepoBootstrap.agent.md) - Entry point
+- [BootstrapRepo.agent.md](../agents/BootstrapRepo.agent.md) - Entry point
 - [RepoAnalyzer.agent.md](../agents/RepoAnalyzer.agent.md) - Analysis
 - [AssetPlanner.agent.md](../agents/AssetPlanner.agent.md) - Planning + gate
 - [AssetGenerator.agent.md](../agents/AssetGenerator.agent.md) - Generation

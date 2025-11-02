@@ -46,7 +46,7 @@
 ### Validation Rules
 ```
 
-**Available**: AgentResume, AssetOptimization, UpdateCopilotCustomizer, FormatAssets, HarmonizeAssets, NewAgentsFile, NewCopilotAgent, NewInstructions, NewPrompt, NewWorkflow, RepoReview
+**Available**: AgentResume, AssetOptimization, BootstrapRepo, FormatAssets, FormatAndVerifyAssets, HarmonizeAssets, HarmonizeAndValidate, NewAgentsFile, NewCopilotAgent, NewInstructions, NewPrompt, NewWorkflow, PromptAndInstructionOptimizer, QuickChange, RepoReview, SecurityToolingAudit, UpdateCopilotCustomizer, WorkflowIntegrityCheck
 schemaVersion: "1.0"  # Optional: version tracking  
 depthModes: ["standard", "detailed"]  # Optional: supported depth levels
 refinementCommands: ["refine: focus"]  # Optional: available commands
@@ -84,15 +84,22 @@ refinementCommands: ["refine: focus"]  # Optional: available commands
 |------|---------|------------|
 | `AgentResume.prompt.md` | Universal agent workflow helper | None (universal) |
 | `AssetOptimization.prompt.md` | Asset optimization execution | CopilotCustomizer |
-| `UpdateCopilotCustomizer.prompt.md` | Automated CopilotCustomizer change workflow | CopilotCustomizer |
+| `BootstrapRepo.prompt.md` | Complete repository setup workflow | BootstrapRepo |
 | `FormatAssets.prompt.md` | Asset formatting execution | CopilotCustomizer |
+| `FormatAndVerifyAssets.prompt.md` | Format and validate assets in one pass | CopilotCustomizer |
 | `HarmonizeAssets.prompt.md` | Asset harmonization execution | CopilotCustomizer |
+| `HarmonizeAndValidate.prompt.md` | Harmonize and validate 2-3 assets | CopilotCustomizer |
 | `NewAgentsFile.prompt.md` | Generate workspace AGENTS.md | CopilotCustomizer |
 | `NewCopilotAgent.prompt.md` | Generate VS Code .agent.md | CopilotCustomizer |
 | `NewInstructions.prompt.md` | Generate instruction files | CopilotCustomizer |
 | `NewPrompt.prompt.md` | Generate prompt files | CopilotCustomizer |
 | `NewWorkflow.prompt.md` | Generate multi-agent workflows | CopilotCustomizer |
+| `PromptAndInstructionOptimizer.prompt.md` | Optimize prompts and instructions | CopilotCustomizer |
+| `QuickChange.prompt.md` | Fast minimal-diff change workflow | CopilotCustomizer |
 | `RepoReview.prompt.md` | Repository analysis execution | CopilotCustomizer |
+| `SecurityToolingAudit.prompt.md` | Audit tool approvals and MCP trust | CopilotCustomizer |
+| `UpdateCopilotCustomizer.prompt.md` | CopilotCustomizer change workflow | CopilotCustomizer |
+| `WorkflowIntegrityCheck.prompt.md` | Validate workflow handoffs and links | CopilotCustomizer |
 
 ---
 
