@@ -6,7 +6,7 @@ handoffs:
   - label: 'Execute Implementation'
     agent: 'ChangeExecutor'
     prompt: 'Execute the implementation plan. Ensure all changes are made as specified, with risk mitigation and validation steps followed.'
-    send: true
+    send: false
 ---
 
 ## ImplementationPlanner Agent (v1.0)
@@ -74,6 +74,13 @@ Next Steps:
 
 ### Handoff Trigger
 Hands off to ChangeExecutor ONLY after receiving user `confirm` response. Otherwise, accepts refinement commands to iterate on plan.
+
+### Quick Actions
+- `confirm` — Continue to ChangeExecutor (execute plan)
+- `refine: scope` — Adjust files/areas to modify
+- `refine: approach` — Change implementation strategy
+- `refine: validation` — Enhance verification criteria
+- `cancel` — Abort workflow
 
 ---
 

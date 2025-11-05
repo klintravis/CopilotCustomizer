@@ -41,14 +41,13 @@ EXPLORER
 **Bootstrap complete customization for your project:**
 
 1. Open Copilot Chat: `Ctrl+Shift+I` (Windows/Linux) or `Cmd+Shift+I` (Mac)
-2. In Explorer, navigate to: `CopilotCustomizer` → `.github` → `prompts`
-3. Open `BootstrapRepo.prompt.md`
-4. Fill in the variable:
+2. Type the `/BootstrapRepo` slash command with your project path:
    ```
-   REPOSITORY_PATH: "/absolute/path/to/your-project"
+   /BootstrapRepo REPOSITORY_PATH: "/absolute/path/to/your-project"
    ```
-5. Review the recommendations shown
-6. Type: `confirm`
+   The slash command will load and execute the BootstrapRepo workflow.
+3. Review the analysis and recommendations shown
+4. Type `confirm` when prompted to generate assets
 
 **Wait**: 2-3 minutes while assets generate
 
@@ -96,39 +95,14 @@ Your project-specific customization includes:
 
 ---
 
-## 🔧 Common Issues
+## 🔧 Troubleshooting
 
-### Issue: Can't Find Prompt Files
+For common issues (prompt visibility, output location, confirmations, performance), see:
 
-**Symptom**: Don't see `.github/prompts/` folder
+- `HOW-TO.md` → Troubleshooting
+- Direct link: HOW-TO.md section “Troubleshooting”
 
-**Fix**:
-1. Verify CopilotCustomizer added to workspace
-2. Check Explorer sidebar shows both folders
-3. Expand `CopilotCustomizer` → `.github` → `prompts`
-
----
-
-### Issue: Assets Created in Wrong Location
-
-**Symptom**: New files appear in CopilotCustomizer folder
-
-**Fix**:
-1. Verify `REPOSITORY_PATH` uses **absolute path** to YOUR project
-2. Example: `/Users/dev/my-project` not `./my-project`
-3. Both folders must be open in workspace
-
----
-
-### Issue: Nothing Generated
-
-**Symptom**: No assets appear after typing `confirm`
-
-**Fix**:
-1. Check Copilot Chat for errors or questions
-2. Ensure path is correct and accessible
-3. Verify write permissions on your project folder
-4. Try again with explicit path
+This guide keeps QUICKSTART lean; the HOW-TO has comprehensive fixes and tips.
 
 ---
 
@@ -137,16 +111,18 @@ Your project-specific customization includes:
 ### Customize Further
 
 **Add specific agents:**
-- Open `NewCopilotAgent.prompt.md`
-- Create domain experts (database, security, testing, etc.)
+- Type: `/NewCopilotAgent` and specify agent details when prompted
+- Example: `/NewCopilotAgent AGENT_NAME: "DatabaseExpert", DOMAIN: "PostgreSQL"`
+- Agent will ask for any missing details
 
 **Add coding rules:**
-- Open `NewInstructions.prompt.md`
-- Define project-specific standards
+- Type: `/NewInstructions` and specify domain and rules
+- Example: `/NewInstructions DOMAIN: "Testing", APPLY_TO: "**/*.test.ts"`
+- Specify rules inline or agent will ask
 
 **Review what was created:**
-- Open `RepoReview.prompt.md`
-- Analyze your new customization
+- Type: `/RepoReview TARGET_PATH: "/path/to/your-project"`
+- Get comprehensive analysis of your Copilot assets
 
 ### Learn More
 

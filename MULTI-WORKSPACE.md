@@ -89,14 +89,13 @@ Use when starting fresh with a new repository.
 
 **Steps**:
 1. Open Copilot Chat (`Ctrl+Shift+I` or `Cmd+Shift+I`)
-2. Open `.github/prompts/BootstrapRepo.prompt.md` from CopilotCustomizer
-3. Follow the prompt with your project path:
+2. Type the `/BootstrapRepo` slash command:
    ```
-   REPOSITORY_PATH: "/path/to/your-project"
+   /BootstrapRepo REPOSITORY_PATH: "/path/to/your-project"
    ```
-4. Review recommendations
-5. Type `confirm` to generate assets
-6. Assets created in `your-project/.github/` folders
+3. Review analysis and recommendations
+4. Type `confirm` when prompted to generate assets
+5. Assets created in `your-project/.github/` folders
 
 **Result**: Complete AI customization tailored to your tech stack
 
@@ -106,25 +105,23 @@ Use when you need specific agents, instructions, or prompts.
 
 **For a New Agent**:
 1. Open Copilot Chat
-2. Open `.github/prompts/NewCopilotAgent.prompt.md`
-3. Fill in variables:
+2. Type the `/NewCopilotAgent` slash command:
    ```
-   AGENT_NAME: "DatabaseOptimizer"
+   /NewCopilotAgent AGENT_NAME: "DatabaseOptimizer", 
    DOMAIN: "PostgreSQL performance"
-   PRIMARY_ROLE: "Optimize database queries and indexes"
    ```
-4. Type `confirm`
-5. Agent created in your project's `.github/agents/` folder
+3. Review details and type `confirm` when prompted
+4. Agent created in your project's `.github/agents/` folder
 
 **For New Instructions**:
-1. Open `.github/prompts/NewInstructions.prompt.md`
-2. Specify requirements
-3. Instructions created in your project
+1. Open Copilot Chat
+2. Type the `/NewInstructions` slash command with requirements
+3. Instructions created in your project's `.github/instructions/` folder
 
 **For New Prompts**:
-1. Open `.github/prompts/NewPrompt.prompt.md`
-2. Define template structure
-3. Prompt created in your project
+1. Open Copilot Chat
+2. Type the `/NewPrompt` slash command with template structure
+3. Prompt created in your project's `.github/prompts/` folder
 
 ### Pattern 3: Repository Analysis
 
@@ -132,14 +129,12 @@ Use when you want to understand what customizations would help.
 
 **Steps**:
 1. Open Copilot Chat
-2. Open `.github/prompts/RepoReview.prompt.md`
-3. Set target to your project:
+2. Type the `/RepoReview` slash command:
    ```
-   TARGET_PATH: "/path/to/your-project"
-   FOCUS_AREA: "all assets"
+   /RepoReview TARGET_PATH: "/path/to/your-project"
    ```
-4. Review analysis and recommendations
-5. Decide which assets to generate
+3. Review analysis and recommendations
+4. Decide which assets to generate
 
 ### Pattern 4: Optimize Existing Assets
 
@@ -147,10 +142,12 @@ Use when your project already has Copilot customizations.
 
 **Steps**:
 1. Open Copilot Chat
-2. Open `.github/prompts/AssetOptimization.prompt.md`
-3. Point to your project's assets
-4. Review optimization suggestions
-5. Apply improvements
+2. Type the `/AssetOptimization` slash command:
+   ```
+   /AssetOptimization TARGET_PATH: "/path/to/your-project/.github"
+   ```
+3. Review optimization suggestions
+4. Type `confirm` to apply improvements
 
 ## Working with Generated Assets
 
@@ -267,49 +264,12 @@ git clone https://internal/CopilotCustomizer.git ~/my-copilot-framework
 
 ## Troubleshooting
 
-### CopilotCustomizer Not Found in Workspace
+To keep this guide concise, all troubleshooting is centralized in:
 
-**Symptom**: Can't see CopilotCustomizer prompts in file explorer
+- `HOW-TO.md` → Troubleshooting
+- Direct link: HOW-TO.md section “Troubleshooting”
 
-**Solution**: 
-1. Check Explorer sidebar shows both folders
-2. If missing, add folder again: `File` → `Add Folder to Workspace`
-
-### Assets Created in Wrong Location
-
-**Symptom**: New assets appear in CopilotCustomizer instead of your project
-
-**Solution**:
-1. Ensure prompts specify correct target path
-2. Check `REPOSITORY_PATH` variable points to your project
-3. Move files manually to your project's `.github/` folders
-
-### Prompts Can't Access My Project Files
-
-**Symptom**: Repository analysis fails or incomplete
-
-**Solution**:
-1. Verify both folders open in workspace
-2. Check file permissions on your project
-3. Ensure absolute paths used in prompts
-4. Try relative path from workspace root
-
-### VS Code Performance Issues
-
-**Symptom**: Slow with both folders open
-
-**Solution**:
-1. Close CopilotCustomizer when not actively using it
-2. Use workspace files to quickly reopen configuration
-3. Exclude CopilotCustomizer from search if needed:
-   ```json
-   // settings.json
-   {
-     "search.exclude": {
-       "**/CopilotCustomizer/output/**": true
-     }
-   }
-   ```
+That section covers prompt visibility, output locations, approvals, performance, and handoff buttons.
 
 ## Examples
 
@@ -327,73 +287,13 @@ code .
 # File → Add Folder to Workspace → select CopilotCustomizer
 
 # Bootstrap customization
-# Open .github/prompts/BootstrapRepo.prompt.md
-# Use REPOSITORY_PATH: "/path/to/my-react-app"
-# Confirm generation
+# In Copilot Chat, type:
+/BootstrapRepo REPOSITORY_PATH: "/path/to/my-react-app"
+## Examples
 
-# Result: React-specific agents, instructions, prompts in my-react-app/
-```
+For runnable, stack-specific examples (React, Python, .NET, Node.js, Monorepo), see:
 
-### Example 2: Existing Python API
-
-```bash
-# Open existing Python project
-cd ~/projects/python-api
-code .
-
-# Add CopilotCustomizer workspace
-# File → Add Folder to Workspace → select CopilotCustomizer
-
-# Run repository analysis
-# Open .github/prompts/RepoReview.prompt.md
-# Review what's recommended for Python/FastAPI project
-
-# Generate specific assets
-# Open .github/prompts/NewCopilotAgent.prompt.md
-# Create APIExpert agent for FastAPI
-
-# Close CopilotCustomizer when done
-# Remove Folder from Workspace
-```
-
-### Example 3: .NET Core Microservice
-
-```bash
-# Open .NET solution
-cd C:\Projects\MyMicroservice
-code .
-
-# Add CopilotCustomizer
-# File → Add Folder to Workspace
-
-# Bootstrap full customization
-# Open BootstrapRepo.prompt.md
-# REPOSITORY_PATH: "C:\Projects\MyMicroservice"
-
-# Get .NET-specific agents:
-# - TestGenerator (xUnit focus)
-# - APIExpert (ASP.NET Core patterns)
-# - SecurityReviewer (.NET security practices)
-
-# Remove CopilotCustomizer folder when done
-```
-
-## Best Practices
-
-### ✅ DO
-
-- **Keep CopilotCustomizer separate** - Don't merge into your project
-- **Use absolute paths** - In prompts, use full paths to your project
-- **Close when not needed** - Remove folder to reduce clutter
-- **Update regularly** - Pull latest CopilotCustomizer improvements
-- **Reuse across projects** - Same framework for all repositories
-- **Generate assets per project** - Each project gets its own customization
-
-### ❌ DON'T
-
-- **Don't copy into project** - Use workspace folders instead
-- **Don't modify CopilotCustomizer** - Keep it as upstream reference
-- **Don't commit CopilotCustomizer** - Your project should only have generated assets
+- `EXAMPLES.md` — Real-world walkthroughs with copy/paste commands
 - **Don't mix assets** - Keep CopilotCustomizer's assets separate from yours
 - **Don't use relative paths** - Can be ambiguous with multiple folders
 

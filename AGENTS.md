@@ -20,9 +20,9 @@ code /path/to/your-project
 # File → Add Folder to Workspace → select CopilotCustomizer
 
 # 3. Use prompts to generate assets
-# Open .github/prompts/BootstrapRepo.prompt.md
-# Set REPOSITORY_PATH to your project
-# Type: confirm
+# In Copilot Chat, type:
+/BootstrapRepo REPOSITORY_PATH: "/path/to/your-project"
+# Review and type: confirm
 
 # 4. Assets created in YOUR project (not CopilotCustomizer)
 # Close CopilotCustomizer folder when done
@@ -104,26 +104,22 @@ VS Code Workspace
 
 ## Available Prompts (Slash Commands)
 
-Open these from `.github/prompts/` in Copilot Chat:
+Use slash commands directly in Copilot Chat. See the centralized cheat sheet:
 
-| Prompt File | Purpose | Usage |
-|-------------|---------|-------|
-| **BootstrapRepo** | Complete setup for any repo | `REPOSITORY_PATH: "/path/to/project"` |
-| **NewCopilotAgent** | Create AI expert agent | `AGENT_NAME: "DatabaseExpert"` |
-| **NewInstructions** | Add coding rules/patterns | Specify domain and rules |
-| **NewPrompt** | Create structured template | Define variables and format |
-| **RepoReview** | Analyze repository | `TARGET_PATH: "."` |
-| **AssetOptimization** | Improve existing assets | Point to assets directory |
-| **HarmonizeAssets** | Link assets together | Select 2-3 related assets |
-| **FormatAssets** | Standardize formatting | Specify asset files |
+- `HOW-TO.md` → "Slash Command Cheat Sheet"
 
-**All generate assets in YOUR project**, not in CopilotCustomizer.
+Highlights:
+- `/BootstrapRepo REPOSITORY_PATH: "/path"` — Full setup
+- `/RepoReview TARGET_PATH: "/path"` — Analysis
+- `/NewCopilotAgent ...` · `/NewInstructions ...` · `/NewPrompt ...`
+
+All prompts generate assets in YOUR project, not in CopilotCustomizer.
 
 ## Testing
 ```bash
 # Validate your project's generated assets
-# Open RepoReview.prompt.md from CopilotCustomizer workspace
-# Set TARGET_PATH to your project
+# In Copilot Chat, type:
+/RepoReview TARGET_PATH: "/path/to/your-project"
 # Review validation results
 ```
 
@@ -153,7 +149,7 @@ Open these from `.github/prompts/` in Copilot Chat:
 
 **Usage**:
 ```
-Bootstrap Copilot assets for: /path/to/repo
+/BootstrapRepo REPOSITORY_PATH: "/path/to/repo"
 ```
 
 **Workflow**: Analysis → Planning → [Confirm] → Generation → Validation → Harmonization → Documentation  
@@ -176,26 +172,33 @@ Bootstrap Copilot assets for: /path/to/repo
 ## Example Commands
 ```bash
 # BootstrapRepo (most common)
-# Open BootstrapRepo.prompt.md in Copilot Chat
-# Set: REPOSITORY_PATH: "/Users/dev/my-api-project"
-# Type: confirm
+# In Copilot Chat, type:
+/BootstrapRepo REPOSITORY_PATH: "/Users/dev/my-api-project"
+# Review and type: confirm
 # Result: Complete customization generated in your project
 
 # Create Individual Asset
-# Open NewCopilotAgent.prompt.md
-# Fill in agent details
+# In Copilot Chat, type:
+/NewCopilotAgent AGENT_NAME: "DatabaseExpert", DOMAIN: "PostgreSQL"
+# Review and type: confirm
 # Result: New agent created in your project's .github/agents/
 
 # Analyze Your Repository
-# Open RepoReview.prompt.md
-# Set: TARGET_PATH: "/path/to/your-project"
+# In Copilot Chat, type:
+/RepoReview TARGET_PATH: "/path/to/your-project"
 # Review recommendations
 
-# Maintenance (for CopilotCustomizer itself)
-# Open FormatAssets.prompt.md with INPUT_FILE and OUTPUT_FOLDER
-# Or use RepoReview.prompt.md for analysis
+# Optimize Assets
+# In Copilot Chat, type:
+/AssetOptimization TARGET_PATH: "/path/to/your-project/.github"
+# Review and confirm improvements
 
-# All prompts located in: CopilotCustomizer/.github/prompts/
+# Format Assets
+# In Copilot Chat, type:
+/FormatAssets TARGET_PATH: "/path/to/your-project/.github"
+# Review formatting changes
+
+# All prompts available as slash commands in Copilot Chat
 # All assets generated in: your-project/.github/
 ```
 

@@ -25,11 +25,10 @@ code .
 
 ### Generate Assets
 ```bash
-# In Copilot Chat:
-# Open BootstrapRepo.prompt.md
-# Fill in:
-REPOSITORY_PATH: "/Users/dev/my-react-app"
+# In Copilot Chat, type the slash command:
+/BootstrapRepo REPOSITORY_PATH: "/Users/dev/my-react-app"
 
+# Review analysis and recommendations
 # Type: confirm
 ```
 
@@ -85,10 +84,10 @@ code .
 
 ### Generate Assets
 ```bash
-# In Copilot Chat:
-# Open BootstrapRepo.prompt.md
-REPOSITORY_PATH: "/home/dev/my-api"
+# In Copilot Chat, type the slash command:
+/BootstrapRepo REPOSITORY_PATH: "/home/dev/my-api"
 
+# Review analysis and recommendations
 # Type: confirm
 ```
 
@@ -144,10 +143,10 @@ code .
 
 ### Generate Assets
 ```bash
-# In Copilot Chat:
-# Open BootstrapRepo.prompt.md
-REPOSITORY_PATH: "C:\Projects\MyApi"
+# In Copilot Chat, type the slash command:
+/BootstrapRepo REPOSITORY_PATH: "C:\Projects\MyApi"
 
+# Review analysis and recommendations
 # Type: confirm
 ```
 
@@ -204,10 +203,10 @@ code .
 
 ### Generate Assets
 ```bash
-# In Copilot Chat:
-# Open BootstrapRepo.prompt.md
-REPOSITORY_PATH: "/Users/dev/my-express-api"
+# In Copilot Chat, type the slash command:
+/BootstrapRepo REPOSITORY_PATH: "/Users/dev/my-express-api"
 
+# Review analysis and recommendations
 # Type: confirm
 ```
 
@@ -260,13 +259,11 @@ code .
 
 ### Generate Assets
 ```bash
-# In Copilot Chat:
-# Open RepoReview.prompt.md first (analyze before generating)
-TARGET_PATH: "/var/www/my-laravel-app"
+# In Copilot Chat, analyze first:
+/RepoReview TARGET_PATH: "/var/www/my-laravel-app"
 
-# Review recommendations, then:
-# Open BootstrapRepo.prompt.md
-REPOSITORY_PATH: "/var/www/my-laravel-app"
+# Review recommendations, then bootstrap:
+/BootstrapRepo REPOSITORY_PATH: "/var/www/my-laravel-app"
 
 # Type: confirm
 ```
@@ -323,9 +320,11 @@ code my-monorepo
 
 ### Generate Assets
 ```bash
-# Bootstrap detects ALL languages
-REPOSITORY_PATH: "/Users/dev/my-monorepo"
+# In Copilot Chat, type the slash command:
+# Bootstrap detects ALL languages automatically
+/BootstrapRepo REPOSITORY_PATH: "/Users/dev/my-monorepo"
 
+# Review multi-language analysis
 # Type: confirm
 ```
 

@@ -42,9 +42,9 @@
 #    Select your CopilotCustomizer directory
 
 # 2. Open Copilot Chat (Ctrl+Shift+I)
-#    Open: .github/prompts/BootstrapRepo.prompt.md
-#    Set: REPOSITORY_PATH: "/path/to/your-project"
-#    Type: confirm
+#    Type the slash command:
+/BootstrapRepo REPOSITORY_PATH: "/path/to/your-project"
+#    Review and type: confirm
 
 # 3. Assets created in your project's .github/ folder
 #    Close CopilotCustomizer folder when done
@@ -118,7 +118,7 @@ VS Code Workspace
 
 **📋 Complete workflow index below** with docs and prompt links.
 
-**All prompts** in `.github/prompts/` - open in Copilot Chat
+**All workflows** are available as slash commands in Copilot Chat. See HOW-TO → Slash Command Cheat Sheet.
 
 ## Workflow index
 
