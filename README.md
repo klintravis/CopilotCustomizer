@@ -179,7 +179,7 @@ VS Code Workspace
 | **Nothing generated** | Check both folders open, verify permissions |
 | **Update framework** | `cd CopilotCustomizer && git pull` |
 
-**More Help**: [QUICKSTART.md](QUICKSTART.md#common-issues)
+**More Help**: [HOW-TO.md](HOW-TO.md)
 
 ---
 

@@ -1,5 +1,5 @@
 ---
-applyTo: '**/*.prompt.md'
+applyTo: '.github/**/*.prompt.md'
 description: 'Standardized, modular approach for building high-quality prompt files that pair with chat modes and instruction files'
 ---
 
@@ -62,6 +62,5 @@ If required variable missing (<4 chars), list `Missing Inputs:` and halt with ta
 - Include: `OutputPath`, `GeneratedAt`, `SourceInstruction`, `Type: prompt`
 - Must include ready-to-run example with resolved inputs
 
-*Framework: [CopilotCustomizer.agent.md](../agents/CopilotCustomizer.agent.md)*  
-*Standards: [FormatAssets.instructions.md](../instructions/FormatAssets.instructions.md)*  
-*VS Code: [Custom Instructions](https://code.visualstudio.com/docs/copilot/customization/custom-instructions)*
+---
+*Generated following VS Code Copilot prompt file standards*

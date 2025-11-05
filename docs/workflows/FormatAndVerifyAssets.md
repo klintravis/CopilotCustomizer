@@ -58,7 +58,7 @@ FormatAndVerifyAssets → RepoAnalyzer → ChangeExecutor (FormatAssets) → Ver
 - Summary report generated
 
 ## How to Run
-1. Open `.github/prompts/FormatAndVerifyAssets.prompt.md` in Copilot Chat
+1. Use the `/FormatAssets` slash command with inline variables
 2. Set variables (TARGET_PATH, SEVERITY, REPORT_ONLY)
 3. Submit and review the generated report
 

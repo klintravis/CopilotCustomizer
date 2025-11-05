@@ -57,7 +57,7 @@ HarmonizeAndValidate → RepoAnalyzer → HarmonizationAgent → WorkflowValidat
 - Summary includes link map and changes applied
 
 ## How to Run
-1. Open `.github/prompts/HarmonizeAndValidate.prompt.md` in Copilot Chat
+1. Use the `/HarmonizeAndValidate` slash command with inline variables
 2. Provide ASSETS list and MODE
 3. Submit and review results
 

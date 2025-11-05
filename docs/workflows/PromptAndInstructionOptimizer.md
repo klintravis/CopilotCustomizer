@@ -62,7 +62,7 @@ PromptAndInstructionOptimizer → RepoAnalyzer → ImplementationPlanner → [US
 - Verification passes audit dimensions
 
 ## How to Run
-1. Open `.github/prompts/PromptAndInstructionOptimizer.prompt.md` in Copilot Chat
+1. Use the `/PromptAndInstructionOptimizer` slash command with inline variables
 2. Set TARGET_* lists and GOAL
 3. Submit → Review plan → Type `confirm`
 

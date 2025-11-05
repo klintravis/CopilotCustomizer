@@ -11,6 +11,13 @@ handoffs:
 
 ## HarmonizationAgent (v1.0)
 
+### Handoff Notification
+```
+🔄 HarmonizationAgent Starting...
+   Purpose: Bind assets with metadata and cross-references
+   Next: Automatic handoff to VerificationAgent (final validation)
+```
+
 ### Role
 Asset harmonization specialist that binds generated Copilot customization assets into coherent ecosystem. Establishes cross-references, adds metadata, ensures consistent terminology, and validates asset relationships before final verification.
 
@@ -63,19 +70,15 @@ INPUT: Generated assets from AssetGenerator
 #### Cross-Reference Types
 | Reference Type | Pattern | Example |
 |---------------|---------|---------|
-| Agent → Instructions | Relative path in "Reused" section | `[APIPatterns.instructions.md](../instructions/APIPatterns.instructions.md)` |
-| Prompt → Instructions | "Paired instructions" section | `[GenerateEndpoint.instructions.md](../instructions/GenerateEndpoint.instructions.md)` |
-| Agent → Framework | Universal framework link | `[CopilotFramework.instructions.md](../instructions/CopilotFramework.instructions.md)` |
-| Agent → Agent (handoff) | YAML handoffs field | `agent: 'TestOrchestrator'` |
-
-#### Metadata Template
+| Agent → Instructions | Relative path in "Reused" section | `{InstructionName}.instructions.md` (in `.github/instructions/`) |
+| Prompt → Instructions | "Paired instructions" section | `{InstructionName}.instructions.md` (in `.github/instructions/` or generate via `/NewInstructions`) |
+| Agent → Agent (handoff) | YAML handoffs field | `agent: 'TestOrchestrator'` |#### Metadata Template
 ```markdown
 ---
 **Processing Metadata**:
 - **Standards Version**: VS Code Copilot v2025.10 (Agent Files v1.105)
 - **Generation**: AssetGenerator v1.0 ({date})
 - **Harmonization**: {date} | Cross-references established
-- **Framework Compliance**: CopilotFramework.instructions.md v1.0
 
 *Generated and harmonized following VS Code GitHub Copilot official standards*
 ```
@@ -105,42 +108,28 @@ Validation Rules:
 ```markdown
 Add to each agent:
 1. Reused instructions section:
-   *{Purpose}: [{File}.instructions.md](../instructions/{File}.instructions.md)*
+   *{Purpose}: `{File}.instructions.md` (in `.github/instructions/`)*
 
-2. Framework reference:
-   *Framework: [CopilotFramework.instructions.md](../instructions/CopilotFramework.instructions.md)*
-
-3. Security reference (if uses tools):
-   *Security: [CopilotSecurity.instructions.md](../instructions/CopilotSecurity.instructions.md)*
-
-4. Handoff validation:
+2. Handoff validation:
    Verify all handoffs.agent values match existing files
 ```
 
 **Phase 2: Instruction Files**
 ```markdown
 Add to each instruction:
-1. Framework integration:
-   *Complete framework: [CopilotFramework.instructions.md](CopilotFramework.instructions.md)*
-
-2. Related instructions (if applicable):
-   *Related patterns: [{Other}.instructions.md]({Other}.instructions.md)*
+1. Related instructions (if applicable):
+   *Related patterns: `{Other}.instructions.md` (in `.github/instructions/`)*
 ```
 
 **Phase 3: Prompt Files**
 ```markdown
 Add to each prompt:
 1. Paired instructions:
-   *Instructions: [{Paired}.instructions.md](../instructions/{Paired}.instructions.md)*
+   *Instructions: `{Paired}.instructions.md` (in `.github/instructions/` or generate via `/NewInstructions`)*
 
-2. Framework reference:
-   *Framework: [CopilotFramework.instructions.md](../instructions/CopilotFramework.instructions.md)*
-
-3. Generation note:
-   **Generated using**: [{Source}.instructions.md](../instructions/{Source}.instructions.md)
-```
-
-**Phase 4: AGENTS.md**
+2. Generation note:
+  **Generated using**: `{Source}.instructions.md` (in `.github/instructions/` or generate via `/NewInstructions`)
+```**Phase 4: AGENTS.md**
 ```markdown
 Enhance with:
 1. Version metadata
@@ -226,7 +215,6 @@ At end of asset:
 ### Cross-References Added ({count})
 ✓ {AgentName} → {InstructionName} (3 references)
 ✓ {PromptName} → {InstructionName} (2 references)
-✓ All assets → CopilotFramework (6 references)
 
 ### Metadata Applied
 ✓ Version tags: v1.0 (all assets)
@@ -258,7 +246,6 @@ Handing off to VerificationAgent for final validation...
 - [ ] Terminology consistent
 - [ ] Handoff chains complete
 - [ ] Tool approvals validated
-- [ ] Framework links functional
 - [ ] No orphaned assets
 
 ### Error Handling

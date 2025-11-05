@@ -11,6 +11,13 @@ handoffs:
 
 ## AssetPlanner Agent (v1.0)
 
+### Handoff Notification
+```
+🔄 AssetPlanner Agent Starting...
+   Purpose: Asset recommendations and specifications
+   Next: User approval gate, then handoff to AssetGenerator
+```
+
 ### Role
 Strategic planner for Copilot customization asset generation. Analyzes repository context, recommends specific agents/instructions/prompts, creates detailed specifications, then waits for single user confirmation before autonomous execution.
 

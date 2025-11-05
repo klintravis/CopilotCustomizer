@@ -468,7 +468,7 @@ IF critical_error_detected AND not_full_scan_requested:
 *Workflow patterns: [GenerateWorkflow.instructions.md](GenerateWorkflow.instructions.md)*  
 *Repository scanning: [RepoReview.instructions.md](RepoReview.instructions.md)*  
 *Quality dimensions: [CopilotAudit.instructions.md](CopilotAudit.instructions.md)*  
-*Standards compliance: [CopilotFramework.instructions.md](CopilotFramework.instructions.md)*  
+*Standards compliance: [CopilotFramework.instructions.md](../instructions/CopilotFramework.instructions.md)*  
 *Security patterns: [CopilotSecurity.instructions.md](CopilotSecurity.instructions.md)*
 
 ---

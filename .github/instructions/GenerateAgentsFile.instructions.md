@@ -1,5 +1,5 @@
 ---
-applyTo: '**/*.agent.md'
+applyTo: 'AGENTS.md'
 description: 'Standardized framework for creating AGENTS.md files that guide AI coding agents with clear, actionable project instructions and development workflows'
 ---
 

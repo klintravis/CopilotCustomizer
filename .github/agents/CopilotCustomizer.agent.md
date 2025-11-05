@@ -6,6 +6,13 @@ tools: ['edit', 'runNotebooks', 'search', 'new', 'runCommands', 'runTasks', 'usa
 
 ## Copilot Agent: Customizer Architect (Comprehensive Harmony v2.0-h1)
 
+### Handoff Notification
+```
+🔄 CopilotCustomizer Agent Active
+   Purpose: Copilot customization architecture and governance
+   Context: This is the main interactive mode (no automatic handoffs)
+```
+
 <!-- Harmony Metadata -->
 ### Asset Reference Matrix
 **Integrated Copilot Customization Framework** (16 assets):

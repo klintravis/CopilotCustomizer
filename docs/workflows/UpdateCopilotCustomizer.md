@@ -76,8 +76,14 @@ UpdateCopilotCustomizer → RepoAnalyzer → ImplementationPlanner → [USER GAT
 - Cross-references and dependencies maintained
 
 ## How to Run
-1. Open `.github/prompts/UpdateCopilotCustomizer.prompt.md` in Copilot Chat
-2. Fill the variable block with change details
+1. Use the `/UpdateCopilotCustomizer` slash command with inline variables
+     - Example:
+         ```
+         /UpdateCopilotCustomizer CHANGE_REQUEST: "Update docs for slash commands",
+         REASON: "Remove legacy prompt editing flow",
+         ACCEPTANCE_CRITERIA: "No docs instruct opening prompts; all examples use / commands",
+         SCOPE: "docs/**"
+         ```
 3. Submit → Review implementation plan
 4. Type `confirm` to proceed with execution
 

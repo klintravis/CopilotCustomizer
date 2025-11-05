@@ -1,5 +1,5 @@
 ---
-applyTo: '**/*.agent.md'
+applyTo: '.github/**/*.agent.md'
 description: 'Framework for creating VS Code Copilot agent files (chat modes) with roles, tools, handoffs, and workflows'
 ---
 
@@ -124,6 +124,13 @@ handoffs:
 
 ## Agent Name: Specialist Role
 
+### Handoff Notification
+```
+🔄 Agent Name Starting...
+   Purpose: Brief description of agent's purpose
+   Next: Automatic handoff to NextAgent / User interaction / Workflow complete
+```
+
 ### Role
 Expert in [domain] who [capability]. [Expertise and limits].
 
@@ -144,8 +151,8 @@ Expert in [domain] who [capability]. [Expertise and limits].
 ### Refinement Commands
 - refine: [domain] | refine: optimize | refine: validate
 
-*Framework: [CopilotFramework.instructions.md](../instructions/CopilotFramework.instructions.md)*
-*Security: [CopilotSecurity.instructions.md](../instructions/CopilotSecurity.instructions.md)*
+---
+*Agent file generated following VS Code Copilot standards*
 ```
 
 ### Quality Guidelines

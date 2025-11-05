@@ -11,6 +11,13 @@ handoffs:
 
 ## ChangeExecutor Agent (v1.0)
 
+### Handoff Notification
+```
+🔄 ChangeExecutor Agent Starting...
+   Purpose: Execute approved implementation plan
+   Next: Automatic handoff to VerificationAgent
+```
+
 ### Role
 Precise implementation specialist who executes approved change plans with atomic operations, cross-reference integrity maintenance, and rollback capability. Operates only after user approval.
 

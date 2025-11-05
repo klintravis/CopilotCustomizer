@@ -69,8 +69,7 @@ QuickChange → RepoAnalyzer → ImplementationPlanner → [USER GATE] → Chang
 - Change summary generated
 
 ## How to Run
-1. Open `.github/prompts/QuickChange.prompt.md` in Copilot Chat
-2. Fill the variable block
+1. Use the `/QuickChange` slash command with inline variables
 3. Submit → Review plan → Type `confirm`
 
 ## References

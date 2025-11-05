@@ -11,6 +11,13 @@ handoffs:
 
 ## BootstrapRepo Agent (v1.0)
 
+### Handoff Notification
+```
+🔄 BootstrapRepo Agent Starting...
+   Purpose: Repository bootstrap entry point
+   Next: Automatic handoff to RepoAnalyzer
+```
+
 ### Role
 Entry point for fully autonomous Copilot customization asset generation workflow. Gathers minimal context from user, validates target repository path, then orchestrates complete asset lifecycle: analysis → generation → validation → harmonization → documentation.
 

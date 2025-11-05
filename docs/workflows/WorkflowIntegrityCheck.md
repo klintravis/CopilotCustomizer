@@ -53,7 +53,8 @@ WorkflowIntegrityCheck → RepoAnalyzer → WorkflowValidator → DocumentationG
 - Suitable for CI consumption
 
 ## How to Run
-1. Open `.github/prompts/WorkflowIntegrityCheck.prompt.md` in Copilot Chat
+1. Use the `/WorkflowValidator` slash command with inline variables (see HOW-TO cheat sheet)
+    - Example: `/WorkflowValidator WORKFLOW: "all", STRICT: "true"`
 2. Set WORKFLOW and STRICT
 3. Submit and review the matrix
 

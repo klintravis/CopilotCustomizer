@@ -5,6 +5,8 @@ Fully autonomous asset generation for a target repository in the same workspace 
 ## Overview
 Orchestrates complete lifecycle: validate target repository path, analyze tech stack, propose assets, generate them on confirm, validate schema and links, harmonize, and document results.
 
+**Handoff Visibility**: Each agent displays a notification when it starts processing, showing its purpose and next step. This helps users understand the workflow progress and confirms handoffs are working correctly.
+
 ## Variables
 ```
 REPOSITORY_PATH: "C:\\path\\to\\repo"
@@ -74,7 +76,7 @@ BootstrapRepo → RepoAnalyzer → AssetPlanner → [USER GATE] → AssetGenerat
 - Summary documentation created with asset inventory
 
 ## How to Run
-1. Open `.github/prompts/BootstrapRepo.prompt.md` in Copilot Chat
+1. Use the `/BootstrapRepo` slash command with inline variables
 2. Set `REPOSITORY_PATH`
 3. Submit → Review plan → Type `confirm`
 

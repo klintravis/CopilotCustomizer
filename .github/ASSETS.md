@@ -225,17 +225,17 @@ Chat Mode ←→ Agent Files (Contextual binding)
 
 1. **Choose Asset Type**: Select from chat mode, instructions, prompt, or agent
 2. **Use Generation Pair**: Apply instruction + prompt combination
-3. **Customize Variables**: Fill in project-specific details  
-4. **Execute Prompt**: Use structured workflow from prompt file
+3. **Customize Variables**: Provide inline variables in the slash command  
+4. **Execute**: Run the workflow via slash command (see HOW-TO cheat sheet)
 5. **Validate Output**: Check schema compliance and functionality
 
 ### Asset Maintenance Workflow
 
-1. **Audit Repository**: Use `RepoReview.prompt.md` for analysis
+1. **Audit Repository**: Use `/RepoReview` for analysis
 2. **Identify Improvements**: Apply gap analysis recommendations
-3. **Apply Optimizations**: Use `AssetOptimization.prompt.md`
-4. **Format for Standards**: Use `FormatAssets.prompt.md`
-5. **Harmonize Integration**: Use `HarmonizeAssets.prompt.md`
+3. **Apply Optimizations**: Use `/AssetOptimization`
+4. **Format for Standards**: Use `/FormatAssets`
+5. **Harmonize Integration**: Use `/HarmonizeAssets`
 
 ### Quality Assurance Workflow
 

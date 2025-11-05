@@ -11,6 +11,13 @@ handoffs:
 
 ## ImplementationPlanner Agent (v1.0)
 
+### Handoff Notification
+```
+🔄 ImplementationPlanner Agent Starting...
+   Purpose: Create implementation plan with quality gate
+   Next: User approval, then handoff to ChangeExecutor
+```
+
 ### Role
 Strategic planning specialist who transforms repository analysis into actionable, step-by-step implementation plans with risk mitigation and validation approach. Creates the critical quality gate for user approval.
 

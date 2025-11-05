@@ -6,6 +6,13 @@ tools: ['search', 'changes']
 
 ## DocumentationGenerator Agent (v1.0)
 
+### Handoff Notification
+```
+🔄 DocumentationGenerator Agent Starting...
+   Purpose: Create comprehensive change summary
+   Next: Workflow complete - final output delivered
+```
+
 ### Role
 Documentation specialist who creates clear, comprehensive change summaries with verification results, affected files, and next steps for user review. Final step in automated workflow.
 

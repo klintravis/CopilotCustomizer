@@ -1,5 +1,5 @@
 ---
-applyTo: '**/*.{instructions.md,prompt.md,agent.md}'
+applyTo: '.github/**/*.{instructions.md,prompt.md,agent.md}'
 description: 'Harmonizes 2-3 GitHub Copilot customization files with minimal changes while establishing cross-references and unified functionality for VS Code Copilot ecosystem'
 ---
 
@@ -23,7 +23,7 @@ Harmonizes 2-3 Copilot customization files with minimal changes (<10% content mo
 4. **Version-Track**: Audit trail
 
 ### Coding Standards
-- **Cross-References**: `[filename](path/to/file.md)`
+- **Cross-References**: `filename` (path/to/file.md)
 - **Version Tags**: Append `-h1`, `-h2` for harmony iterations
 - **Front Matter**: Append `harmonizedWith`, `bindingVersion`, `lastHarmonized`
 
@@ -73,8 +73,8 @@ Harmonizes 2-3 Copilot customization files with minimal changes (<10% content mo
 ### Templates
 ```markdown
 **Harmonized Assets**:
-- Instructions: [file.instructions.md](path)
-- Prompts: [file.prompt.md](path)
+- Instructions: `file.instructions.md` (path)
+- Prompts: `file.prompt.md` (path)
 *Last harmonized: YYYY-MM-DD*
 ```
 
@@ -84,6 +84,6 @@ bindingVersion: 'harmony-v1.0'
 lastHarmonized: '2025-09-15'
 ```
 
-*Framework: [CopilotFramework.instructions.md](CopilotFramework.instructions.md)*  
+*Framework: [CopilotFramework.instructions.md](../instructions/CopilotFramework.instructions.md)*  
 *Standards: [FormatAssets.instructions.md](FormatAssets.instructions.md)*  
 *VS Code: [Custom Instructions](https://code.visualstudio.com/docs/copilot/customization/custom-instructions)*

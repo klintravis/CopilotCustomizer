@@ -184,7 +184,7 @@ After generation:
    - Confirm behavior matches expectations
 
 4. **Use Prompts**
-   - Open prompt files directly
+   - Use slash commands directly in Copilot Chat
    - Follow variable instructions
    - Generate content with templates
 
@@ -304,7 +304,7 @@ Now that you understand multi-workspace usage:
 1. **[README.md](README.md)** - Quick start guide
 2. **[HOW-TO.md](HOW-TO.md)** - Detailed usage examples
 3. **[AGENTS.md](AGENTS.md)** - Project development guidance
-4. **[.github/prompts/](. github/prompts/)** - Browse available prompts
+4. **[.github/prompts/](.github/prompts/)** - Browse available prompts
 
 ---
 

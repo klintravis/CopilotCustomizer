@@ -1,5 +1,5 @@
 ---
-applyTo: '**/*.instructions.md'
+applyTo: '.github/**/*.instructions.md'
 description: 'Reusable framework for creating high-quality instruction files with consistency, guardrails, and maintainability'
 ---
 

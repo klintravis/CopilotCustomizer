@@ -1,6 +1,4 @@
----
-agent: CopilotCustomizer
----
+
 
 # AgentResume.prompt.md
 
@@ -10,7 +8,7 @@ agent: CopilotCustomizer
 Resume productive work with any AI agent on any project by analyzing current context and suggesting optimal continuation paths with friendly, encouraging guidance.
 
 ### Usage Instructions
-1. Fill the variable block with your current situation details
+1. Invoke via slash command with inline variables (see HOW-TO cheat sheet)
 2. Choose continuation style that matches your preferred approach
 3. Receive context analysis and actionable next steps
 4. Use refinement commands to adjust approach if needed

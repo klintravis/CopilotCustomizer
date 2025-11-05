@@ -1,5 +1,5 @@
 ---
-applyTo: '**/*'
+applyTo: '.github/**/*'
 description: 'Audit dimensions, governance patterns, and evaluation frameworks'
 ---
 

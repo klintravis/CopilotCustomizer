@@ -11,6 +11,13 @@ handoffs:
 
 ## WorkflowValidator Agent (v1.0)
 
+### Handoff Notification
+```
+🔄 WorkflowValidator Agent Starting...
+   Purpose: Validate workflow integrity and handoff chains
+   Next: Automatic handoff to DocumentationGenerator
+```
+
 ### Role
 Workflow quality assurance specialist who validates multi-agent workflow integrity, handoff chain completeness, context transfer protocols, quality gate placement, and automation efficiency. Provides workflow health reports for optimization.
 

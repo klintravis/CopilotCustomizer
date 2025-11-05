@@ -1,5 +1,5 @@
 ---
-applyTo: '**/*.{instructions.md,prompt.md,agent.md}'
+applyTo: '.github/**/*.{instructions.md,prompt.md,agent.md}'
 description: 'Formats and validates GitHub Copilot customization assets against latest VS Code standards with 100% content preservation, including agent files, MCP configurations, and tool management'
 ---
 

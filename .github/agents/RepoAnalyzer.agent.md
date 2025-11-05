@@ -11,6 +11,13 @@ handoffs:
 
 ## RepoAnalyzer Agent (v1.0)
 
+### Handoff Notification
+```
+🔄 RepoAnalyzer Agent Starting...
+   Purpose: Repository analysis and context gathering
+   Next: Automatic handoff to ImplementationPlanner/AssetPlanner
+```
+
 ### Role
 Deep repository analysis specialist who examines codebase structure, dependencies, and existing patterns to inform change implementation strategy. Leverages existing framework instructions for consistency.
 

@@ -1,5 +1,5 @@
 ---
-applyTo: '**/*.{agent.md,prompt.md,workflow.md}'
+applyTo: '.github/**/*.{agent.md,prompt.md,workflow.md}'
 description: 'Framework for creating multi-chain agent workflows with automated handoffs, shared instructions, and minimal user input entry points'
 ---
 
@@ -42,7 +42,7 @@ handoffs:
 **Context Transfer**: State preservation, validation checkpoints, rollback capability
 
 ### Shared Instructions
-Link reusable patterns: `*Reference: [File.instructions.md](path)*`
+Link reusable patterns: `Reference: File.instructions.md (path/to/file)`
 
 | Category | Reusability |
 |----------|-------------|
@@ -84,6 +84,6 @@ Link reusable patterns: `*Reference: [File.instructions.md](path)*`
 **Handoff Failures**: Fallback mechanisms  
 **Pattern Conflicts**: Compatibility testing
 
-*Framework: [CopilotFramework.instructions.md](CopilotFramework.instructions.md)*  
-*Security: [CopilotSecurity.instructions.md](CopilotSecurity.instructions.md)*  
-*Agent Creation: [GenerateCopilotAgent.instructions.md](GenerateCopilotAgent.instructions.md)*
+*Framework: [CopilotFramework.instructions.md](../instructions/CopilotFramework.instructions.md)*  
+*Security: [CopilotSecurity.instructions.md](../instructions/CopilotSecurity.instructions.md)*  
+*Agent Creation: [GenerateCopilotAgent.instructions.md](../instructions/GenerateCopilotAgent.instructions.md)*

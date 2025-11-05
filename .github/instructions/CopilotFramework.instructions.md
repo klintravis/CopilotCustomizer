@@ -1,5 +1,5 @@
 ---
-applyTo: '**/*'
+applyTo: '.github/**/*'
 description: 'Universal Copilot customization workflows, standards, and quality patterns'
 ---
 

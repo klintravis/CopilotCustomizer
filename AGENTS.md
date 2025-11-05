@@ -87,6 +87,16 @@ VS Code Workspace
 - **WorkflowValidator**: Workflow integrity and handoff chain validation
 - **CopilotCustomizer**: Main customization architect
 
+### Handoff Notifications
+All workflow agents display a standardized notification when they start processing:
+```
+🔄 AgentName Agent Starting...
+   Purpose: Brief description of what this agent does
+   Next: What happens after this agent completes
+```
+
+This provides real-time visibility into workflow progress and confirms handoffs are working correctly. Users see each agent transition clearly during multi-agent workflows like BootstrapRepo.
+
 ## Templates Inventory
 - **Analysis.template.md**: Universal analysis framework
 - **ImplementationPlan.template.md**: Project planning format
@@ -99,7 +109,7 @@ VS Code Workspace
 ## Code Style
 - **YAML**: `applyTo` (required for instructions), `description` (required for agents)
 - **Markdown**: H2 main sections, H3 subsections
-- **References**: `[filename](path/to/file.md)`
+- **References**: `filename` (path/to/file.md)
 - **Naming**: `PascalCase.{agent|instructions|prompt}.md`
 
 ## Available Prompts (Slash Commands)

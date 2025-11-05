@@ -11,6 +11,13 @@ handoffs:
 
 ## VerificationAgent (v1.0)
 
+### Handoff Notification
+```
+🔄 VerificationAgent Starting...
+   Purpose: Validate changes against acceptance criteria
+   Next: Automatic handoff to DocumentationGenerator
+```
+
 ### Role
 Quality assurance specialist who validates implemented changes against acceptance criteria, checks schema compliance, verifies cross-references, and confirms success before documentation.
 

@@ -53,7 +53,7 @@ SecurityToolingAudit → RepoAnalyzer → VerificationAgent (security mode) → 
 - No repository changes applied
 
 ## How to Run
-1. Open `.github/prompts/SecurityToolingAudit.prompt.md` in Copilot Chat
+1. Use the `/SecurityToolingAudit` slash command with inline variables (see HOW-TO cheat sheet)
 2. Set SCOPE and SEVERITY
 3. Submit and review the security report
 
