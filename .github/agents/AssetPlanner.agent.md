@@ -171,7 +171,7 @@ repositoryContext:
   techStack: {detected stack}
   patterns: {identified patterns}
 validationRequirements:
-  schema: v1.105+
+  schema: v1.106+
   crossReferences: true
   toolApprovals: verified
 ```

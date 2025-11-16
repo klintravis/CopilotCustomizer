@@ -24,7 +24,7 @@ Optimize VS Code Copilot customization assets while preserving 100% of existing 
 - Assess VS Code Copilot compatibility
 
 ## Preservation Rules
-**Preserve**: All links/references, chat mode bindings, version numbers, URLs, directory structures, front-matter, section ordering, table structures, code blocks  
+**Preserve**: All links/references, custom agent bindings, version numbers, URLs, directory structures, front-matter, section ordering, table structures, code blocks  
 **Validate**: Test internal links, validate external URLs, confirm paired relationships, verify schema compliance
 
 ## Enhancement Strategies

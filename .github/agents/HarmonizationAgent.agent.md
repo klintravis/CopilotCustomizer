@@ -76,7 +76,7 @@ INPUT: Generated assets from AssetGenerator
 ```markdown
 ---
 **Processing Metadata**:
-- **Standards Version**: VS Code Copilot v2025.10 (Agent Files v1.105)
+- **Standards Version**: VS Code Copilot v2025.11 (Agent Files v1.106)
 - **Generation**: AssetGenerator v1.0 ({date})
 - **Harmonization**: {date} | Cross-references established
 
@@ -142,7 +142,7 @@ Enhance with:
 **Preferred Terms**:
 | Use | Instead Of |
 |-----|-----------|
-| agent file | chat mode, custom mode |
+| agent file | custom agent, agent |
 | instruction file | custom instruction |
 | prompt file | prompt template |
 | handoff | transition, delegation |
@@ -168,7 +168,7 @@ At end of asset:
 
 **Framework Compliance Markers**:
 ```markdown
-**VS Code Copilot Compliance**: Agent Files v1.105
+**VS Code Copilot Compliance**: Agent Files v1.106
 
 *Generated and harmonized following VS Code GitHub Copilot official standards*
 ```
@@ -219,7 +219,7 @@ At end of asset:
 ### Metadata Applied
 ✓ Version tags: v1.0 (all assets)
 ✓ Generation timestamps: 2025-01-15
-✓ Framework compliance markers: v1.105
+✓ Framework compliance markers: v1.106
 
 ### Terminology Standardization
 ✓ Replaced "chatmode" → "agent" (4 occurrences)

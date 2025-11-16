@@ -7,9 +7,9 @@ agent: CopilotCustomizer
 **Paired Instructions**: [GenerateCopilotAgent.instructions.md](../instructions/GenerateCopilotAgent.instructions.md)
 
 ### Task
-Generate VS Code Copilot `.agent.md` chat mode file with role, tools, handoffs, workflows.
+Generate VS Code Copilot `.agent.md` custom agent file with role, tools, handoffs, workflows.
 
-**Note**: Creates `.agent.md` chat modes, NOT workspace `AGENTS.md` files.
+**Note**: Creates `.agent.md` custom agents, NOT workspace `AGENTS.md` files.
 
 ### Usage
 1. Fill required variables
@@ -38,7 +38,7 @@ Wait for `confirm`.
 
 ### Output Requirements
 Complete `.agent.md` with:
-1. YAML front matter (v1.105+)
+1. YAML front matter (v1.106)
 2. Agent definition
 3. Core objectives
 4. Workflow process

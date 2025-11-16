@@ -9,7 +9,7 @@
 | Templates | `*.template.md` | Document formats | - |
 
 ## Agent Files (`*.agent.md`)
-**Location**: `.github/agents/` | **YAML**: `description` (required), `tools`, `model`, `handoffs` (optional)
+**Location**: `.github/agents/` | **YAML**: `description` (required), `target`, `name`, `argument-hint`, `tools`, `model`, `handoffs`, `mcp-servers` (optional - VS Code 1.106+)
 
 ```markdown
 ## [Agent Name] (v[Version])
@@ -180,7 +180,7 @@ The CopilotCustomizer framework uses a comprehensive harmonization system:
 ```
 Instructions ←→ Prompts (Paired execution)
     ↕                ↕
-Chat Mode ←→ Agent Files (Contextual binding)
+Custom Agent ←→ Agent Files (Contextual binding)
 ```
 
 ### Binding Relationships
@@ -223,7 +223,7 @@ Chat Mode ←→ Agent Files (Contextual binding)
 
 ### Asset Creation Workflow
 
-1. **Choose Asset Type**: Select from chat mode, instructions, prompt, or agent
+1. **Choose Asset Type**: Select from custom agent, instructions, prompt, or agent
 2. **Use Generation Pair**: Apply instruction + prompt combination
 3. **Customize Variables**: Provide inline variables in the slash command  
 4. **Execute**: Run the workflow via slash command (see HOW-TO cheat sheet)
@@ -284,7 +284,7 @@ Chat Mode ←→ Agent Files (Contextual binding)
 - Verify file is in correct directory (`.github/agents/`, `.github/instructions/`, `.github/prompts/`)
 - Ensure file extension matches pattern (`*.agent.md`, etc.)
 
-**Chat Mode Not Available**  
+**Custom Agent Not Available**  
 - Confirm `description` field is present in YAML
 - Verify VS Code has detected the customization
 - Restart VS Code if customizations don't appear
@@ -325,7 +325,7 @@ done
 
 This framework complies with **VS Code Copilot Customization v1.101** standards:
 
-- **Chat Modes**: Required `description`, optional `tools` array
+- **Custom Agents**: Required `description`, optional `target`, `name`, `argument-hint`, `tools`, `model`, `handoffs`, `mcp-servers` (VS Code 1.106+)
 - **Instructions**: Required `applyTo` and `description` fields
 - **Prompts**: Optional `mode` binding, structured YAML front matter
 - **File Organization**: Standard `.github/` directory structure
@@ -374,7 +374,7 @@ Some assets (like `AgentResume.prompt.md`) are designed for cross-repository usa
 
 - No external dependencies or framework requirements
 - Repository-agnostic variable patterns  
-- Universal chat mode compatibility (no `mode` field)
+- Universal custom agent compatibility (no `mode` field)
 - Self-contained functionality
 
 ---

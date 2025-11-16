@@ -5,12 +5,29 @@ description: 'Security guardrails and tool management safety protocols'
 
 # CopilotSecurity.instructions.md
 
-## Universal Security Guardrails (v1.0)
+## Universal Security Guardrails (v1.1 - VS Code 1.106)
 
 ### Core Security Principles
 **Data Protection**: Never fabricate external repository contents, protect sensitive information, avoid proprietary policy language unless user-supplied.
-**Tool Safety**: Validate configurations, require approval workflows, monitor tool behavior.
-**MCP Security**: Trust verification, secure connections, scoped permissions.
+**Tool Safety**: Validate configurations, require approval workflows, monitor tool behavior, implement post-approval for external data.
+**MCP Security**: Trust verification, secure connections, scoped permissions, organization-level access control.
+
+### VS Code 1.106 Security Enhancements
+
+**Post-Approval for External Data**:
+- Tools that pull external data (e.g., `#fetch`, MCP tools with `openWorldHint`) now support post-approval
+- Protects against prompt injection attacks by reviewing data before use
+- User reviews fetched content before it enters chat context
+
+**Source-Level Trust Management**:
+- Trust MCP servers and extensions at the source level (all tools from one source)
+- Manage pre-approval (skip tool confirmation) and post-approval (skip content review)
+- Access via: Chat: Manage Tool Approval command
+
+**MCP Workspace Configuration**:
+- Install MCP servers to workspace config (`.vscode/mcp.json`)
+- Share MCP servers with team via version control
+- Organization-level MCP registries and access policies
 
 ### Agent Security Patterns
 **Input Validation**: Sanitize all inputs before processing | **Output Sanitization**: Prevent information leakage
@@ -33,11 +50,13 @@ description: 'Security guardrails and tool management safety protocols'
 
 ### Tool Approval Workflows
 | Risk Level | Approval Type | Examples | Requirements |
-|------------|---------------|----------|--------------|
-| **Auto-approve** | None | Search, fetch | Safe, read-only operations |
-| **Single** | User confirmation | File read | Low-risk, one-time operations |
+|------------|---------------|----------|--------------||
+| **Auto-approve** | None | Search, fetch (internal) | Safe, read-only operations |
+| **Pre-approval** | User confirmation | File read, terminal | Review tool invocation before execution |
+| **Post-approval** | Content review | External fetch, MCP openWorldHint | Review fetched data before use (VS Code 1.106+) |
 | **Session** | Session scope | Terminal commands | Medium-risk, current session |
 | **Persistent** | Permanent | System access | High-trust, ongoing operations |
+| **Source-level** | Trust all from source | MCP server, extension | Trust all tools from a provider (VS Code 1.106+) |
 | **Always Deny** | Blocked | Destructive ops | Never automated |
 
 ### Risk Assessment Matrix
@@ -48,8 +67,19 @@ description: 'Security guardrails and tool management safety protocols'
 
 ### Server Configuration Security
 **Validation**: Executable integrity, environment variables, SSL certificates
-**Connection**: Encrypted communications, authentication protocols, secure transport
+**Connection**: Encrypted communications, authentication protocols, secure transport (CIMD/DCR support)
 **Runtime**: Permission boundaries, resource limits, audit logging
+**Organization Control**: MCP registry endpoints, access restrictions, policy enforcement (VS Code 1.106+)
+
+**Workspace MCP Configuration** (`.vscode/mcp.json`):
+- Team-shared MCP servers under version control
+- Project-specific tool configurations
+- Isolated from user-level global MCP settings
+
+**Organization Policies**:
+- `chat.mcp.gallery.serviceUrl`: Custom MCP registry endpoint
+- `chat.mcp.access`: Restrict to organization-approved servers only
+- Enterprise control over MCP server availability
 
 ### Security Checklists
 

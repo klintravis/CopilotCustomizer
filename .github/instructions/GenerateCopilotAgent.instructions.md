@@ -1,20 +1,20 @@
 ---
 applyTo: '.github/**/*.agent.md'
-description: 'Framework for creating VS Code Copilot agent files (chat modes) with roles, tools, handoffs, and workflows'
+description: 'Framework for creating VS Code Copilot custom agent files with roles, tools, handoffs, and workflows'
 ---
 
-# VS Code Copilot Agent File Guide (v1.0)
+# VS Code Copilot Agent File Guide (v1.1 - VS Code 1.106)
 
 **Paired Prompt**: [NewCopilotAgent.prompt.md](../prompts/NewCopilotAgent.prompt.md)
 
 ### Purpose
-Standardized approach for creating VS Code Copilot `.agent.md` files (chat modes) with roles, tools, handoffs, workflows.
+Standardized approach for creating VS Code Copilot `.agent.md` custom agent files with roles, tools, handoffs, workflows.
 
-**Distinction**: Creates VS Code `.agent.md` chat modes, NOT workspace `AGENTS.md` coding guidance files.
+**Distinction**: Creates VS Code `.agent.md` custom agents, NOT workspace `AGENTS.md` coding guidance files.
 
-### VS Code Agent Schema (v1.105+)
+### VS Code Agent Schema (v1.106)
 **Required**: `description` (clear agent role)  
-**Optional**: `tools` (approved tools array), `model` (AI model), `handoffs` (workflow transitions)
+**Optional**: `target` (vscode/github-copilot), `name` (display override), `argument-hint` (input guidance), `tools` (approved tools array), `model` (AI model), `handoffs` (workflow transitions), `mcp-servers` (external tools)
 
 ### Recommended Sections
 | Section | Required | Purpose |
@@ -147,6 +147,122 @@ Expert in [domain] who [capability]. [Expertise and limits].
 | quick-advice | Fast | Brief |
 | standard | Typical | Standard |
 | deep-architecture | Complex | Comprehensive |
+
+### Refinement Commands
+`refine: [command]` - Available commands: focus, scope, quality, security
+
+### Tool Configuration
+Tools: [list based on Tool Selection Guide]
+
+### Handoffs
+Available transitions: [list other agents]
+
+---
+
+## New Metadata Properties (VS Code 1.106)
+
+### `target` Property
+Specifies optimization target for agent execution:
+
+```yaml
+target: 'vscode'          # Optimized for local VS Code chat
+```
+
+- `vscode`: Full feature support - name, description, argument-hint, model, tools, handoffs
+- `github-copilot`: Cloud/CLI optimization - name, description, tools (edit/search/shell/custom-agent), mcp-servers
+- Omit for universal compatibility (agent works in all environments)
+
+### `name` Property
+Override display name without renaming file:
+
+```yaml
+name: 'API Expert'        # Display name in agent picker
+```
+File: `APIExpert.agent.md`, Display: "API Expert"
+
+### `argument-hint` Property  
+Guidance shown in chat input to help users interact with agent:
+
+```yaml
+argument-hint: 'Describe the API endpoint you want to create or modify'
+```
+
+Best practices:
+- Be specific and actionable
+- Guide users to provide necessary context
+- Keep under 80 characters
+- Examples: "Describe the bug you're seeing", "Enter the test scenario"
+
+### `mcp-servers` Property
+External MCP servers providing additional tools:
+
+```yaml
+mcp-servers: ['github', 'jira']
+```
+
+Requires MCP servers configured in `.vscode/mcp.json` or user settings.
+
+---
+
+## Complete Example (VS Code 1.106)
+
+```yaml
+---
+description: 'Expert in REST API design and implementation following OpenAPI standards'
+target: 'vscode'
+name: 'API Architect'
+argument-hint: 'Describe the API endpoint or specification you need'
+model: 'gpt-4'
+tools: ['search', 'codebase', 'edit', 'new', 'terminal']
+handoffs:
+  - label: 'Generate Tests'
+    agent: 'test-generator'
+    prompt: 'Create comprehensive tests for the API endpoint defined above'
+    send: false
+mcp-servers: ['openapi-tools']
+---
+
+## API Architect Agent
+
+### Handoff Notification
+```
+🔄 API Architect Starting...
+   Purpose: Design and implement REST API endpoints with OpenAPI specs
+   Next: Manual handoff to test-generator for test creation
+```
+
+### Role
+Expert in REST API architecture specializing in OpenAPI 3.0+ specifications, endpoint design, authentication patterns, and API best practices.
+
+### Core Objectives
+1. Design clean, RESTful API interfaces following industry standards
+2. Generate OpenAPI/Swagger documentation automatically  
+3. Implement secure authentication and authorization patterns
+4. Ensure proper error handling and status codes
+
+### Workflow Process
+1. **Analyze Requirements**: Review API needs and constraints
+2. **Design Endpoints**: Define resources, methods, and schemas
+3. **Generate OpenAPI Spec**: Create machine-readable API documentation
+4. **Implement Code**: Write endpoint handlers with validation
+5. **Document Examples**: Provide request/response samples
+
+### Tool Configuration
+- `search`: Find existing API patterns in codebase
+- `codebase`: Semantic search for API structure
+- `edit`: Modify existing endpoint implementations
+- `new`: Create new API modules and specifications
+- `terminal`: Run API validation and testing commands
+
+### Handoffs
+- **test-generator**: After API implementation for comprehensive testing
+- **security-reviewer**: For authentication and authorization audit
+- **doc-generator**: For API reference documentation creation
+```
+
+---
+
+*Related Instructions*: [FormatAssets.instructions.md](FormatAssets.instructions.md), [CopilotFramework.instructions.md](CopilotFramework.instructions.md)
 
 ### Refinement Commands
 - refine: [domain] | refine: optimize | refine: validate

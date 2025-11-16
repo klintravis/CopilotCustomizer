@@ -2,6 +2,47 @@
 
 All notable changes to the CopilotCustomizer framework.
 
+## [Workflows-Update Branch] - 2025-11-15
+
+### 🚀 VS Code 1.106 Compatibility Update
+
+#### Standards Compliance
+- **Updated to VS Code 1.106 (October 2025)** - Full compatibility with latest GitHub Copilot features
+- **Terminology Migration**: "Chat modes" → "Custom agents" across all documentation
+- **Schema Update**: Agent files now support VS Code 1.106 metadata properties
+
+#### New Agent Metadata Support
+Added documentation and examples for VS Code 1.106 agent properties:
+- **`target`**: Optimization for `vscode` or `github-copilot` environments
+- **`name`**: Override display name without file renaming
+- **`argument-hint`**: User guidance shown in chat input
+- **`mcp-servers`**: External MCP tool server references
+- Enhanced **`tools`**, **`model`**, **`handoffs`** documentation
+
+#### Security Enhancements (VS Code 1.106)
+- **Post-Approval**: Content review for external data sources (`#fetch`, MCP `openWorldHint`)
+- **Source-Level Trust**: Trust all tools from a specific MCP server or extension
+- **Workspace MCP Config**: Share MCP servers via `.vscode/mcp.json` in version control
+- **Organization Policies**: Enterprise MCP registry and access control support
+
+#### Documentation Updates
+- Comprehensive agent metadata guide in `GenerateCopilotAgent.instructions.md`
+- Updated `CopilotFramework.instructions.md` with v1.106 schema
+- Enhanced `CopilotSecurity.instructions.md` with post-approval and trust management
+- Complete examples showing all new metadata properties
+
+#### File Format Updates
+- Confirmed `.agent.md` as standard format (VS Code 1.106)
+- Documented `.agents.md` suffix for multi-environment compatibility
+- Removed legacy `.chatmode.md` references (deprecated in VS Code 1.106)
+
+#### Breaking Changes
+- **None** - All updates are backward compatible with existing assets
+- Existing `.agent.md` files work without modification
+- New metadata properties are optional enhancements
+
+---
+
 ## [Workflows-Update Branch] - 2025-11-01
 
 ### 🎯 Major Features
@@ -71,7 +112,7 @@ All notable changes to the CopilotCustomizer framework.
 - ✅ All 11 agents have required `description` field
 - ✅ All 13 instructions have required `applyTo` field
 - ✅ All 18 prompts have `agent:` field
-- ✅ 100% compliance with VS Code Copilot v1.105+ standards
+- ✅ 100% compliance with VS Code Copilot v1.106 standards
 
 #### Documentation Updates
 - **README.md** - Streamlined workflows section, added complete workflow index
@@ -110,7 +151,7 @@ All notable changes to the CopilotCustomizer framework.
 
 ### 🎯 Enterprise Readiness
 
-- **Schema Compliance**: 100% (all assets follow VS Code Copilot v1.105+ standards)
+- **Schema Compliance**: 100% (all assets follow VS Code Copilot v1.106 standards)
 - **Cross-References**: Validated (no broken links)
 - **Documentation**: Complete (all workflows, guides, and examples current)
 - **Tool Ecosystem**: Configured (tool selection optimized per agent)
@@ -169,5 +210,5 @@ This update establishes the foundation for deployment with:
 ---
 
 **Maintained by**: CopilotCustomizer Team  
-**Framework**: VS Code GitHub Copilot Customization v1.105+  
+**Framework**: VS Code GitHub Copilot Customization v1.106  
 **Last Updated**: 2025-11-01

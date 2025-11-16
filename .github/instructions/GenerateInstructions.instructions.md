@@ -103,10 +103,10 @@ Append discovered tool documentation links to generated instructions.
 - Include: `OutputPath`, `GeneratedAt`, `SourceInstruction`, `Type` in front matter
 
 ### Standards Compliance
-**VS Code Copilot v2025.10** - [Documentation](https://code.visualstudio.com/docs/copilot/customization/custom-instructions)
+**VS Code Copilot v2025.11** - [Documentation](https://code.visualstudio.com/docs/copilot/customization/custom-instructions)
 
 **Processing Metadata**:
-- **Standards Version**: VS Code Copilot v2025.09 (Custom Instructions latest)
+- **Standards Version**: VS Code Copilot v2025.11 (Custom Instructions latest)
 - **Harmonization**: comprehensive-harmony-v1.1 (enhanced cross-references)
 - **Content Preservation**: 100% functionality maintained with enhanced standards
 - **Formatting Applied**: 2025-09-15 | Standards compliance verified

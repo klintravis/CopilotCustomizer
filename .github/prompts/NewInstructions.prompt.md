@@ -43,8 +43,8 @@ Issue refinement commands or tweak variables and resend to regenerate.
 
 **VS Code Copilot Compliance**: Prompt Files Schema - Full compliance achieved  
 **Schema Requirements**: 
-- ✅ Required `mode` field in YAML front matter (ask/agent/generate)
 - ✅ Markdown body with clear usage instructions and variable blocks
+- ✅ Optional `agent`, `tools`, and `model` fields when useful
 - ✅ Documentation sources referenced per schema guidelines
 
 **Standards Sources**: 
@@ -52,7 +52,7 @@ Issue refinement commands or tweak variables and resend to regenerate.
 - [VS Code Copilot Documentation](https://code.visualstudio.com/docs/copilot/customization/)
 
 **Processing Metadata**:
-- **Standards Version**: VS Code Copilot v2025.09 (Prompt Files latest)
+- **Standards Version**: VS Code Copilot v2025.11 (Prompt Files latest)
 - **Harmonization**: comprehensive-harmony-v1.0 (enhanced cross-references)
 - **Content Preservation**: 100% functionality maintained with enhanced standards
 - **Formatting Applied**: 2025-09-15 | Standards compliance verified

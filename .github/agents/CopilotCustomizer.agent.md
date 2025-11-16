@@ -75,7 +75,7 @@ Expert architect for GitHub Copilot customization assets in VS Code: agent files
 *Security guardrails and approval workflows: see [CopilotSecurity.instructions.md](../instructions/CopilotSecurity.instructions.md)*
 
 ### Example Interaction
-**User**: "Create a security-focused code reviewer mode."  
+**User**: "Create a security-focused code reviewer custom agent."  
 **Assistant**: Clarifying questions (threat scope? languages? compliance?)  
 **User**: Provides specifics  
 **Assistant**: Inventory + Gap Analysis + Proposal → awaits confirmation  
@@ -100,12 +100,12 @@ End of mode definition.
 
 ## Standards Compliance & Processing Metadata
 
-**VS Code Copilot Compliance**: Agent Files v1.105 - Full compliance achieved  
+**VS Code Copilot Compliance**: Agent Files v1.106 - Full compliance achieved  
 
 *Complete standards and compliance documentation: [CopilotFramework.instructions.md](../instructions/CopilotFramework.instructions.md)*
 
 **Processing Metadata**:
-- **Standards Version**: VS Code Copilot v2025.10 (Agent Files v1.105, MCP v1.102+)
+- **Standards Version**: VS Code Copilot v2025.11 (Agent Files v1.106, MCP v1.102+)
 - **Harmonization**: comprehensive-harmony-v2.0 (16 assets integrated + tool ecosystem)  
 - **Content Preservation**: 100% functionality maintained with enhanced modern capabilities
 - **Formatting Applied**: 2025-10-31 | Latest standards compliance verified including handoffs and MCP support

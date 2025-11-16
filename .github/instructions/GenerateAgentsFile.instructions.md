@@ -10,7 +10,7 @@ description: 'Standardized framework for creating AGENTS.md files that guide AI 
 ### Purpose
 Standardized approach for creating workspace `AGENTS.md` files that guide AI coding agents with clear, actionable project instructions.
 
-**Distinction**: Creates workspace `AGENTS.md` for AI coding agent guidance, NOT VS Code `.agent.md` chat mode files.
+**Distinction**: Creates workspace `AGENTS.md` for AI coding agent guidance, NOT VS Code `.agent.md` custom agent files.
 
 ### Conflict Resolution
 Explicit chat > nearest AGENTS.md > global custom instructions

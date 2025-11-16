@@ -9,11 +9,11 @@ description: 'Formats and validates GitHub Copilot customization assets against 
 **Refinement Commands**: refine: standards, refine: preserve, refine: format, refine: validate
 
 ### Objective
-Format and validate GitHub Copilot customization assets (*.instructions.md, *.agent.md, *.prompt.md) against VS Code standards (v1.105+) while preserving 100% content and cross-reference integrity.
+Format and validate GitHub Copilot customization assets (*.instructions.md, *.agent.md, *.prompt.md) against VS Code standards (v1.106+) while preserving 100% content and cross-reference integrity.
 
 ### Constraints
 - 100% content preservation requirement
-- VS Code Copilot schema compliance (v1.105+)
+- VS Code Copilot schema compliance (v1.106+)
 - Cross-reference integrity maintenance
 - Official documentation alignment
 
@@ -36,7 +36,7 @@ Format and validate GitHub Copilot customization assets (*.instructions.md, *.ag
 **Asset-Specific YAML**:
 | Asset Type | Required | Optional |
 |------------|----------|----------|
-| `*.agent.md` | `description` | `tools`, `model`, `handoffs` |
+| `*.agent.md` | `description` | `target`, `name`, `argument-hint`, `tools`, `model`, `handoffs`, `mcp-servers` |
 | `*.instructions.md` | `applyTo` | `description` |
 | `*.prompt.md` | - | `agent`, `tools`, `model` |
 
@@ -80,11 +80,12 @@ Format and validate GitHub Copilot customization assets (*.instructions.md, *.ag
 ### Standards Compliance & Validation
 
 #### VS Code Copilot Schema Compliance
-**Agent Files Requirements** (per official documentation v1.105+):
+**Agent Files Requirements** (per official documentation v1.106+):
 - ✅ YAML front matter with `description` field (required)
 - ✅ Optional `tools` array for comprehensive tool ecosystem management  
 - ✅ Optional `model` specification for AI model selection
-- ✅ Optional `handoffs` array for workflow transitions (VS Code Insiders)
+- ✅ Optional `handoffs` array for workflow transitions
+- ✅ Optional `target`, `name`, `argument-hint`, and `mcp-servers` metadata
 - ✅ Markdown body with clear agent instructions
 - ✅ Proper file extension (`.agent.md`)
 - ✅ Location in `.github/agents/` or user profile
@@ -95,12 +96,9 @@ Format and validate GitHub Copilot customization assets (*.instructions.md, *.ag
 - ✅ Markdown body with clear instructions
 - ✅ Proper file extension (`.instructions.md`)
 
-**Chat Mode Files Requirements** (Legacy - migrate to Agent files):
-- ✅ YAML front matter with `description` field
-- ✅ Optional `tools` array for tool configuration  
-- ✅ Optional `model` specification
-- ✅ Markdown body with agent instructions
-- ✅ Proper file extension (`.agent.md`)
+**Legacy Chat Mode Files** (Deprecated):
+- `.chatmode.md` files are deprecated in VS Code 1.106+. Migrate to `.agent.md`.
+- Do not introduce new `.chatmode.md` files; preserve history only.
 
 **Prompt Files Requirements**:
 - ✅ Agent specification (`agent` field preferred over legacy `mode`)
@@ -221,7 +219,7 @@ Format and validate GitHub Copilot customization assets (*.instructions.md, *.ag
 Compatible with: HarmonizeAssets, CopilotCustomizer, GenerateInstructions, AssetOptimization
 
 ### Standards Compliance
-**VS Code Copilot v2025.10** (Agent Files v1.105+, MCP v1.102+)  
+**VS Code Copilot v2025.11** (Agent Files v1.106+, MCP v1.102+)  
 **Documentation**: [VS Code Copilot Customization](https://code.visualstudio.com/docs/copilot/customization/overview)
 
 **Related Assets**: GenerateInstructions, GenerateCopilotAgent, GeneratePrompt, HarmonizeAssets, AssetOptimization

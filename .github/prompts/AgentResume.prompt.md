@@ -73,7 +73,7 @@ SCOPE_PREFERENCE: current
 **Expected Response Pattern**: Context acknowledgment → Priority analysis → Step-by-step approach → Encouragement and next actions
 
 ### Universal Compatibility Features
-- **Chatmode Agnostic**: Functions with any active chatmode or independently
+- **Agent-agnostic**: Functions with any active custom agent or independently
 - **Context Flexible**: Adapts to coding, writing, analysis, planning, or any project type
 - **Skill Transferable**: Works across different domains and expertise levels
 - **Progress Oriented**: Always focuses on forward momentum and practical next steps
@@ -107,14 +107,14 @@ SCOPE_PREFERENCE: current
 - If external dependencies detected → Suggest dependency resolution before proceeding
 
 ### Version Note
-Universal Agent Resume Helper v2.0-universal - Designed for complete repository and framework agnosticism. Works with any AI assistant, chatmode, or project context without dependencies on specific tools, repositories, or frameworks.
+Universal Agent Resume Helper v2.0-universal - Designed for complete repository and framework agnosticism. Works with any AI assistant, custom agent, or project context without dependencies on specific tools, repositories, or frameworks.
 
 ### Compatibility Note
-This prompt is designed to be completely portable and works in any VS Code workspace with any Copilot configuration. No external dependencies, framework requirements, or specific repository structure needed. Intentionally omits `mode` field to preserve current chatmode context.
+This prompt is designed to be completely portable and works in any VS Code workspace with any Copilot configuration. No external dependencies, framework requirements, or specific repository structure needed. Intentionally omits binding fields to preserve current agent context.
 
 ---
 
 **Universal Design**: Repository-agnostic | **Framework Independent**: No external dependencies  
-**Portability**: Works in any VS Code workspace | **Compatibility**: Any AI assistant or chatmode
+**Portability**: Works in any VS Code workspace | **Compatibility**: Any AI assistant or agent
 
 *Designed for universal compatibility across all development environments and project types*

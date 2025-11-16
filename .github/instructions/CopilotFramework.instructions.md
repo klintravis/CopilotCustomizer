@@ -44,10 +44,10 @@ Universal validation criteria for all Copilot customization work:
 
 ## Standards Compliance
 
-### VS Code Copilot Schema (v1.105+)
-**Agent Files**: `description` (required), `tools`, `model`, `handoffs` (optional)  
+### VS Code Copilot Schema (v1.106)
+**Agent Files**: `description` (required), `target`, `name`, `argument-hint`, `tools`, `model`, `handoffs`, `mcp-servers` (optional)  
 **Instructions**: `applyTo` (required), `description` (optional)  
-**Prompts**: `mode` (ask/agent/generate), variable blocks, usage instructions
+**Prompts**: variable blocks, usage instructions; optional `agent`, `tools`, `model`
 
 ### Documentation Sources
 - [Customization Overview](https://code.visualstudio.com/docs/copilot/customization/overview)

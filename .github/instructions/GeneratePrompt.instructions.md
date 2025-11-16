@@ -1,6 +1,6 @@
 ---
 applyTo: '.github/**/*.prompt.md'
-description: 'Standardized, modular approach for building high-quality prompt files that pair with chat modes and instruction files'
+description: 'Standardized, modular approach for building high-quality prompt files that pair with custom agents and instruction files'
 ---
 
 ## Prompt File Authoring Guide (v1.0)
@@ -8,7 +8,7 @@ description: 'Standardized, modular approach for building high-quality prompt fi
 **Paired Prompt**: [NewPrompt.prompt.md](../prompts/NewPrompt.prompt.md)
 
 ### Purpose
-Standardized approach for building `*.prompt.md` files that pair with chat modes and instructions.
+Standardized approach for building `*.prompt.md` files that pair with custom agents and instructions.
 
 ### Core Principles
 1. Single responsibility per prompt
@@ -21,7 +21,7 @@ Standardized approach for building `*.prompt.md` files that pair with chat modes
 ### Standard Sections
 | Section | Purpose |
 |---------|--------|
-| Mode Header | Optional `mode: ask` |
+| Agent Context | Optional agent-specific hints; works with current selected agent |
 | Task Intent | One-line outcome |
 | Usage Instructions | How to fill variables |
 | Variable Block | Editable placeholders |
@@ -53,7 +53,7 @@ If required variable missing (<4 chars), list `Missing Inputs:` and halt with ta
 ### Quality Checklist
 - [ ] All mandatory variables set
 - [ ] No unqualified placeholders
-- [ ] Output aligns with chat mode schema
+- [ ] Output aligns with agent schema
 - [ ] Risk items include mitigations
 
 ### Output Requirements

@@ -38,7 +38,7 @@ Universal evaluation criteria for Copilot customization assets:
 **Headers**: Maintain version tracking in markdown content, `depthModes`, `refinementCommands`  
 **Conflict Resolution**: explicit chat > nearest `AGENTS.md` > global instructions  
 **Actionability**: Build/test commands, code style, PR guidelines, security notes  
-**Alignment**: Consistency between chat modes, agents, instruction files
+**Alignment**: Consistency between custom agents, instruction files, prompt files
 
 ### Version Control
 **Schema Tracking**: VS Code Copilot version compatibility  

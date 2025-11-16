@@ -33,8 +33,8 @@ Use `templates/Analysis.template.md` format:
 
 **VS Code Copilot Compliance**: Prompt Files Schema - Full compliance achieved  
 **Schema Requirements**: 
-- ✅ Required `mode` field in YAML front matter (ask/agent/generate/custom)
 - ✅ Markdown body with clear usage instructions and variable blocks
+- ✅ Optional `agent`, `tools`, and `model` fields when useful
 - ✅ Documentation sources referenced per schema guidelines
 
 **Standards Sources**: 
@@ -43,7 +43,7 @@ Use `templates/Analysis.template.md` format:
 - [GitHub Copilot Coding Agent](https://code.visualstudio.com/docs/copilot/copilot-coding-agent)
 
 **Processing Metadata**:
-- **Standards Version**: VS Code Copilot v2025.09 (Prompt Files latest)
+- **Standards Version**: VS Code Copilot v2025.11 (Prompt Files latest)
 - **Harmonization**: comprehensive-harmony-v1.0 (enhanced cross-references)
 - **Content Preservation**: 100% functionality maintained with enhanced standards
 - **Formatting Applied**: 2025-09-15 | Standards compliance verified

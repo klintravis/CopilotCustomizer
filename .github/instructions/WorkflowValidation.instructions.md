@@ -347,7 +347,7 @@ Quick Stats:
 ## Validation Metadata
 
 - Validation Method: Automated analysis
-- Standards: VS Code Copilot v1.105+
+- Standards: VS Code Copilot v1.106+
 - Framework: CopilotCustomizer v1.0
 - Instruction Reuse: {percentage}%
 

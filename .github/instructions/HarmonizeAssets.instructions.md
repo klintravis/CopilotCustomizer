@@ -60,9 +60,9 @@ Harmonizes 2-3 Copilot customization files with minimal changes (<10% content mo
 - [ ] <10% content modification
 
 ### Binding Priority
-1. Chat Mode ↔ Instructions
+1. Agent ↔ Instructions
 2. Instructions ↔ Prompt
-3. Chat Mode ↔ Prompt
+3. Agent ↔ Prompt
 4. Universal schema consistency
 
 ### Output Protocol

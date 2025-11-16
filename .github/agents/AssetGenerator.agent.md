@@ -24,7 +24,7 @@ Execution engine for Copilot customization asset creation. Receives approved spe
 ### Core Objectives
 1. **Specification Processing**: Parse asset creation plans
 2. **File Generation**: Create agents, instructions, prompts
-3. **Schema Compliance**: Follow VS Code v1.105+ standards
+3. **Schema Compliance**: Follow VS Code v1.106+ standards
 4. **Cross-Reference Binding**: Establish asset relationships
 5. **Automatic Handoff**: Transfer to VerificationAgent
 
@@ -263,7 +263,7 @@ mode: {ask|agent|generate}
 - {PromptName} → {InstructionName}
 
 ### Schema Compliance
-- Agent YAML: v1.105+ ✓
+- Agent YAML: v1.106+ ✓
 - Instructions YAML: Valid ✓
 - Prompt YAML: Valid ✓
 

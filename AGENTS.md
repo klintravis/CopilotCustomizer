@@ -176,7 +176,7 @@ All prompts generate assets in YOUR project, not in CopilotCustomizer.
 
 ### Internal Repository Optimization
 **Purpose**: CopilotCustomizer repository maintenance and improvement  
-**Entry Point**: CopilotCustomizer chat mode  
+**Entry Point**: CopilotCustomizer custom agent  
 **Agents**: RepoAnalyzer, ImplementationPlanner, ChangeExecutor, VerificationAgent
 
 ## Example Commands

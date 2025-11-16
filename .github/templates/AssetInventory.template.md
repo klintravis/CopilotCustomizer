@@ -196,7 +196,7 @@
 
 ## Schema Compliance Assessment
 
-### VS Code Copilot Schema (v1.105+)
+### VS Code Copilot Schema (v1.106)
 **Compliance Level**: [X%]
 
 | Requirement | Status | Details |
@@ -313,6 +313,6 @@
 ### Generation Notes
 **Optimized for**: Universal asset inventory across Copilot customizations and project artifacts  
 **Date**: 2025-11-01  
-**Standards**: VS Code Copilot Schema v1.105+  
+**Standards**: VS Code Copilot Schema v1.106  
 **Process**: Template creation following CopilotCustomizer framework standards and CopilotAudit.instructions.md patterns
 ```

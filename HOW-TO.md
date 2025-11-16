@@ -97,21 +97,25 @@ Agent files define AI personas with specific behaviors and capabilities for VS C
 description: 'Brief description of the agent'
 ```
 
-**Optional Fields**:
+**Optional Fields (VS Code 1.106+)**:
 ```yaml
-tools: []                              # Tool access configuration
-model: 'gpt-4o'                       # Specific model selection
-handoffs: []                           # Agent handoff workflows (buttons)
+target: 'vscode'                    # Optimization: 'vscode' or 'github-copilot'
+name: 'Display Name'                # Override file-based name
+argument-hint: 'Usage guidance'     # Show guidance in chat input
+tools: ['search', 'edit']           # Approved tools array
+model: 'gpt-4'                      # Preferred AI model
+handoffs:                            # Workflow transitions
+  - label: 'Next Step'
+    agent: 'target-agent'
+    prompt: 'Context for next agent'
+    send: false
+mcp-servers: ['server-name']        # External MCP tool servers
 ```
 
-**Handoff Buttons** (VS Code Insiders):
-```yaml
-handoffs:
-  - label: Start Implementation        # Button text
-    agent: implementation               # Target agent/mode
-    prompt: Implement the plan above.   # Pre-filled prompt
-    send: false                         # true = auto-submit, false = manual
-```
+**Target Property**:
+- `target: vscode` - Optimizes for local VS Code chat (supports all properties)
+- `target: github-copilot` - Optimizes for GitHub Copilot cloud agents and CLI
+- Omit for compatibility with both environments
 
 **Structure**:
 ```markdown
@@ -145,7 +149,7 @@ description: 'Expert in database optimization'
 
 #### Handoff Buttons for Multi-Step Workflows
 
-**Available in VS Code Insiders** - Create guided workflows with interactive confirmation buttons.
+**Available in VS Code 1.106+** - Create guided workflows with interactive confirmation buttons.
 
 **How It Works**:
 1. Agent completes its response
@@ -197,7 +201,7 @@ handoffs:
 
 **Handoff Properties**:
 - `label`: Button text displayed to user
-- `agent`: Target chat mode or agent identifier
+- `agent`: Target custom agent identifier
 - `prompt`: Pre-filled prompt text for next agent
 - `send`: `true` = auto-submit, `false` = user must confirm (default: `false`)
 
@@ -207,7 +211,7 @@ handoffs:
 - Keep prompts clear and contextual
 - Chain related workflows (plan → implement → review → test)
 
-**Note**: Standard VS Code uses text-based confirmation ("Type 'confirm' to proceed"). Handoff buttons are the modern alternative in VS Code Insiders.
+**Note**: In VS Code 1.106+, use interactive handoff buttons. In earlier versions, use text-based confirmation (type "confirm").
 
 ### Instruction Files (`*.instructions.md`)
 
@@ -359,8 +363,8 @@ Templates provide standardized formats for documentation and analysis.
    /BootstrapRepo with REPOSITORY_PATH: "/absolute/path/to/your-project"
    ```
 3. Confirm when agent presents the plan
-   - **VS Code Insiders**: Click the confirmation button
-   - **VS Code Stable**: Type "confirm" in chat
+   - **VS Code 1.106+**: Click the confirmation button
+   - **Earlier versions**: Type "confirm" in chat
 
 **Result**: Complete customization generated in 2-3 minutes:
 - Agents tailored to your tech stack
@@ -387,11 +391,11 @@ Templates provide standardized formats for documentation and analysis.
    DOMAIN: "PostgreSQL optimization"
    ```
 2. Agent will confirm details and create the file
-   - **VS Code Insiders**: Click "Generate Agent" button
-   - **VS Code Stable**: Type "confirm" when ready
+   - **VS Code 1.106+**: Click "Generate Agent" button
+   - **Earlier versions**: Type "confirm" when ready
 3. Agent created in `your-project/.github/agents/DatabaseExpert.agent.md`
 
-**Adding Handoff Workflows** (VS Code Insiders):
+**Adding Handoff Workflows** (VS Code 1.106+):
 To enable guided transitions between agents, add handoffs to the YAML frontmatter:
 ```yaml
 ---
@@ -410,7 +414,7 @@ handoffs:
 1. Create file: `your-project/.github/agents/YourAgent.agent.md`
 2. Add YAML front matter with `description` field
 3. Follow agent structure template (see above)
-4. Test by selecting agent in Copilot Chat mode picker
+4. Test by selecting agent in Copilot custom agent picker
 
 ### Creating Instructions
 
@@ -468,12 +472,12 @@ handoffs:
 
 ### Asset Naming Conventions
 
-**Note**: VS Code Insiders introduces `.chatmode.md` as the new format for agent files with enhanced handoff support. Both `.agent.md` and `.chatmode.md` work in current versions.
+**Note**: Legacy `.chatmode.md` files are deprecated. Use `.agent.md` (VS Code 1.106+ supports enhanced handoffs in `.agent.md`).
 
 | Asset Type | Pattern | Example |
 |------------|---------|---------|
 | Agent Files | `PascalCase.agent.md` | `DatabaseExpert.agent.md` |
-| Chat Modes (Insiders) | `PascalCase.chatmode.md` | `Planning.chatmode.md` |
+| Prompts | `PascalCase.prompt.md` | `GenerateEndpoint.prompt.md` |
 | Instructions | `PascalCase.instructions.md` | `ReactPatterns.instructions.md` |
 | Prompts | `PascalCase.prompt.md` | `GenerateEndpoint.prompt.md` |
 | Templates | `PascalCase.template.md` | `SecurityReview.template.md` |
@@ -579,14 +583,15 @@ handoffs:
 
 ### Creating Multi-Step Workflows with Handoffs
 
-**VS Code Insiders Feature** - Build guided workflows with interactive confirmation buttons.
+**VS Code 1.106+ Feature** - Build guided workflows with interactive confirmation buttons.
 
 **Example: Test-Driven Development Workflow**
 
-**1. Create Planning Agent** (`Planning.chatmode.md`):
+**1. Create Planning Agent** (`Planning.agent.md`):
 ```yaml
 ---
 description: Analyze requirements and create implementation plan
+target: vscode
 tools: ['search', 'codebase', 'fetch']
 handoffs:
   - label: Write Failing Tests
@@ -599,10 +604,11 @@ Analyze requirements and generate detailed implementation plan.
 Do not write code, only create plans.
 ```
 
-**2. Create Test-First Agent** (`TestFirst.chatmode.md`):
+**2. Create Test-First Agent** (`TestFirst.agent.md`):
 ```yaml
 ---
 description: Generate failing tests that define expected behavior
+target: vscode
 tools: ['codebase', 'edit']
 handoffs:
   - label: Implement to Pass Tests
@@ -615,10 +621,11 @@ Write failing tests that clearly define expected behavior.
 Tests should fail initially but be easy to review.
 ```
 
-**3. Create Implementation Agent** (`Implementation.chatmode.md`):
+**3. Create Implementation Agent** (`Implementation.agent.md`):
 ```yaml
 ---
 description: Implement code to satisfy failing tests
+target: vscode
 tools: ['codebase', 'edit', 'terminal']
 handoffs:
   - label: Review Implementation
@@ -631,10 +638,11 @@ Implement code to make failing tests pass.
 Follow TDD principles and keep changes minimal.
 ```
 
-**4. Create Review Agent** (`Review.chatmode.md`):
+**4. Create Review Agent** (`Review.agent.md`):
 ```yaml
 ---
 description: Review code for quality and security issues
+target: vscode
 tools: ['codebase', 'search', 'problems']
 handoffs:
   - label: Generate Documentation
@@ -836,11 +844,11 @@ Review implementation for:
 **Symptoms**: Expected handoff buttons don't show after agent response
 
 **Solutions**:
-1. **Verify VS Code Version**: Handoff buttons require VS Code Insiders
-   - Download: [VS Code Insiders](https://code.visualstudio.com/insiders/)
+1. **Verify VS Code Version**: Handoff buttons require VS Code 1.106+ with custom agents
+   - Update VS Code to latest version
    - Check version: Help → About
-2. **Check File Extension**: Use `.chatmode.md` for full handoff support
-   - `.agent.md` files work but may have limited handoff features
+2. **Check File Extension**: Use `.agent.md` or `.agents.md` for full handoff support
+   - Standard format is `.agent.md` (VS Code 1.106+)
 3. **Validate YAML Syntax**:
    ```yaml
    handoffs:
@@ -883,7 +891,7 @@ If handoff buttons aren't available, use text-based confirmation:
 # Or: "/WorkflowValidator for WORKFLOW: 'all', STRICT: 'true'"
 ```
 
-**Test Handoff Workflows** (VS Code Insiders):
+**Test Handoff Workflows** (VS Code 1.106+):
 1. Open agent file with handoffs defined
 2. Activate the agent in Chat view mode picker
 3. Send a test message
@@ -1002,7 +1010,7 @@ output/
 
 ### Official VS Code Resources
 - [VS Code Copilot Customization](https://code.visualstudio.com/docs/copilot/customization/overview)
-- [Custom Chat Modes](https://code.visualstudio.com/docs/copilot/customization/custom-chat-modes)
+- [Custom Agents](https://code.visualstudio.com/docs/copilot/customization/custom-agents)
 - [Custom Instructions](https://code.visualstudio.com/docs/copilot/customization/custom-instructions)
 - [Prompt Files](https://code.visualstudio.com/docs/copilot/customization/prompt-files)
 - [MCP Servers](https://code.visualstudio.com/docs/copilot/customization/mcp-servers)
