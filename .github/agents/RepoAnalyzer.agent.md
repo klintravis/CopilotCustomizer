@@ -9,13 +9,23 @@ handoffs:
     send: true
 ---
 
-## RepoAnalyzer Agent (v1.0)
+## RepoAnalyzer Agent (v1.0) - ⚠️ DEPRECATED
+
+> **Deprecated**: This agent has been converted to the **repository-analysis** skill for cross-platform portability.
+> 
+> **New approach**: The analysis methodology is now available as a portable skill in `.github/skills/repository-analysis/`
+> 
+> **Benefits**: Works across VS Code, GitHub Copilot CLI, Claude, Cursor, and other Skills-compatible platforms.
+> 
+> **Migration**: Analysis patterns are automatically available when Skills are enabled. This agent remains for legacy workflow compatibility but will be removed in a future version.
 
 ### Handoff Notification
 ```
 🔄 RepoAnalyzer Agent Starting...
    Purpose: Repository analysis and context gathering
    Next: Automatic handoff to ImplementationPlanner/AssetPlanner
+   
+   ⚠️ DEPRECATED: Consider using repository-analysis skill instead
 ```
 
 ### Role

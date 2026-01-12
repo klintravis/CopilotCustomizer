@@ -84,7 +84,240 @@ Tip: Type `/` in Copilot Chat to see all available commands.
 
 ---
 
-## 🧩 Understanding Asset Types
+## 🌍 Understanding Skills (Cross-Platform Capabilities)
+
+Skills are **portable AI capabilities** that work across multiple platforms: VS Code, GitHub Copilot CLI, Claude, Cursor, Goose, and other compatible agents. Based on the open standard at [agentskills.io](https://agentskills.io).
+
+### What Are Skills?
+
+Skills are self-contained, reusable knowledge units that teach AI systems how to perform specific tasks. Unlike agents (which are VS Code-specific), skills are **platform-agnostic** and can be used:
+
+- **In VS Code** Copilot Chat
+- **In GitHub Copilot CLI** on the command line
+- **In Claude** (Claude.com or Claude Desktop)
+- **In Cursor** editor
+- **In any compatible AI agent** that supports agentskills.io
+
+### Skills vs Agents vs Instructions vs Prompts
+
+| Asset | Portability | Use Case | Invocation |
+|-------|------------|----------|-----------|
+| **Skills** | 🌍 Cross-platform | Teach methodology, patterns, best practices | Auto-loaded or `/invoke-skill` |
+| **Agents** | 🔧 VS Code only | VS Code specialists with tool access | Mode picker in Chat |
+| **Instructions** | 📋 VS Code/GitHub | Coding standards for specific files | Auto-applied to matching files |
+| **Prompts** | ⚡ VS Code/GitHub | Task templates with parameters | `/CommandName` slash commands |
+
+**Decision Framework**:
+```
+Question 1: Should this work across platforms (VS Code, CLI, Claude)?
+  → YES: Create a Skill
+  → NO: Go to Q2
+
+Question 2: Does this need VS Code file system or tool access?
+  → YES: Create an Agent
+  → NO: Go to Q3
+
+Question 3: Is this reusable across many files/projects?
+  → YES: Create Instructions
+  → NO: Create a Prompt
+```
+
+### The 5 Available Skills
+
+**1. repository-analysis** 🔍
+- **Purpose**: Deep repository analysis methodology
+- **Teaches**: How to systematically analyze code structure, tech stack, patterns, dependencies, and impact
+- **Use When**: Starting work on a new project, understanding existing codebase, assessing customization needs
+- **Platforms**: VS Code, CLI, Claude, Cursor
+- **Example**:
+  ```
+  Analyze /Users/dev/my-api using the repository-analysis skill.
+  What's the tech stack, architecture pattern, and dependencies?
+  ```
+
+**2. implementation-planning** 📋
+- **Purpose**: Strategic implementation planning methodology
+- **Teaches**: How to plan complex changes with requirements clarification, strategy design, risk mitigation, testing strategy
+- **Use When**: Planning features, refactoring, complex code changes, establishing validation approaches
+- **Platforms**: VS Code, CLI, Claude, Cursor
+- **Example**:
+  ```
+  Use implementation-planning skill to plan:
+  1. Add API authentication (JWT)
+  2. Create database migrations
+  3. Generate test suite
+  ```
+
+**3. copilot-asset-design** 🎨
+- **Purpose**: Design and validate GitHub Copilot customization assets
+- **Teaches**: Decision frameworks for Skill vs Agent vs Instructions vs Prompts, architecture patterns, quality criteria, integration strategies
+- **Use When**: Creating new customizations, validating asset structure, planning architecture for tools
+- **Platforms**: VS Code, CLI, Claude, Cursor
+- **Example**:
+  ```
+  Design a customization for API endpoint generation.
+  Should it be a Skill, Agent, or both? Use copilot-asset-design skill.
+  ```
+
+**4. technical-documentation** 📝
+- **Purpose**: Structured technical documentation generation
+- **Teaches**: How to write change summaries, API documentation, architectural decisions, implementation reports, user guides with consistent format
+- **Use When**: Documenting code changes, features, API endpoints, architecture decisions, deployment procedures
+- **Platforms**: VS Code, CLI, Claude, Cursor
+- **Example**:
+  ```
+  Document these API endpoint changes using technical-documentation skill:
+  - POST /users (create)
+  - GET /users/:id (retrieve)
+  - PUT /users/:id (update)
+  ```
+
+**5. deployment-automation** 🚀
+- **Purpose**: CI/CD pipeline design and deployment strategies
+- **Teaches**: GitHub Actions workflows, deployment strategies (blue-green, canary, rolling), environment configuration, testing, monitoring, rollback procedures
+- **Use When**: Setting up CI/CD pipelines, designing deployment strategies, planning release workflows, implementing infrastructure automation
+- **Platforms**: VS Code, CLI, Claude, Cursor
+- **Example**:
+  ```
+  Using deployment-automation skill, design a CI/CD pipeline for:
+  - Build and test on every push
+  - Deploy to staging automatically
+  - Manual approval for production
+  ```
+
+### How to Use Skills
+
+#### In VS Code Copilot Chat
+
+Skills are automatically available. Just reference them in your question:
+
+```
+Use the repository-analysis skill to analyze my project at /path/to/project
+```
+
+Or ask Copilot to apply a skill:
+
+```
+Help me plan this feature using the implementation-planning skill
+```
+
+#### In GitHub Copilot CLI
+
+```bash
+# Invoke a skill from the command line
+copilot --skill repository-analysis \
+  --input "Analyze /Users/dev/my-project for tech stack and dependencies"
+
+# Or use skill for planning
+copilot --skill implementation-planning \
+  --input "Plan implementation of user authentication feature"
+```
+
+#### In Claude Desktop
+
+Attach files and ask Claude to use a skill:
+
+```
+I've attached my project files. Use the repository-analysis skill to 
+understand the codebase structure and tech stack.
+```
+
+#### In Cursor Editor
+
+Cursor supports skills through its AI chat:
+
+```
+@codebase Use the implementation-planning skill to plan refactoring 
+of the authentication module.
+```
+
+### Skill Examples in Action
+
+**Example 1: Repository Analysis Across Platforms**
+
+**In VS Code**:
+```
+User: "I'm taking over a Node.js/Express project. Can you analyze it?"
+AI (using repository-analysis):
+1. Maps directory structure
+2. Detects tech stack (Express, PostgreSQL, Jest)
+3. Identifies patterns (MVC architecture)
+4. Lists dependencies
+5. Assesses impact for customization
+→ Recommends: "APISpecialist agent + database migration helper"
+```
+
+**In GitHub Copilot CLI** (same project, command line):
+```bash
+copilot --skill repository-analysis \
+  --input "Quick analysis of /Users/dev/my-api structure"
+
+Output: Same analysis in text format
+```
+
+**In Claude Desktop** (for strategic discussion):
+```
+Attach project files, ask:
+"Use repository-analysis skill to understand this codebase.
+What are the strengths and weaknesses of the current architecture?"
+
+Claude (using skill):
+- Strengths: Clear layering, good test coverage
+- Weaknesses: Monolithic structure, potential scaling issues
+- Recommendations: Consider microservices extraction
+```
+
+**Example 2: Implementation Planning for Multi-Phase Project**
+
+**In VS Code**:
+```
+User: "Plan the implementation of payment processing (Stripe integration)"
+AI (using implementation-planning):
+1. Requirements clarification
+2. Strategy design (incremental approach recommended)
+3. Change specification (4 phases)
+4. Testing strategy (unit + integration + manual)
+5. Risk mitigation (PCI compliance, refund handling)
+6. Validation planning
+7. Team handoff (communication plan)
+
+Result: Complete 6-week roadmap with milestones
+```
+
+**Across platforms**: Get same structured plan in VS Code, CLI, Claude, or Cursor.
+
+**Example 3: Asset Design Decision**
+
+**Question**: "Should API endpoint generation be a Skill or Agent?"
+
+**Using copilot-asset-design**:
+- Decision framework analysis
+- Recommendation: **Both** (Skill for patterns + Agent for VS Code file I/O)
+- Architecture design
+- Integration strategy
+- Quality checklist
+
+Available in VS Code, CLI, Claude, and all platforms.
+
+### Best Practices for Using Skills
+
+1. **Use skills for methodology** - When you need to understand HOW to approach something
+2. **Reference skills explicitly** - "Use the [skill-name] skill to..." makes intent clear
+3. **Combine skills** - Many workflows use multiple skills:
+   - repository-analysis → implementation-planning → technical-documentation
+   - Technical decisions → copilot-asset-design → Agent creation
+4. **Skills are foundational** - They provide the knowledge that agents, instructions, and prompts build upon
+5. **Share across teams** - Skills work everywhere, so share them with team members using different tools
+
+### Skill Examples Files
+
+Each skill includes real-world examples:
+- **repository-analysis**: [Express.js API analysis example](./github/skills/repository-analysis/examples/example-express-api.md)
+- **implementation-planning**: [API customization planning example](./github/skills/implementation-planning/examples/example-api-customization.md)
+- **copilot-asset-design**: [APISpecialist design example](./github/skills/copilot-asset-design/examples/example-api-specialist-design.md)
+- **technical-documentation**: [Change summary documentation example](./github/skills/technical-documentation/examples/example-api-change-summary.md)
+
+---
 
 ### Agent Files (`*.agent.md`)
 

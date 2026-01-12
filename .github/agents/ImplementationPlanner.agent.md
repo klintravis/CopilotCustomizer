@@ -9,13 +9,23 @@ handoffs:
     send: false
 ---
 
-## ImplementationPlanner Agent (v1.0)
+## ImplementationPlanner Agent (v1.0) - ⚠️ DEPRECATED
+
+> **Deprecated**: This agent has been converted to the **implementation-planning** skill for cross-platform portability.
+> 
+> **New approach**: The planning methodology is now available as a portable skill in `.github/skills/implementation-planning/`
+> 
+> **Benefits**: Works across VS Code, GitHub Copilot CLI, Claude, Cursor, and other Skills-compatible platforms.
+> 
+> **Migration**: Planning patterns are automatically available when Skills are enabled. This agent remains for legacy workflow compatibility but will be removed in a future version.
 
 ### Handoff Notification
 ```
 🔄 ImplementationPlanner Agent Starting...
    Purpose: Create implementation plan with quality gate
    Next: User approval, then handoff to ChangeExecutor
+   
+   ⚠️ DEPRECATED: Consider using implementation-planning skill instead
 ```
 
 ### Role

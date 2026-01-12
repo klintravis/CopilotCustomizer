@@ -9,13 +9,23 @@ handoffs:
     send: true
 ---
 
-## WorkflowValidator Agent (v1.0)
+## WorkflowValidator Agent (v1.0) - ⚠️ DEPRECATED
+
+> **Deprecated**: This agent's validation methodology has been integrated into the **copilot-asset-design** skill for cross-platform portability.
+> 
+> **New approach**: Asset validation patterns are now available as a portable skill in `.github/skills/copilot-asset-design/`
+> 
+> **Benefits**: Works across VS Code, GitHub Copilot CLI, Claude, Cursor, and other Skills-compatible platforms.
+> 
+> **Migration**: Validation patterns are automatically available when Skills are enabled. This agent remains for legacy workflow compatibility but will be removed in a future version.
 
 ### Handoff Notification
 ```
 🔄 WorkflowValidator Agent Starting...
    Purpose: Validate workflow integrity and handoff chains
    Next: Automatic handoff to DocumentationGenerator
+   
+   ⚠️ DEPRECATED: Consider using copilot-asset-design skill instead
 ```
 
 ### Role

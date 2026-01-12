@@ -1,5 +1,5 @@
 ---
-description: 'Documentation generator that creates comprehensive change summaries for user review'
+description: '⚠️ DEPRECATED: Use technical-documentation skill instead - Documentation generator that creates comprehensive change summaries'
 model: Auto (copilot)
 tools: ['search', 'changes']
 ---

@@ -1,79 +1,42 @@
-# Quick Start Guide
+# Quick Start (5 Minutes)
 
-Get CopilotCustomizer working with your project in **5 minutes**.
+## Prerequisites
 
----
+- VS Code + GitHub Copilot extension + subscription
+- Your project open in VS Code
 
-## ✅ Prerequisites
+## Setup
 
-Before starting, verify you have:
+### 1. Add CopilotCustomizer to Workspace
 
-- [ ] **VS Code** installed
-- [ ] **GitHub Copilot** extension active
-- [ ] **Copilot subscription** (Individual, Business, or Enterprise)
-- [ ] **Your project** open in VS Code
-- [ ] **CopilotCustomizer** downloaded/cloned locally
+`File` → `Add Folder to Workspace` → select CopilotCustomizer
 
----
+### 2. Generate Customization
 
-## 🚀 3-Step Setup
-
-### Step 1: Add to Workspace (30 seconds)
-
-**Add CopilotCustomizer as second workspace folder:**
-
-1. In VS Code: `File` → `Add Folder to Workspace`
-2. Browse to your CopilotCustomizer directory
-3. Click `Select Folder`
-
-**Verify**: Both folders visible in Explorer sidebar
+Open Copilot Chat (`Ctrl+Shift+I`) and run:
 
 ```
-EXPLORER
-├── YOUR-PROJECT
-└── COPILOTCUSTOMIZER
+/BootstrapRepo REPOSITORY_PATH: "/absolute/path/to/your-project"
 ```
 
----
+Review the plan, then type: `confirm`
 
-### Step 2: Generate Assets (2 minutes)
+**Wait**: 3-4 minutes
 
-**Bootstrap complete customization for your project:**
+### 3. Done!
 
-1. Open Copilot Chat: `Ctrl+Shift+I` (Windows/Linux) or `Cmd+Shift+I` (Mac)
-2. Type the `/BootstrapRepo` slash command with your project path:
-   ```
-   /BootstrapRepo REPOSITORY_PATH: "/absolute/path/to/your-project"
-   ```
-   The slash command will load and execute the BootstrapRepo workflow.
-3. Review the analysis and recommendations shown
-4. Type `confirm` when prompted to generate assets
+Assets created in `your-project/.github/`:
+- `skills/` - Cross-platform AI capabilities
+- `agents/` - VS Code specialists
+- `instructions/` - Coding standards
+- `prompts/` - Task templates
 
-**Wait**: 2-3 minutes while assets generate
+## Next Steps
 
-**Result**: Your project now has custom AI assistance in `.github/` folder
-
----
-
-### Step 3: Use Your Customization (30 seconds)
-
-**Verify assets were created:**
-
-Navigate to your project folder:
-```
-your-project/
-├── .github/
-│   ├── agents/           ← New AI specialists
-│   ├── instructions/     ← Coding rules
-│   ├── prompts/          ← Templates
-│   └── templates/        ← Document formats
-└── AGENTS.md             ← Project guidance
-```
-
-**Test it:**
-1. Open any code file in your project
-2. Ask Copilot a question relevant to your tech stack
-3. Notice AI now understands your project patterns
+- [Examples](EXAMPLES.md) - Real-world walkthroughs
+- [Skills Guide](SKILLS-MIGRATION.md) - Understand cross-platform capabilities
+- [All Commands](HOW-TO.md) - Complete reference
+- [Architecture](AGENTS.md) - How it works
 
 **Done!** Close CopilotCustomizer folder: Right-click → `Remove Folder from Workspace`
 

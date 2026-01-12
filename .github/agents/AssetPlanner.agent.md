@@ -59,13 +59,28 @@ INPUT: Repository analysis from RepoAnalyzer
 
 ### Recommendation Framework
 
-**Agent File Criteria**:
+**🆕 PRIORITY: Skills (Cross-Platform)**:
+```yaml
+When to recommend .github/skills/*/SKILL.md:
+  - Capability should work across VS Code, CLI, Claude, Cursor
+  - Specialized workflows (testing, debugging, deployment)
+  - Domain expertise that's platform-agnostic
+  - Need to include scripts, examples, resources
+  - Automatic activation on relevant prompts
+
+Location: .github/skills/{skill-name}/SKILL.md
+Format: YAML frontmatter + Markdown instructions
+Standard: agentskills.io (open standard)
+Example: api-development/, testing-workflows/, deployment-automation/
+```
+
+**Agent File Criteria** (VS Code-specific):
 ```yaml
 When to recommend .agent.md:
-  - Specialized domain expertise needed (API design, testing, security)
-  - Repeated workflow patterns identified
-  - Multi-step processes requiring orchestration
-  - Tool-specific operations (database, deployment)
+  - VS Code-specific tool access required (terminal, files)
+  - Handoff workflows between multiple agents
+  - Strict tool permission management
+  - Role-based specialists with unique capabilities
 
 Naming convention: {Domain}{Role}.agent.md
 Example: APIExpert.agent.md, TestOrchestrator.agent.md
@@ -107,27 +122,34 @@ Example: GenerateEndpoint.prompt.md, DocumentAPI.prompt.md
 
 ### Recommended Assets
 
-#### Agent Files ({count})
+#### 🆕 Skills ({count}) - Cross-platform, auto-loading
+1. **{skill-name}/** (`.github/skills/{skill-name}/`)
+   - Purpose: {capability description}
+   - When: {activation scenarios}
+   - Content: SKILL.md + {examples/scripts/resources}
+   - Platforms: VS Code, CLI, Claude, Cursor
+
+#### Agent Files ({count}) - VS Code specialists
 1. **{AgentName}.agent.md**
    - Purpose: {clear role description}
    - Tools: {approved tools array}
    - Handoffs: {workflow transitions}
-   - Reuses: {shared instructions}
+   - Reuses: {shared instructions + skills}
 
-#### Instruction Files ({count})
+#### Instruction Files ({count}) - Coding standards
 1. **{InstructionName}.instructions.md**
    - ApplyTo: {glob pattern}
    - Purpose: {workflow description}
    - Key Sections: {list}
 
-#### Prompt Files ({count})
+#### Prompt Files ({count}) - Task templates
 1. **{PromptName}.prompt.md**
    - Mode: {ask/agent/generate}
    - Variables: {required inputs}
    - Output: {expected result}
 
 ### Implementation Specifications
-{Detailed creation parameters for each asset}
+{Detailed creation parameters for each asset, including skill structure}
 
 ### Risk Assessment
 - Complexity: {LOW/MEDIUM/HIGH}
@@ -135,11 +157,13 @@ Example: GenerateEndpoint.prompt.md, DocumentAPI.prompt.md
 - Potential Conflicts: {list}
 
 ### Validation Plan
+- Skills format (agentskills.io)
 - Schema compliance checks
 - Cross-reference validation
 - Tool approval verification
 
 ### Expected Outcomes
+- {count} skills created (cross-platform)
 - {count} agent files created
 - {count} instruction files created
 - {count} prompt files created

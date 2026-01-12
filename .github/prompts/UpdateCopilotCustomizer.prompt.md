@@ -2,10 +2,10 @@
 agent: CopilotCustomizer
 ---
 
-## Update CopilotCustomizer Entry Point (v1.0)
+## Update CopilotCustomizer Entry Point (v2.0)
 
 ### Task Intent
-Initiate automated change workflow: analysis → planning → implementation → verification → documentation.
+Initiate automated change workflow using skills and agents: analysis → planning → implementation → verification → documentation.
 
 ### Variable Block
 ```
@@ -16,35 +16,37 @@ SCOPE (or "auto-detect"): "{SCOPE}"
 ```
 
 ### Workflow Phases
-**Phase 1: Analysis** (Auto) - Repository scan, dependency analysis
-**Phase 2: Planning** (Auto → Gate) - Implementation plan → **USER REVIEW**
-**Phase 3: Implementation** (Auto) - Execute changes atomically
-**Phase 4: Verification** (Auto) - Validate against criteria
-**Phase 5: Documentation** (Auto) - Generate change summary
+**Phase 1: Analysis** - Use **repository-analysis** skill for repository scan and dependency analysis
+**Phase 2: Planning** - Use **implementation-planning** skill to create implementation plan → **USER REVIEW** → Reply `confirm` to proceed
+**Phase 3: Implementation** - Handoff to **@ChangeExecutor** agent to execute changes atomically
+**Phase 4: Verification** - Handoff to **@VerificationAgent** to validate against acceptance criteria
+**Phase 5: Documentation** - Use **technical-documentation** skill to generate change summary
 
-Reply `confirm` after Phase 2 to proceed.
+### Skills Used
+- **repository-analysis**: Deep repository understanding and impact assessment
+- **implementation-planning**: Strategic planning with risk mitigation
+- **technical-documentation**: Clear change documentation and summaries
 
-### Refinement Commands
-| Command | Action |
-|---------|--------|
-| `refine: scope` | Adjust files/areas to be modified |
-| `refine: approach` | Change implementation strategy |
-| `refine: validation` | Enhance verification criteria |
-| `refine: docs` | Improve documentation detail level |
-
-### Handoff Chain
+### Agent Handoffs
+```mermaid
+UpdateCopilotCustomizer 
+  → repository-analysis skill
+  → implementation-planning skill
+  → [USER GATE]
+  → @ChangeExecutor agent
+  → @VerificationAgent agent  
+  → technical-documentation skill
+  → Complete
 ```
-UpdateCopilotCustomizer → RepoAnalyzer → ImplementationPlanner → [USER GATE] → ChangeExecutor → VerificationAgent → DocumentationGenerator → Complete
-```
 
-### Notes
-- **Single User Break**: Only after planning phase for efficiency
-- **Reuses Instructions**: Leverages existing framework instructions
-- **Lightweight Agents**: Minimal specialized logic, maximum instruction reuse
-- **Auto-Verification**: Built-in validation against acceptance criteria
+### User Interaction
+- **Single Gate**: Review implementation plan after Phase 2
+- **Simple Commands**: `confirm` to proceed, `revise` to adjust plan
 
 ---
 
-**Workflow Type**: Automated change implementation with quality gate  
+**Version**: v2.0 - Skills-First with Agent Handoffs  
 **User Interactions**: 2 (submit + approve plan)  
+**Skills**: repository-analysis, implementation-planning, technical-documentation  
+**Agents**: ChangeExecutor, VerificationAgent  
 **Framework**: CopilotCustomizer ecosystem integration

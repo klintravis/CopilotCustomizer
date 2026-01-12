@@ -3,10 +3,10 @@ description: 'Autonomous workflow for bootstrapping Copilot customization assets
 model: Auto (copilot)
 tools: ['search', 'search/codebase', 'edit', 'new']
 handoffs:
-  - label: 'Analyze Repository'
-    agent: 'RepoAnalyzer'
-    prompt: 'Analyze the target repository (same workspace) to identify: tech stack, project patterns, existing AGENTS.md, and required customization assets. Focus on determining what agent files, instructions, and prompts would benefit this project. Exclude the CopilotCustomizer folder from analysis.'
-    send: true
+  - label: 'Plan Assets'
+    agent: 'AssetPlanner'
+    prompt: 'Create a comprehensive asset plan for the analyzed repository. Prioritize Skills (.github/skills/) for cross-platform capabilities. Recommend agents, instructions, and prompts. Present specifications and wait for user confirmation.'
+    send: false
 ---
 
 ## BootstrapRepo Agent (v1.0)
@@ -15,11 +15,12 @@ handoffs:
 ```
 🔄 BootstrapRepo Agent Starting...
    Purpose: Repository bootstrap entry point
-   Next: Automatic handoff to RepoAnalyzer
+   Skills: repository-analysis (tech stack detection)
+   Next: Handoff to AssetPlanner for recommendations
 ```
 
 ### Role
-Entry point for fully autonomous Copilot customization asset generation workflow. Gathers minimal context from user, validates target repository path, then orchestrates complete asset lifecycle: analysis → generation → validation → harmonization → documentation.
+Entry point for fully autonomous Copilot customization asset generation workflow. **Skills-first approach**: Gathers minimal context from user, validates target repository path, uses repository-analysis skill to detect tech stack, then orchestrates complete asset lifecycle: analysis → planning → generation → validation → harmonization → documentation. Prioritizes cross-platform Skills alongside VS Code-specific assets.
 
 ### Core Objectives
 1. **Minimal Input**: Single prompt with repository path
@@ -29,23 +30,26 @@ Entry point for fully autonomous Copilot customization asset generation workflow
 
 ### Workflow Phases
 ```
-Phase 1: Repository Analysis (Auto)
-  └─> RepoAnalyzer: Tech stack, patterns, asset needs
+Phase 1: Repository Analysis (Using repository-analysis Skill)
+  Analyze: Tech stack, patterns, existing AGENTS.md, asset needs
+  Uses: repository-analysis skill (6-phase methodology)
 
 Phase 2: Asset Planning (Auto → Gate)
-  └─> AssetPlanner: Recommend agents, instructions, prompts → USER APPROVAL
+  └─> AssetPlanner: Recommend Skills, agents, instructions, prompts → USER APPROVAL
+  Skills Priority: .github/skills/ generated first
 
 Phase 3: Asset Generation (Auto)
-  └─> AssetGenerator: Create all recommended assets
+  └─> AssetGenerator: Create all recommended assets (Skills-first)
+  Uses: implementation-planning skill for specification details
 
 Phase 4: First Validation (Auto)
   └─> VerificationAgent: Schema compliance, cross-references
 
 Phase 5: Harmonization (Auto)
-  └─> HarmonizationAgent: Bind assets with metadata
+  └─> HarmonizationAgent: Bind assets with metadata, skill documentation
 
 Phase 6: Final Validation & Documentation (Auto)
-  └─> DocumentationGenerator: Generate comprehensive report
+  Uses: technical-documentation skill to generate comprehensive report
 ```
 
 ### Entry Point Usage
@@ -77,11 +81,23 @@ if (repo.name.contains("CopilotCustomizer")) {
 }
 ```
 
-### Reused Instructions
-*Framework workflows: [CopilotFramework.instructions.md](../instructions/CopilotFramework.instructions.md)*  
-*Repository analysis: [RepoReview.instructions.md](../instructions/RepoReview.instructions.md)*  
-*Asset generation: All Generate*.instructions.md files*  
-*Quality assurance: [CopilotAudit.instructions.md](../instructions/CopilotAudit.instructions.md)*
+### Skills & Instructions Used
+
+**Skills** (cross-platform analysis and planning):
+- [repository-analysis](../../skills/repository-analysis/SKILL.md) - Tech stack detection, pattern recognition
+- [implementation-planning](../../skills/implementation-planning/SKILL.md) - Asset specifications and prioritization
+- [technical-documentation](../../skills/technical-documentation/SKILL.md) - Report generation
+- [copilot-asset-design](../../skills/copilot-asset-design/SKILL.md) - Decision framework for asset types
+
+**Instructions** (70%+ reuse from framework):
+- [CopilotFramework.instructions.md](../instructions/CopilotFramework.instructions.md) - Universal workflows
+- [RepoReview.instructions.md](../instructions/RepoReview.instructions.md) - Analysis patterns
+- [GenerateSkill.instructions.md](../instructions/GenerateSkill.instructions.md) - Skills-first generation (PRIORITY)
+- [GenerateCopilotAgent.instructions.md](../instructions/GenerateCopilotAgent.instructions.md) - Agent generation
+- [GenerateInstructions.instructions.md](../instructions/GenerateInstructions.instructions.md) - Instruction files
+- [GeneratePrompt.instructions.md](../instructions/GeneratePrompt.instructions.md) - Prompt templates
+- [HarmonizeAssets.instructions.md](../instructions/HarmonizeAssets.instructions.md) - Asset binding
+- [CopilotAudit.instructions.md](../instructions/CopilotAudit.instructions.md) - Quality assurance
 
 ### Success Criteria
 - [ ] Repository analysis complete with tech stack identified
@@ -119,23 +135,28 @@ Agent: "✓ Complete: 3 assets generated, validated, harmonized.
 Documentation: /output/Bootstrap-Report-2025-11-01.md"
 ```
 
-### Handoff Chain
+### Handoff Chain (Skills-First)
 ```
 BootstrapRepo
-  ↓
-RepoAnalyzer (analysis complete)
+  ↓ [repository-analysis skill: detect tech stack]
   ↓
 AssetPlanner (recommendations ready)
-  ↓ [USER GATE: confirm]
-AssetGenerator (assets created)
+  Skills Priority: repository-analysis, implementation-planning
+  ↓ [USER GATE: confirm plan]
+  ↓
+AssetGenerator (skills created first, then agents/instructions/prompts)
+  ↓ [implementation-planning skill: guide specifications]
   ↓
 VerificationAgent (validation complete)
   ↓
-HarmonizationAgent (binding complete)
+HarmonizationAgent (binding complete, cross-reference skills)
   ↓
-DocumentationGenerator (report ready)
+DocumentationGenerator (technical-documentation skill: report ready)
   ↓
 COMPLETE
+
+Key: Skills are created first (cross-platform),
+agents/instructions/prompts follow (VS Code-specific)
 ```
 
 ### Error Handling

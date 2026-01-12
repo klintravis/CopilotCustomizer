@@ -6,9 +6,11 @@ agent: BootstrapRepo
 **Paired Agent**: [BootstrapRepo.agent.md](../agents/BootstrapRepo.agent.md)
 
 ## Purpose
-Fully autonomous workflow for generating Copilot customization assets for a target repository in the same workspace. Single entry point that orchestrates complete lifecycle: analysis → planning → generation → validation → harmonization → documentation.
+Fully autonomous workflow for generating Copilot customization assets for a target repository in the same workspace. **Skills-first approach** - prioritizes cross-platform capabilities (Skills) alongside VS Code-specific assets. Single entry point that orchestrates complete lifecycle: analysis → planning → generation → validation → harmonization → documentation.
 
 **Constraint**: Do not target the CopilotCustomizer folder itself (use a different repository in the same workspace).
+
+**Skills-First Philosophy**: Assets generated prioritize **cross-platform Skills** (agentskills.io standard) that work in VS Code, GitHub Copilot CLI, Claude, Cursor, and other compatible agents. Agents, Instructions, and Prompts are VS Code-specific and build upon the foundational Skills.
 
 ## Usage
 
@@ -31,11 +33,11 @@ User Input (REPOSITORY_PATH)
   ↓
 BootstrapRepo (validation)
   ↓
-RepoAnalyzer (tech stack detection)
+repository-analysis Skill (tech stack detection)
   ↓
-AssetPlanner (recommendations + specs)
+implementation-planning Skill (recommendations + specs)
   ↓ [USER GATE: "confirm"]
-AssetGenerator (create all assets)
+AssetGenerator (create all assets - Skills PRIORITY)
   ↓
 VerificationAgent (schema validation)
   ↓
@@ -45,29 +47,36 @@ HarmonizationAgent (bind with metadata)
   ↓
 WorkflowIntegrityCheck (STRICT=true) → VerificationAgent (final check)
   ↓
-DocumentationGenerator (report)
+DocumentationGenerator (report - uses technical-documentation skill)
   ↓
 COMPLETE
 ```
 
 **User Interactions**: 2 (start + confirm plan)  
-**Autonomous Phases**: 7  
+**Autonomous Phases**: 7 (leveraging Skills for analysis, planning, documentation)  
 **Quality Gates**: 1 (after planning)
+
+**Skills Integration**: repository-analysis, implementation-planning, technical-documentation, deployment-automation (when applicable)
 
 ## What Gets Inferred
 
-**From Repository Structure**:
+**From Repository Structure** (using repository-analysis skill):
 - Project type (API, CLI, web app, library)
-- Tech stack (languages, frameworks)
-- Existing patterns (architecture, conventions)
+- Tech stack (languages, frameworks, databases, testing)
+- Existing patterns (architecture, conventions, deployment strategies)
 - Current customization status
 
-**Recommendations Generated**:
-- Required agent files (.agent.md)
-- Required instruction files (.instructions.md)
-- Required prompt files (.prompt.md)
-- AGENTS.md structure
-- Cross-reference network
+**Recommendations Generated** (using implementation-planning skill):
+- **Skills** (`.github/skills/`) - Cross-platform capabilities [PRIORITY]
+  - Generic Skills: repository-analysis, implementation-planning, copilot-asset-design, technical-documentation, deployment-automation
+  - Project-specific Skills: e.g., api-development, react-patterns, rust-patterns
+- Agent files (.agent.md) - VS Code specialists that leverage skills
+- Instruction files (.instructions.md) - Coding standards for specific file patterns
+- Prompt files (.prompt.md) - Task templates and slash commands
+- AGENTS.md structure - Project guidance
+- Cross-reference network - Metadata binding
+
+**Skills Are Portable**: All generated Skills work across VS Code, GitHub Copilot CLI, Claude, Cursor, Goose, and compatible agents. See [agentskills.io](https://agentskills.io) for full specification.
 
 ## Example Execution
 
@@ -101,23 +110,32 @@ Generating recommendations...
 ```
 ## Asset Generation Plan
 
-Recommended Assets (8):
+Recommended Assets (11):
 
-Agent Files (3):
-✓ APIExpert.agent.md - RESTful endpoint design
-✓ TestOrchestrator.agent.md - Jest test generation
-✓ SecurityReviewer.agent.md - API security audits
+🆕 Skills (3) - Cross-platform, portable, auto-loading:
+✓ api-development/ - RESTful API patterns and best practices
+✓ api-testing/ - Jest/Supertest testing workflows
+✓ api-security/ - Authentication, authorization, validation
 
-Instruction Files (3):
+Skills work across: VS Code, GitHub Copilot CLI, Claude, Cursor
+See: https://agentskills.io for full specification
+Examples: .github/skills/repository-analysis/examples/
+
+Agent Files (3) - VS Code specialists:
+✓ APIExpert.agent.md - RESTful endpoint design (leverages api-development skill)
+✓ TestOrchestrator.agent.md - Jest test generation (leverages api-testing skill)
+✓ SecurityReviewer.agent.md - API security audits (leverages api-security skill)
+
+Instruction Files (3) - Coding standards:
 ✓ APIPatterns.instructions.md - RESTful conventions
 ✓ TestingStandards.instructions.md - Jest patterns
 ✓ SecurityPatterns.instructions.md - Auth & validation
 
-Prompt Files (2):
+Prompt Files (2) - Task templates:
 ✓ GenerateEndpoint.prompt.md - Endpoint scaffolding
 ✓ DocumentAPI.prompt.md - OpenAPI generation
 
-Risk: MEDIUM | Expected duration: 2-3 minutes
+Risk: MEDIUM | Expected duration: 3-4 minutes
 
 Reply "confirm" to generate all assets autonomously.
 ```
@@ -127,9 +145,12 @@ Reply "confirm" to generate all assets autonomously.
 confirm
 ```
 
-### Phase 4-8: Autonomous Execution (2-3m)
+### Phase 4-8: Autonomous Execution (3-4m)
 ```
-[AssetGenerator] Creating 8 assets...
+[AssetGenerator] Creating 11 assets...
+✓ api-development/SKILL.md (65 lines + examples)
+✓ api-testing/SKILL.md (58 lines + test templates)
+✓ api-security/SKILL.md (62 lines + checklists)
 ✓ APIExpert.agent.md (47 lines)
 ✓ TestOrchestrator.agent.md (52 lines)
 ✓ SecurityReviewer.agent.md (45 lines)
@@ -142,6 +163,7 @@ confirm
 [VerificationAgent] Validating assets...
 ✓ Schema compliance: 100%
 ✓ YAML validation: All valid
+✓ Skills format: Valid (agentskills.io)
 ✓ Tool approvals: Verified
 
 [FormatAndVerifyAssets] Formatting + schema validation (blocking)...
@@ -296,23 +318,33 @@ Action: Aborting before documentation; fix generation specs and retry
 
 ## Framework Integration
 
+**Skills Used** (cross-platform analysis and planning):
+- [repository-analysis](../../skills/repository-analysis/SKILL.md) - Tech stack detection, dependency analysis
+- [implementation-planning](../../skills/implementation-planning/SKILL.md) - Recommendation prioritization, strategy design
+- [technical-documentation](../../skills/technical-documentation/SKILL.md) - Report generation and documentation
+
+**Framework Skills** (available for all CopilotCustomizer workflows):
+- [copilot-asset-design](../../skills/copilot-asset-design/SKILL.md) - Asset decision framework
+- [deployment-automation](../../skills/deployment-automation/SKILL.md) - CI/CD and deployment strategies
+  - Example: [GitHub Actions Pipeline](../../skills/deployment-automation/examples/example-github-actions.md)
+
 **Reused Instructions** (70%+ shared):
 - [CopilotFramework.instructions.md](../instructions/CopilotFramework.instructions.md) - Universal workflows
 - [RepoReview.instructions.md](../instructions/RepoReview.instructions.md) - Analysis patterns
 - [GenerateCopilotAgent.instructions.md](../instructions/GenerateCopilotAgent.instructions.md) - Agent generation
 - [GenerateInstructions.instructions.md](../instructions/GenerateInstructions.instructions.md) - Instruction creation
 - [GeneratePrompt.instructions.md](../instructions/GeneratePrompt.instructions.md) - Prompt templates
+- [GenerateSkill.instructions.md](../instructions/GenerateSkill.instructions.md) - Skill creation (cross-platform)
 - [HarmonizeAssets.instructions.md](../instructions/HarmonizeAssets.instructions.md) - Asset binding
 - [CopilotAudit.instructions.md](../instructions/CopilotAudit.instructions.md) - Quality validation
 
-**Agent Chain**:
+**Agent Chain** (VS Code workflow orchestration):
 - [BootstrapRepo.agent.md](../agents/BootstrapRepo.agent.md) - Entry point
-- [RepoAnalyzer.agent.md](../agents/RepoAnalyzer.agent.md) - Analysis
-- [AssetPlanner.agent.md](../agents/AssetPlanner.agent.md) - Planning + gate
-- [AssetGenerator.agent.md](../agents/AssetGenerator.agent.md) - Generation
+- [AssetPlanner.agent.md](../agents/AssetPlanner.agent.md) - Planning + gate (leverages implementation-planning skill)
+- [AssetGenerator.agent.md](../agents/AssetGenerator.agent.md) - Generation (prioritizes Skills)
 - [VerificationAgent.agent.md](../agents/VerificationAgent.agent.md) - Validation
 - [HarmonizationAgent.agent.md](../agents/HarmonizationAgent.agent.md) - Binding
-- [DocumentationGenerator.agent.md](../agents/DocumentationGenerator.agent.md) - Reporting
+- [ChangeExecutor.agent.md](../agents/ChangeExecutor.agent.md) - File operations
 
 ## Success Metrics
 
