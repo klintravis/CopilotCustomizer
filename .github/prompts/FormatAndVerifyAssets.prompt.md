@@ -31,7 +31,7 @@ REPORT_ONLY: "{REPORT_ONLY}" # true|false (default: false)
 
 ### Handoff Chain
 ```
-FormatAndVerifyAssets → RepoAnalyzer → ChangeExecutor (FormatAssets) → VerificationAgent → DocumentationGenerator → Complete
+FormatAndVerifyAssets → repository-analysis skill → ChangeExecutor (FormatAssets) → VerificationAgent → technical-documentation skill → Complete
 ```
 
 ### Notes

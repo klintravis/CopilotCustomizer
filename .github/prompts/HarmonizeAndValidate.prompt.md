@@ -30,7 +30,7 @@ MODE: "{MODE}" # conservative|standard (default: standard)
 
 ### Handoff Chain
 ```
-HarmonizeAndValidate → RepoAnalyzer → HarmonizationAgent → WorkflowValidator → DocumentationGenerator → Complete
+HarmonizeAndValidate → repository-analysis skill → HarmonizationAgent → VerificationAgent → technical-documentation skill → Complete
 ```
 
 ### Notes

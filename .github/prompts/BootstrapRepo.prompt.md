@@ -47,7 +47,7 @@ HarmonizationAgent (bind with metadata)
   ↓
 WorkflowIntegrityCheck (STRICT=true) → VerificationAgent (final check)
   ↓
-DocumentationGenerator (report - uses technical-documentation skill)
+technical-documentation skill (report)
   ↓
 COMPLETE
 ```

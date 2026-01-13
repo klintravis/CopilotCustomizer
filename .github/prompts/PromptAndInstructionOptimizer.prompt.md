@@ -33,7 +33,7 @@ Reply `confirm` after Phase 2 to proceed.
 
 ### Handoff Chain
 ```
-PromptAndInstructionOptimizer → RepoAnalyzer → ImplementationPlanner → [USER GATE] → ChangeExecutor → VerificationAgent → DocumentationGenerator → Complete
+PromptAndInstructionOptimizer → repository-analysis skill → implementation-planning skill → [USER GATE] → ChangeExecutor → VerificationAgent → technical-documentation skill → Complete
 ```
 
 ### Notes

@@ -40,7 +40,7 @@ For setup and usage, see:
 - `VerificationAgent.agent.md` - Schema validation
 - `CopilotCustomizer.agent.md` - Main interactive mode
 
-**Skills** (4 total - cross-platform capabilities):
+**Skills** (5 total - cross-platform capabilities):
 - `repository-analysis/SKILL.md` - Repository understanding methodology
 - `implementation-planning/SKILL.md` - Strategic planning patterns
 - `copilot-asset-design/SKILL.md` - Asset architecture validation

@@ -20,7 +20,7 @@
 ### Handoff Workflows
 ```
 
-**Available**: `CopilotCustomizer.agent.md`, `RepoAnalyzer.agent.md`, `ImplementationPlanner.agent.md`, `ChangeExecutor.agent.md`, `VerificationAgent.agent.md`, `DocumentationGenerator.agent.md`
+**Available**: `CopilotCustomizer.agent.md`, `ChangeExecutor.agent.md`, `VerificationAgent.agent.md`, `AssetGenerator.agent.md`, `AssetPlanner.agent.md`, `BootstrapRepo.agent.md`, `HarmonizationAgent.agent.md`
 
 ## Instructions (`*.instructions.md`)
 **Location**: `.github/instructions/` | **YAML**: `applyTo` (required), `description` (optional)
@@ -47,10 +47,6 @@
 ```
 
 **Available**: AgentResume, AssetOptimization, BootstrapRepo, FormatAssets, FormatAndVerifyAssets, HarmonizeAssets, HarmonizeAndValidate, NewAgentsFile, NewCopilotAgent, NewInstructions, NewPrompt, NewWorkflow, PromptAndInstructionOptimizer, QuickChange, RepoReview, SecurityToolingAudit, UpdateCopilotCustomizer, WorkflowIntegrityCheck
-schemaVersion: "1.0"  # Optional: version tracking  
-depthModes: ["standard", "detailed"]  # Optional: supported depth levels
-refinementCommands: ["refine: focus"]  # Optional: available commands
----
 ```
 
 ### Structure Template
@@ -256,8 +252,8 @@ Custom Agent ←→ Agent Files (Contextual binding)
 - Group templates separately from executable assets
 
 ### Schema Compliance
-- Always include required YAML fields (`applyTo`, `description` for instructions)
-- Use optional fields for enhanced functionality (`schemaVersion`, `depthModes`)
+- Always include required YAML fields only (`description` for agents, `applyTo` for instructions)
+- Avoid unsupported YAML properties; place any depth modes or refinement metadata in the Markdown body, not in front matter
 - Follow VS Code Copilot schema specifications exactly
 - Validate YAML syntax before committing
 
@@ -268,7 +264,6 @@ Custom Agent ←→ Agent Files (Contextual binding)
 - Test all cross-references for accuracy
 
 ### Version Management
-- Update `schemaVersion` when making breaking changes
 - Document version compatibility in asset headers
 - Maintain backward compatibility when possible
 - Use semantic versioning for major framework updates
@@ -323,7 +318,7 @@ done
 
 ### VS Code Copilot Requirements
 
-This framework complies with **VS Code Copilot Customization v1.101** standards:
+This framework complies with **VS Code Copilot Customization v1.106** standards:
 
 - **Custom Agents**: Required `description`, optional `target`, `name`, `argument-hint`, `tools`, `model`, `handoffs`, `mcp-servers` (VS Code 1.106+)
 - **Instructions**: Required `applyTo` and `description` fields
@@ -347,7 +342,7 @@ Beyond basic compliance, this framework adds:
 
 ### Depth Mode Support
 
-Most assets support multiple interaction levels:
+Most assets support multiple interaction levels; document these in the Markdown body (not YAML front matter):
 
 ```yaml
 depthModes:
@@ -358,7 +353,7 @@ depthModes:
 
 ### Refinement Commands
 
-Interactive commands for iterative improvement:
+Document refinement commands in the Markdown body (not YAML front matter):
 
 ```yaml
 refinementCommands:
@@ -397,7 +392,7 @@ Some assets (like `AgentResume.prompt.md`) are designed for cross-repository usa
 
 **License**: MIT - See [LICENSE](../LICENSE) for full text  
 **Framework**: CopilotCustomizer v1.0  
-**Compliance**: VS Code GitHub Copilot Customization Standards v1.101  
+**Compliance**: VS Code GitHub Copilot Customization Standards v1.106  
 **Generated**: 2025-09-15 via Asset Reference Documentation Framework
 
 ---

@@ -30,7 +30,7 @@ STRICT: "{STRICT}" # true|false (default: true)
 
 ### Handoff Chain
 ```
-WorkflowIntegrityCheck → RepoAnalyzer → WorkflowValidator → DocumentationGenerator → Complete
+WorkflowIntegrityCheck → repository-analysis skill → copilot-asset-design skill → technical-documentation skill → Complete
 ```
 
 ### Notes
