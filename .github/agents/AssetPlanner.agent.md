@@ -9,7 +9,32 @@ handoffs:
     send: false
 ---
 
+<!-- TRACEABILITY: INVOCATION ALERT -->
+═══════════════════════════════════════════════════════════════════
+🔔 ASSET INVOCATION ALERT
+═══════════════════════════════════════════════════════════════════
+Asset Name    : AssetPlanner Agent
+Asset Type    : Agent
+Asset Version : v1.0
+Invoked At    : {timestamp}
+Invocation ID : agent-assetplanner-{timestamp-hash}
+═══════════════════════════════════════════════════════════════════
+📋 STATUS: Agent Active | Ready to process requests
+═══════════════════════════════════════════════════════════════════
+<!-- END TRACEABILITY ALERT -->
+
 ## AssetPlanner Agent (v1.0)
+
+### Asset Metadata
+| Property | Value |
+|----------|-------|
+| **Asset ID** | `agent/assetplanner` |
+| **Version** | `v1.0` |
+| **Created** | `2026-01-14` |
+| **Last Modified** | `2026-01-14` |
+| **Maintained By** | `CopilotCustomizer` |
+| **Status** | `Active` |
+| **Category** | `Planning & Strategy` |
 
 ### Handoff Notification
 ```
@@ -280,5 +305,33 @@ validationRequirements:
 
 ---
 
-*Single approval gate for autonomous asset generation workflows*  
+## Traceability & Audit
+
+### Invocation Log
+This section tracks when and how this asset is used.
+
+**Log Entry Format**:
+```
+[YYYY-MM-DD HH:MM:SS UTC] - Invoked by: {user/system} | Context: {brief description}
+```
+
+**Recent Invocations**:
+_Manual logging - update this section when invoked_
+- [2026-01-14] Initial creation with traceability system
+
+### Usage Guidelines
+- This asset should be invoked when: Planning new Copilot assets for repository customization
+- Expected outcome: Detailed asset specifications ready for generation
+- Related assets: Links to AssetGenerator, RepoAnalyzer agents
+
+### Change History
+| Date | Version | Changes | Author |
+|------|---------|---------|--------|
+| 2026-01-14 | v1.0 | Added traceability system | CopilotCustomizer |
+| 2026-01-13 | v1.0 | Initial creation | CopilotCustomizer |
+
+---
+
+*Single approval gate for autonomous asset generation workflows*
 *Reuses 80%+ shared framework instructions*
+*Traceability System v1.0 - Asset tracking enabled*

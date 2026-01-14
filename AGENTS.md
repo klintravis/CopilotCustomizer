@@ -59,6 +59,38 @@ For setup and usage, see:
 **Templates** (7 files - document formats):
 - `Analysis.template.md`, `ImplementationPlan.template.md`, `ProgressLog.template.md`, `TestStrategy.template.md`, `SecurityReview.template.md`, `ChangeLog.template.md`, `AssetInventory.template.md`
 
+## Traceability System
+
+All CopilotCustomizer assets include built-in traceability features:
+
+### Invocation Alerts
+Every asset displays a visual alert banner when invoked:
+```
+🔔 ASSET INVOCATION ALERT
+Asset Name    : {AssetName}
+Asset Type    : {Agent|Prompt|Instruction|Skill}
+Asset Version : v1.0
+Invoked At    : {timestamp}
+```
+
+### Asset Metadata
+Each asset includes standardized metadata:
+- Asset ID (unique identifier)
+- Version tracking
+- Creation and modification dates
+- Maintenance ownership
+- Status (Active/Deprecated/Beta)
+- Category classification
+
+### Audit Trail
+Assets maintain:
+- Invocation logs for usage tracking
+- Usage guidelines and trigger conditions
+- Change history with versions and authors
+- Related asset references
+
+See [.github/TRACEABILITY-DESIGN.md](.github/TRACEABILITY-DESIGN.md) for complete specifications.
+
 ## Design Patterns
 
 ### Multi-Workspace Pattern

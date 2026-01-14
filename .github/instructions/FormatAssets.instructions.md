@@ -3,7 +3,32 @@ applyTo: '.github/**/*.{instructions.md,prompt.md,agent.md}'
 description: 'Formats and validates GitHub Copilot customization assets against latest VS Code standards with 100% content preservation, including agent files, MCP configurations, and tool management'
 ---
 
+<!-- TRACEABILITY: INVOCATION ALERT -->
+═══════════════════════════════════════════════════════════════════
+🔔 ASSET INVOCATION ALERT
+═══════════════════════════════════════════════════════════════════
+Asset Name    : FormatAssets Instructions
+Asset Type    : Instructions
+Asset Version : v1.0
+Invoked At    : {timestamp}
+Invocation ID : instruction-formatassets-{timestamp-hash}
+═══════════════════════════════════════════════════════════════════
+📋 STATUS: Instructions Active | Applied to matching files
+═══════════════════════════════════════════════════════════════════
+<!-- END TRACEABILITY ALERT -->
+
 ## Copilot Asset Formatting & Standards Compliance Instructions (v1.0)
+
+### Asset Metadata
+| Property | Value |
+|----------|-------|
+| **Asset ID** | `instruction/formatassets` |
+| **Version** | `v1.0` |
+| **Created** | `2026-01-14` |
+| **Last Modified** | `2026-01-14` |
+| **Maintained By** | `CopilotCustomizer` |
+| **Status** | `Active` |
+| **Category** | `Standards & Patterns` |
 
 **Depth Modes**: quick-format, standard, deep-compliance  
 **Refinement Commands**: refine: standards, refine: preserve, refine: format, refine: validate
@@ -225,4 +250,30 @@ Compatible with: HarmonizeAssets, CopilotCustomizer, GenerateInstructions, Asset
 **Related Assets**: GenerateInstructions, GenerateCopilotAgent, GeneratePrompt, HarmonizeAssets, AssetOptimization
 
 ---
-*VS Code GitHub Copilot official documentation standards*
+
+## Traceability & Audit
+
+### Invocation Log
+This section tracks when and how this asset is used.
+
+**Log Entry Format**:
+```
+[YYYY-MM-DD HH:MM:SS UTC] - Invoked by: {user/system} | Context: {brief description}
+```
+
+**Recent Invocations**:
+_Manual logging - update this section when invoked_
+- [2026-01-14] Added traceability system
+
+### Usage Guidelines
+- This asset should be invoked when: Instructions-specific workflows are needed
+- Expected outcome: Execution of FormatAssets Instructions functionality
+- Related assets: See related instructionss in the same directory
+
+### Change History
+| Date | Version | Changes | Author |
+|------|---------|---------|--------|
+| 2026-01-14 | v1.0 | Added traceability system | CopilotCustomizer |
+
+---
+*Traceability System v1.0 - Asset tracking enabled*

@@ -3,9 +3,34 @@ applyTo: '.github/agents/WorkflowValidator.agent.md'
 description: 'Validation patterns and rules for multi-agent workflow integrity testing, handoff chain analysis, and automation efficiency measurement'
 ---
 
+<!-- TRACEABILITY: INVOCATION ALERT -->
+═══════════════════════════════════════════════════════════════════
+🔔 ASSET INVOCATION ALERT
+═══════════════════════════════════════════════════════════════════
+Asset Name    : WorkflowValidation Instructions
+Asset Type    : Instructions
+Asset Version : v1.0
+Invoked At    : {timestamp}
+Invocation ID : instruction-workflowvalidation-{timestamp-hash}
+═══════════════════════════════════════════════════════════════════
+📋 STATUS: Instructions Active | Applied to matching files
+═══════════════════════════════════════════════════════════════════
+<!-- END TRACEABILITY ALERT -->
+
 # WorkflowValidation.instructions.md
 
 ## Workflow Validation Instructions (v1.0)
+
+### Asset Metadata
+| Property | Value |
+|----------|-------|
+| **Asset ID** | `instruction/workflowvalidation` |
+| **Version** | `v1.0` |
+| **Created** | `2026-01-14` |
+| **Last Modified** | `2026-01-14` |
+| **Maintained By** | `CopilotCustomizer` |
+| **Status** | `Active` |
+| **Category** | `Standards & Patterns` |
 
 **Paired Agent**: [WorkflowValidator.agent.md](../agents/WorkflowValidator.agent.md)
 
@@ -473,9 +498,29 @@ IF critical_error_detected AND not_full_scan_requested:
 
 ---
 
-**Version**: v1.0 (2025-11-01)  
-**Schema Compliance**: VS Code Copilot Instructions v1.0  
-**Integration**: RepoReview v1.3, CopilotAudit framework  
-**Instruction Reuse**: 80%+ from CopilotCustomizer framework
+## Traceability & Audit
 
-*Comprehensive workflow validation patterns for multi-agent orchestration quality assurance*
+### Invocation Log
+This section tracks when and how this asset is used.
+
+**Log Entry Format**:
+```
+[YYYY-MM-DD HH:MM:SS UTC] - Invoked by: {user/system} | Context: {brief description}
+```
+
+**Recent Invocations**:
+_Manual logging - update this section when invoked_
+- [2026-01-14] Added traceability system
+
+### Usage Guidelines
+- This asset should be invoked when: Instructions-specific workflows are needed
+- Expected outcome: Execution of WorkflowValidation Instructions functionality
+- Related assets: See related instructionss in the same directory
+
+### Change History
+| Date | Version | Changes | Author |
+|------|---------|---------|--------|
+| 2026-01-14 | v1.0 | Added traceability system | CopilotCustomizer |
+
+---
+*Traceability System v1.0 - Asset tracking enabled*

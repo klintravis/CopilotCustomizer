@@ -3,9 +3,34 @@ name: implementation-planning
 description: Strategic implementation planning methodology for software changes. Creates detailed, step-by-step execution plans with risk mitigation and validation strategies. Use when planning features, refactoring, or complex code changes.
 ---
 
+<!-- TRACEABILITY: INVOCATION ALERT -->
+═══════════════════════════════════════════════════════════════════
+🔔 ASSET INVOCATION ALERT
+═══════════════════════════════════════════════════════════════════
+Asset Name    : implementation-planning Skill
+Asset Type    : Skill
+Asset Version : v1.0
+Invoked At    : {timestamp}
+Invocation ID : skill-implementation-planning-{timestamp-hash}
+═══════════════════════════════════════════════════════════════════
+📋 STATUS: Skill Active | Methodology ready for application
+═══════════════════════════════════════════════════════════════════
+<!-- END TRACEABILITY ALERT -->
+
 # Implementation Planning Skill
 
 ## Purpose
+
+### Asset Metadata
+| Property | Value |
+|----------|-------|
+| **Asset ID** | `skill/implementation-planning` |
+| **Version** | `v1.0` |
+| **Created** | `2026-01-14` |
+| **Last Modified** | `2026-01-14` |
+| **Maintained By** | `CopilotCustomizer` |
+| **Status** | `Active` |
+| **Category** | `Cross-Platform Skills` |
 Transforms requirements and repository analysis into actionable, step-by-step implementation plans with comprehensive risk mitigation, validation strategies, and quality gates. Bridges analysis and execution phases.
 
 ## When to Use This Skill
@@ -562,3 +587,32 @@ A good implementation plan provides:
 **Prerequisites**: Requirements clarity, repository analysis
 
 **Cross-Platform**: Works in VS Code, GitHub Copilot CLI, Claude, Cursor, and other Skills-compatible agents.
+
+---
+
+## Traceability & Audit
+
+### Invocation Log
+This section tracks when and how this asset is used.
+
+**Log Entry Format**:
+```
+[YYYY-MM-DD HH:MM:SS UTC] - Invoked by: {user/system} | Context: {brief description}
+```
+
+**Recent Invocations**:
+_Manual logging - update this section when invoked_
+- [2026-01-14] Added traceability system
+
+### Usage Guidelines
+- This asset should be invoked when: Skill-specific workflows are needed
+- Expected outcome: Execution of implementation-planning Skill functionality
+- Related assets: See related skills in the same directory
+
+### Change History
+| Date | Version | Changes | Author |
+|------|---------|---------|--------|
+| 2026-01-14 | v1.0 | Added traceability system | CopilotCustomizer |
+
+---
+*Traceability System v1.0 - Asset tracking enabled*

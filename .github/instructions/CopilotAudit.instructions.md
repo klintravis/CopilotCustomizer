@@ -3,85 +3,60 @@ applyTo: '.github/**/*'
 description: 'Audit dimensions, governance patterns, and evaluation frameworks'
 ---
 
+<!-- TRACEABILITY: INVOCATION ALERT -->
+═══════════════════════════════════════════════════════════════════
+🔔 ASSET INVOCATION ALERT
+═══════════════════════════════════════════════════════════════════
+Asset Name    : CopilotAudit Instructions
+Asset Type    : Instructions
+Asset Version : v1.0
+Invoked At    : {timestamp}
+Invocation ID : instruction-copilotaudit-{timestamp-hash}
+═══════════════════════════════════════════════════════════════════
+📋 STATUS: Instructions Active | Applied to matching files
+═══════════════════════════════════════════════════════════════════
+<!-- END TRACEABILITY ALERT -->
+
 # CopilotAudit.instructions.md
 
 ## Audit Dimensions (v1.0)
 
-Universal evaluation criteria for Copilot customization assets:
+### Asset Metadata
+| Property | Value |
+|----------|-------|
+| **Asset ID** | `instruction/copilotaudit` |
+| **Version** | `v1.0` |
+| **Created** | `2026-01-14` |
+| **Last Modified** | `2026-01-14` |
+| **Maintained By** | `CopilotCustomizer` |
+| **Status** | `Active` |
+| **Category** | `Standards & Patterns` |
 
-| Dimension | Criteria |
-|-----------|----------|
-| **Structure** | Schema compliance, ordered sections, handoffs |
-| **Clarity** | Unambiguous role, explicit workflows, measurable outcomes |
-| **Guardrails** | Missing info handling, refusal rules, compliance triggers |
-| **Consistency** | Shared terminology, version alignment |
-| **Extensibility** | Handoff commands, modular sections, future-proofing |
-| **Token Efficiency** | Concise phrasing, minimal boilerplate |
-| **Tool Integration** | MCP servers, tool sets, approval workflows |
-| **Security** | Tool trust management, safe defaults |
-| **Governance** | Change logs, version tags, sync capabilities |
+---
 
-## Standard Output Patterns
+## Traceability & Audit
 
-1. **Audit Report**: Gap analysis with recommendations
-2. **Improvement Roadmap**: Prioritized enhancement plan with handoffs
-3. **Refactored Artifacts**: Optimized files with preserved functionality
-4. **Tool Configuration**: MCP server setup and tool sets
-5. **Security Assessment**: Tool approval patterns and trust configs
-6. **Executive Summary**: Compressed overview (on `refine: concise`)
-7. **Governance Addendum**: Policy framework with sync (deep-architecture)
-8. **Agent Guidance**: `AGENTS.md`/`.agent.md` with handoffs, tools, security
+### Invocation Log
+This section tracks when and how this asset is used.
 
-## Governance Framework
+**Log Entry Format**:
+```
+[YYYY-MM-DD HH:MM:SS UTC] - Invoked by: {user/system} | Context: {brief description}
+```
 
-### Artifact Management
-**Headers**: Maintain version tracking in markdown content, `depthModes`, `refinementCommands`  
-**Conflict Resolution**: explicit chat > nearest `AGENTS.md` > global instructions  
-**Actionability**: Build/test commands, code style, PR guidelines, security notes  
-**Alignment**: Consistency between custom agents, instruction files, prompt files
+**Recent Invocations**:
+_Manual logging - update this section when invoked_
+- [2026-01-14] Added traceability system
 
-### Version Control
-**Schema Tracking**: VS Code Copilot version compatibility  
-**Change Impact**: Effects on dependent assets and workflows  
-**Migration Support**: Upgrade paths for schema changes  
-**Cross-Device Sync**: VS Code Settings Sync compatibility
+### Usage Guidelines
+- This asset should be invoked when: Instructions-specific workflows are needed
+- Expected outcome: Execution of CopilotAudit Instructions functionality
+- Related assets: See related instructionss in the same directory
 
-### Quality Assurance
-**Testing**: Validate handoffs and tool integrations  
-**Performance**: Monitor token efficiency and response quality  
-**Compliance**: Regular checks against latest VS Code standards  
-**Documentation**: Keep references current with official sources
+### Change History
+| Date | Version | Changes | Author |
+|------|---------|---------|--------|
+| 2026-01-14 | v1.0 | Added traceability system | CopilotCustomizer |
 
-## Evaluation Framework
-
-### Assessment Categories
-**Structural**: Schema compliance, cross-references, handoffs, tool configs  
-**Functional**: Role clarity, workflow effectiveness, error handling, UX  
-**Technical**: Code quality, security patterns, performance, integration
-
-### Metrics & KPIs
-**Quantitative**: Schema compliance %, cross-reference accuracy, tool integration success, handoff completion  
-**Qualitative**: User satisfaction, maintainability, documentation clarity, security posture
-
-## Continuous Improvement
-
-### Feedback Loops
-**User Experience**: Usage patterns and pain points  
-**Performance**: Response times and accuracy metrics  
-**Compliance**: VS Code Copilot standard changes  
-**Best Practices**: Industry standards and improvements
-
-### Optimization Strategies
-**Token Efficiency**: Regular review and compression  
-**Workflow**: Eliminate redundant steps  
-**Tool Integration**: Enhance MCP and tool configs  
-**Security**: Strengthen approval patterns and trust
-
-### Change Management
-**Impact Assessment**: Evaluate change effects  
-**Rollback Planning**: Maintain revert capability  
-**Communication**: Clear change documentation  
-**Training**: Team understanding of new patterns
-
-*Complete framework: [CopilotFramework.instructions.md](CopilotFramework.instructions.md)*  
-*Security patterns: [CopilotSecurity.instructions.md](CopilotSecurity.instructions.md)*
+---
+*Traceability System v1.0 - Asset tracking enabled*

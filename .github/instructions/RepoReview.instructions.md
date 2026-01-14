@@ -3,9 +3,34 @@ applyTo: '.github/prompts/RepoReview.prompt.md'
 description: 'Comprehensive framework for conducting repository analysis of Copilot customization assets, providing structured assessment, prioritization, and ready-to-run improvement prompts for agents, instructions, prompts, and workspace files'
 ---
 
+<!-- TRACEABILITY: INVOCATION ALERT -->
+═══════════════════════════════════════════════════════════════════
+🔔 ASSET INVOCATION ALERT
+═══════════════════════════════════════════════════════════════════
+Asset Name    : RepoReview Instructions
+Asset Type    : Instructions
+Asset Version : v1.0
+Invoked At    : {timestamp}
+Invocation ID : instruction-reporeview-{timestamp-hash}
+═══════════════════════════════════════════════════════════════════
+📋 STATUS: Instructions Active | Applied to matching files
+═══════════════════════════════════════════════════════════════════
+<!-- END TRACEABILITY ALERT -->
+
 # RepoReview.instructions.md
 
 ## Repo Review Instructions (v1.3)
+
+### Asset Metadata
+| Property | Value |
+|----------|-------|
+| **Asset ID** | `instruction/reporeview` |
+| **Version** | `v1.0` |
+| **Created** | `2026-01-14` |
+| **Last Modified** | `2026-01-14` |
+| **Maintained By** | `CopilotCustomizer` |
+| **Status** | `Active` |
+| **Category** | `Standards & Patterns` |
 
 **Paired Prompt**: [RepoReview.prompt.md](../prompts/RepoReview.prompt.md)
 
@@ -278,9 +303,29 @@ handoffs:
 
 ---
 
-**Version**: v1.3 (2025-11-01)  
-**Harmonization Applied**: 2025-09-15 | **Asset Integration**: 16-file ecosystem  
-**Cross-References**: Enhanced with bidirectional binding | **Schema**: VS Code v1.0 compliant  
-**Workflow Analysis**: Added workflow patterns, handoff opportunities, automation recommendations
+## Traceability & Audit
 
-*Generated and formatted following VS Code GitHub Copilot official documentation standards*
+### Invocation Log
+This section tracks when and how this asset is used.
+
+**Log Entry Format**:
+```
+[YYYY-MM-DD HH:MM:SS UTC] - Invoked by: {user/system} | Context: {brief description}
+```
+
+**Recent Invocations**:
+_Manual logging - update this section when invoked_
+- [2026-01-14] Added traceability system
+
+### Usage Guidelines
+- This asset should be invoked when: Instructions-specific workflows are needed
+- Expected outcome: Execution of RepoReview Instructions functionality
+- Related assets: See related instructionss in the same directory
+
+### Change History
+| Date | Version | Changes | Author |
+|------|---------|---------|--------|
+| 2026-01-14 | v1.0 | Added traceability system | CopilotCustomizer |
+
+---
+*Traceability System v1.0 - Asset tracking enabled*

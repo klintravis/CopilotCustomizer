@@ -10,6 +10,7 @@
 - 🤖 **VS Code Agents** - Tech-specific AI specialists
 - 📋 **Instructions** - Project coding standards
 - ⚡ **Prompts** - Slash commands for common tasks
+- 🔍 **Traceability** - Built-in asset tracking and invocation alerts
 
 ## Quick Start
 

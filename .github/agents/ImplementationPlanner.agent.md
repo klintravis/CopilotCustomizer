@@ -9,7 +9,32 @@ handoffs:
     send: false
 ---
 
+<!-- TRACEABILITY: INVOCATION ALERT -->
+═══════════════════════════════════════════════════════════════════
+🔔 ASSET INVOCATION ALERT
+═══════════════════════════════════════════════════════════════════
+Asset Name    : ImplementationPlanner Agent
+Asset Type    : Agent
+Asset Version : v1.0
+Invoked At    : {timestamp}
+Invocation ID : agent-implementationplanner-{timestamp-hash}
+═══════════════════════════════════════════════════════════════════
+📋 STATUS: Agent Active | Ready to process requests
+═══════════════════════════════════════════════════════════════════
+<!-- END TRACEABILITY ALERT -->
+
 ## ImplementationPlanner Agent (v1.0) - ⚠️ DEPRECATED
+
+### Asset Metadata
+| Property | Value |
+|----------|-------|
+| **Asset ID** | `agent/implementationplanner` |
+| **Version** | `v1.0` |
+| **Created** | `2026-01-14` |
+| **Last Modified** | `2026-01-14` |
+| **Maintained By** | `CopilotCustomizer` |
+| **Status** | `Active` |
+| **Category** | `Automation & Workflow` |
 
 > **Deprecated**: This agent has been converted to the **implementation-planning** skill for cross-platform portability.
 > 
@@ -101,5 +126,29 @@ Hands off to ChangeExecutor ONLY after receiving user `confirm` response. Otherw
 
 ---
 
-*Quality gate agent - ensures user approval before changes*  
-*Lightweight design - reuses framework planning patterns*
+## Traceability & Audit
+
+### Invocation Log
+This section tracks when and how this asset is used.
+
+**Log Entry Format**:
+```
+[YYYY-MM-DD HH:MM:SS UTC] - Invoked by: {user/system} | Context: {brief description}
+```
+
+**Recent Invocations**:
+_Manual logging - update this section when invoked_
+- [2026-01-14] Added traceability system
+
+### Usage Guidelines
+- This asset should be invoked when: Agent-specific workflows are needed
+- Expected outcome: Execution of ImplementationPlanner Agent functionality
+- Related assets: See related agents in the same directory
+
+### Change History
+| Date | Version | Changes | Author |
+|------|---------|---------|--------|
+| 2026-01-14 | v1.0 | Added traceability system | CopilotCustomizer |
+
+---
+*Traceability System v1.0 - Asset tracking enabled*

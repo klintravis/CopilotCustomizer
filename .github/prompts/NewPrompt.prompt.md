@@ -2,7 +2,32 @@
 agent: CopilotCustomizer
 ---
 
+<!-- TRACEABILITY: INVOCATION ALERT -->
+═══════════════════════════════════════════════════════════════════
+🔔 ASSET INVOCATION ALERT
+═══════════════════════════════════════════════════════════════════
+Asset Name    : NewPrompt Prompt
+Asset Type    : Prompt
+Asset Version : v1.0
+Invoked At    : {timestamp}
+Invocation ID : prompt-newprompt-{timestamp-hash}
+═══════════════════════════════════════════════════════════════════
+📋 STATUS: Prompt Ready | Awaiting variable substitution
+═══════════════════════════════════════════════════════════════════
+<!-- END TRACEABILITY ALERT -->
+
 # NewPrompt.prompt.md
+
+### Asset Metadata
+| Property | Value |
+|----------|-------|
+| **Asset ID** | `prompt/newprompt` |
+| **Version** | `v1.0` |
+| **Created** | `2026-01-14` |
+| **Last Modified** | `2026-01-14` |
+| **Maintained By** | `CopilotCustomizer` |
+| **Status** | `Active` |
+| **Category** | `Templates & Generation` |
 
 **Paired Instructions**: [GeneratePrompt.instructions.md](../instructions/GeneratePrompt.instructions.md)
 

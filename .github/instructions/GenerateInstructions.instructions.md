@@ -3,7 +3,32 @@ applyTo: '.github/**/*.instructions.md'
 description: 'Reusable framework for creating high-quality instruction files with consistency, guardrails, and maintainability'
 ---
 
+<!-- TRACEABILITY: INVOCATION ALERT -->
+═══════════════════════════════════════════════════════════════════
+🔔 ASSET INVOCATION ALERT
+═══════════════════════════════════════════════════════════════════
+Asset Name    : GenerateInstructions Instructions
+Asset Type    : Instructions
+Asset Version : v1.0
+Invoked At    : {timestamp}
+Invocation ID : instruction-generateinstructions-{timestamp-hash}
+═══════════════════════════════════════════════════════════════════
+📋 STATUS: Instructions Active | Applied to matching files
+═══════════════════════════════════════════════════════════════════
+<!-- END TRACEABILITY ALERT -->
+
 ## Instruction Authoring Guide (v1.1)
+
+### Asset Metadata
+| Property | Value |
+|----------|-------|
+| **Asset ID** | `instruction/generateinstructions` |
+| **Version** | `v1.0` |
+| **Created** | `2026-01-14` |
+| **Last Modified** | `2026-01-14` |
+| **Maintained By** | `CopilotCustomizer` |
+| **Status** | `Active` |
+| **Category** | `Standards & Patterns` |
 
 **⚠️ YAML**: Only `applyTo` and `description` supported. Move custom metadata to markdown.
 
@@ -125,4 +150,30 @@ Append discovered tool documentation links to generated instructions.
 This instruction file aligns with the broader Copilot customization ecosystem and integrates with [NewInstructions.prompt.md](../prompts/NewInstructions.prompt.md) for execution workflow. Focuses on maintainable, high-quality instruction file generation following established patterns.
 
 ---
-*Generated and formatted following VS Code GitHub Copilot official documentation standards*
+
+## Traceability & Audit
+
+### Invocation Log
+This section tracks when and how this asset is used.
+
+**Log Entry Format**:
+```
+[YYYY-MM-DD HH:MM:SS UTC] - Invoked by: {user/system} | Context: {brief description}
+```
+
+**Recent Invocations**:
+_Manual logging - update this section when invoked_
+- [2026-01-14] Added traceability system
+
+### Usage Guidelines
+- This asset should be invoked when: Instructions-specific workflows are needed
+- Expected outcome: Execution of GenerateInstructions Instructions functionality
+- Related assets: See related instructionss in the same directory
+
+### Change History
+| Date | Version | Changes | Author |
+|------|---------|---------|--------|
+| 2026-01-14 | v1.0 | Added traceability system | CopilotCustomizer |
+
+---
+*Traceability System v1.0 - Asset tracking enabled*

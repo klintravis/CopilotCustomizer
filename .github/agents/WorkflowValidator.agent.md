@@ -9,7 +9,32 @@ handoffs:
     send: true
 ---
 
+<!-- TRACEABILITY: INVOCATION ALERT -->
+═══════════════════════════════════════════════════════════════════
+🔔 ASSET INVOCATION ALERT
+═══════════════════════════════════════════════════════════════════
+Asset Name    : WorkflowValidator Agent
+Asset Type    : Agent
+Asset Version : v1.0
+Invoked At    : {timestamp}
+Invocation ID : agent-workflowvalidator-{timestamp-hash}
+═══════════════════════════════════════════════════════════════════
+📋 STATUS: Agent Active | Ready to process requests
+═══════════════════════════════════════════════════════════════════
+<!-- END TRACEABILITY ALERT -->
+
 ## WorkflowValidator Agent (v1.0) - ⚠️ DEPRECATED
+
+### Asset Metadata
+| Property | Value |
+|----------|-------|
+| **Asset ID** | `agent/workflowvalidator` |
+| **Version** | `v1.0` |
+| **Created** | `2026-01-14` |
+| **Last Modified** | `2026-01-14` |
+| **Maintained By** | `CopilotCustomizer` |
+| **Status** | `Active` |
+| **Category** | `Automation & Workflow` |
 
 > **Deprecated**: This agent's validation methodology has been integrated into the **copilot-asset-design** skill for cross-platform portability.
 > 
@@ -304,8 +329,29 @@ Automatically hands off to DocumentationGenerator with complete workflow health 
 
 ---
 
-**Integration Point**: Enhances RepoReview v1.3 workflow analysis capabilities  
-**Reuse Strategy**: 80%+ instruction reuse from framework  
-**Validation Focus**: Handoff integrity, context completeness, automation efficiency
+## Traceability & Audit
 
-*Specialized workflow QA agent - validates multi-agent orchestration patterns*
+### Invocation Log
+This section tracks when and how this asset is used.
+
+**Log Entry Format**:
+```
+[YYYY-MM-DD HH:MM:SS UTC] - Invoked by: {user/system} | Context: {brief description}
+```
+
+**Recent Invocations**:
+_Manual logging - update this section when invoked_
+- [2026-01-14] Added traceability system
+
+### Usage Guidelines
+- This asset should be invoked when: Agent-specific workflows are needed
+- Expected outcome: Execution of WorkflowValidator Agent functionality
+- Related assets: See related agents in the same directory
+
+### Change History
+| Date | Version | Changes | Author |
+|------|---------|---------|--------|
+| 2026-01-14 | v1.0 | Added traceability system | CopilotCustomizer |
+
+---
+*Traceability System v1.0 - Asset tracking enabled*

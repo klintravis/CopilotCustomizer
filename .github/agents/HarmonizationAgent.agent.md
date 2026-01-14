@@ -9,7 +9,32 @@ handoffs:
     send: true
 ---
 
+<!-- TRACEABILITY: INVOCATION ALERT -->
+═══════════════════════════════════════════════════════════════════
+🔔 ASSET INVOCATION ALERT
+═══════════════════════════════════════════════════════════════════
+Asset Name    : HarmonizationAgent Agent
+Asset Type    : Agent
+Asset Version : v1.0
+Invoked At    : {timestamp}
+Invocation ID : agent-harmonizationagent-{timestamp-hash}
+═══════════════════════════════════════════════════════════════════
+📋 STATUS: Agent Active | Ready to process requests
+═══════════════════════════════════════════════════════════════════
+<!-- END TRACEABILITY ALERT -->
+
 ## HarmonizationAgent (v1.0)
+
+### Asset Metadata
+| Property | Value |
+|----------|-------|
+| **Asset ID** | `agent/harmonizationagent` |
+| **Version** | `v1.0` |
+| **Created** | `2026-01-14` |
+| **Last Modified** | `2026-01-14` |
+| **Maintained By** | `CopilotCustomizer` |
+| **Status** | `Active` |
+| **Category** | `Automation & Workflow` |
 
 ### Handoff Notification
 ```
@@ -278,5 +303,29 @@ if (circularHandoffDetected) {
 
 ---
 
-*Establishes coherent asset ecosystem with complete cross-references*  
-*Automatic handoff to final validation*
+## Traceability & Audit
+
+### Invocation Log
+This section tracks when and how this asset is used.
+
+**Log Entry Format**:
+```
+[YYYY-MM-DD HH:MM:SS UTC] - Invoked by: {user/system} | Context: {brief description}
+```
+
+**Recent Invocations**:
+_Manual logging - update this section when invoked_
+- [2026-01-14] Added traceability system
+
+### Usage Guidelines
+- This asset should be invoked when: Agent-specific workflows are needed
+- Expected outcome: Execution of HarmonizationAgent Agent functionality
+- Related assets: See related agents in the same directory
+
+### Change History
+| Date | Version | Changes | Author |
+|------|---------|---------|--------|
+| 2026-01-14 | v1.0 | Added traceability system | CopilotCustomizer |
+
+---
+*Traceability System v1.0 - Asset tracking enabled*

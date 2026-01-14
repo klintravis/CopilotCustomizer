@@ -4,11 +4,36 @@ instructions:
   - GenerateSkill.instructions.md
 ---
 
+<!-- TRACEABILITY: INVOCATION ALERT -->
+═══════════════════════════════════════════════════════════════════
+🔔 ASSET INVOCATION ALERT
+═══════════════════════════════════════════════════════════════════
+Asset Name    : NewSkill Prompt
+Asset Type    : Prompt
+Asset Version : v1.0
+Invoked At    : {timestamp}
+Invocation ID : prompt-newskill-{timestamp-hash}
+═══════════════════════════════════════════════════════════════════
+📋 STATUS: Prompt Ready | Awaiting variable substitution
+═══════════════════════════════════════════════════════════════════
+<!-- END TRACEABILITY ALERT -->
+
 # New Agent Skill Generator
 
 Creates Agent Skills (agentskills.io open standard) that work across VS Code, GitHub Copilot CLI, Claude, Cursor, and other AI platforms.
 
 ## Parameters
+
+### Asset Metadata
+| Property | Value |
+|----------|-------|
+| **Asset ID** | `prompt/newskill` |
+| **Version** | `v1.0` |
+| **Created** | `2026-01-14` |
+| **Last Modified** | `2026-01-14` |
+| **Maintained By** | `CopilotCustomizer` |
+| **Status** | `Active` |
+| **Category** | `Templates & Generation` |
 
 - **SKILL_NAME** (required): Skill identifier (lowercase-with-hyphens, max 64 chars)
 - **PURPOSE** (required): What capability this skill provides
@@ -336,3 +361,32 @@ After generation, provide:
 
 **Generated**: 2026-01-11 | **Framework**: CopilotCustomizer
 **Purpose**: Cross-platform AI skill generation
+
+---
+
+## Traceability & Audit
+
+### Invocation Log
+This section tracks when and how this asset is used.
+
+**Log Entry Format**:
+```
+[YYYY-MM-DD HH:MM:SS UTC] - Invoked by: {user/system} | Context: {brief description}
+```
+
+**Recent Invocations**:
+_Manual logging - update this section when invoked_
+- [2026-01-14] Added traceability system
+
+### Usage Guidelines
+- This asset should be invoked when: Prompt-specific workflows are needed
+- Expected outcome: Execution of NewSkill Prompt functionality
+- Related assets: See related prompts in the same directory
+
+### Change History
+| Date | Version | Changes | Author |
+|------|---------|---------|--------|
+| 2026-01-14 | v1.0 | Added traceability system | CopilotCustomizer |
+
+---
+*Traceability System v1.0 - Asset tracking enabled*

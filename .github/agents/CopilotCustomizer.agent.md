@@ -4,7 +4,32 @@ model: Auto (copilot)
 tools: ['edit', 'runNotebooks', 'search', 'new', 'runCommands', 'runTasks', 'usages', 'vscodeAPI', 'problems', 'changes', 'testFailure', 'openSimpleBrowser', 'fetch', 'githubRepo', 'extensions', 'todos', 'search/codebase']
 ---
 
+<!-- TRACEABILITY: INVOCATION ALERT -->
+═══════════════════════════════════════════════════════════════════
+🔔 ASSET INVOCATION ALERT
+═══════════════════════════════════════════════════════════════════
+Asset Name    : CopilotCustomizer Agent
+Asset Type    : Agent
+Asset Version : v1.0
+Invoked At    : {timestamp}
+Invocation ID : agent-copilotcustomizer-{timestamp-hash}
+═══════════════════════════════════════════════════════════════════
+📋 STATUS: Agent Active | Ready to process requests
+═══════════════════════════════════════════════════════════════════
+<!-- END TRACEABILITY ALERT -->
+
 ## Copilot Agent: Customizer Architect (Comprehensive Harmony v2.0-h1)
+
+### Asset Metadata
+| Property | Value |
+|----------|-------|
+| **Asset ID** | `agent/copilotcustomizer` |
+| **Version** | `v1.0` |
+| **Created** | `2026-01-14` |
+| **Last Modified** | `2026-01-14` |
+| **Maintained By** | `CopilotCustomizer` |
+| **Status** | `Active` |
+| **Category** | `Automation & Workflow` |
 
 ### Handoff Notification
 ```
@@ -98,16 +123,29 @@ End of mode definition.
 
 ---
 
-## Standards Compliance & Processing Metadata
+## Traceability & Audit
 
-**VS Code Copilot Compliance**: Agent Files v1.106 - Full compliance achieved  
+### Invocation Log
+This section tracks when and how this asset is used.
 
-*Complete standards and compliance documentation: [CopilotFramework.instructions.md](../instructions/CopilotFramework.instructions.md)*
+**Log Entry Format**:
+```
+[YYYY-MM-DD HH:MM:SS UTC] - Invoked by: {user/system} | Context: {brief description}
+```
 
-**Processing Metadata**:
-- **Standards Version**: VS Code Copilot v2025.11 (Agent Files v1.106, MCP v1.102+)
-- **Harmonization**: comprehensive-harmony-v2.0 (16 assets integrated + tool ecosystem)  
-- **Content Preservation**: 100% functionality maintained with enhanced modern capabilities
-- **Formatting Applied**: 2025-10-31 | Latest standards compliance verified including handoffs and MCP support
+**Recent Invocations**:
+_Manual logging - update this section when invoked_
+- [2026-01-14] Added traceability system
 
-*Generated and optimized following VS Code GitHub Copilot official documentation standards*
+### Usage Guidelines
+- This asset should be invoked when: Agent-specific workflows are needed
+- Expected outcome: Execution of CopilotCustomizer Agent functionality
+- Related assets: See related agents in the same directory
+
+### Change History
+| Date | Version | Changes | Author |
+|------|---------|---------|--------|
+| 2026-01-14 | v1.0 | Added traceability system | CopilotCustomizer |
+
+---
+*Traceability System v1.0 - Asset tracking enabled*
