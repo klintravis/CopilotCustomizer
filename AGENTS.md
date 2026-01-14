@@ -30,18 +30,16 @@
 
 ## Current Inventory
 
-### Skills (5 total)
+### Skills (3 total)
 Cross-platform capabilities using [agentskills.io](https://agentskills.io) standard:
 
 | Skill | Purpose |
 |-------|---------|
 | `repository-analysis` | Repository structure and tech stack detection |
-| `implementation-planning` | Strategic planning and risk mitigation |
 | `copilot-asset-design` | Asset architecture and validation |
 | `technical-documentation` | Documentation generation patterns |
-| `deployment-automation` | CI/CD and deployment strategies |
 
-### Agents (7 total)
+### Agents (6 total)
 VS Code workflow orchestration:
 
 | Agent | Purpose |
@@ -49,12 +47,11 @@ VS Code workflow orchestration:
 | `BootstrapRepo` | Repository bootstrap entry point |
 | `AssetPlanner` | Asset recommendation and specification |
 | `AssetGenerator` | Multi-asset creation engine |
-| `HarmonizationAgent` | Cross-reference binding |
 | `ChangeExecutor` | Precise file operations |
-| `VerificationAgent` | Schema validation |
+| `VerificationAgent` | Schema validation & harmonization |
 | `CopilotCustomizer` | Main interactive mode |
 
-### Instructions (14 total)
+### Instructions (9 total)
 Generation and quality patterns:
 
 **Generation Frameworks:**
@@ -66,16 +63,11 @@ Generation and quality patterns:
 - `GenerateAgentsFile` - Create AGENTS.md files
 
 **Quality Patterns:**
-- `CopilotFramework` - Universal framework patterns
-- `CopilotAudit` - Quality assurance
-- `CopilotSecurity` - Security patterns
 - `FormatAssets` - Asset formatting
-- `HarmonizeAssets` - Cross-reference binding
 - `RepoReview` - Repository analysis
 - `WorkflowValidation` - Workflow integrity
-- `AssetOptimization` - Token efficiency
 
-### Prompts (16 total)
+### Prompts (14 total)
 Slash commands for user interaction:
 
 **Core Workflows:**
@@ -92,9 +84,8 @@ Slash commands for user interaction:
 - `NewAgentsFile` - Create AGENTS.md
 
 **Maintenance:**
-- `AssetOptimization` - Optimize assets
+- `MaintainAssets` - Unified maintenance (format, harmonize, optimize)
 - `FormatAssets` - Format assets
-- `HarmonizeAssets` - Harmonize cross-references
 - `QuickChange` - Fast minimal changes
 - `SecurityToolingAudit` - Security audit
 - `WorkflowIntegrityCheck` - Validate workflows
@@ -140,24 +131,19 @@ VS Code Workspace
 
 **Workflow**: Add CopilotCustomizer to workspace → Run `/BootstrapRepo` → Assets generate in your project → Close CopilotCustomizer
 
-### Skills-First Strategy
+### Workflow Chain
 
 ```
-User Request
-    ↓
-Skill Phase (cross-platform analysis/planning)
-    ↓
-Agent Phase (VS Code file operations)
-    ↓
-Skill Phase (cross-platform documentation)
+BootstrapRepo
+  ↓ [repository-analysis skill]
+AssetPlanner (recommendations)
+  ↓ [USER GATE: confirm plan]
+AssetGenerator (create assets)
+  ↓ [automatic]
+VerificationAgent (validate & harmonize)
+  ↓
+COMPLETE
 ```
-
-**Example (BootstrapRepo)**:
-1. Use `repository-analysis` skill to understand repo
-2. Use `implementation-planning` skill to design solution
-3. Handoff to `@AssetGenerator` agent for file creation
-4. Handoff to `@VerificationAgent` for validation
-5. Use `technical-documentation` skill for report
 
 ### Asset Naming Conventions
 
@@ -166,7 +152,7 @@ Skill Phase (cross-platform documentation)
 | **Agents** | `{Role}.agent.md` | `ChangeExecutor.agent.md` |
 | **Instructions** | `{Action}.instructions.md` | `GenerateSkill.instructions.md` |
 | **Prompts** | `{Verb}{Object}.prompt.md` | `NewCopilotAgent.prompt.md` |
-| **Skills** | `{lowercase-hyphen}/SKILL.md` | `deployment-automation/SKILL.md` |
+| **Skills** | `{lowercase-hyphen}/SKILL.md` | `repository-analysis/SKILL.md` |
 | **Templates** | `{Format}.template.md` | `ImplementationPlan.template.md` |
 
 ---
@@ -189,15 +175,15 @@ Skill Phase (cross-platform documentation)
 
 | Category | Count |
 |----------|-------|
-| **Skills** | 5 |
-| **Agents** | 7 |
-| **Instructions** | 14 |
-| **Prompts** | 16 |
+| **Skills** | 3 |
+| **Agents** | 6 |
+| **Instructions** | 9 |
+| **Prompts** | 14 |
 | **Templates** | 7 |
-| **Total Assets** | 49 |
+| **Total Assets** | 39 |
 
 ---
 
 <p align="center">
-<strong>Framework Version</strong>: 1.1 | <strong>VS Code</strong>: 1.106+ | <strong>Standard</strong>: agentskills.io
+<strong>Framework Version</strong>: 2.0 | <strong>VS Code</strong>: 1.106+ | <strong>Standard</strong>: agentskills.io
 </p>
