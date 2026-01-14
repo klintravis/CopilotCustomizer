@@ -2,6 +2,90 @@
 
 All notable changes to the CopilotCustomizer framework.
 
+---
+
+## [v1.2] - 2026-01-14
+
+### Documentation Consolidation & Skills-First Update
+
+#### Overview
+Comprehensive documentation review and consolidation to improve usability, ensure skills prominence, and create clean GitHub-friendly presentation.
+
+#### Documentation Improvements
+
+**README.md** - Complete rewrite
+- Added badges for VS Code, GitHub Copilot, Agent Skills, License
+- Skills-first messaging with dedicated Skills section
+- Visual "How It Works" diagram
+- Clean feature table and command reference
+- Better GitHub rendering
+
+**QUICKSTART.md** - Streamlined
+- Removed duplicate "Next Steps" sections
+- Cleaner 3-step setup process
+- Consolidated troubleshooting table
+- Clear "Customize Further" examples
+
+**AGENTS.md** - Updated inventory
+- Corrected asset counts (5 skills, 7 agents, 14 instructions, 16 prompts)
+- Added skills inventory table
+- Updated naming conventions
+- Skills-first strategy documentation
+
+**ASSETS.md** - Major update
+- Fixed outdated agent references (removed deprecated agents)
+- Corrected asset counts across all categories
+- Added skills section with examples links
+- Updated binding relationships table
+
+**MULTI-WORKSPACE.md** - Fixed
+- Repaired truncated examples section
+- Added best practices summary
+- Clean documentation links table
+
+#### Consolidation Changes
+
+**Removed Files:**
+- `HOW-TO.md.backup` - Unnecessary backup file
+
+**Updated Asset Counts:**
+| Category | Previous | Current |
+|----------|----------|---------|
+| Skills | 4 | 5 |
+| Agents | 11 (incorrect) | 7 |
+| Instructions | 13 | 14 |
+| Prompts | 18 | 16 |
+| Templates | 7 | 7 |
+
+#### Skills Prominence
+- Skills now prominently featured in README.md with dedicated section
+- All 5 skills listed with cross-platform compatibility notes
+- Link to agentskills.io standard highlighted throughout
+
+#### Repository Statistics
+
+| Category | Count | Status |
+|----------|-------|--------|
+| **Skills** | 5 | Cross-platform |
+| **Agents** | 7 | VS Code workflow |
+| **Instructions** | 14 | Generation + quality |
+| **Prompts** | 16 | User commands |
+| **Templates** | 7 | Document formats |
+| **Total** | 49 | Production-ready |
+
+---
+
+## [v1.1] - 2026-01-14
+
+### Comprehensive Consolidation
+
+- Removed 4 deprecated agents (converted to skills)
+- Merged 6 duplicate prompts into 3 unified prompts
+- Streamlined traceability format across all assets
+- Added technical documentation skill and examples
+
+---
+
 ## [Workflows-Update Branch] - 2025-11-15
 
 ### 🚀 VS Code 1.106 Compatibility Update
@@ -209,6 +293,6 @@ This update establishes the foundation for deployment with:
 
 ---
 
-**Maintained by**: CopilotCustomizer Team  
-**Framework**: VS Code GitHub Copilot Customization v1.106  
-**Last Updated**: 2025-11-01
+**Maintained by**: CopilotCustomizer Team
+**Framework**: VS Code GitHub Copilot Customization v1.106
+**Last Updated**: 2026-01-14

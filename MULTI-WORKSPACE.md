@@ -273,7 +273,9 @@ That section covers prompt visibility, output locations, approvals, performance,
 
 ## Examples
 
-### Example 1: New React Project
+For detailed, stack-specific examples (React, Python, .NET, Node.js, Monorepo), see **[EXAMPLES.md](EXAMPLES.md)**.
+
+### Quick Example: React Project
 
 ```bash
 # Create new React app
@@ -286,28 +288,44 @@ code .
 # Add CopilotCustomizer
 # File → Add Folder to Workspace → select CopilotCustomizer
 
-# Bootstrap customization
-# In Copilot Chat, type:
+# Bootstrap customization in Copilot Chat:
 /BootstrapRepo REPOSITORY_PATH: "/path/to/my-react-app"
-## Examples
 
-For runnable, stack-specific examples (React, Python, .NET, Node.js, Monorepo), see:
+# Review and confirm
+# Type: confirm
 
-- `EXAMPLES.md` — Real-world walkthroughs with copy/paste commands
-- **Don't mix assets** - Keep CopilotCustomizer's assets separate from yours
-- **Don't use relative paths** - Can be ambiguous with multiple folders
-
-## Next Steps
-
-Now that you understand multi-workspace usage:
-
-1. **[README.md](README.md)** - Quick start guide
-2. **[HOW-TO.md](HOW-TO.md)** - Detailed usage examples
-3. **[AGENTS.md](AGENTS.md)** - Project development guidance
-4. **[.github/prompts/](.github/prompts/)** - Browse available prompts
+# Done! Close CopilotCustomizer when finished
+```
 
 ---
 
-**Framework**: CopilotCustomizer v1.0  
-**Pattern**: Multi-Workspace Toolbox Model  
-**Works With**: Any tech stack, any repository size
+## Best Practices
+
+**DO**:
+- Use **absolute paths** in commands
+- Keep CopilotCustomizer as **read-only reference**
+- **Close CopilotCustomizer** when not generating
+- **Commit** `.github/` folder to share with team
+
+**DON'T**:
+- Mix assets between CopilotCustomizer and your project
+- Use relative paths (can be ambiguous)
+- Copy files from CopilotCustomizer
+
+---
+
+## Next Steps
+
+| Document | Purpose |
+|----------|---------|
+| [README.md](README.md) | Quick start overview |
+| [QUICKSTART.md](QUICKSTART.md) | 5-minute setup |
+| [HOW-TO.md](HOW-TO.md) | Complete reference |
+| [EXAMPLES.md](EXAMPLES.md) | Real-world walkthroughs |
+| [AGENTS.md](AGENTS.md) | Architecture guide |
+
+---
+
+<p align="center">
+<strong>Framework</strong>: CopilotCustomizer v1.1 | <strong>Pattern</strong>: Multi-Workspace Toolbox | <strong>Works With</strong>: Any tech stack
+</p>
