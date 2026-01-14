@@ -2,12 +2,12 @@
 agent: CopilotCustomizer
 ---
 
-<!-- ASSET: FormatAssets | TYPE: Prompt | VERSION: v1.1 -->
+<!-- ════════════════════════════════════════════════════════════════════════════
+📢 INVOCATION: FormatAssets Prompt (Prompt) v1.1
+   STATUS: Prompt Ready — Awaiting execution
+════════════════════════════════════════════════════════════════════════════ -->
 
 # Asset Formatter & Validator (v1.1)
-
-## Metadata
-Asset ID: prompt/formatassets | Created: 2026-01-14 | Status: Active
 
 **Paired Instructions**: [FormatAssets.instructions.md](../instructions/FormatAssets.instructions.md)
 

@@ -3,13 +3,12 @@ name: technical-documentation
 description: Structured technical documentation generation for software changes, implementations, and analyses. Creates clear, comprehensive documentation including change summaries, API docs, and technical reports. Use when documenting code changes, features, or system architecture.
 ---
 
-<!-- ASSET: technical-documentation | TYPE: Skill | VERSION: v1.0 -->
+<!-- ════════════════════════════════════════════════════════════════════════════
+📢 INVOCATION: technical-documentation Skill (Skill) v1.0
+   STATUS: Skill Active — Methodology engaged
+════════════════════════════════════════════════════════════════════════════ -->
 
-
-# Technical Documentation Skill
-
-## Metadata
-Asset ID: skill/technical-documentation | Created: 2026-01-14 | Status: Active
+# Technical Documentation Skill (v1.0)
 
 ## Purpose
 

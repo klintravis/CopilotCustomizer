@@ -1,4 +1,14 @@
-# Generate Agent Skill Instructions
+---
+applyTo: '.github/skills/**/*'
+description: 'Framework for creating Agent Skills (agentskills.io open standard) for cross-platform AI capabilities'
+---
+
+<!-- ════════════════════════════════════════════════════════════════════════════
+📢 INVOCATION: GenerateSkill Instructions (Instructions) v1.0
+   STATUS: Instructions Applied — Context loaded
+════════════════════════════════════════════════════════════════════════════ -->
+
+# Generate Agent Skill Instructions (v1.0)
 
 ## Purpose
 Framework for creating Agent Skills (open standard at agentskills.io) that work across VS Code, GitHub Copilot CLI, Claude, Cursor, and other AI platforms.
@@ -52,13 +62,12 @@ name: skill-name
 description: Clear description of what this skill does and when to use it. Be specific about capabilities and use cases (max 1024 chars).
 ---
 
-<!-- ASSET: GenerateSkill | TYPE: Instructions | VERSION: v1.0 -->
+<!-- ════════════════════════════════════════════════════════════════════════════
+📢 INVOCATION: {skill-name} Skill (Skill) v1.0
+   STATUS: Skill Active — Methodology engaged
+════════════════════════════════════════════════════════════════════════════ -->
 
-
-# {SkillName} Skill
-
-## Metadata
-Asset ID: instruction/generateskill | Created: 2026-01-14 | Status: Active
+# {SkillName} Skill (v1.0)
 
 ## Purpose
 

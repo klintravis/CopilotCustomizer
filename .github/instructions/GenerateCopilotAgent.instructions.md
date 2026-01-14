@@ -3,13 +3,12 @@ applyTo: '.github/**/*.agent.md'
 description: 'Framework for creating VS Code Copilot custom agent files with roles, tools, handoffs, and workflows'
 ---
 
-<!-- ASSET: GenerateCopilotAgent | TYPE: Instructions | VERSION: v1.0 -->
-
+<!-- ════════════════════════════════════════════════════════════════════════════
+📢 INVOCATION: GenerateCopilotAgent Instructions (Instructions) v1.1
+   STATUS: Instructions Applied — Context loaded
+════════════════════════════════════════════════════════════════════════════ -->
 
 # VS Code Copilot Agent File Guide (v1.1 - VS Code 1.106)
-
-## Metadata
-Asset ID: instruction/generatecopilotagent | Created: 2026-01-14 | Status: Active
 
 **Paired Prompt**: [NewCopilotAgent.prompt.md](../prompts/NewCopilotAgent.prompt.md)
 
@@ -126,6 +125,15 @@ handoffs:
     send: false
 ---
 ```
+
+**REQUIRED**: After YAML front matter, include the invocation alert banner:
+```markdown
+<!-- ════════════════════════════════════════════════════════════════════════════
+📢 INVOCATION: {AgentName} Agent (Agent) v{version}
+   STATUS: Agent Active — Processing requests
+════════════════════════════════════════════════════════════════════════════ -->
+```
+
 ---
 
 ## Agent Name: Specialist Role

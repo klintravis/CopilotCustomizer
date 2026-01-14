@@ -3,6 +3,11 @@ applyTo: '.github/agents/*.agent.md'
 description: 'Validation patterns for multi-agent workflow integrity and handoff chain analysis'
 ---
 
+<!-- ════════════════════════════════════════════════════════════════════════════
+📢 INVOCATION: WorkflowValidation Instructions (Instructions) v2.0
+   STATUS: Instructions Applied — Context loaded
+════════════════════════════════════════════════════════════════════════════ -->
+
 # WorkflowValidation Instructions (v2.0)
 
 ## Purpose

@@ -4,13 +4,12 @@ instructions:
   - GenerateSkill.instructions.md
 ---
 
-<!-- ASSET: NewSkill | TYPE: Prompt | VERSION: v1.0 -->
+<!-- ════════════════════════════════════════════════════════════════════════════
+📢 INVOCATION: NewSkill Prompt (Prompt) v1.0
+   STATUS: Prompt Ready — Awaiting execution
+════════════════════════════════════════════════════════════════════════════ -->
 
-
-# New Agent Skill Generator
-
-## Metadata
-Asset ID: prompt/newskill | Created: 2026-01-14 | Status: Active
+# New Agent Skill Generator (v1.0)
 
 Creates Agent Skills (agentskills.io open standard) that work across VS Code, GitHub Copilot CLI, Claude, Cursor, and other AI platforms.
 

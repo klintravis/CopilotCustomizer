@@ -3,6 +3,11 @@ mode: agent
 description: 'Unified asset maintenance - formatting, harmonization, and optimization'
 ---
 
+<!-- ════════════════════════════════════════════════════════════════════════════
+📢 INVOCATION: MaintainAssets Prompt (Prompt) v1.0
+   STATUS: Prompt Ready — Awaiting execution
+════════════════════════════════════════════════════════════════════════════ -->
+
 # MaintainAssets Prompt (v1.0)
 
 ## Purpose

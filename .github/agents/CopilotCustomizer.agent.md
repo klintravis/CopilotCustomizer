@@ -4,6 +4,11 @@ model: Auto (copilot)
 tools: ['edit', 'search', 'new', 'runCommands', 'problems', 'changes', 'fetch', 'search/codebase']
 ---
 
+<!-- ════════════════════════════════════════════════════════════════════════════
+📢 INVOCATION: CopilotCustomizer Agent (Agent) v2.0
+   STATUS: Agent Active — Processing requests
+════════════════════════════════════════════════════════════════════════════ -->
+
 ## Copilot Agent: Customizer Architect (v2.0)
 
 ### Role

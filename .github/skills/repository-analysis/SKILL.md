@@ -3,13 +3,12 @@ name: repository-analysis
 description: Deep repository analysis methodology for understanding codebase structure, dependencies, patterns, and change impact. Use when analyzing repositories for customization planning, refactoring, or understanding project architecture.
 ---
 
-<!-- ASSET: repository-analysis | TYPE: Skill | VERSION: v1.0 -->
+<!-- ════════════════════════════════════════════════════════════════════════════
+📢 INVOCATION: repository-analysis Skill (Skill) v1.0
+   STATUS: Skill Active — Methodology engaged
+════════════════════════════════════════════════════════════════════════════ -->
 
-
-# Repository Analysis Skill
-
-## Metadata
-Asset ID: skill/repository-analysis | Created: 2026-01-14 | Status: Active
+# Repository Analysis Skill (v1.0)
 
 ## Purpose
 

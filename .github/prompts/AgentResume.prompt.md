@@ -1,32 +1,9 @@
+<!-- ════════════════════════════════════════════════════════════════════════════
+📢 INVOCATION: AgentResume Prompt (Prompt) v2.0
+   STATUS: Prompt Ready — Awaiting execution
+════════════════════════════════════════════════════════════════════════════ -->
 
-<!-- TRACEABILITY: INVOCATION ALERT -->
-═══════════════════════════════════════════════════════════════════
-🔔 ASSET INVOCATION ALERT
-═══════════════════════════════════════════════════════════════════
-Asset Name    : AgentResume Prompt
-Asset Type    : Prompt
-Asset Version : v2.0
-Invoked At    : {timestamp}
-Invocation ID : prompt-agentresume-{timestamp-hash}
-═══════════════════════════════════════════════════════════════════
-📋 STATUS: Prompt Ready | Awaiting variable substitution
-═══════════════════════════════════════════════════════════════════
-<!-- END TRACEABILITY ALERT -->
-
-# AgentResume.prompt.md
-
-### Asset Metadata
-| Property | Value |
-|----------|-------|
-| **Asset ID** | `prompt/agentresume` |
-| **Version** | `v2.0` |
-| **Created** | `2026-01-14` |
-| **Last Modified** | `2026-01-14` |
-| **Maintained By** | `CopilotCustomizer` |
-| **Status** | `Active` |
-| **Category** | `Templates & Generation` |
-
-## Universal Agent Resume Helper Prompt (v2.0-universal)
+# Universal Agent Resume Helper Prompt (v2.0)
 
 ### Task Intent
 Resume productive work with any AI agent on any project by analyzing current context and suggesting optimal continuation paths with friendly, encouraging guidance.

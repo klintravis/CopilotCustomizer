@@ -3,13 +3,12 @@ applyTo: '.github/**/*.prompt.md'
 description: 'Standardized, modular approach for building high-quality prompt files that pair with custom agents and instruction files'
 ---
 
-<!-- ASSET: GeneratePrompt | TYPE: Instructions | VERSION: v1.0 -->
-
+<!-- ════════════════════════════════════════════════════════════════════════════
+📢 INVOCATION: GeneratePrompt Instructions (Instructions) v1.0
+   STATUS: Instructions Applied — Context loaded
+════════════════════════════════════════════════════════════════════════════ -->
 
 ## Prompt File Authoring Guide (v1.0)
-
-## Metadata
-Asset ID: instruction/generateprompt | Created: 2026-01-14 | Status: Active
 
 **Paired Prompt**: [NewPrompt.prompt.md](../prompts/NewPrompt.prompt.md)
 
@@ -34,6 +33,15 @@ Standardized approach for building `*.prompt.md` files that pair with custom age
 | Generation Gate | Wait for `confirm` |
 | Refinement Commands | Post-output adjustments |
 | Example | Concrete sample |
+
+### Required Banner
+After YAML front matter, include the invocation alert:
+```markdown
+<!-- ════════════════════════════════════════════════════════════════════════════
+📢 INVOCATION: {PromptName} Prompt (Prompt) v{version}
+   STATUS: Prompt Ready — Awaiting execution
+════════════════════════════════════════════════════════════════════════════ -->
+```
 
 ### Variable Template
 ```markdown

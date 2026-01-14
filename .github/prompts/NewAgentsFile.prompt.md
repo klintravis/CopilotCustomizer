@@ -2,13 +2,12 @@
 agent: CopilotCustomizer
 ---
 
-<!-- ASSET: NewAgentsFile | TYPE: Prompt | VERSION: v1.0 -->
-
+<!-- ════════════════════════════════════════════════════════════════════════════
+📢 INVOCATION: NewAgentsFile Prompt (Prompt) v1.0
+   STATUS: Prompt Ready — Awaiting execution
+════════════════════════════════════════════════════════════════════════════ -->
 
 # AGENTS.md Workspace File Generator (v1.0)
-
-## Metadata
-Asset ID: prompt/newagentsfile | Created: 2026-01-14 | Status: Active
 
 **Paired Instructions**: [GenerateAgentsFile.instructions.md](../instructions/GenerateAgentsFile.instructions.md)
 

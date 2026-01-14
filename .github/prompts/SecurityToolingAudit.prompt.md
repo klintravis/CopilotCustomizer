@@ -2,7 +2,12 @@
 agent: CopilotCustomizer
 ---
 
-# SecurityToolingAudit (v2.0)
+<!-- ════════════════════════════════════════════════════════════════════════════
+📢 INVOCATION: SecurityToolingAudit Prompt (Prompt) v2.0
+   STATUS: Prompt Ready — Awaiting execution
+════════════════════════════════════════════════════════════════════════════ -->
+
+# SecurityToolingAudit Prompt (v2.0)
 
 ## Purpose
 Audit tool approvals, MCP server trust levels, and security posture without modifying the repository.
