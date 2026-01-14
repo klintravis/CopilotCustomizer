@@ -1,154 +1,52 @@
 # CopilotCustomizer Assets Reference
 
-> Comprehensive guide to .github folder assets: chat modes, instructions, prompts, and templates
+| Asset Type | Pattern | Purpose | Required YAML |
+|------------|---------|---------|---------------|
+| Agent Files | `*.agent.md` | VS Code agents | `description` |
+| Instructions | `*.instructions.md` | AI guidance rules | `applyTo` |
+| Prompts | `*.prompt.md` | Interaction templates | - |
+| AGENTS.md | `AGENTS.md` | Project guidance | - |
+| Templates | `*.template.md` | Document formats | - |
 
-[![Framework Version](https://img.shields.io/badge/Framework-v1.0-blue)](#version-information)
-[![Schema Compliance](https://img.shields.io/badge/Schema-VS%20Code%20Copilot%20v1.101-green)](#schema-compliance)
-[![Asset Coverage](https://img.shields.io/badge/Assets-16%20Types-orange)](#asset-inventory)
-
----
-
-## 📋 Quick Reference
-
-| Asset Type | File Pattern | Primary Purpose | Schema Requirements |
-|------------|--------------|-----------------|---------------------|
-| [Chat Modes](#chat-modes) | `*.chatmode.md` | AI personas and specialized behaviors | `description`, optional `tools` |
-| [Instructions](#instructions) | `*.instructions.md` | AI behavior guidance and generation rules | `applyTo`, `description` |
-| [Prompts](#prompts) | `*.prompt.md` | Structured interaction templates | `mode` (optional), YAML front matter |
-| [Agent Files](#agent-files) | `AGENTS.md`, `*.agent.md` | Project-specific AI guidance | Markdown format, no YAML required |
-| [Templates](#templates) | `*.template.md` | Standardized document formats | Markdown format, structured sections |
-
----
-
-## 🎯 Chat Modes
-
-**Purpose**: Define specialized AI personas for different development contexts  
-**Location**: `.github/chatmodes/`  
-**File Pattern**: `*.chatmode.md`
-
-### Schema Requirements
-
-```yaml
----
-description: "Brief mode description for VS Code dropdown"
-tools: []  # Optional: array of available tools
-schemaVersion: "1.0"  # Optional: version tracking
-depthModes: ["quick-advice", "standard", "deep-architecture"]  # Optional
-refinementCommands: ["refine: audit", "refine: optimize"]  # Optional
----
-```
-
-### Structure Template
+## Agent Files (`*.agent.md`)
+**Location**: `.github/agents/` | **YAML**: `description` (required), `target`, `name`, `argument-hint`, `tools`, `model`, `handoffs`, `mcp-servers` (optional - VS Code 1.106+)
 
 ```markdown
-## Copilot ChatMode: [Mode Name]
-
+## [Agent Name] (v[Version])
 ### Role
-[Clear definition of the AI persona and expertise area]
-
-### Core Objectives  
-[Numbered list of primary goals and capabilities]
-
+### Core Objectives
 ### Workflow
-[Step-by-step process the AI should follow]
-
-### Depth Modes
-| Mode | Use Case | Output Characteristics |
-|------|----------|------------------------|
-| quick-advice | [Description] | [Brief output format] |
-| standard | [Description] | [Standard output format] |  
-| deep-architecture | [Description] | [Comprehensive output] |
-
-### Refinement Commands
-| Command | Action |
-|---------|--------|
-| refine: [command] | [What it does] |
-
-### Guardrails
-[Safety rules and limitations]
-
-### Example Usage
-[Sample interactions and expected responses]
+### Tool Configuration
+### Handoff Workflows
 ```
 
-### Available Chat Modes
+**Available**: `CopilotCustomizer.agent.md`, `RepoAnalyzer.agent.md`, `ImplementationPlanner.agent.md`, `ChangeExecutor.agent.md`, `VerificationAgent.agent.md`, `DocumentationGenerator.agent.md`
 
-| File | Mode Name | Specialization |
-|------|-----------|----------------|
-| `CopilotCustomizer.chatmode.md` | Customizer Architect | VS Code Copilot asset creation and optimization |
-
----
-
-## 📝 Instructions
-
-**Purpose**: Provide detailed AI behavior guidance and code generation rules  
-**Location**: `.github/instructions/`  
-**File Pattern**: `*.instructions.md`
-
-### Schema Requirements
-
-```yaml
----
-applyTo: 'glob-pattern-for-files'  # Required: when to apply these instructions
-description: 'Brief description of instruction purpose'  # Required
-schemaVersion: "1.0"  # Optional: version tracking
-refinementCommands: ["refine: command"]  # Optional: available commands
----
-```
-
-### Structure Template
+## Instructions (`*.instructions.md`)
+**Location**: `.github/instructions/` | **YAML**: `applyTo` (required), `description` (optional)
 
 ```markdown
-# [Instruction Name]
-
-## Purpose
-[Clear statement of what these instructions accomplish]
-
-## Scope & Application
-[When and where these instructions apply]
-
-## Core Requirements
-[Essential rules and constraints]
-
-## Implementation Guidelines
-[Step-by-step guidance for implementation]
-
-## Quality Standards
-[Standards for output quality and validation]
-
-## Examples
-[Concrete examples of expected behavior/output]
-
-## Integration Points
-[How this integrates with other assets]
+## [Name] Instructions (v[Version])
+### Objective
+### Constraints  
+### Workflow
+### Standards
 ```
 
-### Available Instructions
+**Available**: AssetOptimization, FormatAssets, GenerateAgentsFile, GenerateCopilotAgent, GenerateInstructions, GeneratePrompt, GenerateWorkflow, HarmonizeAssets, RepoReview, CopilotFramework, CopilotAudit, CopilotSecurity
 
-| File | Purpose | Applies To |
-|------|---------|------------|
-| `AssetOptimization.instructions.md` | Asset optimization framework | `.github/prompts/AssetOptimization.prompt.md` |
-| `FormatAssets.instructions.md` | Asset formatting standards | `**/*.{instructions.md,chatmode.md,prompt.md}` |
-| `GenerateAgent.instructions.md` | Agent file creation framework | `**/*.agent.md` |
-| `GenerateChatmode.instructions.md` | Chat mode creation framework | `**/*.chatmode.md` |
-| `GenerateInstructions.instructions.md` | Instruction file creation framework | `**/*.instructions.md` |
-| `GeneratePrompt.instructions.md` | Prompt file creation framework | `**/*.prompt.md` |
-| `HarmonizeAssets.instructions.md` | Asset harmonization framework | `**/*.{instructions.md,prompt.md,chatmode.md}` |
-| `RepoReview.instructions.md` | Repository analysis framework | `.github/prompts/RepoReview.prompt.md` |
+## Prompts (`*.prompt.md`)
+**Location**: `.github/prompts/` | **YAML**: `agent` or `mode` (optional)
 
----
+```markdown
+## [Name] Prompt (v[Version])
+### Task Intent
+### Usage Instructions
+### Variable Block
+### Validation Rules
+```
 
-## 🚀 Prompts
-
-**Purpose**: Structured templates for consistent AI interactions and task execution  
-**Location**: `.github/prompts/`  
-**File Pattern**: `*.prompt.md`
-
-### Schema Requirements
-
-```yaml
----
-mode: ChatModeName  # Optional: bind to specific chat mode
+**Available**: AgentResume, AssetOptimization, BootstrapRepo, FormatAssets, FormatAndVerifyAssets, HarmonizeAssets, HarmonizeAndValidate, NewAgentsFile, NewCopilotAgent, NewInstructions, NewPrompt, NewWorkflow, PromptAndInstructionOptimizer, QuickChange, RepoReview, SecurityToolingAudit, UpdateCopilotCustomizer, WorkflowIntegrityCheck
 schemaVersion: "1.0"  # Optional: version tracking  
 depthModes: ["standard", "detailed"]  # Optional: supported depth levels
 refinementCommands: ["refine: focus"]  # Optional: available commands
@@ -186,13 +84,22 @@ refinementCommands: ["refine: focus"]  # Optional: available commands
 |------|---------|------------|
 | `AgentResume.prompt.md` | Universal agent workflow helper | None (universal) |
 | `AssetOptimization.prompt.md` | Asset optimization execution | CopilotCustomizer |
+| `BootstrapRepo.prompt.md` | Complete repository setup workflow | BootstrapRepo |
 | `FormatAssets.prompt.md` | Asset formatting execution | CopilotCustomizer |
+| `FormatAndVerifyAssets.prompt.md` | Format and validate assets in one pass | CopilotCustomizer |
 | `HarmonizeAssets.prompt.md` | Asset harmonization execution | CopilotCustomizer |
-| `NewAgent.prompt.md` | Generate new agent files | CopilotCustomizer |
-| `NewChatmode.prompt.md` | Generate new chat modes | CopilotCustomizer |
-| `NewInstructions.prompt.md` | Generate new instruction files | CopilotCustomizer |
-| `NewPrompt.prompt.md` | Generate new prompt files | CopilotCustomizer |
+| `HarmonizeAndValidate.prompt.md` | Harmonize and validate 2-3 assets | CopilotCustomizer |
+| `NewAgentsFile.prompt.md` | Generate workspace AGENTS.md | CopilotCustomizer |
+| `NewCopilotAgent.prompt.md` | Generate VS Code .agent.md | CopilotCustomizer |
+| `NewInstructions.prompt.md` | Generate instruction files | CopilotCustomizer |
+| `NewPrompt.prompt.md` | Generate prompt files | CopilotCustomizer |
+| `NewWorkflow.prompt.md` | Generate multi-agent workflows | CopilotCustomizer |
+| `PromptAndInstructionOptimizer.prompt.md` | Optimize prompts and instructions | CopilotCustomizer |
+| `QuickChange.prompt.md` | Fast minimal-diff change workflow | CopilotCustomizer |
 | `RepoReview.prompt.md` | Repository analysis execution | CopilotCustomizer |
+| `SecurityToolingAudit.prompt.md` | Audit tool approvals and MCP trust | CopilotCustomizer |
+| `UpdateCopilotCustomizer.prompt.md` | CopilotCustomizer change workflow | CopilotCustomizer |
+| `WorkflowIntegrityCheck.prompt.md` | Validate workflow handoffs and links | CopilotCustomizer |
 
 ---
 
@@ -257,6 +164,10 @@ refinementCommands: ["refine: focus"]  # Optional: available commands
 | `Analysis.template.md` | Universal analysis framework | Project analyses, audits, assessments |
 | `ImplementationPlan.template.md` | Implementation planning format | Project planning and execution |
 | `ProgressLog.template.md` | Progress tracking format | Status updates and milestone tracking |
+| `TestStrategy.template.md` | Test planning and validation | TDD workflows, test coverage, QA strategies |
+| `SecurityReview.template.md` | Security assessment format | Code reviews, vulnerability scans, OWASP audits |
+| `ChangeLog.template.md` | Change documentation format | Release notes, PR descriptions, migration guides |
+| `AssetInventory.template.md` | Asset catalog format | Repository audits, asset tracking, compliance |
 
 ---
 
@@ -269,17 +180,18 @@ The CopilotCustomizer framework uses a comprehensive harmonization system:
 ```
 Instructions ←→ Prompts (Paired execution)
     ↕                ↕
-Chat Mode ←→ Agent Files (Contextual binding)
+Custom Agent ←→ Agent Files (Contextual binding)
 ```
 
 ### Binding Relationships
 
-| Instruction File | Paired Prompt | Chat Mode | Purpose |
-|------------------|---------------|-----------|---------|
-| `GenerateAgent.instructions.md` | `NewAgent.prompt.md` | CopilotCustomizer | Agent file creation |
-| `GenerateChatmode.instructions.md` | `NewChatmode.prompt.md` | CopilotCustomizer | Chat mode creation |
-| `GenerateInstructions.instructions.md` | `NewInstructions.prompt.md` | CopilotCustomizer | Instruction creation |
-| `GeneratePrompt.instructions.md` | `NewPrompt.prompt.md` | CopilotCustomizer | Prompt creation |
+| Instruction File | Paired Prompt | Agent Mode | Purpose |
+|------------------|---------------|------------|---------|
+| `GenerateAgentsFile.instructions.md` | `NewAgentsFile.prompt.md` | CopilotCustomizer | Workspace AGENTS.md creation |
+| `GenerateCopilotAgent.instructions.md` | `NewCopilotAgent.prompt.md` | CopilotCustomizer | VS Code .agent.md creation |
+| `GenerateInstructions.instructions.md` | `NewInstructions.prompt.md` | CopilotCustomizer | Instruction file creation |
+| `GeneratePrompt.instructions.md` | `NewPrompt.prompt.md` | CopilotCustomizer | Prompt file creation |
+| `GenerateWorkflow.instructions.md` | `NewWorkflow.prompt.md` | CopilotCustomizer | Multi-agent workflow creation |
 | `HarmonizeAssets.instructions.md` | `HarmonizeAssets.prompt.md` | CopilotCustomizer | Asset integration |
 | `FormatAssets.instructions.md` | `FormatAssets.prompt.md` | CopilotCustomizer | Asset formatting |
 | `AssetOptimization.instructions.md` | `AssetOptimization.prompt.md` | CopilotCustomizer | Asset optimization |
@@ -289,21 +201,21 @@ Chat Mode ←→ Agent Files (Contextual binding)
 
 ## 📊 Asset Inventory
 
-### Generation Assets (8 files)
-- **Instructions**: 4 files for creating new assets
-- **Prompts**: 4 files for executing creation workflows
+### Generation Assets (10 files)
+- **Instructions**: 5 files for creating new assets
+- **Prompts**: 5 files for executing creation workflows
 
 ### Management Assets (8 files)  
 - **Instructions**: 4 files for maintaining existing assets
 - **Prompts**: 4 files for executing maintenance workflows
 
 ### Supporting Assets
-- **Chat Mode**: 1 comprehensive architect persona
-- **Agent File**: 1 project guidance document
-- **Templates**: 3 standardized document formats
+- **Agent Files**: 6 specialized VS Code agents
+- **Workspace File**: 1 project guidance document (AGENTS.md)
+- **Templates**: 7 standardized document formats
 - **Universal Helper**: 1 repository-agnostic prompt
 
-**Total**: 16 core assets + 3 templates + 1 universal helper = **20 total assets**
+**Total**: 16 core assets + 7 templates + 1 universal helper = **24 total assets**
 
 ---
 
@@ -311,19 +223,19 @@ Chat Mode ←→ Agent Files (Contextual binding)
 
 ### Asset Creation Workflow
 
-1. **Choose Asset Type**: Select from chat mode, instructions, prompt, or agent
+1. **Choose Asset Type**: Select from custom agent, instructions, prompt, or agent
 2. **Use Generation Pair**: Apply instruction + prompt combination
-3. **Customize Variables**: Fill in project-specific details  
-4. **Execute via Chat Mode**: Run through `@CopilotCustomizer`
+3. **Customize Variables**: Provide inline variables in the slash command  
+4. **Execute**: Run the workflow via slash command (see HOW-TO cheat sheet)
 5. **Validate Output**: Check schema compliance and functionality
 
 ### Asset Maintenance Workflow
 
-1. **Audit Repository**: Use `RepoReview.prompt.md` for analysis
+1. **Audit Repository**: Use `/RepoReview` for analysis
 2. **Identify Improvements**: Apply gap analysis recommendations
-3. **Apply Optimizations**: Use `AssetOptimization.prompt.md`
-4. **Format for Standards**: Use `FormatAssets.prompt.md`
-5. **Harmonize Integration**: Use `HarmonizeAssets.prompt.md`
+3. **Apply Optimizations**: Use `/AssetOptimization`
+4. **Format for Standards**: Use `/FormatAssets`
+5. **Harmonize Integration**: Use `/HarmonizeAssets`
 
 ### Quality Assurance Workflow
 
@@ -369,10 +281,10 @@ Chat Mode ←→ Agent Files (Contextual binding)
 
 **Asset Not Loading**
 - Check YAML front matter syntax
-- Verify file is in correct directory (`.github/chatmodes/`, `.github/instructions/`, `.github/prompts/`)
-- Ensure file extension matches pattern (`*.chatmode.md`, etc.)
+- Verify file is in correct directory (`.github/agents/`, `.github/instructions/`, `.github/prompts/`)
+- Ensure file extension matches pattern (`*.agent.md`, etc.)
 
-**Chat Mode Not Available**  
+**Custom Agent Not Available**  
 - Confirm `description` field is present in YAML
 - Verify VS Code has detected the customization
 - Restart VS Code if customizations don't appear
@@ -393,7 +305,7 @@ Chat Mode ←→ Agent Files (Contextual binding)
 
 ```bash
 # Check file existence and naming
-find .github -name "*.chatmode.md" -o -name "*.instructions.md" -o -name "*.prompt.md"
+find .github -name "*.agent.md" -o -name "*.instructions.md" -o -name "*.prompt.md"
 
 # Validate YAML front matter (requires yq or similar)
 for file in .github/**/*.md; do
@@ -401,8 +313,8 @@ for file in .github/**/*.md; do
   head -20 "$file" | grep -A 10 "^---$"
 done
 
-# Test asset loading in VS Code
-# Open Copilot Chat and run: @CopilotCustomizer help
+# Test asset loading in VS Code Copilot Chat
+# Access CopilotCustomizer mode when agent extensions become available
 ```
 
 ---
@@ -413,7 +325,7 @@ done
 
 This framework complies with **VS Code Copilot Customization v1.101** standards:
 
-- **Chat Modes**: Required `description`, optional `tools` array
+- **Custom Agents**: Required `description`, optional `target`, `name`, `argument-hint`, `tools`, `model`, `handoffs`, `mcp-servers` (VS Code 1.106+)
 - **Instructions**: Required `applyTo` and `description` fields
 - **Prompts**: Optional `mode` binding, structured YAML front matter
 - **File Organization**: Standard `.github/` directory structure
@@ -462,7 +374,7 @@ Some assets (like `AgentResume.prompt.md`) are designed for cross-repository usa
 
 - No external dependencies or framework requirements
 - Repository-agnostic variable patterns  
-- Universal chat mode compatibility (no `mode` field)
+- Universal custom agent compatibility (no `mode` field)
 - Self-contained functionality
 
 ---
@@ -474,15 +386,10 @@ Some assets (like `AgentResume.prompt.md`) are designed for cross-repository usa
 - **[AGENTS.md](../AGENTS.md)** - Project development guidance
 - **[VS Code Copilot Docs](https://code.visualstudio.com/docs/copilot/customization/overview)** - Official Microsoft documentation
 
-### Community  
-- **GitHub Issues** - Report bugs and request features
-- **GitHub Discussions** - Community questions and ideas
-- **Pull Requests** - Contribute improvements and new assets
-
-### Professional Support
-- **GitHub Sponsors** - Support ongoing development
-- **PayPal Donations** - One-time contributions
-- **Enterprise Consulting** - Custom asset development and training
+### Technical Support
+- **Internal Issue Tracking** - Report bugs and request features
+- **Internal Documentation Portal** - Enterprise knowledge base
+- **Technical Training** - Custom asset development and best practices
 
 ---
 

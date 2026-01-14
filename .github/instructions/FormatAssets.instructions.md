@@ -1,162 +1,109 @@
 ---
-applyTo: '**/*.{instructions.md,chatmode.md,prompt.md}'
-description: 'Formats and validates GitHub Copilot customization assets against latest VS Code standards with 100% content preservation'
+applyTo: '.github/**/*.{instructions.md,prompt.md,agent.md}'
+description: 'Formats and validates GitHub Copilot customization assets against latest VS Code standards with 100% content preservation, including agent files, MCP configurations, and tool management'
 ---
 
 ## Copilot Asset Formatting & Standards Compliance Instructions (v1.0)
 
-**Schema Version**: 1.0  
 **Depth Modes**: quick-format, standard, deep-compliance  
 **Refinement Commands**: refine: standards, refine: preserve, refine: format, refine: validate
 
-### Context Overview
-Formats and validates GitHub Copilot customization assets (*.instructions.md, *.chatmode.md, *.prompt.md) against the latest VS Code GitHub Copilot official documentation and formatting standards. Ensures 100% content preservation while applying current best practices, schema requirements, and output formatting guidelines from official VS Code Copilot documentation.
+### Objective
+Format and validate GitHub Copilot customization assets (*.instructions.md, *.agent.md, *.prompt.md) against VS Code standards (v1.106+) while preserving 100% content and cross-reference integrity.
 
-### Primary Objective
-Transform existing Copilot customization files to comply with current VS Code GitHub Copilot standards while preserving all original information and generating compliant outputs to designated folder.
-
-### Tech Stack & Constraints
-- **Core Technologies**: VS Code Copilot Extension API, Markdown parsing, YAML front matter, GitHub Copilot Documentation APIs
-- **File Types**: `*.instructions.md`, `*.chatmode.md`, `*.prompt.md`,`*.agent.md`
-- **Hard Constraints**:
-  - 100% content preservation (zero information loss)
-  - Current VS Code Copilot schema compliance
-  - Official documentation standard alignment
-  - Cross-reference integrity maintenance
+### Constraints
+- 100% content preservation requirement
+- VS Code Copilot schema compliance (v1.106+)
+- Cross-reference integrity maintenance
+- Official documentation alignment
 
 ### Processing Workflow
-1. **Standards Retrieval**: Fetch latest VS Code GitHub Copilot documentation and standards
-2. **Content Preservation**: Backup and validate original content integrity
-3. **Standards Mapping**: Align existing content with current schema requirements
-4. **Format Application**: Apply formatting while preserving semantic meaning
-5. **Compliance Validation**: Verify against official standards
-6. **Output Generation**: Write formatted files with validation confirmation
+1. Standards retrieval and schema mapping
+2. Content backup and validation
+3. Format application with semantic preservation
+4. Compliance verification
+5. Output generation with confirmation
 
-**Official Documentation Sources**:
-- https://code.visualstudio.com/docs/copilot/customization/overview
-- https://code.visualstudio.com/docs/copilot/customization/custom-instructions
-- https://code.visualstudio.com/docs/copilot/customization/custom-chat-modes
-- https://code.visualstudio.com/docs/copilot/customization/prompt-files
-- https://code.visualstudio.com/docs/copilot/copilot-coding-agent
+**Official Documentation**: https://code.visualstudio.com/docs/copilot/customization/overview
 
-### Coding Standards
-**YAML Front Matter Schema Compliance** (CRITICAL):
-- **Strict Validation**: YAML front matter must contain ONLY officially supported fields per VS Code schema
-- **Unknown Property Prevention**: Remove any custom/non-standard fields that cause "unknown property" errors
-- **Required Fields**: Ensure all required fields per asset type are present and valid
-- **Optional Fields**: Include only documented optional fields from official VS Code Copilot schema
-- **Custom Metadata**: For all assets, ensure only officially supported fields are present in YAML front matter; move all custom/non-standard fields (such as schemaVersion, depthModes, refinementCommands, etc.) to markdown content to maintain schema compliance and consistency.
-- **Post-Processing Validation**: Verify no YAML parsing errors after formatting
+### YAML Schema Compliance
+**Critical Requirements**:
+- Only officially supported fields in YAML front matter
+- Remove custom fields (schemaVersion, depthModes, refinementCommands) → move to markdown
+- Verify no "unknown property" errors in VS Code
+- Required vs optional fields per asset type
 
-**Markdown Structure**:
-- Consistent heading hierarchy (H2 for main sections, H3 for subsections)
-- Clear section organization and logical flow
-- Cross-reference links with proper formatting
-- Code blocks with appropriate syntax highlighting
+**Asset-Specific YAML**:
+| Asset Type | Required | Optional |
+|------------|----------|----------|
+| `*.agent.md` | `description` | `target`, `name`, `argument-hint`, `tools`, `model`, `handoffs`, `mcp-servers` |
+| `*.instructions.md` | `applyTo` | `description` |
+| `*.prompt.md` | - | `agent`, `tools`, `model` |
 
-### Asset-Specific Formatting Rules
+**Markdown Structure**: H2 main sections, H3 subsections, consistent hierarchy, proper code blocks
 
-#### Instructions Files (`*.instructions.md`)
-**YAML Schema Compliance** (VS Code Official):
-- `applyTo`: Glob pattern for automatic application (**REQUIRED** per VS Code schema)
-- `description`: Description shown on hover in Chat view (**OPTIONAL**)
-- **FORBIDDEN**: Custom fields like `schemaVersion`, `depthModes`, `refinementCommands` (move to markdown)
-- **Validation**: Must parse without "unknown property" errors
+### Asset Structures
 
-**Recommended Structure**:
+**Agent Files** (`*.agent.md`):
 ```markdown
-## [Asset Name] Instructions (v[Version])
-### Context Overview
-### Primary Objective  
-### Tech Stack & Constraints
-### Processing Workflow
-### Coding Standards
-### [Asset-Specific Sections]
-### Standards Compliance & Validation
-```
-
-**Content Requirements**:
-- Clear purpose statement and scope definition
-- Specific technical constraints and requirements
-- Processing workflow with numbered steps
-- Standards validation and compliance verification
-- Cross-references to related assets
-
-#### Chat Mode Files (`*.chatmode.md`)
-**YAML Schema Compliance** (VS Code Official):
-- `description`: Brief description of the chat mode (**REQUIRED** per VS Code schema)
-- `tools`: List of available tools (**OPTIONAL**, can be empty array)
-- `model`: AI model specification (**OPTIONAL**)
-- **FORBIDDEN**: Any custom fields not in official VS Code Custom Chat Modes schema
-- **Validation**: Must parse without YAML errors in VS Code
-
-**Recommended Structure**:
-```markdown
-## [Chat Mode Name] ([Version])
+## [Agent Name] (v[Version])
 ### Role
-### Core Objectives
+### Core Objectives  
 ### Workflow
-### [Mode-Specific Sections]
-### Standards Compliance & Processing Metadata
+### Tool Configuration (optional)
+### Handoff Workflows (optional)
+### Standards Compliance
 ```
 
-**Content Requirements**:
-- Clear role definition and capabilities
-- Structured workflow with numbered steps
-- Depth modes and refinement commands
-- Tool integration specifications
-- Processing metadata with schema compliance
-
-#### Prompt Files (`*.prompt.md`)
-**Required Elements**:
-- `mode`: Prompt execution mode (ask/agent/generate)
-- Variable blocks with clear parameter definitions
-- Usage instructions and examples
-
-**Recommended Structure**:
+**Instructions** (`*.instructions.md`):
 ```markdown
-## [Prompt Name] Prompt (v[Version])
+## [Name] Instructions (v[Version])
+### Objective
+### Constraints
+### Workflow
+### Standards
+### Validation
+```
+
+**Prompts** (`*.prompt.md`):
+```markdown
+## [Name] Prompt (v[Version])
 ### Task Intent
 ### Usage Instructions  
 ### Variable Block
-### [Prompt-Specific Sections]
-### Standards Compliance Documentation
+### Agent Integration
+### Validation Rules
 ```
 
-**Content Requirements**:
-- Clear task intent and scope
-- Structured variable blocks with validation
-- Usage examples and clarification rules
-- Generation gates and confirmation workflows
-- Refinement commands and quality validation
-
-#### Agent Files (`*.agent.md`, `AGENTS.md`)
-**Content Requirements**:
-- Agent configuration and setup instructions
-- Build and deployment commands
-- Security and compliance guidelines
-- Integration specifications
+**Agent Files** (`*.agent.md` - Current standard, replaces legacy `.chatmode.md`)
 
 ### Standards Compliance & Validation
 
 #### VS Code Copilot Schema Compliance
-**Instructions Files Requirements** (per official documentation):
+**Agent Files Requirements** (per official documentation v1.106+):
+- ✅ YAML front matter with `description` field (required)
+- ✅ Optional `tools` array for comprehensive tool ecosystem management  
+- ✅ Optional `model` specification for AI model selection
+- ✅ Optional `handoffs` array for workflow transitions
+- ✅ Optional `target`, `name`, `argument-hint`, and `mcp-servers` metadata
+- ✅ Markdown body with clear agent instructions
+- ✅ Proper file extension (`.agent.md`)
+- ✅ Location in `.github/agents/` or user profile
+
+**Instructions Files Requirements**:
 - ✅ YAML front matter with `applyTo` field (glob pattern)
 - ✅ Optional `description` field for hover text
 - ✅ Markdown body with clear instructions
 - ✅ Proper file extension (`.instructions.md`)
-- ✅ Location in `.github/instructions/` or user profile
 
-**Chat Mode Files Requirements**:
-- ✅ YAML front matter with `description` field
-- ✅ Optional `tools` array for tool configuration  
-- ✅ Optional `model` specification
-- ✅ Markdown body with chat mode instructions
-- ✅ Proper file extension (`.chatmode.md`)
+**Legacy Chat Mode Files** (Deprecated):
+- `.chatmode.md` files are deprecated in VS Code 1.106+. Migrate to `.agent.md`.
+- Do not introduce new `.chatmode.md` files; preserve history only.
 
 **Prompt Files Requirements**:
-- ✅ Mode specification (ask/agent/generate)
+- ✅ Agent specification (`agent` field preferred over legacy `mode`)
 - ✅ Clear variable blocks and usage instructions
+- ✅ Optional `tools` and `model` configuration
 - ✅ Proper file extension (`.prompt.md`)
 
 #### Content Preservation Standards
@@ -260,126 +207,22 @@ Transform existing Copilot customization files to comply with current VS Code Gi
 - Documentation source reference accuracy
 - Best practices implementation verification
 
-### Error Handling & Risk Mitigation
+### Error Handling
+**Failures**: Automatic backup, rollback capability, validation checkpoints
+**Fallbacks**: Cached standards, minimal compliance mode, alternative output locations
 
-#### Critical Failure Scenarios
-**Content Loss Prevention**:
-- Automatic backup creation before processing
-- Multi-checkpoint content validation during formatting
-- Rollback capability for failed operations
-- Preservation failure detection and abort procedures
+### Output Format
+**Files**: `[original]-formatted-[timestamp].md`  
+**Reports**: Processing summary, preservation verification, compliance validation, cross-reference confirmation
 
-**Standards Compliance Failures**:
-- Schema validation errors with specific guidance
-- Documentation retrieval failures with fallback options
-- Cross-reference breakage detection and repair
-- Output generation failures with detailed diagnostics
+### Ecosystem Integration
+Compatible with: HarmonizeAssets, CopilotCustomizer, GenerateInstructions, AssetOptimization
 
-#### Fallback Procedures
-**Documentation Unavailable**:
-- Use cached standards with version warning
-- Minimal formatting with basic compliance
-- Manual standards application guidance
-- Deferred processing until standards accessible
+### Standards Compliance
+**VS Code Copilot v2025.11** (Agent Files v1.106+, MCP v1.102+)  
+**Documentation**: [VS Code Copilot Customization](https://code.visualstudio.com/docs/copilot/customization/overview)
 
-**File System Issues**:
-- Alternative output location suggestions
-- Permission validation and resolution guidance
-- Temporary file creation for atomic operations
-- Recovery procedures for partial failures
-
-### Output Specifications
-
-#### Formatted File Generation
-**File Naming Convention**:
-- Original filename with `-formatted` suffix
-- Timestamp inclusion for version tracking
-- Extension preservation for tool compatibility
-- Collision avoidance with existing files
-
-**Output Structure Requirements**:
-- Enhanced YAML front matter with compliance fields
-- Structured markdown with improved organization
-- Standards compliance documentation section
-- Processing metadata with timestamps and versions
-- Cross-reference validation and update confirmation
-
-#### Validation Report Generation  
-**Report Content Requirements**:
-- Processing summary with before/after comparison
-- Content preservation verification (100% requirement)
-- Standards compliance validation results
-- Cross-reference integrity confirmation
-- File generation success confirmation with paths
-
-**Report Delivery**:
-- Detailed formatting report saved to output folder
-- Processing log with timestamps and validation checkpoints
-- Success/failure status with specific error details
-- Recommendations for future maintenance and updates
-
-### Integration & Ecosystem Alignment
-
-#### Asset Harmonization
-**Cross-Asset Consistency**:
-- Shared terminology and formatting patterns
-- Version alignment across related assets
-- Reference integrity maintenance
-- Unified processing metadata standards
-
-**Ecosystem Integration**:
-- Compatibility with HarmonizeAssets.instructions.md
-- Alignment with CopilotCustomizer.chatmode.md workflows
-- Integration with GenerateInstructions.instructions.md patterns
-- Support for AssetOptimization.instructions.md processes
-
-#### Maintenance & Evolution
-**Standards Tracking**:
-- VS Code Copilot documentation version monitoring
-- Schema requirement updates and migration support
-- Backward compatibility preservation
-- Future-proofing through modular design
-
-**Continuous Improvement**:
-- Processing workflow optimization
-- Standards compliance enhancement
-- User feedback integration
-- Performance improvement implementation
-
-### Standards Compliance & Processing Metadata
-
-**VS Code Copilot Compliance**: Custom Instructions Schema - Full compliance achieved  
-**Schema Requirements**: 
-- ✅ Required `applyTo` field in YAML front matter (glob pattern)
-- ✅ Optional `description` field for hover text functionality
-- ✅ Markdown body with clear formatting instructions  
-- ✅ Documentation sources referenced per schema guidelines
-
-**Standards Sources**: 
-- [VS Code Custom Instructions](https://code.visualstudio.com/docs/copilot/customization/custom-instructions)
-- [VS Code Copilot Documentation](https://code.visualstudio.com/docs/copilot/customization/)
-- [VS Code Custom Chat Modes](https://code.visualstudio.com/docs/copilot/customization/custom-chat-modes)
-- [VS Code Prompt Files](https://code.visualstudio.com/docs/copilot/customization/prompt-files)
-
-**Processing Metadata**:
-- **Standards Version**: VS Code Copilot v2025.09 (Custom Instructions latest)
-- **Schema Compliance**: Full alignment with official documentation requirements
-- **Content Preservation**: 100% functionality maintained with enhanced standards
-- **Formatting Applied**: 2025-09-15 | Latest standards compliance verified
-
-### Conformance Note
-This instruction file provides comprehensive formatting standards for all VS Code Copilot customization assets and integrates with the broader Copilot customization ecosystem. Focuses on maintaining harmony between content preservation and standards compliance for sustainable multi-asset management.
-
-**Binding References**:
-- **Standards Source**: Latest VS Code GitHub Copilot Documentation
-- **Asset Generation Framework**: 
-  - `instructions/GenerateInstructions.instructions.md` (for instructions files)
-  - `instructions/GenerateChatmode.instructions.md` (for chat mode files)
-  - `instructions/GeneratePrompt.instructions.md` (for prompt files)
-  - `instructions/GenerateAgent.instructions.md` (for agent files)
-- **Primary Chat Mode**: `chatmodes/CopilotCustomizer.chatmode.md`
-- **Asset Harmonization**: `instructions/HarmonizeAssets.instructions.md`
-- **Optimization Integration**: `instructions/AssetOptimization.instructions.md`
+**Related Assets**: GenerateInstructions, GenerateCopilotAgent, GeneratePrompt, HarmonizeAssets, AssetOptimization
 
 ---
-*Generated and enhanced following VS Code GitHub Copilot official documentation standards*
+*VS Code GitHub Copilot official documentation standards*

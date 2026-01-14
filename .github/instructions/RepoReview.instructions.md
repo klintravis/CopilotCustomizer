@@ -1,158 +1,286 @@
 ---
 applyTo: '.github/prompts/RepoReview.prompt.md'
-description: 'Comprehensive framework for conducting repository analysis of Copilot customization assets, providing structured assessment, prioritization, and ready-to-run improvement prompts for chatmodes, instructions, prompts, and agent files'
+description: 'Comprehensive framework for conducting repository analysis of Copilot customization assets, providing structured assessment, prioritization, and ready-to-run improvement prompts for agents, instructions, prompts, and workspace files'
 ---
 
 # RepoReview.instructions.md
 
-## Repo Review Instructions (v1.2-h1)
+## Repo Review Instructions (v1.3)
 
-<!-- Harmony Metadata -->
-**Harmonization Metadata**: harmonizedWith: ['RepoReview.prompt.md', 'CopilotCustomizer.chatmode.md'] | bindingVersion: 'harmony-v1.0' | lastHarmonized: '2025-09-15' | preservationLevel: 'medium'
-**Schema Compliance**: VS Code Custom Instructions Schema v1.0  
-**Harmonization Metadata**: schemaVersion: "1.0" | harmonizationDate: "2025-09-15" | bindingStrength: "standard"  
-**Harmonized Assets**: RepoReview.instructions.md, RepoReview.prompt.md
+**Paired Prompt**: [RepoReview.prompt.md](../prompts/RepoReview.prompt.md)
 
-### Harmonized Assets
-**Paired Prompt**: [RepoReview.prompt.md](../prompts/RepoReview.prompt.md) - Repository audit and scaffolding prompt with comprehensive harmony integration  
-**Related Assets**: [CopilotCustomizer.chatmode.md](../chatmodes/CopilotCustomizer.chatmode.md) - Core customization framework  
-**Asset Ecosystem**: Part of 16-asset Copilot customization framework
+### Purpose
+Guide AI agents to audit Copilot customization assets and deliver actionable improvement analysis via `templates/Analysis.template.md`. Includes workflow orchestration analysis, agent handoff opportunities, and automation recommendations.
 
-**Harmonization**: comprehensive-harmony-v1.0 (enhanced cross-references)  
-**Binding Strength**: standard | **Preservation Level**: medium  
-**Content Changes**: <10% (YAML front matter + cross-references)
+**Workflow**: Scan repo → analyze workflows → identify handoff chains → prioritize gaps → generate ready-to-run prompts → save to `CopilotCustomizer/output/`
 
-### Context & Objectives
-Guide AI agents to audit Copilot customization assets (`*.chatmode.md`, `*.instructions.md`, `*.prompt.md`, `AGENTS.md`) and deliver actionable improvement analysis via `templates/Analysis.template.md` following the unified workflow established in [RepoReview.prompt.md](../prompts/RepoReview.prompt.md).
+### Required Inputs
+- **Target Path**: Repo root or folder
+- **Focus Area**: Optional filter (agents, prompts, workflows, all)
+- **Output Constraints**: Exclude `.github/*`, binaries, caches
 
-**Core Workflow**: Scan repo/folder → prioritize gaps → generate ready-to-run improvement prompts → save structured analysis to `CopilotCustomizer/output/`.
+### Validation Categories
 
-**Scope**: review all included `.github/*` existing files. Always exclude binaries and caches.
+#### 1. Asset Inventory
+- Scan: `agents/`, `instructions/`, `prompts/`, `AGENTS.md`, `docs/workflows/`
+- Assess: Completeness, Harmony compliance, versioning
+- Prioritize: High/Med/Low by impact/effort
 
-**Framework Integration**: Seamlessly integrates with [CopilotCustomizer.chatmode.md](../chatmodes/CopilotCustomizer.chatmode.md) for comprehensive asset management and quality assurance.
+#### 2. Workflow Analysis
+**Identify Workflow Patterns**:
+- Linear workflows (A → B → C sequential chains)
+- Branching workflows (parallel agent execution)
+- Conditional workflows (dynamic routing based on context)
+- Iterative workflows (refinement loops)
 
-### Variable Block (Required Inputs)
-- **Target Path**: Repo root or specific folder path (as specified in [RepoReview.prompt.md](../prompts/RepoReview.prompt.md))
-- **Focus Area**: Optional filter (e.g., `chatmodes/`, `prompts/`, `all`)
-- **Output Constraints**: Default to exclude `.github/*`, binaries, caches
+**Assess Workflow Completeness**:
+- Entry points clearly defined (prompts with minimal input)
+- Handoff chains documented and functional
+- Context transfer protocol established
+- Quality gates strategically placed
+- Error handling and fallback paths
 
-### Validation Rules  
-- Must scan canonical asset paths: `chatmodes/`, `instructions/`, `prompts/`, `AGENTS.md`
-- For each asset found: assess completeness, Harmony pattern compliance, versioning
-- Assign priority levels (High/Med/Low) based on impact and effort
-- Skip missing `.github/prompts/` references gracefully
-- **Cross-Reference Integration**: Validate against [RepoReview.prompt.md](../prompts/RepoReview.prompt.md) variable requirements
-- **Quality Assurance**: Leverage [CopilotCustomizer.chatmode.md](../chatmodes/CopilotCustomizer.chatmode.md) refinement commands for validation
+#### 3. Handoff Opportunities
+**Analyze Existing Handoffs**:
+- Agent-to-agent transitions (YAML handoffs field)
+- Manual handoffs (user-initiated)
+- Automatic handoffs (send: true)
+- Conditional handoffs (send: false with validation)
 
-### Generation Gate
-Before analysis generation:
-1. Confirm target path exists and is accessible
-2. Validate scope aligns with Copilot customization assets per [RepoReview.prompt.md](../prompts/RepoReview.prompt.md) standards
-3. Check `templates/Analysis.template.md` is available for output structure
-4. **Workflow Integration**: Ensure alignment with [CopilotCustomizer.chatmode.md](../chatmodes/CopilotCustomizer.chatmode.md) analysis patterns
+**Identify Missing Handoffs**:
+- Agents that should chain together
+- Repetitive multi-step processes
+- Manual workflows that could be automated
+- Context transfer gaps
 
-### Output Requirements (ENFORCED)
+#### 4. Automation Potential
+**Workflow Orchestration**:
+- Single-entry point workflows for complex tasks
+- Multi-agent chains for specialized domains
+- Autonomous execution after approval gates
+- Batch operations and parallel processing
 
-**File Location**: `CopilotCustomizer/output/<repo-name> - Repo Review - <YYYY-MM-DD>.md`  
-**Structure**: Must follow `templates/Analysis.template.md` with these additions:
-- Front-matter: `GeneratedAt:` timestamp, `OutputPath:` field
-- Section: `Ready-to-run Prompts` with concrete, copy-paste prompts
+**Agent Specialization**:
+- Domain experts (API, testing, security, documentation)
+- Process orchestrators (planning, execution, verification)
+- Quality assurance agents (validation, harmonization)
+- Reporting agents (documentation, summaries)
 
-**Ready-to-run Prompt Standards**:
-- Variables replaced with example values or input requirements listed
-- Include exact path to source prompt (e.g., `CopilotCustomizer/.github/prompts/NewPrompt.prompt.md`)
-- One-line usage instruction for immediate execution
-- Priority assignment (High/Med/Low) for each suggested action
-- **Generation Workflow**: Reference [RepoReview.prompt.md](../prompts/RepoReview.prompt.md) for consistent output generation following this framework
+### Output Requirements
+**Location**: `CopilotCustomizer/output/<repo-name> - Repo Review - <YYYY-MM-DD>.md`  
+**Structure**: Follow `templates/Analysis.template.md` with:
+- Front-matter: `GeneratedAt`, `OutputPath`, `WorkflowsAnalyzed`
+- Section: Asset Inventory
+- Section: Workflow Analysis (NEW)
+- Section: Handoff Opportunities (NEW)
+- Section: Automation Recommendations (NEW)
+- Section: Ready-to-run Prompts with concrete examples
 
-### Workflow Integration
-**Automated Generation via [RepoReview.prompt.md](../prompts/RepoReview.prompt.md)**:
-- Use prompt generator for consistent repository analysis
-- Apply refinement commands for optimization
-- Validate output against this framework's standards
+**Workflow Analysis Output**:
+```markdown
+## Workflow Analysis
 
-**Quality Assurance via [CopilotCustomizer.chatmode.md](../chatmodes/CopilotCustomizer.chatmode.md)**:
-- Use `refine: audit` for structural validation
-- Apply `refine: optimize` for token efficiency  
-- Leverage `refine: concise` for executive summaries
+### Existing Workflows
+| Workflow | Entry Point | Agents | Type | Status |
+|----------|-------------|--------|------|--------|
+| {Name} | {Prompt} | {Count} | {Linear/Branch/Conditional} | {Functional/Incomplete/Missing} |
 
-### Refinement Commands
-| Command | Action |
-|---------|--------|
-| `refine: enforce-output` | Validate output path/format compliance, regenerate if needed |
-| `refine: risks` | Expand risk/mitigation section with specific technical concerns |
-| `refine: generators` | Focus on generator prompt quality and completeness |
+### Handoff Chain Mapping
+{Diagram showing agent-to-agent transitions}
+
+### Quality Gates Identified
+- {Agent}: {Gate Type} - {Purpose}
+
+### Context Transfer Assessment
+- {Handoff}: {Completeness %} - {Issues if any}
+```
+
+**Handoff Opportunities Output**:
+```markdown
+## Handoff Opportunities
+
+### High-Priority Handoffs (Immediate Value)
+1. **{SourceAgent} → {TargetAgent}**
+   - Use Case: {Description}
+   - Context: {What transfers}
+   - Benefit: {Time saved, quality improved}
+   - Implementation: {Concrete YAML example}
+
+### Missing Workflow Chains
+1. **{Process Name}**
+   - Current: Manual {X}-step process
+   - Proposed: {AgentA} → {AgentB} → {AgentC}
+   - Entry Point: {Prompt to create}
+   - Expected ROI: {Efficiency gain}
+```
+
+**Automation Recommendations Output**:
+```markdown
+## Automation Recommendations
+
+### Priority 1: High-Impact Workflows
+1. **{Workflow Name}**
+   - Current State: {Manual steps}
+   - Automation Plan: {Agent chain design}
+   - Required Assets: {New agents/instructions}
+   - Effort: {Low/Medium/High}
+   - Value: {Time saved, consistency gained}
+
+### Priority 2: Agent Specialization
+1. **{Domain} Expert**
+   - Need: {Specific capability gap}
+   - Handoffs: {Integration points}
+   - Reusable Instructions: {Existing assets to leverage}
+```
+
+**Prompt Standards**:
+- Variables replaced with examples
+- Exact source path included
+- One-line usage instruction
+- Priority assigned
+- Workflow integration notes (NEW)
 
 ### Quality Checklist
-- [ ] Target path validated and assets inventoried
-- [ ] Analysis follows `templates/Analysis.template.md` structure  
-- [ ] Output saved to `CopilotCustomizer/output/<smart-title>.md`
-- [ ] Ready-to-run prompts section includes concrete examples with paths
-- [ ] Priority levels assigned (High/Med/Low) to all recommendations
-- [ ] No placeholder variables remain in output
-- [ ] Generator prompts reference available prompt files
-- [ ] Cross-references to [RepoReview.prompt.md](../prompts/RepoReview.prompt.md) functional
-- [ ] Integration with [CopilotCustomizer.chatmode.md](../chatmodes/CopilotCustomizer.chatmode.md) verified
+- [ ] Assets inventoried (agents, instructions, prompts)
+- [ ] Workflows mapped with entry points identified
+- [ ] Handoff chains diagrammed
+- [ ] Missing handoffs identified
+- [ ] Automation opportunities prioritized
+- [ ] Context transfer gaps assessed
+- [ ] Quality gates evaluated
+- [ ] Analysis follows template
+- [ ] Output saved correctly
+- [ ] Ready-to-run prompts included
+- [ ] Priorities assigned with effort estimates
+- [ ] Workflow integration notes added
+- [ ] No placeholder variables
 
-### Generator Prompts Available (Enhanced Cross-References)
-- [NewAgent.prompt.md](../prompts/NewAgent.prompt.md) → AGENTS.md creation
-- [NewInstructions.prompt.md](../prompts/NewInstructions.prompt.md) → instruction file creation  
-- [NewPrompt.prompt.md](../prompts/NewPrompt.prompt.md) → prompt file creation
-- [NewChatmode.prompt.md](../prompts/NewChatmode.prompt.md) → chatmode creation
+### Workflow Pattern Examples
 
-### Example Output Structure
-```
-# CopilotCustomizer - Repo Review - 2025-09-14
-GeneratedAt: 2025-09-14T10:30:00Z
-OutputPath: CopilotCustomizer/output/CopilotCustomizer - Repo Review - 2025-09-14.md
-
-## Ready-to-run Prompts
-**Create Missing AGENTS.md (High Priority)**
-Source: `CopilotCustomizer/.github/prompts/NewAgent.prompt.md`
-Prompt: "Generate AGENTS.md for CopilotCustomizer with build commands, coding standards, and PR workflow."
-Usage: Copy prompt into Copilot chat and execute.
+**Linear Workflow**:
+```yaml
+# Single-path sequential execution
+EntryPoint → AnalysisAgent → PlanningAgent → ExecutionAgent → ValidationAgent → Complete
+Quality Gate: After PlanningAgent (user confirms plan)
 ```
 
-### Change Management
-- Version in file header or repo change log
-- Update when analysis templates or output requirements change
-- **Harmonization Tracking**: Last harmonized 2025-09-15 with comprehensive cross-reference integration
-- **Standards Compliance**: Follows VS Code Custom Instructions schema requirements
+**Branching Workflow**:
+```yaml
+# Parallel execution paths
+EntryPoint → Coordinator
+  ├─> SecurityAgent → Merge
+  ├─> PerformanceAgent → Merge
+  └─> DocumentationAgent → Merge
+Merge → ReportGenerator → Complete
+```
 
-### Notes
-Keep repository reviews comprehensive yet actionable; link to generator prompts for immediate improvement workflows. Integrate with the broader Copilot customization ecosystem for holistic asset management.
+**Conditional Workflow**:
+```yaml
+# Dynamic routing based on context
+EntryPoint → ClassifierAgent
+  ├─> [New Feature] → FeatureAgent → TestAgent
+  ├─> [Bug Fix] → BugfixAgent → ValidationAgent
+  └─> [Refactor] → RefactorAgent → ReviewAgent
+All paths → DocumentationAgent → Complete
+```
 
-### Binding References
-- **Prompt Generator**: [RepoReview.prompt.md](../prompts/RepoReview.prompt.md) - Repository audit and scaffolding execution
-- **Framework**: [CopilotCustomizer.chatmode.md](../chatmodes/CopilotCustomizer.chatmode.md) - Core customization architecture
-- **Standards**: [FormatAssets.instructions.md](../instructions/FormatAssets.instructions.md) - Output formatting compliance
+**Iterative Workflow**:
+```yaml
+# Refinement loop until criteria met
+EntryPoint → GeneratorAgent → ValidationAgent
+  ├─> [Valid] → Complete
+  └─> [Issues] → RefinementAgent → GeneratorAgent (loop)
+Max iterations: 3
+```
 
-### Standards Compliance & Processing Metadata
+### Handoff YAML Examples
 
-**VS Code Copilot Compliance**: Custom Instructions Schema - Full compliance achieved  
-**Schema Requirements**: 
-- ✅ Required `applyTo` field in YAML front matter targeting markdown files
-- ✅ Required `description` field with comprehensive framework overview
-- ✅ Markdown body with detailed analysis guidelines and templates
-- ✅ Documentation sources referenced per schema guidelines
+**Automatic Handoff** (no user intervention):
+```yaml
+handoffs:
+  - label: 'Validate Generated Code'
+    agent: 'ValidationAgent'
+    prompt: 'Validate the generated code for syntax errors, test coverage, and best practices compliance.'
+    send: true
+```
 
-**Standards Sources**: 
-- [VS Code Custom Instructions](https://code.visualstudio.com/docs/copilot/customization/custom-instructions)
-- [VS Code Copilot Documentation](https://code.visualstudio.com/docs/copilot/customization/)
-- [GitHub Copilot Coding Agent](https://code.visualstudio.com/docs/copilot/copilot-coding-agent)
+**Conditional Handoff** (requires validation):
+```yaml
+handoffs:
+  - label: 'Execute Approved Plan'
+    agent: 'ExecutionAgent'
+    prompt: 'Execute the approved implementation plan with precise file modifications.'
+    send: false  # Waits for user confirmation
+```
 
-**Processing Metadata**:
-- **Standards Version**: VS Code Copilot v2025.09 (Custom Instructions latest)
-- **Harmonization**: comprehensive-harmony-v1.0 (enhanced cross-references)
-- **Content Preservation**: 100% functionality maintained with enhanced standards
-- **Formatting Applied**: 2025-09-15 | Standards compliance verified
+**Context-Rich Handoff** (transfers detailed state):
+```yaml
+handoffs:
+  - label: 'Generate Documentation'
+    agent: 'DocumentationGenerator'
+    prompt: 'Generate comprehensive documentation including: {{filesModified}}, {{featuresAdded}}, {{testsCoverage}}. Context: {{repositoryAnalysis}}'
+    send: true
+```
 
-### Version Note
-Conforms to [RepoReview.prompt.md](../prompts/RepoReview.prompt.md) execution workflow standards (v1.2-h1). Integrates seamlessly with the complete Copilot customization asset ecosystem for comprehensive repository analysis and improvement planning.
+### Generator Prompts
+- [NewAgentsFile.prompt.md](../prompts/NewAgentsFile.prompt.md) → AGENTS.md
+- [NewInstructions.prompt.md](../prompts/NewInstructions.prompt.md) → Instructions
+- [NewPrompt.prompt.md](../prompts/NewPrompt.prompt.md) → Prompts
+- [NewCopilotAgent.prompt.md](../prompts/NewCopilotAgent.prompt.md) → Agents
+- [BootstrapRepo.prompt.md](../prompts/BootstrapRepo.prompt.md) → Complete workflow (NEW)
+
+### Workflow References
+**Existing Workflows**:
+- [BootstrapRepo](../../docs/workflows/BootstrapRepo.md) - Autonomous asset generation for a target repo in the same workspace
+
+**Workflow Instructions**:
+- [GenerateWorkflow.instructions.md](GenerateWorkflow.instructions.md) - Multi-chain workflow framework
+- [WorkflowValidation.instructions.md](WorkflowValidation.instructions.md) - Workflow integrity validation patterns
+
+**Workflow Validation**:
+- [WorkflowValidator.agent.md](../agents/WorkflowValidator.agent.md) - Handoff chain testing and automation metrics
+- Validates handoff integrity, context transfer, quality gate placement
+- Provides workflow health grades and optimization recommendations
+
+**Handoff Documentation**:
+- Agent files with `handoffs` YAML field for automatic transitions
+- Context transfer via structured prompt templates
+- Quality gates for user approval checkpoints
+
+### Analysis Guidelines
+
+**When Reviewing Workflows**:
+1. **Map Entry Points**: Identify user-facing prompts that launch workflows
+2. **Trace Handoffs**: Follow agent-to-agent transitions through the chain
+3. **Evaluate Autonomy**: Assess automation level (manual vs automatic handoffs)
+4. **Check Context Transfer**: Verify complete information passes between agents
+5. **Validate Quality Gates**: Ensure approval points exist at strategic moments
+6. **Measure Efficiency**: Calculate user interactions required vs workflow complexity
+
+**When Identifying Opportunities**:
+1. **Repetitive Patterns**: Look for manual processes repeated frequently
+2. **Multi-Step Tasks**: Identify sequences that could be chained
+3. **Domain Expertise**: Note specialized knowledge that could be agent-ified
+4. **Context Gaps**: Find information loss between steps
+5. **Missing Automation**: Spot manual handoffs that could be automatic
+6. **Scalability Issues**: Recognize bottlenecks from manual orchestration
+
+**Priority Framework**:
+| Priority | Criteria | Examples |
+|----------|----------|----------|
+| **High** | Frequent use + high manual effort + clear automation path | Daily code review workflow, repetitive documentation tasks |
+| **Medium** | Moderate frequency + medium complexity + some manual judgment needed | Weekly security audits, periodic refactoring |
+| **Low** | Rare use + high complexity + requires significant custom logic | One-off migrations, exploratory research tasks |
+
+*Framework: [CopilotCustomizer.agent.md](../agents/CopilotCustomizer.agent.md)*  
+*Workflow Framework: [GenerateWorkflow.instructions.md](GenerateWorkflow.instructions.md)*  
+*VS Code: [Custom Instructions](https://code.visualstudio.com/docs/copilot/customization/custom-instructions)*
 
 ---
 
+**Version**: v1.3 (2025-11-01)  
 **Harmonization Applied**: 2025-09-15 | **Asset Integration**: 16-file ecosystem  
 **Cross-References**: Enhanced with bidirectional binding | **Schema**: VS Code v1.0 compliant  
+**Workflow Analysis**: Added workflow patterns, handoff opportunities, automation recommendations
 
 *Generated and formatted following VS Code GitHub Copilot official documentation standards*
