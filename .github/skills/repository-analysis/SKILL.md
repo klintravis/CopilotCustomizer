@@ -3,35 +3,15 @@ name: repository-analysis
 description: Deep repository analysis methodology for understanding codebase structure, dependencies, patterns, and change impact. Use when analyzing repositories for customization planning, refactoring, or understanding project architecture.
 ---
 
-<!-- TRACEABILITY: INVOCATION ALERT -->
-═══════════════════════════════════════════════════════════════════
-🔔 ASSET INVOCATION ALERT
-═══════════════════════════════════════════════════════════════════
-Asset Name    : repository-analysis Skill
-Asset Type    : Skill
-Asset Version : v1.0
-Invoked At    : {timestamp}
-Invocation ID : skill-repository-analysis-{timestamp-hash}
-═══════════════════════════════════════════════════════════════════
-📋 STATUS: Skill Active | Methodology ready for application
-═══════════════════════════════════════════════════════════════════
-<!-- END TRACEABILITY ALERT -->
+<!-- ASSET: repository-analysis | TYPE: Skill | VERSION: v1.0 -->
+
 
 # Repository Analysis Skill
 
-## Purpose
+## Metadata
+Asset ID: skill/repository-analysis | Created: 2026-01-14 | Status: Active
 
-### Asset Metadata
-| Property | Value |
-|----------|-------|
-| **Asset ID** | `skill/repository-analysis` |
-| **Version** | `v1.0` |
-| **Created** | `2026-01-14` |
-| **Last Modified** | `2026-01-14` |
-| **Maintained By** | `CopilotCustomizer` |
-| **Status** | `Active` |
-| **Category** | `Cross-Platform Skills` |
-Provides systematic methodology for comprehensive repository analysis including structure mapping, dependency identification, pattern recognition, and impact assessment. Essential for informed decision-making before making changes.
+## Purpose
 
 ## When to Use This Skill
 - Analyzing repositories for Copilot customization opportunities
@@ -368,13 +348,6 @@ A complete repository analysis should provide:
 
 **Cross-Platform**: Works in VS Code, GitHub Copilot CLI, Claude, Cursor, and other Skills-compatible agents.
 
----
-
-## Traceability & Audit
-
-### Invocation Log
-This section tracks when and how this asset is used.
-
 **Log Entry Format**:
 ```
 [YYYY-MM-DD HH:MM:SS UTC] - Invoked by: {user/system} | Context: {brief description}
@@ -395,4 +368,9 @@ _Manual logging - update this section when invoked_
 | 2026-01-14 | v1.0 | Added traceability system | CopilotCustomizer |
 
 ---
-*Traceability System v1.0 - Asset tracking enabled*
+
+---
+
+## Audit
+Last invoked: [Manual log]
+Change history: v1.0 (2026-01-14) - Added traceability

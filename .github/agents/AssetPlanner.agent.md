@@ -9,32 +9,13 @@ handoffs:
     send: false
 ---
 
-<!-- TRACEABILITY: INVOCATION ALERT -->
-═══════════════════════════════════════════════════════════════════
-🔔 ASSET INVOCATION ALERT
-═══════════════════════════════════════════════════════════════════
-Asset Name    : AssetPlanner Agent
-Asset Type    : Agent
-Asset Version : v1.0
-Invoked At    : {timestamp}
-Invocation ID : agent-assetplanner-{timestamp-hash}
-═══════════════════════════════════════════════════════════════════
-📋 STATUS: Agent Active | Ready to process requests
-═══════════════════════════════════════════════════════════════════
-<!-- END TRACEABILITY ALERT -->
+<!-- ASSET: AssetPlanner | TYPE: Agent | VERSION: v1.0 -->
+
 
 ## AssetPlanner Agent (v1.0)
 
-### Asset Metadata
-| Property | Value |
-|----------|-------|
-| **Asset ID** | `agent/assetplanner` |
-| **Version** | `v1.0` |
-| **Created** | `2026-01-14` |
-| **Last Modified** | `2026-01-14` |
-| **Maintained By** | `CopilotCustomizer` |
-| **Status** | `Active` |
-| **Category** | `Planning & Strategy` |
+## Metadata
+Asset ID: agent/assetplanner | Created: 2026-01-14 | Status: Active
 
 ### Handoff Notification
 ```
@@ -303,13 +284,6 @@ validationRequirements:
 - `refine: scope` - Expand/reduce asset count
 - `refine: complexity` - Simplify specifications
 
----
-
-## Traceability & Audit
-
-### Invocation Log
-This section tracks when and how this asset is used.
-
 **Log Entry Format**:
 ```
 [YYYY-MM-DD HH:MM:SS UTC] - Invoked by: {user/system} | Context: {brief description}
@@ -334,4 +308,9 @@ _Manual logging - update this section when invoked_
 
 *Single approval gate for autonomous asset generation workflows*
 *Reuses 80%+ shared framework instructions*
-*Traceability System v1.0 - Asset tracking enabled*
+
+---
+
+## Audit
+Last invoked: [Manual log]
+Change history: v1.0 (2026-01-14) - Added traceability

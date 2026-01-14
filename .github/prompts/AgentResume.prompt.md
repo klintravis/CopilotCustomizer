@@ -48,7 +48,14 @@ Resume productive work with any AI agent on any project by analyzing current con
 **Scope Preference** (narrow|current|expand | default: current): {SCOPE_PREFERENCE}
 ---
 
+<!-- ASSET: AgentResume | TYPE: Prompt | VERSION: v1.0 -->
+
+
 ### Validation Rules
+
+## Metadata
+Asset ID: prompt/agentresume | Created: 2026-01-14 | Status: Active
+
 - Required: `{WHERE_WE_LEFT_OFF}` must describe current project state or last response
 - Default `{CONTINUATION_STYLE}` to "keep-going" if not specified
 - Optional context fields enhance analysis quality but aren't mandatory
@@ -142,3 +149,9 @@ This prompt is designed to be completely portable and works in any VS Code works
 **Portability**: Works in any VS Code workspace | **Compatibility**: Any AI assistant or agent
 
 *Designed for universal compatibility across all development environments and project types*
+
+---
+
+## Audit
+Last invoked: [Manual log]
+Change history: v1.0 (2026-01-14) - Added traceability

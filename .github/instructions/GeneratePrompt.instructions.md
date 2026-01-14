@@ -3,32 +3,13 @@ applyTo: '.github/**/*.prompt.md'
 description: 'Standardized, modular approach for building high-quality prompt files that pair with custom agents and instruction files'
 ---
 
-<!-- TRACEABILITY: INVOCATION ALERT -->
-═══════════════════════════════════════════════════════════════════
-🔔 ASSET INVOCATION ALERT
-═══════════════════════════════════════════════════════════════════
-Asset Name    : GeneratePrompt Instructions
-Asset Type    : Instructions
-Asset Version : v1.0
-Invoked At    : {timestamp}
-Invocation ID : instruction-generateprompt-{timestamp-hash}
-═══════════════════════════════════════════════════════════════════
-📋 STATUS: Instructions Active | Applied to matching files
-═══════════════════════════════════════════════════════════════════
-<!-- END TRACEABILITY ALERT -->
+<!-- ASSET: GeneratePrompt | TYPE: Instructions | VERSION: v1.0 -->
+
 
 ## Prompt File Authoring Guide (v1.0)
 
-### Asset Metadata
-| Property | Value |
-|----------|-------|
-| **Asset ID** | `instruction/generateprompt` |
-| **Version** | `v1.0` |
-| **Created** | `2026-01-14` |
-| **Last Modified** | `2026-01-14` |
-| **Maintained By** | `CopilotCustomizer` |
-| **Status** | `Active` |
-| **Category** | `Standards & Patterns` |
+## Metadata
+Asset ID: instruction/generateprompt | Created: 2026-01-14 | Status: Active
 
 **Paired Prompt**: [NewPrompt.prompt.md](../prompts/NewPrompt.prompt.md)
 
@@ -87,13 +68,6 @@ If required variable missing (<4 chars), list `Missing Inputs:` and halt with ta
 - Include: `OutputPath`, `GeneratedAt`, `SourceInstruction`, `Type: prompt`
 - Must include ready-to-run example with resolved inputs
 
----
-
-## Traceability & Audit
-
-### Invocation Log
-This section tracks when and how this asset is used.
-
 **Log Entry Format**:
 ```
 [YYYY-MM-DD HH:MM:SS UTC] - Invoked by: {user/system} | Context: {brief description}
@@ -114,4 +88,9 @@ _Manual logging - update this section when invoked_
 | 2026-01-14 | v1.0 | Added traceability system | CopilotCustomizer |
 
 ---
-*Traceability System v1.0 - Asset tracking enabled*
+
+---
+
+## Audit
+Last invoked: [Manual log]
+Change history: v1.0 (2026-01-14) - Added traceability

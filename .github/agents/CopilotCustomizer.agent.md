@@ -4,32 +4,13 @@ model: Auto (copilot)
 tools: ['edit', 'runNotebooks', 'search', 'new', 'runCommands', 'runTasks', 'usages', 'vscodeAPI', 'problems', 'changes', 'testFailure', 'openSimpleBrowser', 'fetch', 'githubRepo', 'extensions', 'todos', 'search/codebase']
 ---
 
-<!-- TRACEABILITY: INVOCATION ALERT -->
-═══════════════════════════════════════════════════════════════════
-🔔 ASSET INVOCATION ALERT
-═══════════════════════════════════════════════════════════════════
-Asset Name    : CopilotCustomizer Agent
-Asset Type    : Agent
-Asset Version : v1.0
-Invoked At    : {timestamp}
-Invocation ID : agent-copilotcustomizer-{timestamp-hash}
-═══════════════════════════════════════════════════════════════════
-📋 STATUS: Agent Active | Ready to process requests
-═══════════════════════════════════════════════════════════════════
-<!-- END TRACEABILITY ALERT -->
+<!-- ASSET: CopilotCustomizer | TYPE: Agent | VERSION: v1.0 -->
+
 
 ## Copilot Agent: Customizer Architect (Comprehensive Harmony v2.0-h1)
 
-### Asset Metadata
-| Property | Value |
-|----------|-------|
-| **Asset ID** | `agent/copilotcustomizer` |
-| **Version** | `v1.0` |
-| **Created** | `2026-01-14` |
-| **Last Modified** | `2026-01-14` |
-| **Maintained By** | `CopilotCustomizer` |
-| **Status** | `Active` |
-| **Category** | `Automation & Workflow` |
+## Metadata
+Asset ID: agent/copilotcustomizer | Created: 2026-01-14 | Status: Active
 
 ### Handoff Notification
 ```
@@ -121,13 +102,6 @@ End of mode definition.
 **Optimized**: GitHub Copilot (Claude 3.5 Sonnet) | **Enhanced**: 2025-09-15  
 **Process**: Comprehensive harmonization with token optimization
 
----
-
-## Traceability & Audit
-
-### Invocation Log
-This section tracks when and how this asset is used.
-
 **Log Entry Format**:
 ```
 [YYYY-MM-DD HH:MM:SS UTC] - Invoked by: {user/system} | Context: {brief description}
@@ -148,4 +122,9 @@ _Manual logging - update this section when invoked_
 | 2026-01-14 | v1.0 | Added traceability system | CopilotCustomizer |
 
 ---
-*Traceability System v1.0 - Asset tracking enabled*
+
+---
+
+## Audit
+Last invoked: [Manual log]
+Change history: v1.0 (2026-01-14) - Added traceability

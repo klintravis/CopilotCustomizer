@@ -3,35 +3,15 @@ name: technical-documentation
 description: Structured technical documentation generation for software changes, implementations, and analyses. Creates clear, comprehensive documentation including change summaries, API docs, and technical reports. Use when documenting code changes, features, or system architecture.
 ---
 
-<!-- TRACEABILITY: INVOCATION ALERT -->
-═══════════════════════════════════════════════════════════════════
-🔔 ASSET INVOCATION ALERT
-═══════════════════════════════════════════════════════════════════
-Asset Name    : technical-documentation Skill
-Asset Type    : Skill
-Asset Version : v1.0
-Invoked At    : {timestamp}
-Invocation ID : skill-technical-documentation-{timestamp-hash}
-═══════════════════════════════════════════════════════════════════
-📋 STATUS: Skill Active | Methodology ready for application
-═══════════════════════════════════════════════════════════════════
-<!-- END TRACEABILITY ALERT -->
+<!-- ASSET: technical-documentation | TYPE: Skill | VERSION: v1.0 -->
+
 
 # Technical Documentation Skill
 
-## Purpose
+## Metadata
+Asset ID: skill/technical-documentation | Created: 2026-01-14 | Status: Active
 
-### Asset Metadata
-| Property | Value |
-|----------|-------|
-| **Asset ID** | `skill/technical-documentation` |
-| **Version** | `v1.0` |
-| **Created** | `2026-01-14` |
-| **Last Modified** | `2026-01-14` |
-| **Maintained By** | `CopilotCustomizer` |
-| **Status** | `Active` |
-| **Category** | `Cross-Platform Skills` |
-Systematic methodology for generating high-quality technical documentation including change summaries, API documentation, architectural decisions, implementation reports, and user guides. Ensures consistent, maintainable documentation.
+## Purpose
 
 ## When to Use This Skill
 - Documenting completed code changes
@@ -570,13 +550,6 @@ Good technical documentation should:
 
 **Cross-Platform**: Documentation methodology works across all platforms and tools.
 
----
-
-## Traceability & Audit
-
-### Invocation Log
-This section tracks when and how this asset is used.
-
 **Log Entry Format**:
 ```
 [YYYY-MM-DD HH:MM:SS UTC] - Invoked by: {user/system} | Context: {brief description}
@@ -597,4 +570,9 @@ _Manual logging - update this section when invoked_
 | 2026-01-14 | v1.0 | Added traceability system | CopilotCustomizer |
 
 ---
-*Traceability System v1.0 - Asset tracking enabled*
+
+---
+
+## Audit
+Last invoked: [Manual log]
+Change history: v1.0 (2026-01-14) - Added traceability

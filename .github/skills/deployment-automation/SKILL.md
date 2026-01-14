@@ -3,35 +3,15 @@ name: deployment-automation
 description: CI/CD pipeline design, deployment strategies, and release automation. Use when implementing GitHub Actions, container deployments, release workflows, and infrastructure automation.
 ---
 
-<!-- TRACEABILITY: INVOCATION ALERT -->
-═══════════════════════════════════════════════════════════════════
-🔔 ASSET INVOCATION ALERT
-═══════════════════════════════════════════════════════════════════
-Asset Name    : deployment-automation Skill
-Asset Type    : Skill
-Asset Version : v1.0
-Invoked At    : {timestamp}
-Invocation ID : skill-deployment-automation-{timestamp-hash}
-═══════════════════════════════════════════════════════════════════
-📋 STATUS: Skill Active | Methodology ready for application
-═══════════════════════════════════════════════════════════════════
-<!-- END TRACEABILITY ALERT -->
+<!-- ASSET: deployment-automation | TYPE: Skill | VERSION: v1.0 -->
+
 
 # Deployment Automation Skill
 
-## Purpose
+## Metadata
+Asset ID: skill/deployment-automation | Created: 2026-01-14 | Status: Active
 
-### Asset Metadata
-| Property | Value |
-|----------|-------|
-| **Asset ID** | `skill/deployment-automation` |
-| **Version** | `v1.0` |
-| **Created** | `2026-01-14` |
-| **Last Modified** | `2026-01-14` |
-| **Maintained By** | `CopilotCustomizer` |
-| **Status** | `Active` |
-| **Category** | `Cross-Platform Skills` |
-Systematic methodology for designing and implementing CI/CD pipelines, deployment strategies, and release automation. Covers GitHub Actions workflows, container orchestration, infrastructure-as-code patterns, and automated release processes.
+## Purpose
 
 ## When to Use This Skill
 - Designing CI/CD pipelines and workflows
@@ -448,13 +428,6 @@ jobs:
 7. **Gated** - Approval gates for production changes
 8. **Measurable** - DORA metrics (deployment frequency, lead time, MTTR, change failure rate)
 
----
-
-## Traceability & Audit
-
-### Invocation Log
-This section tracks when and how this asset is used.
-
 **Log Entry Format**:
 ```
 [YYYY-MM-DD HH:MM:SS UTC] - Invoked by: {user/system} | Context: {brief description}
@@ -475,4 +448,9 @@ _Manual logging - update this section when invoked_
 | 2026-01-14 | v1.0 | Added traceability system | CopilotCustomizer |
 
 ---
-*Traceability System v1.0 - Asset tracking enabled*
+
+---
+
+## Audit
+Last invoked: [Manual log]
+Change history: v1.0 (2026-01-14) - Added traceability

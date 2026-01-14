@@ -3,35 +3,15 @@ name: copilot-asset-design
 description: Design and validate GitHub Copilot customization assets including agents, skills, instructions, and prompts. Provides architecture patterns, quality criteria, and integration strategies. Use when creating or improving Copilot customizations.
 ---
 
-<!-- TRACEABILITY: INVOCATION ALERT -->
-═══════════════════════════════════════════════════════════════════
-🔔 ASSET INVOCATION ALERT
-═══════════════════════════════════════════════════════════════════
-Asset Name    : copilot-asset-design Skill
-Asset Type    : Skill
-Asset Version : v1.0
-Invoked At    : {timestamp}
-Invocation ID : skill-copilot-asset-design-{timestamp-hash}
-═══════════════════════════════════════════════════════════════════
-📋 STATUS: Skill Active | Methodology ready for application
-═══════════════════════════════════════════════════════════════════
-<!-- END TRACEABILITY ALERT -->
+<!-- ASSET: copilot-asset-design | TYPE: Skill | VERSION: v1.0 -->
+
 
 # Copilot Asset Design Skill
 
-## Purpose
+## Metadata
+Asset ID: skill/copilot-asset-design | Created: 2026-01-14 | Status: Active
 
-### Asset Metadata
-| Property | Value |
-|----------|-------|
-| **Asset ID** | `skill/copilot-asset-design` |
-| **Version** | `v1.0` |
-| **Created** | `2026-01-14` |
-| **Last Modified** | `2026-01-14` |
-| **Maintained By** | `CopilotCustomizer` |
-| **Status** | `Active` |
-| **Category** | `Cross-Platform Skills` |
-Comprehensive methodology for designing, structuring, and validating GitHub Copilot customization assets. Covers agents, skills, instructions, prompts, and their integration patterns following VS Code and agentskills.io standards.
+## Purpose
 
 ## When to Use This Skill
 - Designing new Copilot customization assets
@@ -530,13 +510,6 @@ Well-designed Copilot customization provides:
 
 **Cross-Platform**: Design methodology works across all platforms; validation requires VS Code for agent testing.
 
----
-
-## Traceability & Audit
-
-### Invocation Log
-This section tracks when and how this asset is used.
-
 **Log Entry Format**:
 ```
 [YYYY-MM-DD HH:MM:SS UTC] - Invoked by: {user/system} | Context: {brief description}
@@ -557,4 +530,9 @@ _Manual logging - update this section when invoked_
 | 2026-01-14 | v1.0 | Added traceability system | CopilotCustomizer |
 
 ---
-*Traceability System v1.0 - Asset tracking enabled*
+
+---
+
+## Audit
+Last invoked: [Manual log]
+Change history: v1.0 (2026-01-14) - Added traceability

@@ -3,34 +3,15 @@ applyTo: '.github/agents/WorkflowValidator.agent.md'
 description: 'Validation patterns and rules for multi-agent workflow integrity testing, handoff chain analysis, and automation efficiency measurement'
 ---
 
-<!-- TRACEABILITY: INVOCATION ALERT -->
-═══════════════════════════════════════════════════════════════════
-🔔 ASSET INVOCATION ALERT
-═══════════════════════════════════════════════════════════════════
-Asset Name    : WorkflowValidation Instructions
-Asset Type    : Instructions
-Asset Version : v1.0
-Invoked At    : {timestamp}
-Invocation ID : instruction-workflowvalidation-{timestamp-hash}
-═══════════════════════════════════════════════════════════════════
-📋 STATUS: Instructions Active | Applied to matching files
-═══════════════════════════════════════════════════════════════════
-<!-- END TRACEABILITY ALERT -->
+<!-- ASSET: WorkflowValidation | TYPE: Instructions | VERSION: v1.0 -->
+
 
 # WorkflowValidation.instructions.md
 
-## Workflow Validation Instructions (v1.0)
+## Metadata
+Asset ID: instruction/workflowvalidation | Created: 2026-01-14 | Status: Active
 
-### Asset Metadata
-| Property | Value |
-|----------|-------|
-| **Asset ID** | `instruction/workflowvalidation` |
-| **Version** | `v1.0` |
-| **Created** | `2026-01-14` |
-| **Last Modified** | `2026-01-14` |
-| **Maintained By** | `CopilotCustomizer` |
-| **Status** | `Active` |
-| **Category** | `Standards & Patterns` |
+## Workflow Validation Instructions (v1.0)
 
 **Paired Agent**: [WorkflowValidator.agent.md](../agents/WorkflowValidator.agent.md)
 
@@ -496,13 +477,6 @@ IF critical_error_detected AND not_full_scan_requested:
 *Standards compliance: [CopilotFramework.instructions.md](../instructions/CopilotFramework.instructions.md)*  
 *Security patterns: [CopilotSecurity.instructions.md](CopilotSecurity.instructions.md)*
 
----
-
-## Traceability & Audit
-
-### Invocation Log
-This section tracks when and how this asset is used.
-
 **Log Entry Format**:
 ```
 [YYYY-MM-DD HH:MM:SS UTC] - Invoked by: {user/system} | Context: {brief description}
@@ -523,4 +497,9 @@ _Manual logging - update this section when invoked_
 | 2026-01-14 | v1.0 | Added traceability system | CopilotCustomizer |
 
 ---
-*Traceability System v1.0 - Asset tracking enabled*
+
+---
+
+## Audit
+Last invoked: [Manual log]
+Change history: v1.0 (2026-01-14) - Added traceability

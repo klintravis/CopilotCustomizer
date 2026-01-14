@@ -3,21 +3,13 @@ applyTo: '.github/**/*.agent.md'
 description: 'Framework for creating VS Code Copilot custom agent files with roles, tools, handoffs, and workflows'
 ---
 
-<!-- TRACEABILITY: INVOCATION ALERT -->
-═══════════════════════════════════════════════════════════════════
-🔔 ASSET INVOCATION ALERT
-═══════════════════════════════════════════════════════════════════
-Asset Name    : GenerateCopilotAgent Instructions
-Asset Type    : Instructions
-Asset Version : v1.0
-Invoked At    : {timestamp}
-Invocation ID : instruction-generatecopilotagent-{timestamp-hash}
-═══════════════════════════════════════════════════════════════════
-📋 STATUS: Instructions Active | Applied to matching files
-═══════════════════════════════════════════════════════════════════
-<!-- END TRACEABILITY ALERT -->
+<!-- ASSET: GenerateCopilotAgent | TYPE: Instructions | VERSION: v1.0 -->
+
 
 # VS Code Copilot Agent File Guide (v1.1 - VS Code 1.106)
+
+## Metadata
+Asset ID: instruction/generatecopilotagent | Created: 2026-01-14 | Status: Active
 
 **Paired Prompt**: [NewCopilotAgent.prompt.md](../prompts/NewCopilotAgent.prompt.md)
 
@@ -137,17 +129,6 @@ handoffs:
 ---
 
 ## Agent Name: Specialist Role
-
-### Asset Metadata
-| Property | Value |
-|----------|-------|
-| **Asset ID** | `instruction/generatecopilotagent` |
-| **Version** | `v1.0` |
-| **Created** | `2026-01-14` |
-| **Last Modified** | `2026-01-14` |
-| **Maintained By** | `CopilotCustomizer` |
-| **Status** | `Active` |
-| **Category** | `Standards & Patterns` |
 
 ### Handoff Notification
 ```
@@ -292,13 +273,6 @@ Expert in REST API architecture specializing in OpenAPI 3.0+ specifications, end
 ### Refinement Commands
 - refine: [domain] | refine: optimize | refine: validate
 
----
-
-## Traceability & Audit
-
-### Invocation Log
-This section tracks when and how this asset is used.
-
 **Log Entry Format**:
 ```
 [YYYY-MM-DD HH:MM:SS UTC] - Invoked by: {user/system} | Context: {brief description}
@@ -319,4 +293,9 @@ _Manual logging - update this section when invoked_
 | 2026-01-14 | v1.0 | Added traceability system | CopilotCustomizer |
 
 ---
-*Traceability System v1.0 - Asset tracking enabled*
+
+---
+
+## Audit
+Last invoked: [Manual log]
+Change history: v1.0 (2026-01-14) - Added traceability

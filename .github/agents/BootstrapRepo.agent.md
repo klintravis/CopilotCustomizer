@@ -9,32 +9,13 @@ handoffs:
     send: false
 ---
 
-<!-- TRACEABILITY: INVOCATION ALERT -->
-═══════════════════════════════════════════════════════════════════
-🔔 ASSET INVOCATION ALERT
-═══════════════════════════════════════════════════════════════════
-Asset Name    : BootstrapRepo Agent
-Asset Type    : Agent
-Asset Version : v1.0
-Invoked At    : {timestamp}
-Invocation ID : agent-bootstraprepo-{timestamp-hash}
-═══════════════════════════════════════════════════════════════════
-📋 STATUS: Agent Active | Ready to process requests
-═══════════════════════════════════════════════════════════════════
-<!-- END TRACEABILITY ALERT -->
+<!-- ASSET: BootstrapRepo | TYPE: Agent | VERSION: v1.0 -->
+
 
 ## BootstrapRepo Agent (v1.0)
 
-### Asset Metadata
-| Property | Value |
-|----------|-------|
-| **Asset ID** | `agent/bootstraprepo` |
-| **Version** | `v1.0` |
-| **Created** | `2026-01-14` |
-| **Last Modified** | `2026-01-14` |
-| **Maintained By** | `CopilotCustomizer` |
-| **Status** | `Active` |
-| **Category** | `Automation & Workflow` |
+## Metadata
+Asset ID: agent/bootstraprepo | Created: 2026-01-14 | Status: Active
 
 ### Handoff Notification
 ```
@@ -139,8 +120,8 @@ User: "Bootstrap Copilot assets for /Users/dev/my-api-project"
 
 Agent:
 1. Validates: Not CopilotCustomizer ✓
-2. Scans: Node.js/TypeScript API project detected
-3. Hands off to RepoAnalyzer...
+2. Scans: Node.js/TypeScript API project detected (repository-analysis skill)
+3. Hands off to AssetPlanner...
 
 [After analysis chain]
 
@@ -175,8 +156,7 @@ AssetGenerator (skills created first, then agents/instructions/prompts)
 VerificationAgent (validation complete)
   ↓
 HarmonizationAgent (binding complete, cross-reference skills)
-  ↓
-DocumentationGenerator (technical-documentation skill: report ready)
+  ↓ [technical-documentation skill: generate report]
   ↓
 COMPLETE
 
@@ -214,13 +194,6 @@ if (assetCreationFails) {
 
 All other phases run autonomously with automatic handoffs.
 
----
-
-## Traceability & Audit
-
-### Invocation Log
-This section tracks when and how this asset is used.
-
 **Log Entry Format**:
 ```
 [YYYY-MM-DD HH:MM:SS UTC] - Invoked by: {user/system} | Context: {brief description}
@@ -241,4 +214,9 @@ _Manual logging - update this section when invoked_
 | 2026-01-14 | v1.0 | Added traceability system | CopilotCustomizer |
 
 ---
-*Traceability System v1.0 - Asset tracking enabled*
+
+---
+
+## Audit
+Last invoked: [Manual log]
+Change history: v1.0 (2026-01-14) - Added traceability

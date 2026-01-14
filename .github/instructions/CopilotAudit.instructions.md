@@ -3,41 +3,15 @@ applyTo: '.github/**/*'
 description: 'Audit dimensions, governance patterns, and evaluation frameworks'
 ---
 
-<!-- TRACEABILITY: INVOCATION ALERT -->
-═══════════════════════════════════════════════════════════════════
-🔔 ASSET INVOCATION ALERT
-═══════════════════════════════════════════════════════════════════
-Asset Name    : CopilotAudit Instructions
-Asset Type    : Instructions
-Asset Version : v1.0
-Invoked At    : {timestamp}
-Invocation ID : instruction-copilotaudit-{timestamp-hash}
-═══════════════════════════════════════════════════════════════════
-📋 STATUS: Instructions Active | Applied to matching files
-═══════════════════════════════════════════════════════════════════
-<!-- END TRACEABILITY ALERT -->
+<!-- ASSET: CopilotAudit | TYPE: Instructions | VERSION: v1.0 -->
+
 
 # CopilotAudit.instructions.md
 
+## Metadata
+Asset ID: instruction/copilotaudit | Created: 2026-01-14 | Status: Active
+
 ## Audit Dimensions (v1.0)
-
-### Asset Metadata
-| Property | Value |
-|----------|-------|
-| **Asset ID** | `instruction/copilotaudit` |
-| **Version** | `v1.0` |
-| **Created** | `2026-01-14` |
-| **Last Modified** | `2026-01-14` |
-| **Maintained By** | `CopilotCustomizer` |
-| **Status** | `Active` |
-| **Category** | `Standards & Patterns` |
-
----
-
-## Traceability & Audit
-
-### Invocation Log
-This section tracks when and how this asset is used.
 
 **Log Entry Format**:
 ```
@@ -59,4 +33,9 @@ _Manual logging - update this section when invoked_
 | 2026-01-14 | v1.0 | Added traceability system | CopilotCustomizer |
 
 ---
-*Traceability System v1.0 - Asset tracking enabled*
+
+---
+
+## Audit
+Last invoked: [Manual log]
+Change history: v1.0 (2026-01-14) - Added traceability

@@ -22,6 +22,9 @@ Bootstrap Copilot assets for: /path/to/repository
 ### Variables
 ---
 
+<!-- ASSET: BootstrapRepo | TYPE: Prompt | VERSION: v1.0 -->
+
+
 <!-- TRACEABILITY: INVOCATION ALERT -->
 ═══════════════════════════════════════════════════════════════════
 🔔 ASSET INVOCATION ALERT
@@ -42,16 +45,8 @@ Invocation ID : prompt-bootstraprepo-{timestamp-hash}
 
 ## Workflow Overview
 
-### Asset Metadata
-| Property | Value |
-|----------|-------|
-| **Asset ID** | `prompt/bootstraprepo` |
-| **Version** | `v1.0` |
-| **Created** | `2026-01-14` |
-| **Last Modified** | `2026-01-14` |
-| **Maintained By** | `CopilotCustomizer` |
-| **Status** | `Active` |
-| **Category** | `Templates & Generation` |
+## Metadata
+Asset ID: prompt/bootstraprepo | Created: 2026-01-14 | Status: Active
 
 ```
 User Input (REPOSITORY_PATH)
@@ -72,7 +67,7 @@ HarmonizationAgent (bind with metadata)
   ↓
 WorkflowIntegrityCheck (STRICT=true) → VerificationAgent (final check)
   ↓
-DocumentationGenerator (report - uses technical-documentation skill)
+technical-documentation skill (generate bootstrap report)
   ↓
 COMPLETE
 ```
@@ -211,7 +206,7 @@ Matrix: /output/workflow-integrity-matrix.md
 ✓ No orphaned assets
 ✓ Complete ecosystem
 
-[DocumentationGenerator] Creating report...
+[technical-documentation skill] Creating report...
 ✓ Bootstrap summary generated
 ✓ Asset inventory documented
 ✓ Quick start guide created
@@ -391,13 +386,6 @@ Action: Aborting before documentation; fix generation specs and retry
 - 7 autonomous phases
 - Zero manual intervention after confirmation
 
----
-
-## Traceability & Audit
-
-### Invocation Log
-This section tracks when and how this asset is used.
-
 **Log Entry Format**:
 ```
 [YYYY-MM-DD HH:MM:SS UTC] - Invoked by: {user/system} | Context: {brief description}
@@ -418,4 +406,9 @@ _Manual logging - update this section when invoked_
 | 2026-01-14 | v1.0 | Added traceability system | CopilotCustomizer |
 
 ---
-*Traceability System v1.0 - Asset tracking enabled*
+
+---
+
+## Audit
+Last invoked: [Manual log]
+Change history: v1.0 (2026-01-14) - Added traceability

@@ -3,35 +3,15 @@ name: implementation-planning
 description: Strategic implementation planning methodology for software changes. Creates detailed, step-by-step execution plans with risk mitigation and validation strategies. Use when planning features, refactoring, or complex code changes.
 ---
 
-<!-- TRACEABILITY: INVOCATION ALERT -->
-═══════════════════════════════════════════════════════════════════
-🔔 ASSET INVOCATION ALERT
-═══════════════════════════════════════════════════════════════════
-Asset Name    : implementation-planning Skill
-Asset Type    : Skill
-Asset Version : v1.0
-Invoked At    : {timestamp}
-Invocation ID : skill-implementation-planning-{timestamp-hash}
-═══════════════════════════════════════════════════════════════════
-📋 STATUS: Skill Active | Methodology ready for application
-═══════════════════════════════════════════════════════════════════
-<!-- END TRACEABILITY ALERT -->
+<!-- ASSET: implementation-planning | TYPE: Skill | VERSION: v1.0 -->
+
 
 # Implementation Planning Skill
 
-## Purpose
+## Metadata
+Asset ID: skill/implementation-planning | Created: 2026-01-14 | Status: Active
 
-### Asset Metadata
-| Property | Value |
-|----------|-------|
-| **Asset ID** | `skill/implementation-planning` |
-| **Version** | `v1.0` |
-| **Created** | `2026-01-14` |
-| **Last Modified** | `2026-01-14` |
-| **Maintained By** | `CopilotCustomizer` |
-| **Status** | `Active` |
-| **Category** | `Cross-Platform Skills` |
-Transforms requirements and repository analysis into actionable, step-by-step implementation plans with comprehensive risk mitigation, validation strategies, and quality gates. Bridges analysis and execution phases.
+## Purpose
 
 ## When to Use This Skill
 - Planning new feature implementation
@@ -588,13 +568,6 @@ A good implementation plan provides:
 
 **Cross-Platform**: Works in VS Code, GitHub Copilot CLI, Claude, Cursor, and other Skills-compatible agents.
 
----
-
-## Traceability & Audit
-
-### Invocation Log
-This section tracks when and how this asset is used.
-
 **Log Entry Format**:
 ```
 [YYYY-MM-DD HH:MM:SS UTC] - Invoked by: {user/system} | Context: {brief description}
@@ -615,4 +588,9 @@ _Manual logging - update this section when invoked_
 | 2026-01-14 | v1.0 | Added traceability system | CopilotCustomizer |
 
 ---
-*Traceability System v1.0 - Asset tracking enabled*
+
+---
+
+## Audit
+Last invoked: [Manual log]
+Change history: v1.0 (2026-01-14) - Added traceability

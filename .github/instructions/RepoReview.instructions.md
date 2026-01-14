@@ -3,34 +3,15 @@ applyTo: '.github/prompts/RepoReview.prompt.md'
 description: 'Comprehensive framework for conducting repository analysis of Copilot customization assets, providing structured assessment, prioritization, and ready-to-run improvement prompts for agents, instructions, prompts, and workspace files'
 ---
 
-<!-- TRACEABILITY: INVOCATION ALERT -->
-═══════════════════════════════════════════════════════════════════
-🔔 ASSET INVOCATION ALERT
-═══════════════════════════════════════════════════════════════════
-Asset Name    : RepoReview Instructions
-Asset Type    : Instructions
-Asset Version : v1.0
-Invoked At    : {timestamp}
-Invocation ID : instruction-reporeview-{timestamp-hash}
-═══════════════════════════════════════════════════════════════════
-📋 STATUS: Instructions Active | Applied to matching files
-═══════════════════════════════════════════════════════════════════
-<!-- END TRACEABILITY ALERT -->
+<!-- ASSET: RepoReview | TYPE: Instructions | VERSION: v1.0 -->
+
 
 # RepoReview.instructions.md
 
-## Repo Review Instructions (v1.3)
+## Metadata
+Asset ID: instruction/reporeview | Created: 2026-01-14 | Status: Active
 
-### Asset Metadata
-| Property | Value |
-|----------|-------|
-| **Asset ID** | `instruction/reporeview` |
-| **Version** | `v1.0` |
-| **Created** | `2026-01-14` |
-| **Last Modified** | `2026-01-14` |
-| **Maintained By** | `CopilotCustomizer` |
-| **Status** | `Active` |
-| **Category** | `Standards & Patterns` |
+## Repo Review Instructions (v1.3)
 
 **Paired Prompt**: [RepoReview.prompt.md](../prompts/RepoReview.prompt.md)
 
@@ -301,13 +282,6 @@ handoffs:
 *Workflow Framework: [GenerateWorkflow.instructions.md](GenerateWorkflow.instructions.md)*  
 *VS Code: [Custom Instructions](https://code.visualstudio.com/docs/copilot/customization/custom-instructions)*
 
----
-
-## Traceability & Audit
-
-### Invocation Log
-This section tracks when and how this asset is used.
-
 **Log Entry Format**:
 ```
 [YYYY-MM-DD HH:MM:SS UTC] - Invoked by: {user/system} | Context: {brief description}
@@ -328,4 +302,9 @@ _Manual logging - update this section when invoked_
 | 2026-01-14 | v1.0 | Added traceability system | CopilotCustomizer |
 
 ---
-*Traceability System v1.0 - Asset tracking enabled*
+
+---
+
+## Audit
+Last invoked: [Manual log]
+Change history: v1.0 (2026-01-14) - Added traceability

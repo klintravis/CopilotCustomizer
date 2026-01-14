@@ -2,32 +2,13 @@
 agent: CopilotCustomizer
 ---
 
-<!-- TRACEABILITY: INVOCATION ALERT -->
-═══════════════════════════════════════════════════════════════════
-🔔 ASSET INVOCATION ALERT
-═══════════════════════════════════════════════════════════════════
-Asset Name    : NewCopilotAgent Prompt
-Asset Type    : Prompt
-Asset Version : v1.0
-Invoked At    : {timestamp}
-Invocation ID : prompt-newcopilotagent-{timestamp-hash}
-═══════════════════════════════════════════════════════════════════
-📋 STATUS: Prompt Ready | Awaiting variable substitution
-═══════════════════════════════════════════════════════════════════
-<!-- END TRACEABILITY ALERT -->
+<!-- ASSET: NewCopilotAgent | TYPE: Prompt | VERSION: v1.0 -->
+
 
 # VS Code Copilot Agent Generator (v1.0)
 
-### Asset Metadata
-| Property | Value |
-|----------|-------|
-| **Asset ID** | `prompt/newcopilotagent` |
-| **Version** | `v1.0` |
-| **Created** | `2026-01-14` |
-| **Last Modified** | `2026-01-14` |
-| **Maintained By** | `CopilotCustomizer` |
-| **Status** | `Active` |
-| **Category** | `Templates & Generation` |
+## Metadata
+Asset ID: prompt/newcopilotagent | Created: 2026-01-14 | Status: Active
 
 **Paired Instructions**: [GenerateCopilotAgent.instructions.md](../instructions/GenerateCopilotAgent.instructions.md)
 
@@ -92,3 +73,9 @@ Complete `.agent.md` with:
 ---
 
 *VS Code Copilot Customization Framework v1.0*
+
+---
+
+## Audit
+Last invoked: [Manual log]
+Change history: v1.0 (2026-01-14) - Added traceability

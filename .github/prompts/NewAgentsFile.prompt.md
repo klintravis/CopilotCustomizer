@@ -2,21 +2,13 @@
 agent: CopilotCustomizer
 ---
 
-<!-- TRACEABILITY: INVOCATION ALERT -->
-═══════════════════════════════════════════════════════════════════
-🔔 ASSET INVOCATION ALERT
-═══════════════════════════════════════════════════════════════════
-Asset Name    : NewAgentsFile Prompt
-Asset Type    : Prompt
-Asset Version : v1.0
-Invoked At    : {timestamp}
-Invocation ID : prompt-newagentsfile-{timestamp-hash}
-═══════════════════════════════════════════════════════════════════
-📋 STATUS: Prompt Ready | Awaiting variable substitution
-═══════════════════════════════════════════════════════════════════
-<!-- END TRACEABILITY ALERT -->
+<!-- ASSET: NewAgentsFile | TYPE: Prompt | VERSION: v1.0 -->
+
 
 # AGENTS.md Workspace File Generator (v1.0)
+
+## Metadata
+Asset ID: prompt/newagentsfile | Created: 2026-01-14 | Status: Active
 
 **Paired Instructions**: [GenerateAgentsFile.instructions.md](../instructions/GenerateAgentsFile.instructions.md)
 
@@ -24,21 +16,6 @@ Invocation ID : prompt-newagentsfile-{timestamp-hash}
 Generate concise, actionable `AGENTS.md` workspace files.
 
 ## Variable Block
-
-### Asset Metadata
-| Property | Value |
-|----------|-------|
-| **Asset ID** | `prompt/newagentsfile` |
-| **Version** | `v1.0` |
-| **Created** | `2026-01-14` |
-| **Last Modified** | `2026-01-14` |
-| **Maintained By** | `CopilotCustomizer` |
-| **Status** | `Active` |
-| **Category** | `Templates & Generation` |
----
-**Project Name** [REQUIRED]: "{PROJECT_NAME}"
-**Primary Tasks** [REQUIRED]: "{PRIMARY_TASKS}"
----
 
 ## Validation
 - Required: `{PROJECT_NAME}` and `{PRIMARY_TASKS}`
@@ -57,13 +34,6 @@ Generate complete `AGENTS.md` with:
 | `refine: expand` | Add examples |
 
 **Generated using**: [GenerateAgentsFile.instructions.md](../instructions/GenerateAgentsFile.instructions.md)
-
----
-
-## Traceability & Audit
-
-### Invocation Log
-This section tracks when and how this asset is used.
 
 **Log Entry Format**:
 ```
@@ -85,4 +55,9 @@ _Manual logging - update this section when invoked_
 | 2026-01-14 | v1.0 | Added traceability system | CopilotCustomizer |
 
 ---
-*Traceability System v1.0 - Asset tracking enabled*
+
+---
+
+## Audit
+Last invoked: [Manual log]
+Change history: v1.0 (2026-01-14) - Added traceability

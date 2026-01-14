@@ -2,32 +2,13 @@
 agent: CopilotCustomizer
 ---
 
-<!-- TRACEABILITY: INVOCATION ALERT -->
-═══════════════════════════════════════════════════════════════════
-🔔 ASSET INVOCATION ALERT
-═══════════════════════════════════════════════════════════════════
-Asset Name    : RepoReview Prompt
-Asset Type    : Prompt
-Asset Version : v1.0
-Invoked At    : {timestamp}
-Invocation ID : prompt-reporeview-{timestamp-hash}
-═══════════════════════════════════════════════════════════════════
-📋 STATUS: Prompt Ready | Awaiting variable substitution
-═══════════════════════════════════════════════════════════════════
-<!-- END TRACEABILITY ALERT -->
+<!-- ASSET: RepoReview | TYPE: Prompt | VERSION: v1.0 -->
+
 
 # RepoReview.prompt.md
 
-### Asset Metadata
-| Property | Value |
-|----------|-------|
-| **Asset ID** | `prompt/reporeview` |
-| **Version** | `v1.0` |
-| **Created** | `2026-01-14` |
-| **Last Modified** | `2026-01-14` |
-| **Maintained By** | `CopilotCustomizer` |
-| **Status** | `Active` |
-| **Category** | `Templates & Generation` |
+## Metadata
+Asset ID: prompt/reporeview | Created: 2026-01-14 | Status: Active
 
 **Paired Instructions**: [RepoReview.instructions.md](../instructions/RepoReview.instructions.md)
 
@@ -82,3 +63,9 @@ Repository analysis and scaffolding prompt (v1.1-h1) for comprehensive Copilot c
 **Cross-References**: Enhanced with bidirectional binding | **Schema**: VS Code v1.0 compliant  
 
 *Generated and formatted following VS Code GitHub Copilot official documentation standards*
+
+---
+
+## Audit
+Last invoked: [Manual log]
+Change history: v1.0 (2026-01-14) - Added traceability

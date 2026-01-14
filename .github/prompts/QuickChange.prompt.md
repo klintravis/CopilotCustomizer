@@ -2,32 +2,13 @@
 agent: CopilotCustomizer
 ---
 
-<!-- TRACEABILITY: INVOCATION ALERT -->
-═══════════════════════════════════════════════════════════════════
-🔔 ASSET INVOCATION ALERT
-═══════════════════════════════════════════════════════════════════
-Asset Name    : QuickChange Prompt
-Asset Type    : Prompt
-Asset Version : v1.0
-Invoked At    : {timestamp}
-Invocation ID : prompt-quickchange-{timestamp-hash}
-═══════════════════════════════════════════════════════════════════
-📋 STATUS: Prompt Ready | Awaiting variable substitution
-═══════════════════════════════════════════════════════════════════
-<!-- END TRACEABILITY ALERT -->
+<!-- ASSET: QuickChange | TYPE: Prompt | VERSION: v1.0 -->
+
 
 ## QuickChange (v1.0)
 
-### Asset Metadata
-| Property | Value |
-|----------|-------|
-| **Asset ID** | `prompt/quickchange` |
-| **Version** | `v1.0` |
-| **Created** | `2026-01-14` |
-| **Last Modified** | `2026-01-14` |
-| **Maintained By** | `CopilotCustomizer` |
-| **Status** | `Active` |
-| **Category** | `Templates & Generation` |
+## Metadata
+Asset ID: prompt/quickchange | Created: 2026-01-14 | Status: Active
 
 ### Task Intent
 Perform a small, targeted change with a fast approval gate and automated verification and documentation, minimizing touched files.
@@ -73,13 +54,6 @@ QuickChange → RepoAnalyzer → ImplementationPlanner → [USER GATE] → Chang
 **User Interactions**: 2 (submit + approve plan)  
 **Framework**: Reuses CopilotCustomizer instructions and agents
 
----
-
-## Traceability & Audit
-
-### Invocation Log
-This section tracks when and how this asset is used.
-
 **Log Entry Format**:
 ```
 [YYYY-MM-DD HH:MM:SS UTC] - Invoked by: {user/system} | Context: {brief description}
@@ -100,4 +74,9 @@ _Manual logging - update this section when invoked_
 | 2026-01-14 | v1.0 | Added traceability system | CopilotCustomizer |
 
 ---
-*Traceability System v1.0 - Asset tracking enabled*
+
+---
+
+## Audit
+Last invoked: [Manual log]
+Change history: v1.0 (2026-01-14) - Added traceability
