@@ -3,9 +3,11 @@
 Standardize, format, and validate Copilot customization assets in a single automated pass.
 
 ## Overview
-Runs formatting per repository standards and verifies schema compliance and cross-references. Supports report-only or auto-fix modes.
+
+Runs formatting per repository standards and verifies schema compliance and cross-references. Supports report-only or auto-fix modes. Uses skills for analysis and VerificationAgent for validation.
 
 ## Variables
+
 ```
 TARGET_PATH: "."             # Root to scan
 SEVERITY: "fix"              # warn|fix
@@ -13,11 +15,13 @@ REPORT_ONLY: "false"         # true|false
 ```
 
 ## Handoff Chain
+
 ```
-FormatAndVerifyAssets → RepoAnalyzer → ChangeExecutor (FormatAssets) → VerificationAgent → DocumentationGenerator → Complete
+FormatAndVerifyAssets → [repository-analysis skill] → ChangeExecutor → VerificationAgent → Complete
 ```
 
 ### Workflow Chain
+
 ```
 ┌──────────────────────────────────────┐
 │ User Input                           │
@@ -25,7 +29,8 @@ FormatAndVerifyAssets → RepoAnalyzer → ChangeExecutor (FormatAssets) → Ver
 └───────────┬──────────────────────────┘
             ↓
 ┌──────────────────────────────────────┐
-│ RepoAnalyzer                         │
+│ Analysis                             │
+│ (uses repository-analysis skill)     │
 └───────────┬──────────────────────────┘
             ↓
 ┌──────────────────────────────────────┐
@@ -37,32 +42,31 @@ FormatAndVerifyAssets → RepoAnalyzer → ChangeExecutor (FormatAssets) → Ver
 └───────────┬──────────────────────────┘
             ↓
 ┌──────────────────────────────────────┐
-│ DocumentationGenerator               │
-└───────────┬──────────────────────────┘
-            ↓
-┌──────────────────────────────────────┐
 │ Workflow Complete                    │
 └──────────────────────────────────────┘
 ```
 
 ## Workflow Phases
-1) Analysis — inventory assets under TARGET_PATH
-2) Planning — propose normalization/formatting actions
-3) Implementation — apply fixes unless REPORT_ONLY=true
-4) Verification — schema + cross-reference checks
-5) Documentation — summary of changes and findings
+
+1. **Analysis** — inventory assets under TARGET_PATH using repository-analysis skill
+2. **Planning** — propose normalization/formatting actions
+3. **Implementation** — apply fixes unless REPORT_ONLY=true
+4. **Verification** — schema + cross-reference checks via VerificationAgent
+5. **Summary** — summary of changes and findings
 
 ## Acceptance Criteria
+
 - Assets formatted per standards
 - Verification report has 0 blocking issues
 - Summary report generated
 
 ## How to Run
+
 1. Use the `/FormatAssets` slash command with inline variables
 2. Set variables (TARGET_PATH, SEVERITY, REPORT_ONLY)
 3. Submit and review the generated report
 
 ## References
-- Formatting: `../../.github/instructions/FormatAssets.instructions.md`
-- Framework: `../../.github/instructions/CopilotFramework.instructions.md`
-- Audit: `../../.github/instructions/CopilotAudit.instructions.md`
+
+- Formatting: `.github/instructions/FormatAssets.instructions.md`
+- Skills: `.github/skills/repository-analysis/SKILL.md`

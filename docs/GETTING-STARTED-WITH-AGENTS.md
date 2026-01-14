@@ -314,4 +314,4 @@ A: No, requires internet connection.
 
 ---
 
-*Quick-start guide for 50-person developer presentation | November 2025*
+*Quick-start guide for developer presentations | January 2026*

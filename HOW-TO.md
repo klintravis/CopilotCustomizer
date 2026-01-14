@@ -122,7 +122,7 @@ Question 3: Is this reusable across many files/projects?
   → NO: Create a Prompt
 ```
 
-### The 5 Available Skills
+### The 3 Available Skills
 
 **1. repository-analysis** 🔍
 - **Purpose**: Deep repository analysis methodology
@@ -135,20 +135,7 @@ Question 3: Is this reusable across many files/projects?
   What's the tech stack, architecture pattern, and dependencies?
   ```
 
-**2. implementation-planning** 📋
-- **Purpose**: Strategic implementation planning methodology
-- **Teaches**: How to plan complex changes with requirements clarification, strategy design, risk mitigation, testing strategy
-- **Use When**: Planning features, refactoring, complex code changes, establishing validation approaches
-- **Platforms**: VS Code, CLI, Claude, Cursor
-- **Example**:
-  ```
-  Use implementation-planning skill to plan:
-  1. Add API authentication (JWT)
-  2. Create database migrations
-  3. Generate test suite
-  ```
-
-**3. copilot-asset-design** 🎨
+**2. copilot-asset-design** 🎨
 - **Purpose**: Design and validate GitHub Copilot customization assets
 - **Teaches**: Decision frameworks for Skill vs Agent vs Instructions vs Prompts, architecture patterns, quality criteria, integration strategies
 - **Use When**: Creating new customizations, validating asset structure, planning architecture for tools
@@ -159,7 +146,7 @@ Question 3: Is this reusable across many files/projects?
   Should it be a Skill, Agent, or both? Use copilot-asset-design skill.
   ```
 
-**4. technical-documentation** 📝
+**3. technical-documentation** 📝
 - **Purpose**: Structured technical documentation generation
 - **Teaches**: How to write change summaries, API documentation, architectural decisions, implementation reports, user guides with consistent format
 - **Use When**: Documenting code changes, features, API endpoints, architecture decisions, deployment procedures
@@ -170,19 +157,6 @@ Question 3: Is this reusable across many files/projects?
   - POST /users (create)
   - GET /users/:id (retrieve)
   - PUT /users/:id (update)
-  ```
-
-**5. deployment-automation** 🚀
-- **Purpose**: CI/CD pipeline design and deployment strategies
-- **Teaches**: GitHub Actions workflows, deployment strategies (blue-green, canary, rolling), environment configuration, testing, monitoring, rollback procedures
-- **Use When**: Setting up CI/CD pipelines, designing deployment strategies, planning release workflows, implementing infrastructure automation
-- **Platforms**: VS Code, CLI, Claude, Cursor
-- **Example**:
-  ```
-  Using deployment-automation skill, design a CI/CD pipeline for:
-  - Build and test on every push
-  - Deploy to staging automatically
-  - Manual approval for production
   ```
 
 ### How to Use Skills
@@ -198,7 +172,7 @@ Use the repository-analysis skill to analyze my project at /path/to/project
 Or ask Copilot to apply a skill:
 
 ```
-Help me plan this feature using the implementation-planning skill
+Help me design assets for this API using the copilot-asset-design skill
 ```
 
 #### In GitHub Copilot CLI
@@ -208,9 +182,9 @@ Help me plan this feature using the implementation-planning skill
 copilot --skill repository-analysis \
   --input "Analyze /Users/dev/my-project for tech stack and dependencies"
 
-# Or use skill for planning
-copilot --skill implementation-planning \
-  --input "Plan implementation of user authentication feature"
+# Or use skill for documentation
+copilot --skill technical-documentation \
+  --input "Document the authentication module changes"
 ```
 
 #### In Claude Desktop
@@ -227,8 +201,8 @@ understand the codebase structure and tech stack.
 Cursor supports skills through its AI chat:
 
 ```
-@codebase Use the implementation-planning skill to plan refactoring 
-of the authentication module.
+@codebase Use the repository-analysis skill to analyze
+the authentication module structure.
 ```
 
 ### Skill Examples in Action
@@ -267,24 +241,22 @@ Claude (using skill):
 - Recommendations: Consider microservices extraction
 ```
 
-**Example 2: Implementation Planning for Multi-Phase Project**
+**Example 2: Technical Documentation Across Platforms**
 
 **In VS Code**:
 ```
-User: "Plan the implementation of payment processing (Stripe integration)"
-AI (using implementation-planning):
-1. Requirements clarification
-2. Strategy design (incremental approach recommended)
-3. Change specification (4 phases)
-4. Testing strategy (unit + integration + manual)
-5. Risk mitigation (PCI compliance, refund handling)
-6. Validation planning
-7. Team handoff (communication plan)
+User: "Document the API changes for the user module"
+AI (using technical-documentation):
+1. Analyzes endpoint changes
+2. Creates structured API documentation
+3. Generates change summary
+4. Produces migration notes
+5. Adds code examples
 
-Result: Complete 6-week roadmap with milestones
+Result: Complete API documentation with examples
 ```
 
-**Across platforms**: Get same structured plan in VS Code, CLI, Claude, or Cursor.
+**Across platforms**: Get same structured documentation in VS Code, CLI, Claude, or Cursor.
 
 **Example 3: Asset Design Decision**
 
@@ -312,10 +284,9 @@ Available in VS Code, CLI, Claude, and all platforms.
 ### Skill Examples Files
 
 Each skill includes real-world examples:
-- **repository-analysis**: [Express.js API analysis example](./github/skills/repository-analysis/examples/example-express-api.md)
-- **implementation-planning**: [API customization planning example](./github/skills/implementation-planning/examples/example-api-customization.md)
-- **copilot-asset-design**: [APISpecialist design example](./github/skills/copilot-asset-design/examples/example-api-specialist-design.md)
-- **technical-documentation**: [Change summary documentation example](./github/skills/technical-documentation/examples/example-api-change-summary.md)
+- **repository-analysis**: [Express.js API analysis example](.github/skills/repository-analysis/examples/example-express-api.md)
+- **copilot-asset-design**: [APISpecialist design example](.github/skills/copilot-asset-design/examples/example-api-specialist-design.md)
+- **technical-documentation**: [Change summary documentation example](.github/skills/technical-documentation/examples/example-api-change-summary.md)
 
 ---
 
@@ -1277,5 +1248,5 @@ output/
 
 ---
 
-*Enterprise-ready VS Code GitHub Copilot customization framework*  
-**Version**: 1.0 | **Updated**: November 2025
+*Enterprise-ready VS Code GitHub Copilot customization framework*
+**Version**: 2.0 | **Updated**: January 2026
