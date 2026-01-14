@@ -8,10 +8,10 @@
 
 | Asset Type | Count | Location | Required YAML |
 |------------|-------|----------|---------------|
-| **Skills** | 5 | `.github/skills/*/SKILL.md` | `name`, `description` |
-| **Agents** | 7 | `.github/agents/*.agent.md` | `description` |
-| **Instructions** | 14 | `.github/instructions/*.instructions.md` | `applyTo` |
-| **Prompts** | 16 | `.github/prompts/*.prompt.md` | - |
+| **Skills** | 3 | `.github/skills/*/SKILL.md` | `name`, `description` |
+| **Agents** | 6 | `.github/agents/*.agent.md` | `description` |
+| **Instructions** | 9 | `.github/instructions/*.instructions.md` | `applyTo` |
+| **Prompts** | 14 | `.github/prompts/*.prompt.md` | - |
 | **Templates** | 7 | `.github/templates/*.template.md` | - |
 
 ---
@@ -20,13 +20,11 @@
 
 Cross-platform capabilities using [agentskills.io](https://agentskills.io) standard.
 
-| Skill | Purpose | Example |
-|-------|---------|---------|
-| `repository-analysis` | Codebase structure & tech stack detection | [Express API](skills/repository-analysis/examples/example-express-api.md) |
-| `implementation-planning` | Strategic planning & risk mitigation | [API Customization](skills/implementation-planning/examples/example-api-customization.md) |
-| `copilot-asset-design` | Asset architecture & validation | [API Specialist](skills/copilot-asset-design/examples/example-api-specialist-design.md) |
-| `technical-documentation` | Documentation generation | [Change Summary](skills/technical-documentation/examples/example-api-change-summary.md) |
-| `deployment-automation` | CI/CD & deployment strategies | [GitHub Actions](skills/deployment-automation/examples/example-github-actions.md) |
+| Skill | Purpose |
+|-------|---------|
+| `repository-analysis` | Codebase structure & tech stack detection |
+| `copilot-asset-design` | Asset architecture & validation |
+| `technical-documentation` | Documentation generation |
 
 ### SKILL.md Format
 
@@ -51,9 +49,8 @@ VS Code workflow orchestration specialists.
 | `BootstrapRepo.agent.md` | Repository bootstrap entry point |
 | `AssetPlanner.agent.md` | Asset recommendation and specification |
 | `AssetGenerator.agent.md` | Multi-asset creation engine |
-| `HarmonizationAgent.agent.md` | Cross-reference binding |
 | `ChangeExecutor.agent.md` | Precise file operations |
-| `VerificationAgent.agent.md` | Schema validation |
+| `VerificationAgent.agent.md` | Schema validation & harmonization |
 | `CopilotCustomizer.agent.md` | Main interactive mode |
 
 ### Agent File Format
@@ -98,14 +95,9 @@ AI guidance rules for coding standards and generation patterns.
 
 | File | Purpose |
 |------|---------|
-| `CopilotFramework.instructions.md` | Universal framework patterns |
-| `CopilotAudit.instructions.md` | Quality assurance |
-| `CopilotSecurity.instructions.md` | Security patterns |
 | `FormatAssets.instructions.md` | Asset formatting |
-| `HarmonizeAssets.instructions.md` | Cross-reference binding |
 | `RepoReview.instructions.md` | Repository analysis |
 | `WorkflowValidation.instructions.md` | Workflow integrity |
-| `AssetOptimization.instructions.md` | Token efficiency |
 
 ### Instruction File Format
 
@@ -152,9 +144,8 @@ Slash commands for user interaction.
 
 | File | Command | Purpose |
 |------|---------|---------|
-| `AssetOptimization.prompt.md` | `/AssetOptimization` | Optimize assets |
+| `MaintainAssets.prompt.md` | `/MaintainAssets` | Unified maintenance (format, harmonize, optimize) |
 | `FormatAssets.prompt.md` | `/FormatAssets` | Format assets |
-| `HarmonizeAssets.prompt.md` | `/HarmonizeAssets` | Harmonize cross-references |
 | `QuickChange.prompt.md` | `/QuickChange` | Fast minimal changes |
 | `SecurityToolingAudit.prompt.md` | `/SecurityToolingAudit` | Security audit |
 | `WorkflowIntegrityCheck.prompt.md` | `/WorkflowIntegrityCheck` | Validate workflows |
@@ -198,9 +189,7 @@ Instructions ↔ Prompts (paired execution)
 | `GeneratePrompt` | `NewPrompt` | Prompt creation |
 | `GenerateWorkflow` | `NewWorkflow` | Workflow creation |
 | `GenerateAgentsFile` | `NewAgentsFile` | AGENTS.md creation |
-| `HarmonizeAssets` | `HarmonizeAssets` | Asset integration |
 | `FormatAssets` | `FormatAssets` | Asset formatting |
-| `AssetOptimization` | `AssetOptimization` | Asset optimization |
 | `RepoReview` | `RepoReview` | Repository analysis |
 
 ---
@@ -218,29 +207,7 @@ Instructions ↔ Prompts (paired execution)
 ### Asset Maintenance Workflow
 
 1. **Audit Repository**: `/RepoReview TARGET_PATH: "/path"`
-2. **Identify Improvements**: Review recommendations
-3. **Apply Optimizations**: `/AssetOptimization`
-4. **Format Standards**: `/FormatAssets`
-5. **Harmonize**: `/HarmonizeAssets`
-
----
-
-## Best Practices
-
-### File Organization
-- Keep assets in appropriate subdirectories
-- Use consistent naming: `PascalCase.type.md`
-- Separate generation from management assets
-
-### Schema Compliance
-- Include required YAML fields
-- Use optional fields for enhancement
-- Validate YAML syntax
-
-### Cross-Reference Integrity
-- Maintain bidirectional links
-- Use relative paths
-- Test all references
+2. **Apply Maintenance**: `/MaintainAssets MODE: "all"`
 
 ---
 
@@ -248,15 +215,15 @@ Instructions ↔ Prompts (paired execution)
 
 | Category | Count |
 |----------|-------|
-| **Skills** | 5 |
-| **Agents** | 7 |
-| **Instructions** | 14 |
-| **Prompts** | 16 |
+| **Skills** | 3 |
+| **Agents** | 6 |
+| **Instructions** | 9 |
+| **Prompts** | 14 |
 | **Templates** | 7 |
-| **Total** | 49 |
+| **Total** | 39 |
 
 ---
 
 <p align="center">
-<strong>Framework</strong>: CopilotCustomizer v1.1 | <strong>Standard</strong>: VS Code Copilot 1.106+
+<strong>Framework</strong>: CopilotCustomizer v2.0 | <strong>Standard</strong>: VS Code Copilot 1.106+
 </p>
