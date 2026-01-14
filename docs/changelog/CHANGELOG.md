@@ -4,11 +4,80 @@ All notable changes to the CopilotCustomizer framework.
 
 ---
 
+## [v2.0] - 2026-01-14
+
+### Comprehensive Documentation Update
+
+#### Overview
+
+Major documentation cleanup to ensure accuracy, remove deprecated references, and align all docs with current framework functionality.
+
+#### Documentation Updates
+
+**HOW-TO.md** - Major cleanup
+- Fixed skills inventory (reduced from 5 to 3 actual skills)
+- Removed references to non-existent skills (implementation-planning, deployment-automation)
+- Updated examples to use actual skills
+- Fixed skill example file paths
+- Updated version to v2.0
+
+**SKILLS-MIGRATION.md** - Version update
+- Updated framework version to v2.0
+- Updated date to January 14, 2026
+
+**MULTI-WORKSPACE.md** - Version update
+- Updated framework version to v2.0
+
+**docs/GETTING-STARTED-WITH-AGENTS.md** - Date update
+- Updated date to January 2026
+
+**Workflow Documentation** - Major overhaul (8 files)
+- Updated all workflow docs to reflect current agent structure
+- Replaced deprecated agent references (RepoAnalyzer, HarmonizationAgent, DocumentationGenerator, ImplementationPlanner, WorkflowValidator)
+- Updated to use repository-analysis skill for analysis
+- Fixed all instruction file references
+- Simplified workflow chains to match actual agent inventory (6 agents)
+
+**Organization**
+- Moved TRACEABILITY-DESIGN.md from .github/ to docs/ for better organization
+
+#### Files Changed
+
+| File | Changes |
+|------|---------|
+| `HOW-TO.md` | Fixed skills inventory, examples, version |
+| `SKILLS-MIGRATION.md` | Updated version to v2.0 |
+| `MULTI-WORKSPACE.md` | Updated version to v2.0 |
+| `docs/GETTING-STARTED-WITH-AGENTS.md` | Updated date |
+| `docs/workflows/BootstrapRepo.md` | Updated agent references |
+| `docs/workflows/UpdateCopilotCustomizer.md` | Updated agent references |
+| `docs/workflows/HarmonizeAndValidate.md` | Updated agent references |
+| `docs/workflows/FormatAndVerifyAssets.md` | Updated agent references |
+| `docs/workflows/QuickChange.md` | Updated agent references |
+| `docs/workflows/WorkflowIntegrityCheck.md` | Updated agent references |
+| `docs/workflows/SecurityToolingAudit.md` | Updated agent references |
+| `docs/workflows/PromptAndInstructionOptimizer.md` | Updated agent references |
+| `docs/TRACEABILITY-DESIGN.md` | Moved from .github/ |
+
+#### Current Asset Inventory
+
+| Category | Count | Notes |
+|----------|-------|-------|
+| **Skills** | 3 | Cross-platform (agentskills.io) |
+| **Agents** | 6 | VS Code workflow specialists |
+| **Instructions** | 9 | Generation + quality patterns |
+| **Prompts** | 15 | User slash commands |
+| **Templates** | 7 | Document formats |
+| **Total** | 40 | Production-ready |
+
+---
+
 ## [v1.2] - 2026-01-14
 
 ### Documentation Consolidation & Skills-First Update
 
 #### Overview
+
 Comprehensive documentation review and consolidation to improve usability, ensure skills prominence, and create clean GitHub-friendly presentation.
 
 #### Documentation Improvements
@@ -42,36 +111,6 @@ Comprehensive documentation review and consolidation to improve usability, ensur
 - Repaired truncated examples section
 - Added best practices summary
 - Clean documentation links table
-
-#### Consolidation Changes
-
-**Removed Files:**
-- `HOW-TO.md.backup` - Unnecessary backup file
-
-**Updated Asset Counts:**
-| Category | Previous | Current |
-|----------|----------|---------|
-| Skills | 5 | 3 |
-| Agents | 7 | 6 |
-| Instructions | 14 | 9 |
-| Prompts | 16 | 15 |
-| Templates | 7 | 7 |
-
-#### Skills Prominence
-- Skills now prominently featured in README.md with dedicated section
-- All 3 skills listed with cross-platform compatibility notes
-- Link to agentskills.io standard highlighted throughout
-
-#### Repository Statistics
-
-| Category | Count | Status |
-|----------|-------|--------|
-| **Skills** | 3 | Cross-platform |
-| **Agents** | 6 | VS Code workflow |
-| **Instructions** | 9 | Generation + quality |
-| **Prompts** | 15 | User commands |
-| **Templates** | 7 | Document formats |
-| **Total** | 40 | Production-ready |
 
 ---
 

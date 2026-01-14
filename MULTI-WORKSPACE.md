@@ -327,5 +327,5 @@ code .
 ---
 
 <p align="center">
-<strong>Framework</strong>: CopilotCustomizer v1.1 | <strong>Pattern</strong>: Multi-Workspace Toolbox | <strong>Works With</strong>: Any tech stack
+<strong>Framework</strong>: CopilotCustomizer v2.0 | <strong>Pattern</strong>: Multi-Workspace Toolbox | <strong>Works With</strong>: Any tech stack
 </p>

@@ -386,6 +386,6 @@ Yes! Store in user profile (`~/.github/skills/`) or create a Skills repository t
 
 ---
 
-**Updated**: January 11, 2026  
-**Framework**: CopilotCustomizer v1.1  
+**Updated**: January 14, 2026
+**Framework**: CopilotCustomizer v2.0
 **Standard**: Agent Skills (agentskills.io)
