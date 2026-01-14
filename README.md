@@ -58,10 +58,8 @@ Review the plan, then type: `confirm`
 | Skill | Purpose | Works In |
 |-------|---------|----------|
 | [**repository-analysis**](.github/skills/repository-analysis/SKILL.md) | Codebase structure & tech stack detection | VS Code, CLI, Claude, Cursor |
-| [**implementation-planning**](.github/skills/implementation-planning/SKILL.md) | Strategic planning & risk mitigation | VS Code, CLI, Claude, Cursor |
 | [**copilot-asset-design**](.github/skills/copilot-asset-design/SKILL.md) | Asset architecture & validation | VS Code, CLI, Claude, Cursor |
 | [**technical-documentation**](.github/skills/technical-documentation/SKILL.md) | Change summaries & API docs | VS Code, CLI, Claude, Cursor |
-| [**deployment-automation**](.github/skills/deployment-automation/SKILL.md) | CI/CD pipelines & deployment strategies | VS Code, CLI, Claude, Cursor |
 
 **Why Skills Matter**: Create once, use everywhere. Same skill works in VS Code, command line, Claude Desktop, or Cursor.
 
@@ -155,23 +153,22 @@ Assets are **tailored to your tech stack** - React, Python, .NET, Go, Rust, PHP,
 
 ## Framework Inventory
 
-### Skills (5)
+### Skills (3)
 Cross-platform capabilities using [agentskills.io](https://agentskills.io) standard.
 
-### Agents (7)
+### Agents (6)
 VS Code workflow orchestration:
 - `BootstrapRepo` - Repository setup entry point
 - `AssetPlanner` - Recommendation engine
 - `AssetGenerator` - Multi-asset creation
-- `HarmonizationAgent` - Cross-reference binding
 - `ChangeExecutor` - File operations
 - `VerificationAgent` - Schema validation
 - `CopilotCustomizer` - Main interactive mode
 
-### Instructions (14)
+### Instructions (9)
 Generation and quality patterns for asset creation.
 
-### Prompts (16)
+### Prompts (15)
 Slash commands for workflows and asset generation.
 
 ### Templates (7)

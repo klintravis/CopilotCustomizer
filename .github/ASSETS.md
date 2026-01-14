@@ -11,7 +11,7 @@
 | **Skills** | 3 | `.github/skills/*/SKILL.md` | `name`, `description` |
 | **Agents** | 6 | `.github/agents/*.agent.md` | `description` |
 | **Instructions** | 9 | `.github/instructions/*.instructions.md` | `applyTo` |
-| **Prompts** | 14 | `.github/prompts/*.prompt.md` | - |
+| **Prompts** | 15 | `.github/prompts/*.prompt.md` | - |
 | **Templates** | 7 | `.github/templates/*.template.md` | - |
 
 ---
@@ -218,9 +218,9 @@ Instructions ↔ Prompts (paired execution)
 | **Skills** | 3 |
 | **Agents** | 6 |
 | **Instructions** | 9 |
-| **Prompts** | 14 |
+| **Prompts** | 15 |
 | **Templates** | 7 |
-| **Total** | 39 |
+| **Total** | 40 |
 
 ---
 

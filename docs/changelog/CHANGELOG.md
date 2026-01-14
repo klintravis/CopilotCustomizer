@@ -27,7 +27,7 @@ Comprehensive documentation review and consolidation to improve usability, ensur
 - Clear "Customize Further" examples
 
 **AGENTS.md** - Updated inventory
-- Corrected asset counts (5 skills, 7 agents, 14 instructions, 16 prompts)
+- Corrected asset counts (3 skills, 6 agents, 9 instructions, 15 prompts)
 - Added skills inventory table
 - Updated naming conventions
 - Skills-first strategy documentation
@@ -51,27 +51,27 @@ Comprehensive documentation review and consolidation to improve usability, ensur
 **Updated Asset Counts:**
 | Category | Previous | Current |
 |----------|----------|---------|
-| Skills | 4 | 5 |
-| Agents | 11 (incorrect) | 7 |
-| Instructions | 13 | 14 |
-| Prompts | 18 | 16 |
+| Skills | 5 | 3 |
+| Agents | 7 | 6 |
+| Instructions | 14 | 9 |
+| Prompts | 16 | 15 |
 | Templates | 7 | 7 |
 
 #### Skills Prominence
 - Skills now prominently featured in README.md with dedicated section
-- All 5 skills listed with cross-platform compatibility notes
+- All 3 skills listed with cross-platform compatibility notes
 - Link to agentskills.io standard highlighted throughout
 
 #### Repository Statistics
 
 | Category | Count | Status |
 |----------|-------|--------|
-| **Skills** | 5 | Cross-platform |
-| **Agents** | 7 | VS Code workflow |
-| **Instructions** | 14 | Generation + quality |
-| **Prompts** | 16 | User commands |
+| **Skills** | 3 | Cross-platform |
+| **Agents** | 6 | VS Code workflow |
+| **Instructions** | 9 | Generation + quality |
+| **Prompts** | 15 | User commands |
 | **Templates** | 7 | Document formats |
-| **Total** | 49 | Production-ready |
+| **Total** | 40 | Production-ready |
 
 ---
 

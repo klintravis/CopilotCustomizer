@@ -67,7 +67,7 @@ Generation and quality patterns:
 - `RepoReview` - Repository analysis
 - `WorkflowValidation` - Workflow integrity
 
-### Prompts (14 total)
+### Prompts (15 total)
 Slash commands for user interaction:
 
 **Core Workflows:**
@@ -178,9 +178,9 @@ COMPLETE
 | **Skills** | 3 |
 | **Agents** | 6 |
 | **Instructions** | 9 |
-| **Prompts** | 14 |
+| **Prompts** | 15 |
 | **Templates** | 7 |
-| **Total Assets** | 39 |
+| **Total Assets** | 40 |
 
 ---
 
