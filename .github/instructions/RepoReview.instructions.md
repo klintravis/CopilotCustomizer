@@ -3,15 +3,12 @@ applyTo: '.github/prompts/RepoReview.prompt.md'
 description: 'Comprehensive framework for conducting repository analysis of Copilot customization assets, providing structured assessment, prioritization, and ready-to-run improvement prompts for agents, instructions, prompts, and workspace files'
 ---
 
-<!-- ASSET: RepoReview | TYPE: Instructions | VERSION: v1.0 -->
+<!-- ════════════════════════════════════════════════════════════════════════════
+📢 INVOCATION: RepoReview Instructions (Instructions) v1.3
+   STATUS: Instructions Applied — Context loaded
+════════════════════════════════════════════════════════════════════════════ -->
 
-
-# RepoReview.instructions.md
-
-## Metadata
-Asset ID: instruction/reporeview | Created: 2026-01-14 | Status: Active
-
-## Repo Review Instructions (v1.3)
+# RepoReview Instructions (v1.3)
 
 **Paired Prompt**: [RepoReview.prompt.md](../prompts/RepoReview.prompt.md)
 

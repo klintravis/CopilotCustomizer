@@ -2,13 +2,12 @@
 agent: CopilotCustomizer
 ---
 
-<!-- ASSET: WorkflowIntegrityCheck | TYPE: Prompt | VERSION: v1.0 -->
+<!-- ════════════════════════════════════════════════════════════════════════════
+📢 INVOCATION: WorkflowIntegrityCheck Prompt (Prompt) v1.0
+   STATUS: Prompt Ready — Awaiting execution
+════════════════════════════════════════════════════════════════════════════ -->
 
-
-## WorkflowIntegrityCheck (v1.0)
-
-## Metadata
-Asset ID: prompt/workflowintegritycheck | Created: 2026-01-14 | Status: Active
+# WorkflowIntegrityCheck Prompt (v1.0)
 
 ### Task Intent
 Validate that agents, prompts, and instructions form coherent, testable workflows with clear handoffs and no broken links.

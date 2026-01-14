@@ -3,13 +3,12 @@ applyTo: '.github/**/*.{instructions.md,prompt.md,agent.md}'
 description: 'Formats and validates GitHub Copilot customization assets against latest VS Code standards with 100% content preservation, including agent files, MCP configurations, and tool management'
 ---
 
-<!-- ASSET: FormatAssets | TYPE: Instructions | VERSION: v1.0 -->
-
+<!-- ════════════════════════════════════════════════════════════════════════════
+📢 INVOCATION: FormatAssets Instructions (Instructions) v1.0
+   STATUS: Instructions Applied — Context loaded
+════════════════════════════════════════════════════════════════════════════ -->
 
 ## Copilot Asset Formatting & Standards Compliance Instructions (v1.0)
-
-## Metadata
-Asset ID: instruction/formatassets | Created: 2026-01-14 | Status: Active
 
 **Depth Modes**: quick-format, standard, deep-compliance  
 **Refinement Commands**: refine: standards, refine: preserve, refine: format, refine: validate

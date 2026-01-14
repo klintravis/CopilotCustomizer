@@ -2,13 +2,12 @@
 agent: CopilotCustomizer
 ---
 
-<!-- ASSET: NewWorkflow | TYPE: Prompt | VERSION: v1.0 -->
+<!-- ════════════════════════════════════════════════════════════════════════════
+📢 INVOCATION: NewWorkflow Prompt (Prompt) v1.0
+   STATUS: Prompt Ready — Awaiting execution
+════════════════════════════════════════════════════════════════════════════ -->
 
-
-## Workflow Creation Prompt (v1.0)
-
-## Metadata
-Asset ID: prompt/newworkflow | Created: 2026-01-14 | Status: Active
+# Workflow Creation Prompt (v1.0)
 
 **Paired Instructions**: [GenerateWorkflow.instructions.md](../instructions/GenerateWorkflow.instructions.md)
 

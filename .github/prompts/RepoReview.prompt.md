@@ -2,13 +2,12 @@
 agent: CopilotCustomizer
 ---
 
-<!-- ASSET: RepoReview | TYPE: Prompt | VERSION: v1.0 -->
+<!-- ════════════════════════════════════════════════════════════════════════════
+📢 INVOCATION: RepoReview Prompt (Prompt) v1.0
+   STATUS: Prompt Ready — Awaiting execution
+════════════════════════════════════════════════════════════════════════════ -->
 
-
-# RepoReview.prompt.md
-
-## Metadata
-Asset ID: prompt/reporeview | Created: 2026-01-14 | Status: Active
+# RepoReview Prompt (v1.0)
 
 **Paired Instructions**: [RepoReview.instructions.md](../instructions/RepoReview.instructions.md)
 

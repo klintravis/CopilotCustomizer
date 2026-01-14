@@ -3,13 +3,12 @@ name: copilot-asset-design
 description: Design and validate GitHub Copilot customization assets including agents, skills, instructions, and prompts. Provides architecture patterns, quality criteria, and integration strategies. Use when creating or improving Copilot customizations.
 ---
 
-<!-- ASSET: copilot-asset-design | TYPE: Skill | VERSION: v1.0 -->
+<!-- ════════════════════════════════════════════════════════════════════════════
+📢 INVOCATION: copilot-asset-design Skill (Skill) v1.0
+   STATUS: Skill Active — Methodology engaged
+════════════════════════════════════════════════════════════════════════════ -->
 
-
-# Copilot Asset Design Skill
-
-## Metadata
-Asset ID: skill/copilot-asset-design | Created: 2026-01-14 | Status: Active
+# Copilot Asset Design Skill (v1.0)
 
 ## Purpose
 

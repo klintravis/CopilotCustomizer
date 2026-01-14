@@ -2,13 +2,12 @@
 agent: CopilotCustomizer
 ---
 
-<!-- ASSET: UpdateCopilotCustomizer | TYPE: Prompt | VERSION: v1.0 -->
+<!-- ════════════════════════════════════════════════════════════════════════════
+📢 INVOCATION: UpdateCopilotCustomizer Prompt (Prompt) v2.0
+   STATUS: Prompt Ready — Awaiting execution
+════════════════════════════════════════════════════════════════════════════ -->
 
-
-## Update CopilotCustomizer Entry Point (v2.0)
-
-## Metadata
-Asset ID: prompt/updatecopilotcustomizer | Created: 2026-01-14 | Status: Active
+# Update CopilotCustomizer Entry Point (v2.0)
 
 ### Task Intent
 Initiate automated change workflow using skills and agents: analysis → planning → implementation → verification → documentation.

@@ -13,23 +13,20 @@ Standardized traceability and invocation tracking system for all Copilot Customi
 ## Traceability Components
 
 ### 1. Invocation Alert Banner
-Placed immediately after the YAML front matter in all assets:
+Placed immediately after the YAML front matter in all assets. **Concise format** for minimal overhead:
 
 ```markdown
-<!-- TRACEABILITY: INVOCATION ALERT -->
-═══════════════════════════════════════════════════════════════════
-🔔 ASSET INVOCATION ALERT
-═══════════════════════════════════════════════════════════════════
-Asset Name    : {AssetName}
-Asset Type    : {Agent|Prompt|Instruction|Skill}
-Asset Version : {version}
-Invoked At    : {Auto-populated by system if possible}
-Invocation ID : {Unique identifier for this invocation}
-═══════════════════════════════════════════════════════════════════
-📋 STATUS: Active | Ready to execute workflow
-═══════════════════════════════════════════════════════════════════
-<!-- END TRACEABILITY ALERT -->
+<!-- ════════════════════════════════════════════════════════════════════════════
+📢 INVOCATION: {AssetName} ({Type}) v{version}
+   STATUS: {TypeSpecificStatus}
+════════════════════════════════════════════════════════════════════════════ -->
 ```
+
+**Type-Specific Status Messages:**
+- **Agent**: `Agent Active — Processing requests`
+- **Prompt**: `Prompt Ready — Awaiting execution`
+- **Instructions**: `Instructions Applied — Context loaded`
+- **Skill**: `Skill Active — Methodology engaged`
 
 ### 2. Asset Metadata Section
 Added near the top of each asset (after title/role definition):
@@ -84,26 +81,18 @@ _Manual logging - update this section when invoked_
 
 ### 4. Generator Template Integration
 
+All generators must include the concise invocation alert after YAML front matter.
+
 #### For Agent Files (.agent.md)
-Insert after YAML front matter:
 ```markdown
 ---
 {YAML front matter}
 ---
 
-<!-- TRACEABILITY: INVOCATION ALERT -->
-═══════════════════════════════════════════════════════════════════
-🔔 ASSET INVOCATION ALERT
-═══════════════════════════════════════════════════════════════════
-Asset Name    : {AgentName} Agent
-Asset Type    : Agent
-Asset Version : v1.0
-Invoked At    : {timestamp}
-Invocation ID : agent-{agent-id}-{timestamp-hash}
-═══════════════════════════════════════════════════════════════════
-📋 STATUS: Agent Active | Ready to process requests
-═══════════════════════════════════════════════════════════════════
-<!-- END TRACEABILITY ALERT -->
+<!-- ════════════════════════════════════════════════════════════════════════════
+📢 INVOCATION: {AgentName} Agent (Agent) v1.0
+   STATUS: Agent Active — Processing requests
+════════════════════════════════════════════════════════════════════════════ -->
 
 ## {AgentName} Agent (v1.0)
 
@@ -113,10 +102,7 @@ Invocation ID : agent-{agent-id}-{timestamp-hash}
 | **Asset ID** | `agent/{agent-id}` |
 | **Version** | `v1.0` |
 | **Created** | `{date}` |
-| **Last Modified** | `{date}` |
-| **Maintained By** | `CopilotCustomizer` |
 | **Status** | `Active` |
-| **Category** | `{category}` |
 
 {rest of agent content}
 ```
@@ -127,19 +113,10 @@ Invocation ID : agent-{agent-id}-{timestamp-hash}
 {YAML front matter}
 ---
 
-<!-- TRACEABILITY: INVOCATION ALERT -->
-═══════════════════════════════════════════════════════════════════
-🔔 ASSET INVOCATION ALERT
-═══════════════════════════════════════════════════════════════════
-Asset Name    : {PromptName} Prompt
-Asset Type    : Prompt
-Asset Version : v1.0
-Invoked At    : {timestamp}
-Invocation ID : prompt-{prompt-id}-{timestamp-hash}
-═══════════════════════════════════════════════════════════════════
-📋 STATUS: Prompt Ready | Awaiting variable substitution
-═══════════════════════════════════════════════════════════════════
-<!-- END TRACEABILITY ALERT -->
+<!-- ════════════════════════════════════════════════════════════════════════════
+📢 INVOCATION: {PromptName} Prompt (Prompt) v1.0
+   STATUS: Prompt Ready — Awaiting execution
+════════════════════════════════════════════════════════════════════════════ -->
 
 # {PromptName} Prompt (v1.0)
 
@@ -149,10 +126,7 @@ Invocation ID : prompt-{prompt-id}-{timestamp-hash}
 | **Asset ID** | `prompt/{prompt-id}` |
 | **Version** | `v1.0` |
 | **Created** | `{date}` |
-| **Last Modified** | `{date}` |
-| **Maintained By** | `CopilotCustomizer` |
 | **Status** | `Active` |
-| **Category** | `{category}` |
 
 {rest of prompt content}
 ```
@@ -163,19 +137,10 @@ Invocation ID : prompt-{prompt-id}-{timestamp-hash}
 {YAML front matter}
 ---
 
-<!-- TRACEABILITY: INVOCATION ALERT -->
-═══════════════════════════════════════════════════════════════════
-🔔 ASSET INVOCATION ALERT
-═══════════════════════════════════════════════════════════════════
-Asset Name    : {InstructionName} Instructions
-Asset Type    : Instructions
-Asset Version : v1.0
-Invoked At    : {timestamp}
-Invocation ID : instruction-{instruction-id}-{timestamp-hash}
-═══════════════════════════════════════════════════════════════════
-📋 STATUS: Instructions Active | Applied to matching files
-═══════════════════════════════════════════════════════════════════
-<!-- END TRACEABILITY ALERT -->
+<!-- ════════════════════════════════════════════════════════════════════════════
+📢 INVOCATION: {InstructionName} Instructions (Instructions) v1.0
+   STATUS: Instructions Applied — Context loaded
+════════════════════════════════════════════════════════════════════════════ -->
 
 # {InstructionName} Instructions (v1.0)
 
@@ -185,11 +150,8 @@ Invocation ID : instruction-{instruction-id}-{timestamp-hash}
 | **Asset ID** | `instruction/{instruction-id}` |
 | **Version** | `v1.0` |
 | **Created** | `{date}` |
-| **Last Modified** | `{date}` |
-| **Maintained By** | `CopilotCustomizer` |
 | **Status** | `Active` |
 | **Applies To** | `{applyTo pattern}` |
-| **Category** | `{category}` |
 
 {rest of instruction content}
 ```
@@ -200,21 +162,12 @@ Invocation ID : instruction-{instruction-id}-{timestamp-hash}
 {YAML front matter}
 ---
 
-<!-- TRACEABILITY: INVOCATION ALERT -->
-═══════════════════════════════════════════════════════════════════
-🔔 ASSET INVOCATION ALERT
-═══════════════════════════════════════════════════════════════════
-Asset Name    : {SkillName} Skill
-Asset Type    : Skill
-Asset Version : v1.0
-Invoked At    : {timestamp}
-Invocation ID : skill-{skill-id}-{timestamp-hash}
-═══════════════════════════════════════════════════════════════════
-📋 STATUS: Skill Active | Methodology ready for application
-═══════════════════════════════════════════════════════════════════
-<!-- END TRACEABILITY ALERT -->
+<!-- ════════════════════════════════════════════════════════════════════════════
+📢 INVOCATION: {SkillName} Skill (Skill) v1.0
+   STATUS: Skill Active — Methodology engaged
+════════════════════════════════════════════════════════════════════════════ -->
 
-# {SkillName} Skill
+# {SkillName} Skill (v1.0)
 
 ### Asset Metadata
 | Property | Value |
@@ -222,10 +175,7 @@ Invocation ID : skill-{skill-id}-{timestamp-hash}
 | **Asset ID** | `skill/{skill-id}` |
 | **Version** | `v1.0` |
 | **Created** | `{date}` |
-| **Last Modified** | `{date}` |
-| **Maintained By** | `CopilotCustomizer` |
 | **Status** | `Active` |
-| **Category** | `{category}` |
 
 {rest of skill content}
 ```

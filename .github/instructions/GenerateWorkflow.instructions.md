@@ -3,13 +3,12 @@ applyTo: '.github/**/*.{agent.md,prompt.md,workflow.md}'
 description: 'Framework for creating multi-chain agent workflows with automated handoffs, shared instructions, and minimal user input entry points'
 ---
 
-<!-- ASSET: GenerateWorkflow | TYPE: Instructions | VERSION: v1.0 -->
-
+<!-- ════════════════════════════════════════════════════════════════════════════
+📢 INVOCATION: GenerateWorkflow Instructions (Instructions) v1.0
+   STATUS: Instructions Applied — Context loaded
+════════════════════════════════════════════════════════════════════════════ -->
 
 ## Workflow Generation Instructions (v1.0)
-
-## Metadata
-Asset ID: instruction/generateworkflow | Created: 2026-01-14 | Status: Active
 
 **Log Entry Format**:
 ```

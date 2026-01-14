@@ -3,13 +3,12 @@ applyTo: 'AGENTS.md'
 description: 'Standardized framework for creating AGENTS.md files that guide AI coding agents with clear, actionable project instructions and development workflows'
 ---
 
-<!-- ASSET: GenerateAgentsFile | TYPE: Instructions | VERSION: v1.0 -->
-
+<!-- ════════════════════════════════════════════════════════════════════════════
+📢 INVOCATION: GenerateAgentsFile Instructions (Instructions) v1.0
+   STATUS: Instructions Applied — Context loaded
+════════════════════════════════════════════════════════════════════════════ -->
 
 # AGENTS.md Workspace File Guide (v1.0)
-
-## Metadata
-Asset ID: instruction/generateagentsfile | Created: 2026-01-14 | Status: Active
 
 **Paired Prompt**: [NewAgentsFile.prompt.md](../prompts/NewAgentsFile.prompt.md)
 

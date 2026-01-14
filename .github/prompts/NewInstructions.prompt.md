@@ -2,13 +2,12 @@
 agent: CopilotCustomizer
 ---
 
-<!-- ASSET: NewInstructions | TYPE: Prompt | VERSION: v1.0 -->
+<!-- ════════════════════════════════════════════════════════════════════════════
+📢 INVOCATION: NewInstructions Prompt (Prompt) v1.0
+   STATUS: Prompt Ready — Awaiting execution
+════════════════════════════════════════════════════════════════════════════ -->
 
-
-# NewInstructions.prompt.md
-
-## Metadata
-Asset ID: prompt/newinstructions | Created: 2026-01-14 | Status: Active
+# NewInstructions Prompt (v1.0)
 
 **Paired Instructions**: [GenerateInstructions.instructions.md](../instructions/GenerateInstructions.instructions.md)
 

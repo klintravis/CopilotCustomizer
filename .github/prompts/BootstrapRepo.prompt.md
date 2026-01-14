@@ -2,6 +2,11 @@
 agent: BootstrapRepo
 ---
 
+<!-- ════════════════════════════════════════════════════════════════════════════
+📢 INVOCATION: BootstrapRepo Prompt (Prompt) v2.0
+   STATUS: Prompt Ready — Awaiting execution
+════════════════════════════════════════════════════════════════════════════ -->
+
 # BootstrapRepo Workflow (v2.0)
 
 **Paired Agent**: [BootstrapRepo.agent.md](../agents/BootstrapRepo.agent.md)

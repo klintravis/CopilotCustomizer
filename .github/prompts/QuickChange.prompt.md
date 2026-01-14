@@ -2,13 +2,12 @@
 agent: CopilotCustomizer
 ---
 
-<!-- ASSET: QuickChange | TYPE: Prompt | VERSION: v1.0 -->
+<!-- ════════════════════════════════════════════════════════════════════════════
+📢 INVOCATION: QuickChange Prompt (Prompt) v1.0
+   STATUS: Prompt Ready — Awaiting execution
+════════════════════════════════════════════════════════════════════════════ -->
 
-
-## QuickChange (v1.0)
-
-## Metadata
-Asset ID: prompt/quickchange | Created: 2026-01-14 | Status: Active
+# QuickChange Prompt (v1.0)
 
 ### Task Intent
 Perform a small, targeted change with a fast approval gate and automated verification and documentation, minimizing touched files.

@@ -3,13 +3,12 @@ applyTo: '.github/**/*.instructions.md'
 description: 'Reusable framework for creating high-quality instruction files with consistency, guardrails, and maintainability'
 ---
 
-<!-- ASSET: GenerateInstructions | TYPE: Instructions | VERSION: v1.0 -->
-
+<!-- ════════════════════════════════════════════════════════════════════════════
+📢 INVOCATION: GenerateInstructions Instructions (Instructions) v1.1
+   STATUS: Instructions Applied — Context loaded
+════════════════════════════════════════════════════════════════════════════ -->
 
 ## Instruction Authoring Guide (v1.1)
-
-## Metadata
-Asset ID: instruction/generateinstructions | Created: 2026-01-14 | Status: Active
 
 **⚠️ YAML**: Only `applyTo` and `description` supported. Move custom metadata to markdown.
 
@@ -69,9 +68,12 @@ applyTo: '**'
 description: 'Brief description'
 ---
 
-## <Domain> Instructions
+<!-- ════════════════════════════════════════════════════════════════════════════
+📢 INVOCATION: {Name} Instructions (Instructions) v1.0
+   STATUS: Instructions Applied — Context loaded
+════════════════════════════════════════════════════════════════════════════ -->
 
-**Version**: 1.0
+## <Domain> Instructions (v1.0)
 
 ### Context Overview
 Domain summary & objective
