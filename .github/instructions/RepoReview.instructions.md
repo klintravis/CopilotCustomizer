@@ -3,7 +3,13 @@ applyTo: '.github/prompts/RepoReview.prompt.md'
 description: 'Comprehensive framework for conducting repository analysis of Copilot customization assets, providing structured assessment, prioritization, and ready-to-run improvement prompts for agents, instructions, prompts, and workspace files'
 ---
 
+<!-- ASSET: RepoReview | TYPE: Instructions | VERSION: v1.0 -->
+
+
 # RepoReview.instructions.md
+
+## Metadata
+Asset ID: instruction/reporeview | Created: 2026-01-14 | Status: Active
 
 ## Repo Review Instructions (v1.3)
 
@@ -276,11 +282,29 @@ handoffs:
 *Workflow Framework: [GenerateWorkflow.instructions.md](GenerateWorkflow.instructions.md)*  
 *VS Code: [Custom Instructions](https://code.visualstudio.com/docs/copilot/customization/custom-instructions)*
 
+**Log Entry Format**:
+```
+[YYYY-MM-DD HH:MM:SS UTC] - Invoked by: {user/system} | Context: {brief description}
+```
+
+**Recent Invocations**:
+_Manual logging - update this section when invoked_
+- [2026-01-14] Added traceability system
+
+### Usage Guidelines
+- This asset should be invoked when: Instructions-specific workflows are needed
+- Expected outcome: Execution of RepoReview Instructions functionality
+- Related assets: See related instructionss in the same directory
+
+### Change History
+| Date | Version | Changes | Author |
+|------|---------|---------|--------|
+| 2026-01-14 | v1.0 | Added traceability system | CopilotCustomizer |
+
 ---
 
-**Version**: v1.3 (2025-11-01)  
-**Harmonization Applied**: 2025-09-15 | **Asset Integration**: 16-file ecosystem  
-**Cross-References**: Enhanced with bidirectional binding | **Schema**: VS Code v1.0 compliant  
-**Workflow Analysis**: Added workflow patterns, handoff opportunities, automation recommendations
+---
 
-*Generated and formatted following VS Code GitHub Copilot official documentation standards*
+## Audit
+Last invoked: [Manual log]
+Change history: v1.0 (2026-01-14) - Added traceability

@@ -9,7 +9,13 @@ handoffs:
     send: false
 ---
 
+<!-- ASSET: AssetPlanner | TYPE: Agent | VERSION: v1.0 -->
+
+
 ## AssetPlanner Agent (v1.0)
+
+## Metadata
+Asset ID: agent/assetplanner | Created: 2026-01-14 | Status: Active
 
 ### Handoff Notification
 ```
@@ -278,7 +284,33 @@ validationRequirements:
 - `refine: scope` - Expand/reduce asset count
 - `refine: complexity` - Simplify specifications
 
+**Log Entry Format**:
+```
+[YYYY-MM-DD HH:MM:SS UTC] - Invoked by: {user/system} | Context: {brief description}
+```
+
+**Recent Invocations**:
+_Manual logging - update this section when invoked_
+- [2026-01-14] Initial creation with traceability system
+
+### Usage Guidelines
+- This asset should be invoked when: Planning new Copilot assets for repository customization
+- Expected outcome: Detailed asset specifications ready for generation
+- Related assets: Links to AssetGenerator, RepoAnalyzer agents
+
+### Change History
+| Date | Version | Changes | Author |
+|------|---------|---------|--------|
+| 2026-01-14 | v1.0 | Added traceability system | CopilotCustomizer |
+| 2026-01-13 | v1.0 | Initial creation | CopilotCustomizer |
+
 ---
 
-*Single approval gate for autonomous asset generation workflows*  
+*Single approval gate for autonomous asset generation workflows*
 *Reuses 80%+ shared framework instructions*
+
+---
+
+## Audit
+Last invoked: [Manual log]
+Change history: v1.0 (2026-01-14) - Added traceability

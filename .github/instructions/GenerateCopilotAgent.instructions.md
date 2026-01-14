@@ -3,7 +3,13 @@ applyTo: '.github/**/*.agent.md'
 description: 'Framework for creating VS Code Copilot custom agent files with roles, tools, handoffs, and workflows'
 ---
 
+<!-- ASSET: GenerateCopilotAgent | TYPE: Instructions | VERSION: v1.0 -->
+
+
 # VS Code Copilot Agent File Guide (v1.1 - VS Code 1.106)
+
+## Metadata
+Asset ID: instruction/generatecopilotagent | Created: 2026-01-14 | Status: Active
 
 **Paired Prompt**: [NewCopilotAgent.prompt.md](../prompts/NewCopilotAgent.prompt.md)
 
@@ -267,22 +273,29 @@ Expert in REST API architecture specializing in OpenAPI 3.0+ specifications, end
 ### Refinement Commands
 - refine: [domain] | refine: optimize | refine: validate
 
----
-*Agent file generated following VS Code Copilot standards*
+**Log Entry Format**:
+```
+[YYYY-MM-DD HH:MM:SS UTC] - Invoked by: {user/system} | Context: {brief description}
 ```
 
-### Quality Guidelines
-- Clear expertise boundaries
-- Concrete workflow steps
-- Proper framework references
-- Valid YAML and markdown
- - Approved tools only
- - Clear handoff conditions (see Handoffs Schema Requirements)
+**Recent Invocations**:
+_Manual logging - update this section when invoked_
+- [2026-01-14] Added traceability system
 
-### Integration Patterns
-**Shared Instructions**: Framework, Security, Audit references  
-**Tool Ecosystem**: MCP servers, approval patterns  
-**Handoffs**: Context preservation, validation
+### Usage Guidelines
+- This asset should be invoked when: Instructions-specific workflows are needed
+- Expected outcome: Execution of GenerateCopilotAgent Instructions functionality
+- Related assets: See related instructionss in the same directory
 
-*Complete framework: [CopilotFramework.instructions.md](../instructions/CopilotFramework.instructions.md)*  
-*VS Code: [Agent Files](https://code.visualstudio.com/docs/copilot/customization/custom-chat-modes)*
+### Change History
+| Date | Version | Changes | Author |
+|------|---------|---------|--------|
+| 2026-01-14 | v1.0 | Added traceability system | CopilotCustomizer |
+
+---
+
+---
+
+## Audit
+Last invoked: [Manual log]
+Change history: v1.0 (2026-01-14) - Added traceability

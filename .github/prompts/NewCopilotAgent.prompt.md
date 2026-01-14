@@ -2,7 +2,13 @@
 agent: CopilotCustomizer
 ---
 
+<!-- ASSET: NewCopilotAgent | TYPE: Prompt | VERSION: v1.0 -->
+
+
 # VS Code Copilot Agent Generator (v1.0)
+
+## Metadata
+Asset ID: prompt/newcopilotagent | Created: 2026-01-14 | Status: Active
 
 **Paired Instructions**: [GenerateCopilotAgent.instructions.md](../instructions/GenerateCopilotAgent.instructions.md)
 
@@ -67,3 +73,9 @@ Complete `.agent.md` with:
 ---
 
 *VS Code Copilot Customization Framework v1.0*
+
+---
+
+## Audit
+Last invoked: [Manual log]
+Change history: v1.0 (2026-01-14) - Added traceability

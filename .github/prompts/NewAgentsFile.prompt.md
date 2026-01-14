@@ -2,7 +2,13 @@
 agent: CopilotCustomizer
 ---
 
+<!-- ASSET: NewAgentsFile | TYPE: Prompt | VERSION: v1.0 -->
+
+
 # AGENTS.md Workspace File Generator (v1.0)
+
+## Metadata
+Asset ID: prompt/newagentsfile | Created: 2026-01-14 | Status: Active
 
 **Paired Instructions**: [GenerateAgentsFile.instructions.md](../instructions/GenerateAgentsFile.instructions.md)
 
@@ -10,10 +16,6 @@ agent: CopilotCustomizer
 Generate concise, actionable `AGENTS.md` workspace files.
 
 ## Variable Block
----
-**Project Name** [REQUIRED]: "{PROJECT_NAME}"
-**Primary Tasks** [REQUIRED]: "{PRIMARY_TASKS}"
----
 
 ## Validation
 - Required: `{PROJECT_NAME}` and `{PRIMARY_TASKS}`
@@ -33,6 +35,29 @@ Generate complete `AGENTS.md` with:
 
 **Generated using**: [GenerateAgentsFile.instructions.md](../instructions/GenerateAgentsFile.instructions.md)
 
+**Log Entry Format**:
+```
+[YYYY-MM-DD HH:MM:SS UTC] - Invoked by: {user/system} | Context: {brief description}
+```
+
+**Recent Invocations**:
+_Manual logging - update this section when invoked_
+- [2026-01-14] Added traceability system
+
+### Usage Guidelines
+- This asset should be invoked when: Prompt-specific workflows are needed
+- Expected outcome: Execution of NewAgentsFile Prompt functionality
+- Related assets: See related prompts in the same directory
+
+### Change History
+| Date | Version | Changes | Author |
+|------|---------|---------|--------|
+| 2026-01-14 | v1.0 | Added traceability system | CopilotCustomizer |
+
 ---
 
-*VS Code Copilot Customization Framework v1.0*
+---
+
+## Audit
+Last invoked: [Manual log]
+Change history: v1.0 (2026-01-14) - Added traceability

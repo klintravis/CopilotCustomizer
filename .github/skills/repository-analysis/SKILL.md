@@ -3,10 +3,15 @@ name: repository-analysis
 description: Deep repository analysis methodology for understanding codebase structure, dependencies, patterns, and change impact. Use when analyzing repositories for customization planning, refactoring, or understanding project architecture.
 ---
 
+<!-- ASSET: repository-analysis | TYPE: Skill | VERSION: v1.0 -->
+
+
 # Repository Analysis Skill
 
+## Metadata
+Asset ID: skill/repository-analysis | Created: 2026-01-14 | Status: Active
+
 ## Purpose
-Provides systematic methodology for comprehensive repository analysis including structure mapping, dependency identification, pattern recognition, and impact assessment. Essential for informed decision-making before making changes.
 
 ## When to Use This Skill
 - Analyzing repositories for Copilot customization opportunities
@@ -342,3 +347,30 @@ A complete repository analysis should provide:
 **Prerequisites**: Repository access, ability to search codebase
 
 **Cross-Platform**: Works in VS Code, GitHub Copilot CLI, Claude, Cursor, and other Skills-compatible agents.
+
+**Log Entry Format**:
+```
+[YYYY-MM-DD HH:MM:SS UTC] - Invoked by: {user/system} | Context: {brief description}
+```
+
+**Recent Invocations**:
+_Manual logging - update this section when invoked_
+- [2026-01-14] Added traceability system
+
+### Usage Guidelines
+- This asset should be invoked when: Skill-specific workflows are needed
+- Expected outcome: Execution of repository-analysis Skill functionality
+- Related assets: See related skills in the same directory
+
+### Change History
+| Date | Version | Changes | Author |
+|------|---------|---------|--------|
+| 2026-01-14 | v1.0 | Added traceability system | CopilotCustomizer |
+
+---
+
+---
+
+## Audit
+Last invoked: [Manual log]
+Change history: v1.0 (2026-01-14) - Added traceability

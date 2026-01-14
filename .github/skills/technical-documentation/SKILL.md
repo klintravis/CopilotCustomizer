@@ -3,10 +3,15 @@ name: technical-documentation
 description: Structured technical documentation generation for software changes, implementations, and analyses. Creates clear, comprehensive documentation including change summaries, API docs, and technical reports. Use when documenting code changes, features, or system architecture.
 ---
 
+<!-- ASSET: technical-documentation | TYPE: Skill | VERSION: v1.0 -->
+
+
 # Technical Documentation Skill
 
+## Metadata
+Asset ID: skill/technical-documentation | Created: 2026-01-14 | Status: Active
+
 ## Purpose
-Systematic methodology for generating high-quality technical documentation including change summaries, API documentation, architectural decisions, implementation reports, and user guides. Ensures consistent, maintainable documentation.
 
 ## When to Use This Skill
 - Documenting completed code changes
@@ -544,3 +549,30 @@ Good technical documentation should:
 **Prerequisites**: Understanding of what was implemented
 
 **Cross-Platform**: Documentation methodology works across all platforms and tools.
+
+**Log Entry Format**:
+```
+[YYYY-MM-DD HH:MM:SS UTC] - Invoked by: {user/system} | Context: {brief description}
+```
+
+**Recent Invocations**:
+_Manual logging - update this section when invoked_
+- [2026-01-14] Added traceability system
+
+### Usage Guidelines
+- This asset should be invoked when: Skill-specific workflows are needed
+- Expected outcome: Execution of technical-documentation Skill functionality
+- Related assets: See related skills in the same directory
+
+### Change History
+| Date | Version | Changes | Author |
+|------|---------|---------|--------|
+| 2026-01-14 | v1.0 | Added traceability system | CopilotCustomizer |
+
+---
+
+---
+
+## Audit
+Last invoked: [Manual log]
+Change history: v1.0 (2026-01-14) - Added traceability

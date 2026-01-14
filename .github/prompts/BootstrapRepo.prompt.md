@@ -21,12 +21,32 @@ Bootstrap Copilot assets for: /path/to/repository
 
 ### Variables
 ---
+
+<!-- ASSET: BootstrapRepo | TYPE: Prompt | VERSION: v1.0 -->
+
+
+<!-- TRACEABILITY: INVOCATION ALERT -->
+═══════════════════════════════════════════════════════════════════
+🔔 ASSET INVOCATION ALERT
+═══════════════════════════════════════════════════════════════════
+Asset Name    : BootstrapRepo Prompt
+Asset Type    : Prompt
+Asset Version : v1.0
+Invoked At    : {timestamp}
+Invocation ID : prompt-bootstraprepo-{timestamp-hash}
+═══════════════════════════════════════════════════════════════════
+📋 STATUS: Prompt Ready | Awaiting variable substitution
+═══════════════════════════════════════════════════════════════════
+<!-- END TRACEABILITY ALERT -->
 **REPOSITORY_PATH** [REQUIRED]: "{Absolute path to target repository}"
 ---
 
 **That's it!** Everything else is inferred automatically.
 
 ## Workflow Overview
+
+## Metadata
+Asset ID: prompt/bootstraprepo | Created: 2026-01-14 | Status: Active
 
 ```
 User Input (REPOSITORY_PATH)
@@ -47,7 +67,7 @@ HarmonizationAgent (bind with metadata)
   ↓
 WorkflowIntegrityCheck (STRICT=true) → VerificationAgent (final check)
   ↓
-DocumentationGenerator (report - uses technical-documentation skill)
+technical-documentation skill (generate bootstrap report)
   ↓
 COMPLETE
 ```
@@ -186,7 +206,7 @@ Matrix: /output/workflow-integrity-matrix.md
 ✓ No orphaned assets
 ✓ Complete ecosystem
 
-[DocumentationGenerator] Creating report...
+[technical-documentation skill] Creating report...
 ✓ Bootstrap summary generated
 ✓ Asset inventory documented
 ✓ Quick start guide created
@@ -366,10 +386,29 @@ Action: Aborting before documentation; fix generation specs and retry
 - 7 autonomous phases
 - Zero manual intervention after confirmation
 
+**Log Entry Format**:
+```
+[YYYY-MM-DD HH:MM:SS UTC] - Invoked by: {user/system} | Context: {brief description}
+```
+
+**Recent Invocations**:
+_Manual logging - update this section when invoked_
+- [2026-01-14] Added traceability system
+
+### Usage Guidelines
+- This asset should be invoked when: Prompt-specific workflows are needed
+- Expected outcome: Execution of BootstrapRepo Prompt functionality
+- Related assets: See related prompts in the same directory
+
+### Change History
+| Date | Version | Changes | Author |
+|------|---------|---------|--------|
+| 2026-01-14 | v1.0 | Added traceability system | CopilotCustomizer |
+
 ---
 
-**Framework**: CopilotCustomizer v1.0  
-**Workflow Pattern**: Linear with single quality gate  
-**Autonomy Level**: Fully autonomous after confirmation  
+---
 
-*Powered by comprehensive CopilotCustomizer framework*
+## Audit
+Last invoked: [Manual log]
+Change history: v1.0 (2026-01-14) - Added traceability

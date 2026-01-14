@@ -2,7 +2,13 @@
 agent: CopilotCustomizer
 ---
 
+<!-- ASSET: NewInstructions | TYPE: Prompt | VERSION: v1.0 -->
+
+
 # NewInstructions.prompt.md
+
+## Metadata
+Asset ID: prompt/newinstructions | Created: 2026-01-14 | Status: Active
 
 **Paired Instructions**: [GenerateInstructions.instructions.md](../instructions/GenerateInstructions.instructions.md)
 
@@ -66,3 +72,9 @@ Standardizes `*.instructions.md` creation with minimal inputs, smart inference, 
 **Cross-References**: Enhanced with bidirectional binding | **Schema**: VS Code v1.0 compliant  
 
 *Generated and formatted following VS Code GitHub Copilot official documentation standards*
+
+---
+
+## Audit
+Last invoked: [Manual log]
+Change history: v1.0 (2026-01-14) - Added traceability

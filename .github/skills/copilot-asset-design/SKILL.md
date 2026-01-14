@@ -3,10 +3,15 @@ name: copilot-asset-design
 description: Design and validate GitHub Copilot customization assets including agents, skills, instructions, and prompts. Provides architecture patterns, quality criteria, and integration strategies. Use when creating or improving Copilot customizations.
 ---
 
+<!-- ASSET: copilot-asset-design | TYPE: Skill | VERSION: v1.0 -->
+
+
 # Copilot Asset Design Skill
 
+## Metadata
+Asset ID: skill/copilot-asset-design | Created: 2026-01-14 | Status: Active
+
 ## Purpose
-Comprehensive methodology for designing, structuring, and validating GitHub Copilot customization assets. Covers agents, skills, instructions, prompts, and their integration patterns following VS Code and agentskills.io standards.
 
 ## When to Use This Skill
 - Designing new Copilot customization assets
@@ -504,3 +509,30 @@ Well-designed Copilot customization provides:
 **Prerequisites**: Understanding of VS Code Copilot customization, agentskills.io standard
 
 **Cross-Platform**: Design methodology works across all platforms; validation requires VS Code for agent testing.
+
+**Log Entry Format**:
+```
+[YYYY-MM-DD HH:MM:SS UTC] - Invoked by: {user/system} | Context: {brief description}
+```
+
+**Recent Invocations**:
+_Manual logging - update this section when invoked_
+- [2026-01-14] Added traceability system
+
+### Usage Guidelines
+- This asset should be invoked when: Skill-specific workflows are needed
+- Expected outcome: Execution of copilot-asset-design Skill functionality
+- Related assets: See related skills in the same directory
+
+### Change History
+| Date | Version | Changes | Author |
+|------|---------|---------|--------|
+| 2026-01-14 | v1.0 | Added traceability system | CopilotCustomizer |
+
+---
+
+---
+
+## Audit
+Last invoked: [Manual log]
+Change history: v1.0 (2026-01-14) - Added traceability

@@ -2,7 +2,13 @@
 agent: CopilotCustomizer
 ---
 
+<!-- ASSET: NewPrompt | TYPE: Prompt | VERSION: v1.0 -->
+
+
 # NewPrompt.prompt.md
+
+## Metadata
+Asset ID: prompt/newprompt | Created: 2026-01-14 | Status: Active
 
 **Paired Instructions**: [GeneratePrompt.instructions.md](../instructions/GeneratePrompt.instructions.md)
 
@@ -42,3 +48,9 @@ Generate complete `*.prompt.md` with:
 ---
 
 *VS Code Copilot Customization Framework v1.0*
+
+---
+
+## Audit
+Last invoked: [Manual log]
+Change history: v1.0 (2026-01-14) - Added traceability

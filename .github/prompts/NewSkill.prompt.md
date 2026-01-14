@@ -4,7 +4,13 @@ instructions:
   - GenerateSkill.instructions.md
 ---
 
+<!-- ASSET: NewSkill | TYPE: Prompt | VERSION: v1.0 -->
+
+
 # New Agent Skill Generator
+
+## Metadata
+Asset ID: prompt/newskill | Created: 2026-01-14 | Status: Active
 
 Creates Agent Skills (agentskills.io open standard) that work across VS Code, GitHub Copilot CLI, Claude, Cursor, and other AI platforms.
 
@@ -336,3 +342,30 @@ After generation, provide:
 
 **Generated**: 2026-01-11 | **Framework**: CopilotCustomizer
 **Purpose**: Cross-platform AI skill generation
+
+**Log Entry Format**:
+```
+[YYYY-MM-DD HH:MM:SS UTC] - Invoked by: {user/system} | Context: {brief description}
+```
+
+**Recent Invocations**:
+_Manual logging - update this section when invoked_
+- [2026-01-14] Added traceability system
+
+### Usage Guidelines
+- This asset should be invoked when: Prompt-specific workflows are needed
+- Expected outcome: Execution of NewSkill Prompt functionality
+- Related assets: See related prompts in the same directory
+
+### Change History
+| Date | Version | Changes | Author |
+|------|---------|---------|--------|
+| 2026-01-14 | v1.0 | Added traceability system | CopilotCustomizer |
+
+---
+
+---
+
+## Audit
+Last invoked: [Manual log]
+Change history: v1.0 (2026-01-14) - Added traceability

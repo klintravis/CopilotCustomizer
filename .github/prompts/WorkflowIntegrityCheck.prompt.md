@@ -2,7 +2,13 @@
 agent: CopilotCustomizer
 ---
 
+<!-- ASSET: WorkflowIntegrityCheck | TYPE: Prompt | VERSION: v1.0 -->
+
+
 ## WorkflowIntegrityCheck (v1.0)
+
+## Metadata
+Asset ID: prompt/workflowintegritycheck | Created: 2026-01-14 | Status: Active
 
 ### Task Intent
 Validate that agents, prompts, and instructions form coherent, testable workflows with clear handoffs and no broken links.
@@ -43,3 +49,30 @@ WorkflowIntegrityCheck → RepoAnalyzer → WorkflowValidator → DocumentationG
 **Workflow Type**: Validation-only (integrity matrix)  
 **User Interactions**: 1 (submit; matrix auto-generated)  
 **Framework**: CopilotCustomizer workflow validation
+
+**Log Entry Format**:
+```
+[YYYY-MM-DD HH:MM:SS UTC] - Invoked by: {user/system} | Context: {brief description}
+```
+
+**Recent Invocations**:
+_Manual logging - update this section when invoked_
+- [2026-01-14] Added traceability system
+
+### Usage Guidelines
+- This asset should be invoked when: Prompt-specific workflows are needed
+- Expected outcome: Execution of WorkflowIntegrityCheck Prompt functionality
+- Related assets: See related prompts in the same directory
+
+### Change History
+| Date | Version | Changes | Author |
+|------|---------|---------|--------|
+| 2026-01-14 | v1.0 | Added traceability system | CopilotCustomizer |
+
+---
+
+---
+
+## Audit
+Last invoked: [Manual log]
+Change history: v1.0 (2026-01-14) - Added traceability

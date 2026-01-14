@@ -3,7 +3,13 @@ applyTo: '.github/agents/WorkflowValidator.agent.md'
 description: 'Validation patterns and rules for multi-agent workflow integrity testing, handoff chain analysis, and automation efficiency measurement'
 ---
 
+<!-- ASSET: WorkflowValidation | TYPE: Instructions | VERSION: v1.0 -->
+
+
 # WorkflowValidation.instructions.md
+
+## Metadata
+Asset ID: instruction/workflowvalidation | Created: 2026-01-14 | Status: Active
 
 ## Workflow Validation Instructions (v1.0)
 
@@ -471,11 +477,29 @@ IF critical_error_detected AND not_full_scan_requested:
 *Standards compliance: [CopilotFramework.instructions.md](../instructions/CopilotFramework.instructions.md)*  
 *Security patterns: [CopilotSecurity.instructions.md](CopilotSecurity.instructions.md)*
 
+**Log Entry Format**:
+```
+[YYYY-MM-DD HH:MM:SS UTC] - Invoked by: {user/system} | Context: {brief description}
+```
+
+**Recent Invocations**:
+_Manual logging - update this section when invoked_
+- [2026-01-14] Added traceability system
+
+### Usage Guidelines
+- This asset should be invoked when: Instructions-specific workflows are needed
+- Expected outcome: Execution of WorkflowValidation Instructions functionality
+- Related assets: See related instructionss in the same directory
+
+### Change History
+| Date | Version | Changes | Author |
+|------|---------|---------|--------|
+| 2026-01-14 | v1.0 | Added traceability system | CopilotCustomizer |
+
 ---
 
-**Version**: v1.0 (2025-11-01)  
-**Schema Compliance**: VS Code Copilot Instructions v1.0  
-**Integration**: RepoReview v1.3, CopilotAudit framework  
-**Instruction Reuse**: 80%+ from CopilotCustomizer framework
+---
 
-*Comprehensive workflow validation patterns for multi-agent orchestration quality assurance*
+## Audit
+Last invoked: [Manual log]
+Change history: v1.0 (2026-01-14) - Added traceability

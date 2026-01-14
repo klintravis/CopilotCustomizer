@@ -2,7 +2,13 @@
 agent: CopilotCustomizer
 ---
 
+<!-- ASSET: QuickChange | TYPE: Prompt | VERSION: v1.0 -->
+
+
 ## QuickChange (v1.0)
+
+## Metadata
+Asset ID: prompt/quickchange | Created: 2026-01-14 | Status: Active
 
 ### Task Intent
 Perform a small, targeted change with a fast approval gate and automated verification and documentation, minimizing touched files.
@@ -47,3 +53,30 @@ QuickChange → RepoAnalyzer → ImplementationPlanner → [USER GATE] → Chang
 **Workflow Type**: Fast one-shot change with guardrails  
 **User Interactions**: 2 (submit + approve plan)  
 **Framework**: Reuses CopilotCustomizer instructions and agents
+
+**Log Entry Format**:
+```
+[YYYY-MM-DD HH:MM:SS UTC] - Invoked by: {user/system} | Context: {brief description}
+```
+
+**Recent Invocations**:
+_Manual logging - update this section when invoked_
+- [2026-01-14] Added traceability system
+
+### Usage Guidelines
+- This asset should be invoked when: Prompt-specific workflows are needed
+- Expected outcome: Execution of QuickChange Prompt functionality
+- Related assets: See related prompts in the same directory
+
+### Change History
+| Date | Version | Changes | Author |
+|------|---------|---------|--------|
+| 2026-01-14 | v1.0 | Added traceability system | CopilotCustomizer |
+
+---
+
+---
+
+## Audit
+Last invoked: [Manual log]
+Change history: v1.0 (2026-01-14) - Added traceability

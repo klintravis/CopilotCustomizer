@@ -52,7 +52,15 @@ name: skill-name
 description: Clear description of what this skill does and when to use it. Be specific about capabilities and use cases (max 1024 chars).
 ---
 
-# Skill Purpose
+<!-- ASSET: GenerateSkill | TYPE: Instructions | VERSION: v1.0 -->
+
+
+# {SkillName} Skill
+
+## Metadata
+Asset ID: instruction/generateskill | Created: 2026-01-14 | Status: Active
+
+## Purpose
 
 [Brief overview of what this skill accomplishes]
 
@@ -93,6 +101,28 @@ description: Clear description of what this skill does and when to use it. Be sp
 - [ ] [Outcome 1]
 - [ ] [Outcome 2]
 - [ ] [Outcome 3]
+
+**Log Entry Format**:
+```
+[YYYY-MM-DD HH:MM:SS UTC] - Invoked by: {user/system} | Context: {brief description}
+```
+
+**Recent Invocations**:
+_Manual logging - update this section when invoked_
+- [{date}] Initial creation
+
+### Usage Guidelines
+- This skill should be invoked when: {specific trigger conditions}
+- Expected outcome: {what should happen}
+- Related assets: {links to related skills}
+
+### Change History
+| Date | Version | Changes | Author |
+|------|---------|---------|--------|
+| {date} | v1.0 | Initial creation | CopilotCustomizer |
+
+---
+*Traceability System v1.0 - Asset tracking enabled*
 ```
 
 ## YAML Frontmatter Requirements
@@ -346,3 +376,30 @@ When generating skills, update:
 
 **Generated**: 2026-01-11 | **Framework**: CopilotCustomizer  
 **Standard**: Agent Skills (agentskills.io) | **Scope**: Cross-platform AI capabilities
+
+**Log Entry Format**:
+```
+[YYYY-MM-DD HH:MM:SS UTC] - Invoked by: {user/system} | Context: {brief description}
+```
+
+**Recent Invocations**:
+_Manual logging - update this section when invoked_
+- [2026-01-14] Added traceability system
+
+### Usage Guidelines
+- This asset should be invoked when: Instructions-specific workflows are needed
+- Expected outcome: Execution of GenerateSkill Instructions functionality
+- Related assets: See related instructionss in the same directory
+
+### Change History
+| Date | Version | Changes | Author |
+|------|---------|---------|--------|
+| 2026-01-14 | v1.0 | Added traceability system | CopilotCustomizer |
+
+---
+
+---
+
+## Audit
+Last invoked: [Manual log]
+Change history: v1.0 (2026-01-14) - Added traceability

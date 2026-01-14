@@ -9,7 +9,13 @@ handoffs:
     send: false
 ---
 
+<!-- ASSET: BootstrapRepo | TYPE: Agent | VERSION: v1.0 -->
+
+
 ## BootstrapRepo Agent (v1.0)
+
+## Metadata
+Asset ID: agent/bootstraprepo | Created: 2026-01-14 | Status: Active
 
 ### Handoff Notification
 ```
@@ -114,8 +120,8 @@ User: "Bootstrap Copilot assets for /Users/dev/my-api-project"
 
 Agent:
 1. Validates: Not CopilotCustomizer ✓
-2. Scans: Node.js/TypeScript API project detected
-3. Hands off to RepoAnalyzer...
+2. Scans: Node.js/TypeScript API project detected (repository-analysis skill)
+3. Hands off to AssetPlanner...
 
 [After analysis chain]
 
@@ -150,8 +156,7 @@ AssetGenerator (skills created first, then agents/instructions/prompts)
 VerificationAgent (validation complete)
   ↓
 HarmonizationAgent (binding complete, cross-reference skills)
-  ↓
-DocumentationGenerator (technical-documentation skill: report ready)
+  ↓ [technical-documentation skill: generate report]
   ↓
 COMPLETE
 
@@ -189,8 +194,29 @@ if (assetCreationFails) {
 
 All other phases run autonomously with automatic handoffs.
 
+**Log Entry Format**:
+```
+[YYYY-MM-DD HH:MM:SS UTC] - Invoked by: {user/system} | Context: {brief description}
+```
+
+**Recent Invocations**:
+_Manual logging - update this section when invoked_
+- [2026-01-14] Added traceability system
+
+### Usage Guidelines
+- This asset should be invoked when: Agent-specific workflows are needed
+- Expected outcome: Execution of BootstrapRepo Agent functionality
+- Related assets: See related agents in the same directory
+
+### Change History
+| Date | Version | Changes | Author |
+|------|---------|---------|--------|
+| 2026-01-14 | v1.0 | Added traceability system | CopilotCustomizer |
+
 ---
 
-*Entry point for autonomous repository bootstrap (same workspace)*  
-*70%+ instruction reuse from CopilotCustomizer framework*  
-*<5 user interactions guarantee*
+---
+
+## Audit
+Last invoked: [Manual log]
+Change history: v1.0 (2026-01-14) - Added traceability

@@ -3,7 +3,13 @@ applyTo: '.github/**/*.{instructions.md,prompt.md,agent.md}'
 description: 'Formats and validates GitHub Copilot customization assets against latest VS Code standards with 100% content preservation, including agent files, MCP configurations, and tool management'
 ---
 
+<!-- ASSET: FormatAssets | TYPE: Instructions | VERSION: v1.0 -->
+
+
 ## Copilot Asset Formatting & Standards Compliance Instructions (v1.0)
+
+## Metadata
+Asset ID: instruction/formatassets | Created: 2026-01-14 | Status: Active
 
 **Depth Modes**: quick-format, standard, deep-compliance  
 **Refinement Commands**: refine: standards, refine: preserve, refine: format, refine: validate
@@ -224,5 +230,29 @@ Compatible with: HarmonizeAssets, CopilotCustomizer, GenerateInstructions, Asset
 
 **Related Assets**: GenerateInstructions, GenerateCopilotAgent, GeneratePrompt, HarmonizeAssets, AssetOptimization
 
+**Log Entry Format**:
+```
+[YYYY-MM-DD HH:MM:SS UTC] - Invoked by: {user/system} | Context: {brief description}
+```
+
+**Recent Invocations**:
+_Manual logging - update this section when invoked_
+- [2026-01-14] Added traceability system
+
+### Usage Guidelines
+- This asset should be invoked when: Instructions-specific workflows are needed
+- Expected outcome: Execution of FormatAssets Instructions functionality
+- Related assets: See related instructionss in the same directory
+
+### Change History
+| Date | Version | Changes | Author |
+|------|---------|---------|--------|
+| 2026-01-14 | v1.0 | Added traceability system | CopilotCustomizer |
+
 ---
-*VS Code GitHub Copilot official documentation standards*
+
+---
+
+## Audit
+Last invoked: [Manual log]
+Change history: v1.0 (2026-01-14) - Added traceability

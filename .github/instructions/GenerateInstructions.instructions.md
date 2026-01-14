@@ -3,7 +3,13 @@ applyTo: '.github/**/*.instructions.md'
 description: 'Reusable framework for creating high-quality instruction files with consistency, guardrails, and maintainability'
 ---
 
+<!-- ASSET: GenerateInstructions | TYPE: Instructions | VERSION: v1.0 -->
+
+
 ## Instruction Authoring Guide (v1.1)
+
+## Metadata
+Asset ID: instruction/generateinstructions | Created: 2026-01-14 | Status: Active
 
 **⚠️ YAML**: Only `applyTo` and `description` supported. Move custom metadata to markdown.
 
@@ -124,5 +130,29 @@ Append discovered tool documentation links to generated instructions.
 ### Conformance Note
 This instruction file aligns with the broader Copilot customization ecosystem and integrates with [NewInstructions.prompt.md](../prompts/NewInstructions.prompt.md) for execution workflow. Focuses on maintainable, high-quality instruction file generation following established patterns.
 
+**Log Entry Format**:
+```
+[YYYY-MM-DD HH:MM:SS UTC] - Invoked by: {user/system} | Context: {brief description}
+```
+
+**Recent Invocations**:
+_Manual logging - update this section when invoked_
+- [2026-01-14] Added traceability system
+
+### Usage Guidelines
+- This asset should be invoked when: Instructions-specific workflows are needed
+- Expected outcome: Execution of GenerateInstructions Instructions functionality
+- Related assets: See related instructionss in the same directory
+
+### Change History
+| Date | Version | Changes | Author |
+|------|---------|---------|--------|
+| 2026-01-14 | v1.0 | Added traceability system | CopilotCustomizer |
+
 ---
-*Generated and formatted following VS Code GitHub Copilot official documentation standards*
+
+---
+
+## Audit
+Last invoked: [Manual log]
+Change history: v1.0 (2026-01-14) - Added traceability

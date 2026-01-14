@@ -2,7 +2,13 @@
 agent: CopilotCustomizer
 ---
 
+<!-- ASSET: RepoReview | TYPE: Prompt | VERSION: v1.0 -->
+
+
 # RepoReview.prompt.md
+
+## Metadata
+Asset ID: prompt/reporeview | Created: 2026-01-14 | Status: Active
 
 **Paired Instructions**: [RepoReview.instructions.md](../instructions/RepoReview.instructions.md)
 
@@ -57,3 +63,9 @@ Repository analysis and scaffolding prompt (v1.1-h1) for comprehensive Copilot c
 **Cross-References**: Enhanced with bidirectional binding | **Schema**: VS Code v1.0 compliant  
 
 *Generated and formatted following VS Code GitHub Copilot official documentation standards*
+
+---
+
+## Audit
+Last invoked: [Manual log]
+Change history: v1.0 (2026-01-14) - Added traceability

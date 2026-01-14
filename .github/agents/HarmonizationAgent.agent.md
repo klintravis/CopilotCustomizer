@@ -9,7 +9,13 @@ handoffs:
     send: true
 ---
 
+<!-- ASSET: HarmonizationAgent | TYPE: Agent | VERSION: v1.0 -->
+
+
 ## HarmonizationAgent (v1.0)
+
+## Metadata
+Asset ID: agent/harmonizationagent | Created: 2026-01-14 | Status: Active
 
 ### Handoff Notification
 ```
@@ -276,7 +282,29 @@ if (circularHandoffDetected) {
 }
 ```
 
+**Log Entry Format**:
+```
+[YYYY-MM-DD HH:MM:SS UTC] - Invoked by: {user/system} | Context: {brief description}
+```
+
+**Recent Invocations**:
+_Manual logging - update this section when invoked_
+- [2026-01-14] Added traceability system
+
+### Usage Guidelines
+- This asset should be invoked when: Agent-specific workflows are needed
+- Expected outcome: Execution of HarmonizationAgent Agent functionality
+- Related assets: See related agents in the same directory
+
+### Change History
+| Date | Version | Changes | Author |
+|------|---------|---------|--------|
+| 2026-01-14 | v1.0 | Added traceability system | CopilotCustomizer |
+
 ---
 
-*Establishes coherent asset ecosystem with complete cross-references*  
-*Automatic handoff to final validation*
+---
+
+## Audit
+Last invoked: [Manual log]
+Change history: v1.0 (2026-01-14) - Added traceability

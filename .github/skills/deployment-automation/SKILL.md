@@ -3,10 +3,15 @@ name: deployment-automation
 description: CI/CD pipeline design, deployment strategies, and release automation. Use when implementing GitHub Actions, container deployments, release workflows, and infrastructure automation.
 ---
 
+<!-- ASSET: deployment-automation | TYPE: Skill | VERSION: v1.0 -->
+
+
 # Deployment Automation Skill
 
+## Metadata
+Asset ID: skill/deployment-automation | Created: 2026-01-14 | Status: Active
+
 ## Purpose
-Systematic methodology for designing and implementing CI/CD pipelines, deployment strategies, and release automation. Covers GitHub Actions workflows, container orchestration, infrastructure-as-code patterns, and automated release processes.
 
 ## When to Use This Skill
 - Designing CI/CD pipelines and workflows
@@ -422,3 +427,30 @@ jobs:
 6. **Documented** - Playbooks for common scenarios
 7. **Gated** - Approval gates for production changes
 8. **Measurable** - DORA metrics (deployment frequency, lead time, MTTR, change failure rate)
+
+**Log Entry Format**:
+```
+[YYYY-MM-DD HH:MM:SS UTC] - Invoked by: {user/system} | Context: {brief description}
+```
+
+**Recent Invocations**:
+_Manual logging - update this section when invoked_
+- [2026-01-14] Added traceability system
+
+### Usage Guidelines
+- This asset should be invoked when: Skill-specific workflows are needed
+- Expected outcome: Execution of deployment-automation Skill functionality
+- Related assets: See related skills in the same directory
+
+### Change History
+| Date | Version | Changes | Author |
+|------|---------|---------|--------|
+| 2026-01-14 | v1.0 | Added traceability system | CopilotCustomizer |
+
+---
+
+---
+
+## Audit
+Last invoked: [Manual log]
+Change history: v1.0 (2026-01-14) - Added traceability

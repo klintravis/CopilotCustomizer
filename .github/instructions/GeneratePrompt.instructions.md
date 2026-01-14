@@ -3,7 +3,13 @@ applyTo: '.github/**/*.prompt.md'
 description: 'Standardized, modular approach for building high-quality prompt files that pair with custom agents and instruction files'
 ---
 
+<!-- ASSET: GeneratePrompt | TYPE: Instructions | VERSION: v1.0 -->
+
+
 ## Prompt File Authoring Guide (v1.0)
+
+## Metadata
+Asset ID: instruction/generateprompt | Created: 2026-01-14 | Status: Active
 
 **Paired Prompt**: [NewPrompt.prompt.md](../prompts/NewPrompt.prompt.md)
 
@@ -62,5 +68,29 @@ If required variable missing (<4 chars), list `Missing Inputs:` and halt with ta
 - Include: `OutputPath`, `GeneratedAt`, `SourceInstruction`, `Type: prompt`
 - Must include ready-to-run example with resolved inputs
 
+**Log Entry Format**:
+```
+[YYYY-MM-DD HH:MM:SS UTC] - Invoked by: {user/system} | Context: {brief description}
+```
+
+**Recent Invocations**:
+_Manual logging - update this section when invoked_
+- [2026-01-14] Added traceability system
+
+### Usage Guidelines
+- This asset should be invoked when: Instructions-specific workflows are needed
+- Expected outcome: Execution of GeneratePrompt Instructions functionality
+- Related assets: See related instructionss in the same directory
+
+### Change History
+| Date | Version | Changes | Author |
+|------|---------|---------|--------|
+| 2026-01-14 | v1.0 | Added traceability system | CopilotCustomizer |
+
 ---
-*Generated following VS Code Copilot prompt file standards*
+
+---
+
+## Audit
+Last invoked: [Manual log]
+Change history: v1.0 (2026-01-14) - Added traceability
