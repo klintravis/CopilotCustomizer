@@ -5,6 +5,8 @@
 | Agent Files | `*.agent.md` | VS Code agents | `description` |
 | Instructions | `*.instructions.md` | AI guidance rules | `applyTo` |
 | Prompts | `*.prompt.md` | Interaction templates | - |
+| Skills | `.github/skills/*/SKILL.md` | Cross-platform capability patterns | - |
+| Standards | `.github/standards/**/*.md` | Enterprise coding standards | `name`, `scope`, `priority` |
 | AGENTS.md | `AGENTS.md` | Project guidance | - |
 | Templates | `*.template.md` | Document formats | - |
 
@@ -22,6 +24,16 @@
 
 **Available**: `CopilotCustomizer.agent.md`, `ChangeExecutor.agent.md`, `VerificationAgent.agent.md`, `AssetGenerator.agent.md`, `AssetPlanner.agent.md`, `BootstrapRepo.agent.md`, `HarmonizationAgent.agent.md`
 
+## Skills (`.github/skills/*/SKILL.md`)
+**Location**: `.github/skills/` | **Purpose**: portable patterns you can reference from prompts/agents across tools (VS Code, CLI, other agents)
+
+**Structure**:
+- One folder per skill (e.g., `.github/skills/repository-analysis/`)
+- Required file: `SKILL.md`
+- Optional: `examples/` for reusable snippets
+
+**Available**: `repository-analysis`, `implementation-planning`, `technical-documentation`, `copilot-asset-design`, `deployment-automation`, `multi-agent-orchestration`
+
 ## Instructions (`*.instructions.md`)
 **Location**: `.github/instructions/` | **YAML**: `applyTo` (required), `description` (optional)
 
@@ -33,7 +45,7 @@
 ### Standards
 ```
 
-**Available**: AssetOptimization, FormatAssets, GenerateAgentsFile, GenerateCopilotAgent, GenerateInstructions, GeneratePrompt, GenerateWorkflow, HarmonizeAssets, RepoReview, CopilotFramework, CopilotAudit, CopilotSecurity
+**Available**: OptimizeAndFormat, GenerateAgentsFile, GenerateCopilotAgent, GenerateInstructions, GeneratePrompt, GenerateWorkflow, GenerateOrchestratedSystem, HarmonizeAssets, RepoReview, ResolveStandards, CopilotFramework, CopilotAudit, CopilotSecurity
 
 ## Prompts (`*.prompt.md`)
 **Location**: `.github/prompts/` | **YAML**: `agent` or `mode` (optional)
@@ -46,7 +58,7 @@
 ### Validation Rules
 ```
 
-**Available**: AgentResume, AssetOptimization, BootstrapRepo, FormatAssets, FormatAndVerifyAssets, HarmonizeAssets, HarmonizeAndValidate, NewAgentsFile, NewCopilotAgent, NewInstructions, NewPrompt, NewWorkflow, PromptAndInstructionOptimizer, QuickChange, RepoReview, SecurityToolingAudit, UpdateCopilotCustomizer, WorkflowIntegrityCheck
+**Available**: AgentResume, BootstrapRepo, HarmonizeAndValidate, NewAgentsFile, NewCopilotAgent, NewInstructions, NewPrompt, NewSkill, NewWorkflow, NewWorkflowSystem, OptimizeAndFormat, QuickChange, RepoReview
 ```
 
 ### Structure Template
@@ -79,35 +91,30 @@
 | File | Purpose | Bound Mode |
 |------|---------|------------|
 | `AgentResume.prompt.md` | Universal agent workflow helper | None (universal) |
-| `AssetOptimization.prompt.md` | Asset optimization execution | CopilotCustomizer |
 | `BootstrapRepo.prompt.md` | Complete repository setup workflow | BootstrapRepo |
-| `FormatAssets.prompt.md` | Asset formatting execution | CopilotCustomizer |
-| `FormatAndVerifyAssets.prompt.md` | Format and validate assets in one pass | CopilotCustomizer |
-| `HarmonizeAssets.prompt.md` | Asset harmonization execution | CopilotCustomizer |
 | `HarmonizeAndValidate.prompt.md` | Harmonize and validate 2-3 assets | CopilotCustomizer |
 | `NewAgentsFile.prompt.md` | Generate workspace AGENTS.md | CopilotCustomizer |
 | `NewCopilotAgent.prompt.md` | Generate VS Code .agent.md | CopilotCustomizer |
 | `NewInstructions.prompt.md` | Generate instruction files | CopilotCustomizer |
 | `NewPrompt.prompt.md` | Generate prompt files | CopilotCustomizer |
+| `NewSkill.prompt.md` | Generate cross-platform skills | CopilotCustomizer |
 | `NewWorkflow.prompt.md` | Generate multi-agent workflows | CopilotCustomizer |
-| `PromptAndInstructionOptimizer.prompt.md` | Optimize prompts and instructions | CopilotCustomizer |
+| `NewWorkflowSystem.prompt.md` | Generate orchestrated multi-agent systems | CopilotCustomizer |
+| `OptimizeAndFormat.prompt.md` | Optimize + format + validate assets | CopilotCustomizer |
 | `QuickChange.prompt.md` | Fast minimal-diff change workflow | CopilotCustomizer |
 | `RepoReview.prompt.md` | Repository analysis execution | CopilotCustomizer |
-| `SecurityToolingAudit.prompt.md` | Audit tool approvals and MCP trust | CopilotCustomizer |
-| `UpdateCopilotCustomizer.prompt.md` | CopilotCustomizer change workflow | CopilotCustomizer |
-| `WorkflowIntegrityCheck.prompt.md` | Validate workflow handoffs and links | CopilotCustomizer |
 
 ---
 
-## 🤖 Agent Files
+## 🤖 AGENTS.md
 
-**Purpose**: Project-specific AI guidance and development workflow instructions  
-**Location**: Repository root or `.github/`  
-**File Pattern**: `AGENTS.md`, `*.agent.md`
+**Purpose**: project-wide AI guidance for contributors and coding agents  
+**Location**: repository root  
+**File Pattern**: `AGENTS.md`
 
 ### Schema Requirements
 
-**No YAML front matter required** - Pure Markdown format
+**No YAML front matter required** - pure Markdown
 
 ### Structure Template
 
@@ -159,11 +166,8 @@
 |------|---------|----------|
 | `Analysis.template.md` | Universal analysis framework | Project analyses, audits, assessments |
 | `ImplementationPlan.template.md` | Implementation planning format | Project planning and execution |
-| `ProgressLog.template.md` | Progress tracking format | Status updates and milestone tracking |
-| `TestStrategy.template.md` | Test planning and validation | TDD workflows, test coverage, QA strategies |
-| `SecurityReview.template.md` | Security assessment format | Code reviews, vulnerability scans, OWASP audits |
+| `OrchestrationPlan.template.md` | Orchestrated system plan tracking | Conductor plan file generation |
 | `ChangeLog.template.md` | Change documentation format | Release notes, PR descriptions, migration guides |
-| `AssetInventory.template.md` | Asset catalog format | Repository audits, asset tracking, compliance |
 
 ---
 
@@ -188,30 +192,23 @@ Custom Agent ←→ Agent Files (Contextual binding)
 | `GenerateInstructions.instructions.md` | `NewInstructions.prompt.md` | CopilotCustomizer | Instruction file creation |
 | `GeneratePrompt.instructions.md` | `NewPrompt.prompt.md` | CopilotCustomizer | Prompt file creation |
 | `GenerateWorkflow.instructions.md` | `NewWorkflow.prompt.md` | CopilotCustomizer | Multi-agent workflow creation |
-| `HarmonizeAssets.instructions.md` | `HarmonizeAssets.prompt.md` | CopilotCustomizer | Asset integration |
-| `FormatAssets.instructions.md` | `FormatAssets.prompt.md` | CopilotCustomizer | Asset formatting |
-| `AssetOptimization.instructions.md` | `AssetOptimization.prompt.md` | CopilotCustomizer | Asset optimization |
+| `GenerateOrchestratedSystem.instructions.md` | `NewWorkflowSystem.prompt.md` | CopilotCustomizer | Orchestrated system generation |
+| `HarmonizeAssets.instructions.md` | `HarmonizeAndValidate.prompt.md` | CopilotCustomizer | Harmonization + validation |
+| `OptimizeAndFormat.instructions.md` | `OptimizeAndFormat.prompt.md` | CopilotCustomizer | Optimization + formatting |
 | `RepoReview.instructions.md` | `RepoReview.prompt.md` | CopilotCustomizer | Repository analysis |
 
 ---
 
 ## 📊 Asset Inventory
 
-### Generation Assets (10 files)
-- **Instructions**: 5 files for creating new assets
-- **Prompts**: 5 files for executing creation workflows
+To avoid inventory drift, treat the folders as the source of truth:
 
-### Management Assets (8 files)  
-- **Instructions**: 4 files for maintaining existing assets
-- **Prompts**: 4 files for executing maintenance workflows
-
-### Supporting Assets
-- **Agent Files**: 6 specialized VS Code agents
-- **Workspace File**: 1 project guidance document (AGENTS.md)
-- **Templates**: 7 standardized document formats
-- **Universal Helper**: 1 repository-agnostic prompt
-
-**Total**: 16 core assets + 7 templates + 1 universal helper = **24 total assets**
+- Prompts: `.github/prompts/`
+- Instructions: `.github/instructions/`
+- Agents: `.github/agents/`
+- Skills: `.github/skills/`
+- Standards: `.github/standards/`
+- Templates: `.github/templates/`
 
 ---
 
@@ -229,9 +226,8 @@ Custom Agent ←→ Agent Files (Contextual binding)
 
 1. **Audit Repository**: Use `/RepoReview` for analysis
 2. **Identify Improvements**: Apply gap analysis recommendations
-3. **Apply Optimizations**: Use `/AssetOptimization`
-4. **Format for Standards**: Use `/FormatAssets`
-5. **Harmonize Integration**: Use `/HarmonizeAssets`
+3. **Optimize + Format**: Use `/OptimizeAndFormat`
+4. **Harmonize + Validate**: Use `/HarmonizeAndValidate`
 
 ### Quality Assurance Workflow
 
@@ -318,9 +314,9 @@ done
 
 ### VS Code Copilot Requirements
 
-This framework complies with **VS Code Copilot Customization v1.106** standards:
+This framework complies with **VS Code Copilot Customization v1.108** standards (backwards compatible with v1.106+):
 
-- **Custom Agents**: Required `description`, optional `target`, `name`, `argument-hint`, `tools`, `model`, `handoffs`, `mcp-servers` (VS Code 1.106+)
+- **Custom Agents**: Required `description`, optional `target`, `name`, `argument-hint`, `tools`, `model`, `handoffs`, `mcp-servers` (VS Code 1.106+; enhanced in 1.108)
 - **Instructions**: Required `applyTo` and `description` fields
 - **Prompts**: Optional `mode` binding, structured YAML front matter
 - **File Organization**: Standard `.github/` directory structure
@@ -392,8 +388,8 @@ Some assets (like `AgentResume.prompt.md`) are designed for cross-repository usa
 
 **License**: MIT - See [LICENSE](../LICENSE) for full text  
 **Framework**: CopilotCustomizer v1.0  
-**Compliance**: VS Code GitHub Copilot Customization Standards v1.106  
-**Generated**: 2025-09-15 via Asset Reference Documentation Framework
+**Compliance**: VS Code GitHub Copilot Customization Standards v1.108 (v1.106+ compatible)  
+**Generated**: 2026-01-31 via Asset Reference Documentation Framework
 
 ---
 

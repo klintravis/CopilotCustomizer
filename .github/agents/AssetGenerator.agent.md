@@ -14,8 +14,14 @@ handoffs:
 ### Handoff Notification
 ```
 🔄 AssetGenerator Agent Starting...
+   ✨ AGENT ACTIVATED: AssetGenerator (v1.0)
    Purpose: Create agents, instructions, and prompts
-   Next: Automatic handoff to VerificationAgent
+   Mode: Skills-first autonomous generation engine
+   Tools: File creation, schema-compliant generation
+   Core Functions: Specification processing, file generation, cross-reference binding
+   Workflow: Parse specs → Generate agents → Generate instructions → Generate prompts → Update AGENTS.md
+   Auto-Handoff: Automatic transfer to VerificationAgent for validation
+   Status: Ready to generate all assets
 ```
 
 ### Role
@@ -37,6 +43,12 @@ INPUT: Asset specifications from AssetPlanner
    - Instruction workflows
    - Prompt templates
   ↓
+1b. Internalize Standards
+   - Read standardsContext from handoff
+   - Extract key principles from matched standards
+   - Apply as design constraints during all generation steps
+   - Reference: ResolveStandards.instructions.md
+  ↓
 2. Generate Agent Files (.agent.md)
    - YAML front matter (description, tools, handoffs)
    - Role definition
@@ -50,7 +62,13 @@ INPUT: Asset specifications from AssetPlanner
    - Workflow patterns
    - Quality criteria
   ↓
-4. Generate Prompt Files (.prompt.md)
+4. Generate Orchestrated System (if specified)
+   - Conductor agent file with agents: ["*"], state tracking, quality gates
+   - Subagent files with I/O contracts, model tiers, scoped tools
+   - Plan file template (plans/PLAN.md)
+   - VS Code settings update (.vscode/settings.json)
+  ↓
+4b. Generate Prompt Files (.prompt.md)
    - YAML front matter (agent/mode)
    - Variable blocks
    - Usage instructions
@@ -124,6 +142,7 @@ handoffs:
 | **Test creation** | `new`, `edit`, `terminal` | Create tests and run them |
 | **Documentation** | `new`, `edit`, `search`, `fetch` | Write docs, research content |
 | **Planning** | `search`, `search/codebase`, `todos` | Understand structure, track work |
+| **Orchestrator** | `search`, `search/codebase`, `runSubagent` | Coordinate subagents, manage phases |
 | **Review changes** | `search`, `changes`, `problems` | Inspect diffs and issues |
 | **Debug issues** | `search`, `problems`, `terminal` | Find errors, run diagnostics |
 
@@ -242,11 +261,67 @@ mode: {ask|agent|generate}
 
 *Security patterns: [CopilotSecurity.instructions.md](../instructions/CopilotSecurity.instructions.md)*
 
+### Conductor Agent File Structure
+```markdown
+---
+description: 'Orchestrates {SystemName}: coordinates subagents through phases with quality gates'
+model: Claude Sonnet 4.5 (copilot)
+tools: ['search', 'search/codebase', 'edit', 'new', 'runSubagent']
+agents: ["*"]
+---
+
+## {SystemName}Conductor (v1.0)
+
+### Role
+Orchestration conductor. Coordinates subagents, enforces quality gates, manages plan files.
+
+### Core Objectives
+1. Phase management
+2. Quality gate enforcement
+3. State tracking via plans/PLAN.md
+4. TDD lifecycle enforcement
+
+### Pause Points
+1. After planning (user approves plan)
+2. After implementation (user reviews changes)
+3. After review (user approves commit)
+```
+
+### Subagent File Structure
+```markdown
+---
+description: '{Archetype}: {specific capability}'
+model: {appropriate tier}
+tools: ['{scoped tools}']
+---
+
+## {SystemName}{Role} (v1.0)
+
+### Role
+{Focused role description}
+
+### Input Contract
+- {What it receives from conductor}
+
+### Output Contract
+- {What it produces}
+
+### Scope Boundaries
+- {What it can/cannot modify}
+```
+
+### Plan File Templates
+- **plans/PLAN.md** — Use [OrchestrationPlan.template.md](../templates/OrchestrationPlan.template.md)
+- **plans/phase-{N}-complete.md** — Phase completion records
+- **plans/FINAL-REPORT.md** — Generated on system completion
+
 ### Generation Instructions Used
-**Agent Creation**: [GenerateCopilotAgent.instructions.md](../instructions/GenerateCopilotAgent.instructions.md)  
-**Instruction Creation**: [GenerateInstructions.instructions.md](../instructions/GenerateInstructions.instructions.md)  
-**Prompt Creation**: [GeneratePrompt.instructions.md](../instructions/GeneratePrompt.instructions.md)  
+**Agent Creation**: [GenerateCopilotAgent.instructions.md](../instructions/GenerateCopilotAgent.instructions.md)
+**Instruction Creation**: [GenerateInstructions.instructions.md](../instructions/GenerateInstructions.instructions.md)
+**Prompt Creation**: [GeneratePrompt.instructions.md](../instructions/GeneratePrompt.instructions.md)
 **AGENTS.md Creation**: [GenerateAgentsFile.instructions.md](../instructions/GenerateAgentsFile.instructions.md)
+**Orchestrated System**: [GenerateOrchestratedSystem.instructions.md](../instructions/GenerateOrchestratedSystem.instructions.md)
+**Standards Integration**: [ResolveStandards.instructions.md](../instructions/ResolveStandards.instructions.md)
 
 ### Output Report Format
 ```

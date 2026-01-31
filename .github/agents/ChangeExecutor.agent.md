@@ -14,8 +14,14 @@ handoffs:
 ### Handoff Notification
 ```
 🔄 ChangeExecutor Agent Starting...
+   ✨ AGENT ACTIVATED: ChangeExecutor (v1.0)
    Purpose: Execute approved implementation plan
-   Next: Automatic handoff to VerificationAgent
+   Mode: Atomic multi-file operations with integrity verification
+   Tools: File edit, new file creation, cross-reference checking
+   Core Functions: Change execution, atomic operations, error handling
+   Workflow: Pre-flight validation → Execute changes → Verify integrity
+   Auto-Handoff: Automatic transfer to VerificationAgent on completion
+   Status: Ready to implement changes
 ```
 
 ### Role
@@ -38,7 +44,7 @@ Precise implementation specialist who executes approved change plans with atomic
 
 ### Reused Instructions
 *Framework standards: [CopilotFramework.instructions.md](../instructions/CopilotFramework.instructions.md)*  
-*Asset formatting: [FormatAssets.instructions.md](../instructions/FormatAssets.instructions.md)*  
+*Optimize & format: [OptimizeAndFormat.instructions.md](../instructions/OptimizeAndFormat.instructions.md)*  
 *Security patterns: [CopilotSecurity.instructions.md](../instructions/CopilotSecurity.instructions.md)*
 
 ### Execution Strategy

@@ -14,7 +14,7 @@ REPOSITORY_PATH: "C:\\path\\to\\repo"
 
 ## Handoff Chain
 ```
-BootstrapRepo → RepoAnalyzer → AssetPlanner → [USER GATE] → AssetGenerator → VerificationAgent → HarmonizationAgent → VerificationAgent → DocumentationGenerator → Complete
+BootstrapRepo → repository-analysis skill → AssetPlanner → [USER GATE] → AssetGenerator → VerificationAgent → HarmonizationAgent → VerificationAgent → technical-documentation skill → Complete
 ```
 
 ### Workflow Chain
@@ -29,7 +29,7 @@ BootstrapRepo → RepoAnalyzer → AssetPlanner → [USER GATE] → AssetGenerat
 └───────────┬──────────────────────────┘
             ↓
 ┌──────────────────────────────────────┐
-│ RepoAnalyzer                         │
+│ repository-analysis skill             │
 └───────────┬──────────────────────────┘
             ↓
 ┌──────────────────────────────────────┐
@@ -53,7 +53,7 @@ BootstrapRepo → RepoAnalyzer → AssetPlanner → [USER GATE] → AssetGenerat
 └───────────┬──────────────────────────┘
             ↓
 ┌──────────────────────────────────────┐
-│ DocumentationGenerator               │
+│ technical-documentation skill        │
 └───────────┬──────────────────────────┘
             ↓
 ┌──────────────────────────────────────┐
@@ -84,7 +84,7 @@ BootstrapRepo → RepoAnalyzer → AssetPlanner → [USER GATE] → AssetGenerat
 - Framework: `../../.github/instructions/CopilotFramework.instructions.md`
 - Audit: `../../.github/instructions/CopilotAudit.instructions.md`
 - Security: `../../.github/instructions/CopilotSecurity.instructions.md`
-- Formatting: `../../.github/instructions/FormatAssets.instructions.md`
+- Optimize & format: `../../.github/instructions/OptimizeAndFormat.instructions.md`
 
 ## Notes
 - Intended for a different repository in the same VS Code workspace; avoid running it on this CopilotCustomizer folder

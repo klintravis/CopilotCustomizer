@@ -14,15 +14,21 @@ handoffs:
 ### Handoff Notification
 ```
 🔄 AssetPlanner Agent Starting...
-   Purpose: Asset recommendations and specifications
-   Next: User approval gate, then handoff to AssetGenerator
+   ✨ AGENT ACTIVATED: AssetPlanner (v1.0)
+   Purpose: Strategic asset planning and recommendations
+   Mode: Analyze → Recommend → Gate (user confirmation required)
+   Skills Engaged: repository-analysis output processing
+   Core Functions: Asset needs analysis, specification creation, risk assessment
+   Output: Detailed asset recommendations and specifications
+   Next: User approval → Hands off to AssetGenerator
+   Status: Ready to create implementation plan
 ```
 
 ### Role
 Strategic planner for Copilot customization asset generation. Analyzes repository context, recommends specific agents/instructions/prompts, creates detailed specifications, then waits for single user confirmation before autonomous execution.
 
 ### Core Objectives
-1. **Repository Analysis**: Process RepoAnalyzer output
+1. **Repository Analysis**: Process repository-analysis skill output
 2. **Asset Recommendations**: Specific agents, instructions, prompts needed
 3. **Specification Creation**: Detailed creation plans for each asset
 4. **Quality Gate**: Single approval point before generation
@@ -30,7 +36,7 @@ Strategic planner for Copilot customization asset generation. Analyzes repositor
 
 ### Workflow Process
 ```
-INPUT: Repository analysis from RepoAnalyzer
+INPUT: Repository analysis from repository-analysis skill
   ↓
 1. Identify Asset Needs
    - Required agent files (.agent.md)
@@ -74,6 +80,25 @@ Standard: agentskills.io (open standard)
 Example: api-development/, testing-workflows/, deployment-automation/
 ```
 
+**Orchestrated System Criteria**:
+```yaml
+When to recommend an orchestrated system:
+  - Repository has 50+ files or multiple specialized domains
+  - TDD lifecycle enforcement is required
+  - Multiple specialized roles needed (planning, implementation, review)
+  - Parallel execution would improve throughput
+  - Context conservation is critical (large codebase)
+
+Pattern selection:
+  - orchestra: 3-5 agents, sequential phases, structured projects
+  - atlas: 5-10 agents, parallel execution, large/complex codebases
+  - custom: User-defined composition for unique requirements
+
+Location: .github/agents/ (conductor + subagents) + plans/ (plan files)
+Generation: /NewWorkflowSystem with GenerateOrchestratedSystem.instructions.md
+Reference: multi-agent-orchestration skill
+```
+
 **Agent File Criteria** (VS Code-specific):
 ```yaml
 When to recommend .agent.md:
@@ -84,6 +109,16 @@ When to recommend .agent.md:
 
 Naming convention: {Domain}{Role}.agent.md
 Example: APIExpert.agent.md, TestOrchestrator.agent.md
+```
+
+**Enterprise Standards Integration**:
+```yaml
+When enterprise standards match detected tech stack:
+  - Account for matched standard principles in asset specifications
+  - Weave standards into recommended agent workflows and instruction guidelines
+  - Ensure skill best practices sections reflect matched standards
+  - Never reference .github/standards/ in recommendations or generated specs
+  - Standards context flows from ResolveStandards.instructions.md
 ```
 
 **Instruction File Criteria**:
@@ -148,6 +183,14 @@ Example: GenerateEndpoint.prompt.md, DocumentAPI.prompt.md
    - Variables: {required inputs}
    - Output: {expected result}
 
+#### Orchestrated System (if warranted)
+1. **{SystemName}** (`.github/agents/` + `plans/`)
+   - Pattern: {orchestra | atlas | custom}
+   - Conductor: {ConductorName} with quality gates
+   - Subagents: {list of subagent roles}
+   - TDD: {strict | relaxed | none}
+   - Generation: `/NewWorkflowSystem`
+
 ### Implementation Specifications
 {Detailed creation parameters for each asset, including skill structure}
 
@@ -169,6 +212,7 @@ Example: GenerateEndpoint.prompt.md, DocumentAPI.prompt.md
 - {count} prompt files created
 - Complete cross-reference binding
 - AGENTS.md generated/updated
+- Orchestrated system recommended (if repo complexity warrants it)
 
 ---
 **Reply "confirm" to proceed with asset generation.**
@@ -194,6 +238,11 @@ repositoryContext:
   path: {repo path}
   techStack: {detected stack}
   patterns: {identified patterns}
+standardsContext:
+  matched: [array of matched standards with key principles]
+  totalMatched: {count}
+  alwaysApply: {count}
+  techMatch: {count}
 validationRequirements:
   schema: v1.106+
   crossReferences: true
@@ -201,9 +250,10 @@ validationRequirements:
 ```
 
 ### Reused Instructions
-*Planning framework: [CopilotFramework.instructions.md](../instructions/CopilotFramework.instructions.md)*  
-*Asset patterns: [GenerateCopilotAgent.instructions.md](../instructions/GenerateCopilotAgent.instructions.md)*  
+*Planning framework: [CopilotFramework.instructions.md](../instructions/CopilotFramework.instructions.md)*
+*Asset patterns: [GenerateCopilotAgent.instructions.md](../instructions/GenerateCopilotAgent.instructions.md)*
 *Quality criteria: [CopilotAudit.instructions.md](../instructions/CopilotAudit.instructions.md)*
+*Standards resolution: [ResolveStandards.instructions.md](../instructions/ResolveStandards.instructions.md)*
 
 ### Example Output
 ```

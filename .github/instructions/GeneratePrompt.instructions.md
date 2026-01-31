@@ -50,6 +50,14 @@ If required variable missing (<4 chars), list `Missing Inputs:` and halt with ta
 - `refine: risks` - Risk section rebuild
 - `refine: timeline` - Sequencing recalculation
 
+### Standards Integration
+
+When generating prompt files, check for matched enterprise standards (via [ResolveStandards.instructions.md](ResolveStandards.instructions.md)):
+
+- **Validation rules**: Derive validation checks from matched standards. If standards require public API documentation, add a validation rule that checks for doc comments.
+- **Quality checks**: Align quality criteria with standards requirements. If code review standards set PR size limits, prompt quality checks should reflect scope constraints.
+- **Never** reference `.github/standards/` in generated prompt files
+
 ### Quality Checklist
 - [ ] All mandatory variables set
 - [ ] No unqualified placeholders

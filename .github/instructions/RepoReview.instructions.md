@@ -217,7 +217,7 @@ handoffs:
 ```yaml
 handoffs:
   - label: 'Generate Documentation'
-    agent: 'DocumentationGenerator'
+    agent: 'DocumentationAgent'
     prompt: 'Generate comprehensive documentation including: {{filesModified}}, {{featuresAdded}}, {{testsCoverage}}. Context: {{repositoryAnalysis}}'
     send: true
 ```
@@ -235,12 +235,9 @@ handoffs:
 
 **Workflow Instructions**:
 - [GenerateWorkflow.instructions.md](GenerateWorkflow.instructions.md) - Multi-chain workflow framework
-- [WorkflowValidation.instructions.md](WorkflowValidation.instructions.md) - Workflow integrity validation patterns
 
 **Workflow Validation**:
-- [WorkflowValidator.agent.md](../agents/WorkflowValidator.agent.md) - Handoff chain testing and automation metrics
-- Validates handoff integrity, context transfer, quality gate placement
-- Provides workflow health grades and optimization recommendations
+- Use `HarmonizeAndValidate` for integrated link/handoff/schema validation.
 
 **Handoff Documentation**:
 - Agent files with `handoffs` YAML field for automatic transitions

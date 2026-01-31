@@ -4,6 +4,16 @@ agent: CopilotCustomizer
 
 # NewPrompt.prompt.md
 
+```
+✨ PROMPT ACTIVATED: NewPrompt (Asset Generator)
+   Purpose: Create VS Code slash command prompts
+   Standard: VS Code (.prompt.md with variable blocks)
+   Instructions: GeneratePrompt.instructions.md
+   Input: DOMAIN, GOAL
+   Output: Complete .prompt.md with variables, usage, and validation
+   Scope: VS Code Copilot slash commands
+```
+
 **Paired Instructions**: [GeneratePrompt.instructions.md](../instructions/GeneratePrompt.instructions.md)
 
 ### Task Intent

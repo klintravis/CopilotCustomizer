@@ -4,6 +4,16 @@ agent: CopilotCustomizer
 
 ## Workflow Creation Prompt (v1.0)
 
+```
+✨ PROMPT ACTIVATED: NewWorkflow (Asset Generator)
+   Purpose: Create multi-agent orchestration workflows
+   Standard: VS Code (.agent.md handoff chains)
+   Instructions: GenerateWorkflow.instructions.md
+   Input: WORKFLOW_PURPOSE, AGENT_CHAIN, SUCCESS_CRITERIA
+   Output: Complete workflow with entry point, agents, handoffs, and shared instructions
+   Scope: VS Code-specific multi-step workflows
+```
+
 **Paired Instructions**: [GenerateWorkflow.instructions.md](../instructions/GenerateWorkflow.instructions.md)
 
 ### Task Intent

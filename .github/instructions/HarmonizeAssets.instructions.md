@@ -41,7 +41,7 @@ Harmonizes 2-3 Copilot customization files with minimal changes (<10% content mo
 3. Generate cross-reference map
 4. Apply minimal changes with bindings
 5. Force-write harmonized files
-6. Apply `FormatAssets.instructions.md` compliance
+6. Apply `OptimizeAndFormat.instructions.md` compliance
 7. Generate change summary
 
 ### Outputs
@@ -55,7 +55,7 @@ Harmonizes 2-3 Copilot customization files with minimal changes (<10% content mo
 - [ ] Cross-references validated
 - [ ] Original intent preserved
 - [ ] Binding metadata added
-- [ ] FormatAssets compliance applied
+- [ ] Optimize & format compliance applied
 - [ ] YAML schema validation passed
 - [ ] <10% content modification
 
@@ -85,5 +85,5 @@ lastHarmonized: '2025-09-15'
 ```
 
 *Framework: [CopilotFramework.instructions.md](../instructions/CopilotFramework.instructions.md)*  
-*Standards: [FormatAssets.instructions.md](FormatAssets.instructions.md)*  
+*Standards: [OptimizeAndFormat.instructions.md](OptimizeAndFormat.instructions.md)*  
 *VS Code: [Custom Instructions](https://code.visualstudio.com/docs/copilot/customization/custom-instructions)*

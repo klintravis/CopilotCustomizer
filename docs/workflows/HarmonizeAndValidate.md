@@ -9,11 +9,13 @@ Ideal after creating or modifying agents, prompts, or instructions. Ensures link
 ```
 ASSETS: [".github/prompts/Foo.prompt.md", ".github/instructions/Bar.instructions.md"]
 MODE: "standard"   # conservative|standard
+CHECKS: "all"      # links|handoffs|schema|all
+SECURITY_SCOPE: "none" # none|tools|mcp|all
 ```
 
 ## Handoff Chain
 ```
-HarmonizeAndValidate → RepoAnalyzer → HarmonizationAgent → WorkflowValidator → DocumentationGenerator → Complete
+HarmonizeAndValidate → repository-analysis skill → HarmonizationAgent → VerificationAgent → technical-documentation skill → Complete
 ```
 
 ### Workflow Chain
@@ -24,7 +26,7 @@ HarmonizeAndValidate → RepoAnalyzer → HarmonizationAgent → WorkflowValidat
 └───────────┬──────────────────────────┘
             ↓
 ┌──────────────────────────────────────┐
-│ RepoAnalyzer                         │
+│ repository-analysis skill             │
 └───────────┬──────────────────────────┘
             ↓
 ┌──────────────────────────────────────┐
@@ -32,11 +34,11 @@ HarmonizeAndValidate → RepoAnalyzer → HarmonizationAgent → WorkflowValidat
 └───────────┬──────────────────────────┘
             ↓
 ┌──────────────────────────────────────┐
-│ WorkflowValidator                    │
+│ VerificationAgent                    │
 └───────────┬──────────────────────────┘
             ↓
 ┌──────────────────────────────────────┐
-│ DocumentationGenerator               │
+│ technical-documentation skill        │
 └───────────┬──────────────────────────┘
             ↓
 ┌──────────────────────────────────────┐
@@ -53,7 +55,7 @@ HarmonizeAndValidate → RepoAnalyzer → HarmonizationAgent → WorkflowValidat
 
 ## Acceptance Criteria
 - Cross-references accurate and functional
-- WorkflowValidator passes handoff integrity checks
+- Links/handoffs/schema validation passes (as requested by CHECKS)
 - Summary includes link map and changes applied
 
 ## How to Run
@@ -63,4 +65,4 @@ HarmonizeAndValidate → RepoAnalyzer → HarmonizationAgent → WorkflowValidat
 
 ## References
 - Framework: `../../.github/instructions/CopilotFramework.instructions.md`
-- Workflow Validation: `../../.github/instructions/WorkflowValidation.instructions.md`
+- Harmonization: `../../.github/instructions/HarmonizeAssets.instructions.md`

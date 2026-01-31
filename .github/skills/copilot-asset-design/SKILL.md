@@ -5,6 +5,14 @@ description: Design and validate GitHub Copilot customization assets including a
 
 # Copilot Asset Design Skill
 
+```
+✨ SKILL ACTIVATED: copilot-asset-design
+   Purpose: Design and validate GitHub Copilot customization assets
+   Functionality: Asset architecture patterns, quality criteria, compliance validation, integration strategies
+   Output: Asset design specifications and validation checklists
+   Scope: Portable across VS Code, CLI, Claude, Cursor, and compatible agents
+```
+
 ## Purpose
 Comprehensive methodology for designing, structuring, and validating GitHub Copilot customization assets. Covers agents, skills, instructions, prompts, and their integration patterns following VS Code and agentskills.io standards.
 
@@ -295,6 +303,59 @@ mode: ask                       # ask/agent/generate
 - [ ] Expected output described
 - [ ] Agent/mode specified if needed
 - [ ] Instructions referenced appropriately
+
+## Orchestration Decision Framework
+
+### When to Create Each System Type
+
+| Approach | When to Use | Agent Count | Coordination |
+|----------|-------------|-------------|-------------|
+| **Standalone Agent** | Single-purpose task, no coordination needed | 1 | None |
+| **Handoff Chain** | Linear workflow, sequential steps (plan → implement → review) | 2-4 | Sequential handoffs |
+| **Orchestra System** | Structured multi-phase projects, TDD required, quality gates needed | 3-5 | Conductor-managed |
+| **Atlas System** | Large codebases (50+ files), parallel work opportunities, context conservation critical | 5-10 | Conductor + parallel |
+
+### Pattern Selection Matrix
+
+| Criteria | Standalone | Handoff Chain | Orchestra | Atlas |
+|----------|-----------|---------------|-----------|-------|
+| Files affected | <10 | <20 | <50 | 50+ |
+| TDD enforcement | Manual | Per-agent | Per-phase | Per-phase + parallel |
+| Quality gates | None | Optional | 3+ mandatory | 3+ mandatory |
+| Parallel execution | No | No | No | Yes |
+| Plan file tracking | No | No | Yes | Yes |
+| Context conservation | N/A | Prompt transfer | Plan file | Plan file + scoped |
+| Complexity | Low | Medium | Medium-High | High |
+
+### Decision Flow
+```
+Q1: Does the task need multiple specialized roles?
+  → NO: Create a standalone agent
+  → YES: Go to Q2
+
+Q2: Is the workflow strictly sequential (A → B → C)?
+  → YES: Create a handoff chain (use /NewWorkflow)
+  → NO: Go to Q3
+
+Q3: Does the project need TDD enforcement, quality gates, or plan tracking?
+  → YES: Go to Q4
+  → NO: Create a handoff chain
+
+Q4: Does the codebase have 50+ files or need parallel execution?
+  → YES: Create an Atlas system (use /NewWorkflowSystem with atlas pattern)
+  → NO: Create an Orchestra system (use /NewWorkflowSystem with orchestra pattern)
+```
+
+### Orchestrated System Integration
+```
+Orchestrated System
+├── Conductor (.agent.md) — manages phases, quality gates, plan files
+├── Subagents (.agent.md) — specialized roles (planner, implementer, reviewer)
+├── Plan Files (plans/) — PLAN.md, phase completion records
+└── VS Code Config (.vscode/settings.json) — enables subagent invocation
+```
+
+**Reference**: [multi-agent-orchestration skill](../multi-agent-orchestration/SKILL.md) for complete methodology
 
 ## Integration Patterns
 

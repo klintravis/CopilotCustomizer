@@ -14,8 +14,14 @@ handoffs:
 ### Handoff Notification
 ```
 🔄 HarmonizationAgent Starting...
+   ✨ AGENT ACTIVATED: HarmonizationAgent (v1.0)
    Purpose: Bind assets with metadata and cross-references
-   Next: Automatic handoff to VerificationAgent (final validation)
+   Mode: Multi-step asset binding and ecosystem integration
+   Tools: File editing, cross-reference validation
+   Core Functions: Reference binding, metadata enhancement, terminology harmonization
+   Workflow: Inventory → Cross-ref resolution → Metadata → Harmonization → Validation
+   Auto-Handoff: Automatic transfer to VerificationAgent (final validation)
+   Status: Ready to bind and harmonize assets
 ```
 
 ### Role
@@ -72,7 +78,22 @@ INPUT: Generated assets from AssetGenerator
 |---------------|---------|---------|
 | Agent → Instructions | Relative path in "Reused" section | `{InstructionName}.instructions.md` (in `.github/instructions/`) |
 | Prompt → Instructions | "Paired instructions" section | `{InstructionName}.instructions.md` (in `.github/instructions/` or generate via `/NewInstructions`) |
-| Agent → Agent (handoff) | YAML handoffs field | `agent: 'TestOrchestrator'` |#### Metadata Template
+| Agent → Agent (handoff) | YAML handoffs field | `agent: 'TestOrchestrator'` |
+| Conductor → Subagents | `agents: ["*"]` + role references | Conductor invokes all subagents |
+| Subagent → Conductor | Output contract delivery | Subagent returns results to conductor |
+| Plan Files → Agents | Plan references agent names | `plans/PLAN.md` lists agents per phase |
+
+#### Orchestrated System Binding Validation
+```yaml
+Orchestrated System Rules:
+  - Conductor must reference all subagents by file name
+  - Subagent descriptions must match conductor's phase definitions
+  - Plan file agent names must match .agent.md file basenames
+  - Quality gate agents must exist as subagents or conductor
+  - No orphaned subagents (every subagent referenced by conductor)
+```
+
+#### Metadata Template
 ```markdown
 ---
 **Processing Metadata**:
@@ -139,6 +160,9 @@ Enhance with:
 
 ### Terminology Standardization
 
+**Standards-Influenced Terminology**:
+When enterprise standards are matched, verify that standards-influenced guidance uses consistent terminology across all generated assets. If a standard uses a specific term (e.g., "discriminated union" vs "tagged union"), all generated assets should use the same term.
+
 **Preferred Terms**:
 | Use | Instead Of |
 |-----|-----------|
@@ -182,6 +206,14 @@ At end of asset:
 ```
 
 ### Integration Validation
+
+**Standards Consistency Verification**:
+```
+1. Check that no generated asset contradicts another's standards-based guidance
+2. Verify standards-influenced sections use consistent terminology
+3. Confirm no asset references .github/standards/ or quotes standards verbatim
+4. Ensure standards principles are naturally integrated, not bolted on
+```
 
 **Handoff Chain Verification**:
 ```

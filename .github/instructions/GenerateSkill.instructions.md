@@ -327,6 +327,15 @@ Skills are stored in:
 6. **Test Discovery**: Verify AI loads skill on relevant prompts
 7. **Document Integration**: Update project AGENTS.md with skill reference
 
+## Standards Integration
+
+When generating skills, check for matched enterprise standards (via [ResolveStandards.instructions.md](ResolveStandards.instructions.md)):
+
+- **Instructions and Best Practices sections**: Reflect matched standard principles as native skill guidance. If TypeScript standards emphasize strict mode, the skill's best practices should include strict compilation as a baseline.
+- **Examples**: Code examples within skills should follow matched coding conventions (naming, error handling, patterns). If React standards prefer functional components, skill examples should use them exclusively.
+- **Description**: Do not mention standards or their origin in the skill description — guidance should appear as inherent to the skill's domain expertise.
+- **Never** reference `.github/standards/` in generated skill files
+
 ## Cross-Reference Pattern
 
 When generating skills, update:

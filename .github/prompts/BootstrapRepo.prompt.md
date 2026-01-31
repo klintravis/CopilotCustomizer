@@ -1,7 +1,19 @@
+---
 agent: BootstrapRepo
 ---
 
 # BootstrapRepo Workflow (v1.0)
+
+```
+✨ PROMPT ACTIVATED: BootstrapRepo (v1.0)
+   Purpose: Full repository bootstrap with assets
+   Agent: BootstrapRepo (autonomous workflow)
+   Skills Engaged: repository-analysis, implementation-planning, technical-documentation
+   Input Required: Single repository path
+   Workflow: Validation → Analysis → Planning (gate) → Generation → Verification → Harmonization → Documentation
+   User Interactions: 2 (start + confirm plan)
+   Output: Complete Copilot customization in .github/
+```
 
 **Paired Agent**: [BootstrapRepo.agent.md](../agents/BootstrapRepo.agent.md)
 
@@ -35,17 +47,19 @@ BootstrapRepo (validation)
   ↓
 repository-analysis Skill (tech stack detection)
   ↓
-implementation-planning Skill (recommendations + specs)
+ResolveStandards (match enterprise standards against tech stack)
+  ↓
+implementation-planning Skill (recommendations + specs + standards context)
   ↓ [USER GATE: "confirm"]
-AssetGenerator (create all assets - Skills PRIORITY)
+AssetGenerator (create all assets - Skills PRIORITY, standards-informed)
   ↓
 VerificationAgent (schema validation)
   ↓
-FormatAndVerifyAssets (blocking)
+OptimizeAndFormat (blocking)
   ↓
 HarmonizationAgent (bind with metadata)
   ↓
-WorkflowIntegrityCheck (STRICT=true) → VerificationAgent (final check)
+HarmonizeAndValidate (CHECKS=all) → VerificationAgent (final check)
   ↓
 technical-documentation skill (report)
   ↓
@@ -65,6 +79,7 @@ COMPLETE
 - Tech stack (languages, frameworks, databases, testing)
 - Existing patterns (architecture, conventions, deployment strategies)
 - Current customization status
+- Matched enterprise standards from `.github/standards/` (if present)
 
 **Recommendations Generated** (using implementation-planning skill):
 - **Skills** (`.github/skills/`) - Cross-platform capabilities [PRIORITY]
@@ -166,7 +181,7 @@ confirm
 ✓ Skills format: Valid (agentskills.io)
 ✓ Tool approvals: Verified
 
-[FormatAndVerifyAssets] Formatting + schema validation (blocking)...
+[OptimizeAndFormat] Formatting + schema validation (blocking)...
 ✓ Format applied where needed
 ✓ YAML + handoffs schema: PASS
 Report: /output/format-verify-summary.md
@@ -177,16 +192,16 @@ Report: /output/format-verify-summary.md
 ✓ Handoff chains: 2 validated
 ✓ Terminology: Standardized
 
- [WorkflowIntegrityCheck] Workflow matrix (STRICT=true)...
-✓ All workflows: PASS
-Matrix: /output/workflow-integrity-matrix.md
+[HarmonizeAndValidate] Workflow + linkage validation (CHECKS=all)...
+✓ Links + handoffs + schema: PASS
+Matrix: /output/workflow-validation-matrix.md
 
 [VerificationAgent] Final validation...
 ✓ All cross-references resolved
 ✓ No orphaned assets
 ✓ Complete ecosystem
 
-[DocumentationGenerator] Creating report...
+[technical-documentation skill] Creating report...
 ✓ Bootstrap summary generated
 ✓ Asset inventory documented
 ✓ Quick start guide created
@@ -302,8 +317,8 @@ Action: Aborting before documentation; fix generation specs and retry
 - [ ] 90%+ handoff success rate
  - [ ] Schema compliance: 100% (YAML + handoffs schema)
  - [ ] Handoffs fields: 100% valid (label, agent, prompt, send)
- - [ ] FormatAndVerifyAssets: PASS (blocking)
- - [ ] WorkflowIntegrityCheck (STRICT=true): PASS
+ - [ ] OptimizeAndFormat: PASS (blocking)
+ - [ ] HarmonizeAndValidate (CHECKS=all): PASS
 - [ ] Cross-references: All resolved
 - [ ] Documentation: Complete report
 
@@ -319,14 +334,14 @@ Action: Aborting before documentation; fix generation specs and retry
 ## Framework Integration
 
 **Skills Used** (cross-platform analysis and planning):
-- [repository-analysis](../../skills/repository-analysis/SKILL.md) - Tech stack detection, dependency analysis
-- [implementation-planning](../../skills/implementation-planning/SKILL.md) - Recommendation prioritization, strategy design
-- [technical-documentation](../../skills/technical-documentation/SKILL.md) - Report generation and documentation
+- [repository-analysis](../skills/repository-analysis/SKILL.md) - Tech stack detection, dependency analysis
+- [implementation-planning](../skills/implementation-planning/SKILL.md) - Recommendation prioritization, strategy design
+- [technical-documentation](../skills/technical-documentation/SKILL.md) - Report generation and documentation
 
 **Framework Skills** (available for all CopilotCustomizer workflows):
-- [copilot-asset-design](../../skills/copilot-asset-design/SKILL.md) - Asset decision framework
-- [deployment-automation](../../skills/deployment-automation/SKILL.md) - CI/CD and deployment strategies
-  - Example: [GitHub Actions Pipeline](../../skills/deployment-automation/examples/example-github-actions.md)
+- [copilot-asset-design](../skills/copilot-asset-design/SKILL.md) - Asset decision framework
+- [deployment-automation](../skills/deployment-automation/SKILL.md) - CI/CD and deployment strategies
+  - Example: [GitHub Actions Pipeline](../skills/deployment-automation/examples/example-github-actions.md)
 
 **Reused Instructions** (70%+ shared):
 - [CopilotFramework.instructions.md](../instructions/CopilotFramework.instructions.md) - Universal workflows
@@ -337,6 +352,7 @@ Action: Aborting before documentation; fix generation specs and retry
 - [GenerateSkill.instructions.md](../instructions/GenerateSkill.instructions.md) - Skill creation (cross-platform)
 - [HarmonizeAssets.instructions.md](../instructions/HarmonizeAssets.instructions.md) - Asset binding
 - [CopilotAudit.instructions.md](../instructions/CopilotAudit.instructions.md) - Quality validation
+- [ResolveStandards.instructions.md](../instructions/ResolveStandards.instructions.md) - Enterprise standards matching
 
 **Agent Chain** (VS Code workflow orchestration):
 - [BootstrapRepo.agent.md](../agents/BootstrapRepo.agent.md) - Entry point

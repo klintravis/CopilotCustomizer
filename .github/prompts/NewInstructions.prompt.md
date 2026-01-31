@@ -4,6 +4,16 @@ agent: CopilotCustomizer
 
 # NewInstructions.prompt.md
 
+```
+✨ PROMPT ACTIVATED: NewInstructions (Asset Generator)
+   Purpose: Create VS Code custom instruction files
+   Standard: VS Code (.instructions.md with applyTo scoping)
+   Instructions: GenerateInstructions.instructions.md
+   Input: DOMAIN, OBJECTIVE
+   Output: Complete .instructions.md with coding standards and patterns
+   Scope: VS Code-specific (auto-applies to matching files)
+```
+
 **Paired Instructions**: [GenerateInstructions.instructions.md](../instructions/GenerateInstructions.instructions.md)
 
 ### Task Intent

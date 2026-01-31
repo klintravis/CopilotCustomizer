@@ -16,7 +16,7 @@ For setup and usage, see:
 - [QUICKSTART.md](QUICKSTART.md) - Get started in 5 minutes
 - [README.md](../README.md) - Overview + key commands
 - [HOW-TO.md](HOW-TO.md) - Complete commands reference
-- [SKILLS-MIGRATION.md](SKILLS-MIGRATION.md) - Agent Skills guide
+- [HOW-TO.md](HOW-TO.md) - Complete commands reference and skills guide
 
 ## Asset Architecture
 
@@ -25,6 +25,7 @@ For setup and usage, see:
 | Asset | Location | Type | Purpose |
 |-------|----------|------|---------|
 | **Skills** | `.github/skills/*/SKILL.md` | Cross-platform | Portable AI capabilities |
+| **Standards** | `.github/standards/**/*.md` | Configuration | Enterprise coding standards |
 | **Agents** | `.github/agents/*.agent.md` | VS Code-specific | Role-based specialists |
 | **Instructions** | `.github/instructions/*.instructions.md` | VS Code/GitHub | Coding standards |
 | **Prompts** | `.github/prompts/*.prompt.md` | VS Code | Slash commands |
@@ -40,24 +41,30 @@ For setup and usage, see:
 - `VerificationAgent.agent.md` - Schema validation
 - `CopilotCustomizer.agent.md` - Main interactive mode
 
-**Skills** (5 total - cross-platform capabilities):
+**Skills** (core cross-platform capabilities):
 - `repository-analysis/SKILL.md` - Repository understanding methodology
 - `implementation-planning/SKILL.md` - Strategic planning patterns
 - `copilot-asset-design/SKILL.md` - Asset architecture validation
 - `technical-documentation/SKILL.md` - Documentation generation
 - `deployment-automation/SKILL.md` - CI/CD and deployment strategies
+- `multi-agent-orchestration/SKILL.md` - Conductor/subagent orchestration patterns
 
-**Instructions** (13+ files - generation patterns):
-- Generation frameworks: `GenerateSkill`, `GenerateCopilotAgent`, `GeneratePrompt`, `GenerateInstructions`, `GenerateWorkflow`
-- Quality patterns: `CopilotFramework`, `CopilotAudit`, `CopilotSecurity`, `FormatAssets`, `HarmonizeAssets`, `RepoReview`, `WorkflowValidation`, `AssetOptimization`
+**Note**: Bootstrap automatically generates **project-specific skills** (e.g., `nodejs-patterns/`, `react-frontend/`) alongside core skills when analyzing your repository.
 
-**Prompts** (20+ commands - user interfaces):
-- Core workflows: `BootstrapRepo`, `UpdateCopilotCustomizer`, `RepoReview`
-- Asset generation: `NewSkill`, `NewCopilotAgent`, `NewInstructions`, `NewPrompt`, `NewWorkflow`
-- Maintenance: `AssetOptimization`, `FormatAssets`, `HarmonizeAndValidate`, `QuickChange`, `SecurityToolingAudit`, `PromptAndInstructionOptimizer`, `WorkflowIntegrityCheck`
+**Instructions** (see `.github/instructions/` for current inventory):
+- Generation frameworks: `GenerateSkill`, `GenerateCopilotAgent`, `GeneratePrompt`, `GenerateInstructions`, `GenerateWorkflow`, `GenerateAgentsFile`
+- Orchestration: `GenerateOrchestratedSystem`
+- Standards: `ResolveStandards`
+- Quality patterns: `CopilotFramework`, `CopilotAudit`, `CopilotSecurity`, `HarmonizeAssets`, `RepoReview`, `OptimizeAndFormat`
 
-**Templates** (7 files - document formats):
-- `Analysis.template.md`, `ImplementationPlan.template.md`, `ProgressLog.template.md`, `TestStrategy.template.md`, `SecurityReview.template.md`, `ChangeLog.template.md`, `AssetInventory.template.md`
+**Prompts** (see `.github/prompts/` for current inventory):
+- Core workflows: `BootstrapRepo`, `RepoReview`
+- Asset generation: `NewSkill`, `NewCopilotAgent`, `NewInstructions`, `NewPrompt`, `NewWorkflow`, `NewWorkflowSystem`, `NewAgentsFile`
+- Maintenance: `OptimizeAndFormat`, `HarmonizeAndValidate`, `QuickChange`
+- Utilities: `AgentResume`
+
+**Templates** (4 files - document formats):
+- `Analysis.template.md`, `ImplementationPlan.template.md`, `OrchestrationPlan.template.md`, `ChangeLog.template.md`
 
 ## Design Patterns
 
@@ -85,6 +92,17 @@ VS Code Workspace
 
 **Workflow**: Add CopilotCustomizer to workspace → Run `/BootstrapRepo` → Assets generate in your project → Close CopilotCustomizer
 
+### Enterprise Standards Pattern
+
+Standards in `.github/standards/` define organizational coding conventions. During generation, the `ResolveStandards` instruction matches standards by tech stack and scope, then passes matched principles to downstream agents. Generated assets reflect these principles naturally — no verbatim copying or direct references.
+
+```
+.github/standards/
+├── languages/       ← Tech-match standards (TypeScript, Python, etc.)
+├── frameworks/      ← Tech-match standards (React, Express, etc.)
+└── practices/       ← Always-apply standards (code review, naming, etc.)
+```
+
 ### Skills-First Strategy
 
 **Execution Flow**:
@@ -98,7 +116,7 @@ Agent Phase (VS Code file operations)
 Skill Phase (cross-platform documentation)
 ```
 
-**Example** (UpdateCopilotCustomizer):
+**Example** (QuickChange):
 1. Use `repository-analysis` skill to understand repo
 2. Use `implementation-planning` skill to design solution
 3. Handoff to `@ChangeExecutor` agent for file changes

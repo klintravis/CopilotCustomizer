@@ -15,7 +15,7 @@ SCOPE (or "auto-detect"): "Folder(s) or files to limit changes"
 
 ## Handoff Chain
 ```
-QuickChange → RepoAnalyzer → ImplementationPlanner → [USER GATE] → ChangeExecutor → VerificationAgent → DocumentationGenerator → Complete
+QuickChange → repository-analysis skill → implementation-planning skill → [USER GATE] → ChangeExecutor → VerificationAgent → technical-documentation skill → Complete
 ```
 
 ### Workflow Chain
@@ -31,11 +31,11 @@ QuickChange → RepoAnalyzer → ImplementationPlanner → [USER GATE] → Chang
 └───────────┬──────────────────────────┘
             ↓
 ┌──────────────────────────────────────┐
-│ RepoAnalyzer                         │
+│ repository-analysis skill             │
 └───────────┬──────────────────────────┘
             ↓
 ┌──────────────────────────────────────┐
-│ ImplementationPlanner                │
+│ implementation-planning skill        │
 └───────────┬───────────[confirm]──────┘
             ↓
 ┌──────────────────────────────────────┐
@@ -47,7 +47,7 @@ QuickChange → RepoAnalyzer → ImplementationPlanner → [USER GATE] → Chang
 └───────────┬──────────────────────────┘
             ↓
 ┌──────────────────────────────────────┐
-│ DocumentationGenerator               │
+│ technical-documentation skill        │
 └───────────┬──────────────────────────┘
             ↓
 ┌──────────────────────────────────────┐
@@ -79,4 +79,5 @@ QuickChange → RepoAnalyzer → ImplementationPlanner → [USER GATE] → Chang
 
 ## Notes
 - Prefer this for changes that can be safely reviewed and merged quickly
-- For larger efforts, use `UpdateCopilotCustomizer.prompt.md`
+- For asset maintenance (optimize/format), use `OptimizeAndFormat.prompt.md`
+- For cross-asset linkage work (harmonize/validate), use `HarmonizeAndValidate.prompt.md`

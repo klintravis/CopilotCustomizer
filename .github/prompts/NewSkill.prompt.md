@@ -1,10 +1,19 @@
 ---
 description: Generate new Agent Skill for cross-platform AI capabilities
-instructions:
-  - GenerateSkill.instructions.md
+agent: CopilotCustomizer
 ---
 
 # New Agent Skill Generator
+
+```
+✨ PROMPT ACTIVATED: NewSkill (Asset Generator)
+   Purpose: Create cross-platform Agent Skills
+   Standard: agentskills.io (portable across VS Code, CLI, Claude, Cursor)
+   Instructions: GenerateSkill.instructions.md
+   Input: SKILL_NAME, PURPOSE, TARGET_PATH (optional), INCLUDE_EXAMPLES, INCLUDE_SCRIPTS
+   Output: Complete .github/skills/{name}/SKILL.md with examples and docs
+   Scope: Portable across all AI platforms and tools
+```
 
 Creates Agent Skills (agentskills.io open standard) that work across VS Code, GitHub Copilot CLI, Claude, Cursor, and other AI platforms.
 

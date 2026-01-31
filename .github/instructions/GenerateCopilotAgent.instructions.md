@@ -40,6 +40,7 @@ Standardized approach for creating VS Code Copilot `.agent.md` custom agent file
 | **Planner/Architect** | `search`, `search/codebase` | `todos`, `usages` | Understand codebase structure, track tasks |
 | **Debugger** | `search`, `problems`, `terminal` | `testFailure`, `changes` | Find errors, run debug commands |
 | **Security Reviewer** | `search`, `search/codebase`, `problems` | `changes` | Scan for vulnerabilities, review changes |
+| **Conductor/Orchestrator** | `search`, `search/codebase`, `runSubagent` | `edit`, `new` (plan files) | Coordinate subagents, manage phases |
 
 **Available VS Code Tools**:
 - `edit` - Modify existing files
@@ -59,6 +60,8 @@ Standardized approach for creating VS Code Copilot `.agent.md` custom agent file
 - `vscodeAPI` - Access VS Code extension API
 - `extensions` - Manage VS Code extensions
 - `githubRepo` - Search GitHub repositories
+- `runSubagent` - Invoke another agent programmatically (requires `chat.customAgentInSubagent.enabled`)
+- `agent` - Reference other agents for orchestration
 
 **Tool Selection Principles**:
 1. **Minimal Set**: Include only tools needed for core objectives
@@ -89,6 +92,34 @@ Standardized approach for creating VS Code Copilot `.agent.md` custom agent file
 ❌ Use tools unrelated to agent's domain  
 ❌ Forget to document why specific tools are needed
 
+### Orchestrated System Agent Archetypes
+
+When generating agents for conductor/subagent orchestrated systems, use these archetypes:
+
+| Archetype | YAML Key | Model Tier | Required Tools | Handoff Pattern |
+|-----------|----------|------------|----------------|-----------------|
+| **Conductor** | `agents: ["*"]` | High (Claude Sonnet 4.5) | `search`, `search/codebase`, `runSubagent` | Invokes all subagents |
+| **Planner** | — | High (Claude Sonnet 4.5) | `search`, `search/codebase` | Conductor → Planner → Conductor |
+| **Implementer** | — | Medium (Auto) | `edit`, `new`, `search`, `terminal` | Conductor → Implementer → Conductor |
+| **Reviewer** | — | High (Claude Sonnet 4.5) | `search`, `problems`, `changes` | Conductor → Reviewer → Conductor |
+| **Researcher/Scout** | — | Low-Medium (Auto) | `search`, `search/codebase` | Conductor → Scout → Conductor |
+| **Domain Specialist** | — | Medium-High | Domain-specific | Conductor → Specialist → Conductor |
+
+**Conductor-Specific Requirements**:
+- Must include `agents: ["*"]` in YAML to invoke subagents
+- Must track state via `plans/PLAN.md`
+- Must enforce quality gates (minimum 3 pause points)
+- Must NOT include implementation tools (`edit`, `terminal`) for code changes
+- Only writes to plan files, never to source code
+
+**Subagent-Specific Requirements**:
+- Must define input/output contract (what it receives, what it produces)
+- Must define scope boundaries (what it can and cannot modify)
+- Model tier should match role complexity
+- Tool set should be minimal for the role
+
+**References**: [multi-agent-orchestration skill](../skills/multi-agent-orchestration/SKILL.md) | [GenerateOrchestratedSystem.instructions.md](GenerateOrchestratedSystem.instructions.md)
+
 ### Handoffs Schema Requirements (MANDATORY when `handoffs` present)
 
 When defining handoffs in the YAML front matter of an agent file, each handoff entry MUST include these fields:
@@ -114,8 +145,8 @@ Example (valid):
 description: "Security reviewer for API endpoints"
 tools: [search, problems]
 handoffs:
-  - label: "Escalate critical findings to ImplementationPlanner"
-    agent: "ImplementationPlanner"
+  - label: "Escalate critical findings to ChangeExecutor"
+    agent: "ChangeExecutor"
     prompt: "Implement remediations for the following validated issues with references to files and line ranges."
     send: false
 ---
@@ -260,9 +291,10 @@ Expert in REST API architecture specializing in OpenAPI 3.0+ specifications, end
 - **doc-generator**: For API reference documentation creation
 ```
 
+
 ---
 
-*Related Instructions*: [FormatAssets.instructions.md](FormatAssets.instructions.md), [CopilotFramework.instructions.md](CopilotFramework.instructions.md)
+*Related Instructions*: [OptimizeAndFormat.instructions.md](OptimizeAndFormat.instructions.md), [CopilotFramework.instructions.md](CopilotFramework.instructions.md)
 
 ### Refinement Commands
 - refine: [domain] | refine: optimize | refine: validate
@@ -279,10 +311,22 @@ Expert in REST API architecture specializing in OpenAPI 3.0+ specifications, end
  - Approved tools only
  - Clear handoff conditions (see Handoffs Schema Requirements)
 
+### Standards Integration
+
+When generating agent files, check for matched enterprise standards (via [ResolveStandards.instructions.md](ResolveStandards.instructions.md)):
+
+- **Role section**: Weave matched standard principles into the agent's expertise description. If TypeScript standards emphasize strict typing, the agent's role should reflect type safety as a core competency.
+- **Core Objectives**: Align objectives with matched standards. If code review standards require documentation for public APIs, include a documentation objective.
+- **Workflow sections**: Incorporate standards-derived validation steps. If standards require regression tests for bug fixes, add a testing validation step in the workflow.
+- **Never** reference `.github/standards/` in generated agent files
+- **Never** quote standards verbatim — paraphrase and adapt to the agent's domain
+
+**Example**: If TypeScript standards emphasize strict typing and discriminated unions, the generated agent's workflow should include type safety validation steps, and its role should mention type-safe patterns as a core practice.
+
 ### Integration Patterns
-**Shared Instructions**: Framework, Security, Audit references  
-**Tool Ecosystem**: MCP servers, approval patterns  
+**Shared Instructions**: Framework, Security, Audit references
+**Tool Ecosystem**: MCP servers, approval patterns
 **Handoffs**: Context preservation, validation
 
-*Complete framework: [CopilotFramework.instructions.md](../instructions/CopilotFramework.instructions.md)*  
+*Complete framework: [CopilotFramework.instructions.md](../instructions/CopilotFramework.instructions.md)*
 *VS Code: [Agent Files](https://code.visualstudio.com/docs/copilot/customization/custom-chat-modes)*

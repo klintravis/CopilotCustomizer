@@ -386,7 +386,7 @@ All team members get same AI behavior when `.github/` folder committed to repo.
 
 **Need help?**
 - **[QUICKSTART.md](QUICKSTART.md)** - Step-by-step guide
-- **[MULTI-WORKSPACE.md](MULTI-WORKSPACE.md)** - Detailed setup
+- **[HOW-TO.md](HOW-TO.md)** - Detailed setup & reference
 - **[HOW-TO.md](HOW-TO.md)** - Technical reference
 
 ---

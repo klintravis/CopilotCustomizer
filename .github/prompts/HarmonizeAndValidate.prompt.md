@@ -4,6 +4,17 @@ agent: CopilotCustomizer
 
 ## HarmonizeAndValidate (v1.0)
 
+```
+✨ PROMPT ACTIVATED: HarmonizeAndValidate (v1.0)
+   Purpose: Harmonize and validate related Copilot assets
+   Agent: CopilotCustomizer (interactive mode)
+   Skills Engaged: repository-analysis, technical-documentation
+   Agents Engaged: HarmonizationAgent, VerificationAgent
+   Input: ASSETS (2-3 related files), MODE, CHECKS, SECURITY_SCOPE
+   Workflow: Analysis → Planning → Implementation → Verification → Documentation
+   Output: Harmonized assets with cross-reference map and validation report
+```
+
 ### Task Intent
 Harmonize 2–3 related assets and validate cross-references, handoff chains, and schema consistency.
 
@@ -11,6 +22,8 @@ Harmonize 2–3 related assets and validate cross-references, handoff chains, an
 ```
 ASSETS: ["{ASSET_PATH_1}", "{ASSET_PATH_2}", "{ASSET_PATH_3}"]
 MODE: "{MODE}" # conservative|standard (default: standard)
+CHECKS: "{CHECKS}" # links|handoffs|schema|all (default: all)
+SECURITY_SCOPE: "{SECURITY_SCOPE}" # none|tools|mcp|all (default: none)
 ```
 
 ### Workflow Phases
@@ -37,6 +50,13 @@ HarmonizeAndValidate → repository-analysis skill → HarmonizationAgent → Ve
 - Builds on existing harmonization and workflow validation capabilities
 - Aims for minimal edits with maximum linkage coherence
 - See docs: `docs/workflows/HarmonizeAndValidate.md`
+
+### Appendix: Workflow Validation (Demoted)
+Workflow integrity checks are now built into this flow (instead of a separate instruction/prompt):
+- **Handoffs**: referenced agents exist; no circular chains; gates placed only where needed
+- **Schema**: only supported YAML fields; required fields present
+- **Links**: markdown links resolve and referenced files exist
+- **Security tooling (optional)**: inventory tools/MCP references and align with `CopilotSecurity.instructions.md`
 
 ---
 

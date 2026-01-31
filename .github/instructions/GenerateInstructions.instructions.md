@@ -121,6 +121,16 @@ Append discovered tool documentation links to generated instructions.
   Type: instructions
   ```
 
+### Standards Integration
+
+When generating instruction files, check for matched enterprise standards (via [ResolveStandards.instructions.md](ResolveStandards.instructions.md)):
+
+- **Coding Standards section**: This is the most natural place for standards to manifest. Incorporate matched standard principles as if they were native project rules — not as external references but as inherent coding conventions.
+- **Testing Strategy section**: Reflect testing standards if matched (coverage expectations, test naming, mock strategies). If code review standards require regression tests for bug fixes, include that in the testing strategy.
+- **Acceptance Criteria**: Derive validation criteria from matched standards where applicable.
+- **Never** reference `.github/standards/` in generated instruction files
+- **Never** quote standards verbatim — adapt principles to the instruction's specific domain and `applyTo` scope
+
 ### Conformance Note
 This instruction file aligns with the broader Copilot customization ecosystem and integrates with [NewInstructions.prompt.md](../prompts/NewInstructions.prompt.md) for execution workflow. Focuses on maintainable, high-quality instruction file generation following established patterns.
 

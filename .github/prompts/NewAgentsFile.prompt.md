@@ -4,6 +4,16 @@ agent: CopilotCustomizer
 
 # AGENTS.md Workspace File Generator (v1.0)
 
+```
+✨ PROMPT ACTIVATED: NewAgentsFile (Asset Generator)
+   Purpose: Generate workspace-level AGENTS.md guidance files
+   Standard: VS Code/GitHub workspace documentation
+   Instructions: GenerateAgentsFile.instructions.md
+   Input: PROJECT_NAME, PRIMARY_TASKS
+   Output: Complete AGENTS.md with quick start, style guide, testing, PR guidelines
+   Scope: Workspace-wide developer guidance
+```
+
 **Paired Instructions**: [GenerateAgentsFile.instructions.md](../instructions/GenerateAgentsFile.instructions.md)
 
 ### Task Intent

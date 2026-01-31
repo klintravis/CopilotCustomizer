@@ -14,9 +14,13 @@ handoffs:
 ### Handoff Notification
 ```
 🔄 BootstrapRepo Agent Starting...
+   ✨ AGENT ACTIVATED: BootstrapRepo (v1.0)
    Purpose: Repository bootstrap entry point
-   Skills: repository-analysis (tech stack detection)
-   Next: Handoff to AssetPlanner for recommendations
+   Mode: Fully autonomous 6-phase workflow
+   Skills Engaged: repository-analysis (tech stack detection)
+   Entry Point: Single command with repository path
+   Next: Validates repository → Hands off to AssetPlanner
+   Status: Ready to analyze and bootstrap
 ```
 
 ### Role
@@ -34,9 +38,18 @@ Phase 1: Repository Analysis (Using repository-analysis Skill)
   Analyze: Tech stack, patterns, existing AGENTS.md, asset needs
   Uses: repository-analysis skill (6-phase methodology)
 
+Phase 1b: Standards Resolution (Auto)
+  Scan .github/standards/, match against detected tech stack
+  Uses: ResolveStandards.instructions.md
+
 Phase 2: Asset Planning (Auto → Gate)
   └─> AssetPlanner: Recommend Skills, agents, instructions, prompts → USER APPROVAL
   Skills Priority: .github/skills/ generated first
+  Standards context passed to AssetPlanner for informed recommendations
+
+Phase 2b: Orchestration Assessment (Conditional)
+  If repo complexity warrants orchestration (50+ files, TDD needed, multiple domains):
+  └─> Recommend Orchestra or Atlas pattern via /NewWorkflowSystem
 
 Phase 3: Asset Generation (Auto)
   └─> AssetGenerator: Create all recommended assets (Skills-first)
@@ -64,6 +77,7 @@ REPOSITORY_PATH: "/path/to/repository"
 - Existing customization status
 - Required asset types
 - Complexity level
+- Applicable coding standards from `.github/standards/`
 
 ### Validation Rules
 ```yaml
@@ -84,10 +98,11 @@ if (repo.name.contains("CopilotCustomizer")) {
 ### Skills & Instructions Used
 
 **Skills** (cross-platform analysis and planning):
-- [repository-analysis](../../skills/repository-analysis/SKILL.md) - Tech stack detection, pattern recognition
-- [implementation-planning](../../skills/implementation-planning/SKILL.md) - Asset specifications and prioritization
-- [technical-documentation](../../skills/technical-documentation/SKILL.md) - Report generation
-- [copilot-asset-design](../../skills/copilot-asset-design/SKILL.md) - Decision framework for asset types
+- [repository-analysis](../skills/repository-analysis/SKILL.md) - Tech stack detection, pattern recognition
+- [implementation-planning](../skills/implementation-planning/SKILL.md) - Asset specifications and prioritization
+- [technical-documentation](../skills/technical-documentation/SKILL.md) - Report generation
+- [copilot-asset-design](../skills/copilot-asset-design/SKILL.md) - Decision framework for asset types
+- [multi-agent-orchestration](../skills/multi-agent-orchestration/SKILL.md) - Orchestrated system patterns (Orchestra, Atlas)
 
 **Instructions** (70%+ reuse from framework):
 - [CopilotFramework.instructions.md](../instructions/CopilotFramework.instructions.md) - Universal workflows
@@ -98,9 +113,11 @@ if (repo.name.contains("CopilotCustomizer")) {
 - [GeneratePrompt.instructions.md](../instructions/GeneratePrompt.instructions.md) - Prompt templates
 - [HarmonizeAssets.instructions.md](../instructions/HarmonizeAssets.instructions.md) - Asset binding
 - [CopilotAudit.instructions.md](../instructions/CopilotAudit.instructions.md) - Quality assurance
+- [ResolveStandards.instructions.md](../instructions/ResolveStandards.instructions.md) - Enterprise standards matching
 
 ### Success Criteria
 - [ ] Repository analysis complete with tech stack identified
+- [ ] Relevant enterprise standards identified and matched (if present)
 - [ ] Asset recommendations generated
 - [ ] All recommended assets created
 - [ ] Schema validation passed (100%)
@@ -115,7 +132,7 @@ User: "Bootstrap Copilot assets for /Users/dev/my-api-project"
 Agent:
 1. Validates: Not CopilotCustomizer ✓
 2. Scans: Node.js/TypeScript API project detected
-3. Hands off to RepoAnalyzer...
+3. Uses `repository-analysis` skill...
 
 [After analysis chain]
 
@@ -124,6 +141,10 @@ Agent: "Ready to generate:
 - APIExpert.agent.md for endpoint design
 - TestingStandards.instructions.md
 - Harmonized with cross-references
+
+Note: This repo has 120+ files across frontend/backend/database.
+Consider running /NewWorkflowSystem with 'atlas' pattern for
+orchestrated multi-agent development workflows.
 
 Reply 'confirm' to proceed."
 
@@ -151,7 +172,7 @@ VerificationAgent (validation complete)
   ↓
 HarmonizationAgent (binding complete, cross-reference skills)
   ↓
-DocumentationGenerator (technical-documentation skill: report ready)
+technical-documentation skill (report ready)
   ↓
 COMPLETE
 

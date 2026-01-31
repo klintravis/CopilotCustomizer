@@ -5,6 +5,14 @@ description: CI/CD pipeline design, deployment strategies, and release automatio
 
 # Deployment Automation Skill
 
+```
+✨ SKILL ACTIVATED: deployment-automation
+   Purpose: CI/CD pipeline design and deployment strategies
+   Functionality: Architecture planning, CI pipeline design, deployment patterns, monitoring setup
+   Output: Complete CI/CD pipeline specifications and automation workflows
+   Scope: Portable across VS Code, CLI, Claude, Cursor, and compatible agents
+```
+
 ## Purpose
 Systematic methodology for designing and implementing CI/CD pipelines, deployment strategies, and release automation. Covers GitHub Actions workflows, container orchestration, infrastructure-as-code patterns, and automated release processes.
 

@@ -270,5 +270,5 @@ new_config: value
 **Optimized for**: Universal change documentation across all project types  
 **Date**: 2025-11-01  
 **Standards**: Semantic Versioning 2.0.0, Keep a Changelog conventions  
-**Process**: Template creation following CopilotCustomizer framework standards and DocumentationGenerator patterns
+**Process**: Template creation following CopilotCustomizer framework standards and technical-documentation skill patterns
 ```

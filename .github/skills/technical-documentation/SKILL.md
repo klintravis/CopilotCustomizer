@@ -5,6 +5,14 @@ description: Structured technical documentation generation for software changes,
 
 # Technical Documentation Skill
 
+```
+✨ SKILL ACTIVATED: technical-documentation
+   Purpose: Structured technical documentation generation
+   Functionality: Change summaries, API docs, architectural records, implementation reports
+   Output: Clear, comprehensive documentation with consistent formatting
+   Scope: Portable across VS Code, CLI, Claude, Cursor, and compatible agents
+```
+
 ## Purpose
 Systematic methodology for generating high-quality technical documentation including change summaries, API documentation, architectural decisions, implementation reports, and user guides. Ensures consistent, maintainable documentation.
 

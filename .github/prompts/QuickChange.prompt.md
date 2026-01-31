@@ -4,6 +4,18 @@ agent: CopilotCustomizer
 
 ## QuickChange (v1.0)
 
+```
+✨ PROMPT ACTIVATED: QuickChange (v1.0)
+   Purpose: Fast minimal-diff changes with single approval gate
+   Agent: CopilotCustomizer (interactive mode)
+   Skills Engaged: repository-analysis, implementation-planning, technical-documentation
+   Agents Engaged: ChangeExecutor, VerificationAgent
+   Input: CHANGE_REQUEST, REASON, ACCEPTANCE_CRITERIA, SCOPE
+   Workflow: Analysis → Planning (gate) → Implementation → Verification → Documentation
+   User Interactions: 1 (confirm plan)
+   Output: Minimal changes with validation and summary
+```
+
 ### Task Intent
 Perform a small, targeted change with a fast approval gate and automated verification and documentation, minimizing touched files.
 
@@ -39,7 +51,8 @@ QuickChange → repository-analysis skill → implementation-planning skill → 
 
 ### Notes
 - Optimized for small diffs (typos, minor refactors, config/documentation tweaks)
-- For broader changes, use `UpdateCopilotCustomizer.prompt.md`
+- For asset maintenance (optimize/format), use `OptimizeAndFormat.prompt.md`
+- For cross-asset linkage work (harmonize/validate), use `HarmonizeAndValidate.prompt.md`
 - See docs: `docs/workflows/QuickChange.md`
 
 ---

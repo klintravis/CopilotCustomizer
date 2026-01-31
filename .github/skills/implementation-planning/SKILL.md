@@ -5,6 +5,14 @@ description: Strategic implementation planning methodology for software changes.
 
 # Implementation Planning Skill
 
+```
+✨ SKILL ACTIVATED: implementation-planning
+   Purpose: Strategic implementation planning methodology
+   Functionality: Requirements clarification, strategy design, change specification, risk mitigation
+   Output: Detailed, step-by-step execution plans with validation strategies
+   Scope: Portable across VS Code, CLI, Claude, Cursor, and compatible agents
+```
+
 ## Purpose
 Transforms requirements and repository analysis into actionable, step-by-step implementation plans with comprehensive risk mitigation, validation strategies, and quality gates. Bridges analysis and execution phases.
 

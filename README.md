@@ -10,6 +10,7 @@
 - 🤖 **VS Code Agents** - Tech-specific AI specialists
 - 📋 **Instructions** - Project coding standards
 - ⚡ **Prompts** - Slash commands for common tasks
+- 🏢 **Enterprise Standards** - Define org-wide coding standards that influence all generated assets
 
 ## Quick Start
 
@@ -24,11 +25,9 @@
 | Guide | Purpose |
 |-------|---------|
 | **[QUICKSTART.md](QUICKSTART.md)** | 5-minute setup ← **Start here** |
-| **[SKILLS-MIGRATION.md](SKILLS-MIGRATION.md)** | Agent Skills explained |
 | **[EXAMPLES.md](EXAMPLES.md)** | Real-world examples |
 | **[AGENTS.md](AGENTS.md)** | Architecture + asset inventory |
 | **[HOW-TO.md](HOW-TO.md)** | All commands + troubleshooting |
-| **[MULTI-WORKSPACE.md](MULTI-WORKSPACE.md)** | Setup patterns |
 
 ## Key Commands
 
@@ -37,6 +36,7 @@
 /RepoReview TARGET_PATH: "/path"               # Analyze project
 /NewSkill SKILL_NAME: "name", PURPOSE: "desc"  # New skill
 /NewCopilotAgent AGENT_NAME: "name"            # New agent
+/NewWorkflowSystem SYSTEM_NAME: "name", SYSTEM_PATTERN: "orchestra", REPOSITORY_PATH: "/path"  # Orchestrated system
 ```
 
 See [HOW-TO.md](HOW-TO.md) for all commands.
@@ -44,9 +44,10 @@ See [HOW-TO.md](HOW-TO.md) for all commands.
 ## Architecture
 
 See [AGENTS.md](AGENTS.md) for:
-- Asset inventory (4 skills, 7 agents, 13+ instructions)
+- Asset inventory (6 skills, 7 agents, 14 instructions, 13 prompts, 4 templates)
+- Enterprise standards system (`.github/standards/`)
 - Handoff workflows
-- Framework patterns
+- Bootstrap automation workflow
 
 ## License
 

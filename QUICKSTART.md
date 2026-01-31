@@ -34,7 +34,6 @@ Assets created in `your-project/.github/`:
 ## Next Steps
 
 - [Examples](EXAMPLES.md) - Real-world walkthroughs
-- [Skills Guide](SKILLS-MIGRATION.md) - Understand cross-platform capabilities
 - [All Commands](HOW-TO.md) - Complete reference
 - [Architecture](AGENTS.md) - How it works
 
@@ -51,7 +50,7 @@ Your project-specific customization includes:
 | **Agent Files** | Domain experts for your tech stack | `APIExpert.agent.md` for FastAPI/Express/.NET |
 | **Instructions** | Coding standards and patterns | `TestingPatterns.instructions.md` |
 | **Prompts** | Structured generation templates | `GenerateEndpoint.prompt.md` |
-| **Templates** | Document formats | `SecurityReview.template.md` |
+| **Templates** | Document formats | `ChangeLog.template.md` |
 | **AGENTS.md** | Project development guidance | Build commands, PR checklist |
 
 **Tech Stack Detected**: Framework automatically identifies your languages/frameworks
@@ -89,7 +88,7 @@ This guide keeps QUICKSTART lean; the HOW-TO has comprehensive fixes and tips.
 
 ### Learn More
 
-- **[MULTI-WORKSPACE.md](MULTI-WORKSPACE.md)** - Detailed setup patterns
+- **[HOW-TO.md](HOW-TO.md)** - Detailed setup & reference
 - **[EXAMPLES.md](EXAMPLES.md)** - Real-world walkthroughs
 - **[README.md](README.md)** - Framework overview
 - **[.github/ASSETS.md](.github/ASSETS.md)** - Complete reference
