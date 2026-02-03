@@ -3,14 +3,18 @@ name: repository-analysis
 description: Deep repository analysis methodology for understanding codebase structure, dependencies, patterns, and change impact. Use when analyzing repositories for customization planning, refactoring, or understanding project architecture.
 ---
 
-<!-- ════════════════════════════════════════════════════════════════════════════
-📢 INVOCATION: repository-analysis Skill (Skill) v1.0
-   STATUS: Skill Active — Methodology engaged
-════════════════════════════════════════════════════════════════════════════ -->
+# Repository Analysis Skill
 
-# Repository Analysis Skill (v1.0)
+```
+✨ SKILL ACTIVATED: repository-analysis
+   Purpose: Deep repository analysis methodology
+   Functionality: Structure discovery, tech stack detection, pattern recognition, dependency analysis
+   Output: Structured analysis report with actionable insights
+   Scope: Portable across VS Code, CLI, Claude, Cursor, and compatible agents
+```
 
 ## Purpose
+Provides systematic methodology for comprehensive repository analysis including structure mapping, dependency identification, pattern recognition, and impact assessment. Essential for informed decision-making before making changes.
 
 ## When to Use This Skill
 - Analyzing repositories for Copilot customization opportunities
@@ -66,6 +70,27 @@ Tools:
 ```
 
 **Output**: Complete tech stack inventory with versions
+
+### Phase 2b: Standards Resolution
+**Objective**: Discover and match enterprise coding standards
+
+**Steps**:
+1. **Scan** `.github/standards/` recursively for `*.md` files (skip `README.md`)
+2. **Parse** YAML frontmatter from each file — extract `name`, `technologies`, `scope`, `priority`
+3. **Match** standards against detected tech stack:
+   - Collect all `scope: always` standards
+   - For `scope: tech-match`, compare `technologies[]` against detected stack (case-insensitive)
+4. **Sort** matched standards by priority (`high` > `medium` > `low`)
+5. **Bundle** as `standardsContext` for downstream agents
+
+**Edge Cases**:
+- Empty or missing `.github/standards/` → skip this phase, proceed normally
+- No technology matches → only `scope: always` standards apply
+- Conflicting guidance → higher-priority standard wins
+
+**Output**: Matched standards summary with key principles per standard
+
+**Reference**: [ResolveStandards.instructions.md](../../instructions/ResolveStandards.instructions.md)
 
 ### Phase 3: Pattern Recognition
 **Objective**: Identify architectural patterns and conventions
@@ -213,6 +238,11 @@ Use this checklist for comprehensive analysis:
   - [ ] Risk level assessed
   - [ ] Mitigation strategies planned
 
+- [ ] **Standards**
+  - [ ] Enterprise standards matched (if present)
+  - [ ] Always-apply standards collected
+  - [ ] Tech-match standards resolved against detected stack
+
 - [ ] **Customization**
   - [ ] Existing assets inventoried
   - [ ] Coverage gaps identified
@@ -282,6 +312,13 @@ Use this checklist for comprehensive analysis:
 - Missing deployment automation
 - Security review workflows needed
 
+### Matched Enterprise Standards
+| Standard | Scope | Priority | Key Principles |
+|----------|-------|----------|----------------|
+| {name} | {always/tech-match} | {high/medium/low} | {summary} |
+
+*Standards matched via ResolveStandards instruction. Principles will be integrated into generated assets.*
+
 ### Recommendations
 1. [Specific recommendation]
 2. [Specific recommendation]
@@ -315,7 +352,7 @@ Use this checklist for comprehensive analysis:
 **Pairs Well With**:
 - `implementation-planning` skill for next-step planning
 - `copilot-asset-design` skill for customization recommendations
-- `workflow-validation` skill for existing customization audit
+- `ResolveStandards.instructions.md` for enterprise standards matching
 
 **Workflow Example**:
 ```
@@ -346,30 +383,3 @@ A complete repository analysis should provide:
 **Prerequisites**: Repository access, ability to search codebase
 
 **Cross-Platform**: Works in VS Code, GitHub Copilot CLI, Claude, Cursor, and other Skills-compatible agents.
-
-**Log Entry Format**:
-```
-[YYYY-MM-DD HH:MM:SS UTC] - Invoked by: {user/system} | Context: {brief description}
-```
-
-**Recent Invocations**:
-_Manual logging - update this section when invoked_
-- [2026-01-14] Added traceability system
-
-### Usage Guidelines
-- This asset should be invoked when: Skill-specific workflows are needed
-- Expected outcome: Execution of repository-analysis Skill functionality
-- Related assets: See related skills in the same directory
-
-### Change History
-| Date | Version | Changes | Author |
-|------|---------|---------|--------|
-| 2026-01-14 | v1.0 | Added traceability system | CopilotCustomizer |
-
----
-
----
-
-## Audit
-Last invoked: [Manual log]
-Change history: v1.0 (2026-01-14) - Added traceability

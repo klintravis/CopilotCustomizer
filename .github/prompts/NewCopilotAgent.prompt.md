@@ -2,12 +2,17 @@
 agent: CopilotCustomizer
 ---
 
-<!-- ════════════════════════════════════════════════════════════════════════════
-📢 INVOCATION: NewCopilotAgent Prompt (Prompt) v1.0
-   STATUS: Prompt Ready — Awaiting execution
-════════════════════════════════════════════════════════════════════════════ -->
-
 # VS Code Copilot Agent Generator (v1.0)
+
+```
+✨ PROMPT ACTIVATED: NewCopilotAgent (Asset Generator)
+   Purpose: Create VS Code-specific Copilot custom agents
+   Standard: VS Code v1.106+ (.agent.md schema)
+   Instructions: GenerateCopilotAgent.instructions.md
+   Input: AGENT_NAME, DOMAIN, PRIMARY_ROLE
+   Output: Complete .agent.md with role, tools, handoffs, workflows
+   Scope: VS Code Copilot only (not cross-platform)
+```
 
 **Paired Instructions**: [GenerateCopilotAgent.instructions.md](../instructions/GenerateCopilotAgent.instructions.md)
 
@@ -72,9 +77,3 @@ Complete `.agent.md` with:
 ---
 
 *VS Code Copilot Customization Framework v1.0*
-
----
-
-## Audit
-Last invoked: [Manual log]
-Change history: v1.0 (2026-01-14) - Added traceability

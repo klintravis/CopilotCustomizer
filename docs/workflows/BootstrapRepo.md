@@ -3,25 +3,21 @@
 Fully autonomous asset generation for a target repository in the same workspace with a single approval gate, from analysis through documentation.
 
 ## Overview
-
-Orchestrates complete lifecycle: validate target repository path, analyze tech stack (using repository-analysis skill), propose assets, generate them on confirm, and validate schema and links.
+Orchestrates complete lifecycle: validate target repository path, analyze tech stack, propose assets, generate them on confirm, validate schema and links, harmonize, and document results.
 
 **Handoff Visibility**: Each agent displays a notification when it starts processing, showing its purpose and next step. This helps users understand the workflow progress and confirms handoffs are working correctly.
 
 ## Variables
-
 ```
 REPOSITORY_PATH: "C:\\path\\to\\repo"
 ```
 
 ## Handoff Chain
-
 ```
-BootstrapRepo → [repository-analysis skill] → AssetPlanner → [USER GATE] → AssetGenerator → VerificationAgent → Complete
+BootstrapRepo → repository-analysis skill → AssetPlanner (with orchestration assessment) → [USER GATE] → AssetGenerator → VerificationAgent → HarmonizationAgent → VerificationAgent → technical-documentation skill → Complete
 ```
 
 ### Workflow Chain
-
 ```
 ┌──────────────────────────────────────┐
 │ User Input                           │
@@ -29,8 +25,11 @@ BootstrapRepo → [repository-analysis skill] → AssetPlanner → [USER GATE] �
 └───────────┬──────────────────────────┘
             ↓
 ┌──────────────────────────────────────┐
-│ BootstrapRepo Agent                  │
-│ (uses repository-analysis skill)     │
+│ BootstrapRepo                        │
+└───────────┬──────────────────────────┘
+            ↓
+┌──────────────────────────────────────┐
+│ repository-analysis skill             │
 └───────────┬──────────────────────────┘
             ↓
 ┌──────────────────────────────────────┐
@@ -43,7 +42,18 @@ BootstrapRepo → [repository-analysis skill] → AssetPlanner → [USER GATE] �
             ↓
 ┌──────────────────────────────────────┐
 │ VerificationAgent                    │
-│ (validates & harmonizes)             │
+└───────────┬──────────────────────────┘
+            ↓
+┌──────────────────────────────────────┐
+│ HarmonizationAgent                   │
+└───────────┬──────────────────────────┘
+            ↓
+┌──────────────────────────────────────┐
+│ VerificationAgent (Final)            │
+└───────────┬──────────────────────────┘
+            ↓
+┌──────────────────────────────────────┐
+│ technical-documentation skill        │
 └───────────┬──────────────────────────┘
             ↓
 ┌──────────────────────────────────────┐
@@ -52,34 +62,30 @@ BootstrapRepo → [repository-analysis skill] → AssetPlanner → [USER GATE] �
 ```
 
 ## Workflow Phases
-
-1. **Analysis** — validate target repo path and detect tech stack using repository-analysis skill
-2. **Planning** — propose assets and specs; wait for user confirm
-3. **Implementation** — generate skills, agents, instructions, prompts, and AGENTS.md
-4. **Verification** — schema/YAML validation, link checks, and cross-reference harmonization
+1) Analysis — validate target repo path and detect tech stack
+2) Planning — propose assets and specs with orchestration assessment (conductor + subagents when 3+ agents); wait for user confirm
+3) Implementation — generate agents, instructions, prompts, and AGENTS.md including conductor, subagents, plan files, VS Code config
+4) Verification — schema/YAML/tool approvals and link checks; harmonize cross-references
+5) Documentation — bootstrap report, asset inventory, and quick start
 
 ## Acceptance Criteria
-
 - Repository path validated (not CopilotCustomizer)
 - Tech stack detected or manual context accepted
 - Recommended assets generated on confirmation
 - 100% schema compliance and cross-references resolved
 - Summary documentation created with asset inventory
+- Orchestrated system generated when 3+ agents recommended (conductor + subagents + plan file + VS Code config)
 
 ## How to Run
-
 1. Use the `/BootstrapRepo` slash command with inline variables
 2. Set `REPOSITORY_PATH`
 3. Submit → Review plan → Type `confirm`
 
 ## References
-
-- Skills: `.github/skills/repository-analysis/SKILL.md`
-- Formatting: `.github/instructions/FormatAssets.instructions.md`
-- Asset Generation: `.github/instructions/GenerateSkill.instructions.md`
+- Framework: `../../.github/instructions/CopilotFramework.instructions.md`
+- Audit: `../../.github/instructions/CopilotAudit.instructions.md`
+- Security: `../../.github/instructions/CopilotSecurity.instructions.md`
+- Optimize & format: `../../.github/instructions/OptimizeAndFormat.instructions.md`
 
 ## Notes
-
 - Intended for a different repository in the same VS Code workspace; avoid running it on this CopilotCustomizer folder
-- Uses cross-platform skills for repository analysis (repository-analysis skill)
-- Assets are generated in skills-first priority order

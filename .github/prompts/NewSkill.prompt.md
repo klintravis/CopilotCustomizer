@@ -1,15 +1,19 @@
 ---
 description: Generate new Agent Skill for cross-platform AI capabilities
-instructions:
-  - GenerateSkill.instructions.md
+agent: CopilotCustomizer
 ---
 
-<!-- ════════════════════════════════════════════════════════════════════════════
-📢 INVOCATION: NewSkill Prompt (Prompt) v1.0
-   STATUS: Prompt Ready — Awaiting execution
-════════════════════════════════════════════════════════════════════════════ -->
+# New Agent Skill Generator
 
-# New Agent Skill Generator (v1.0)
+```
+✨ PROMPT ACTIVATED: NewSkill (Asset Generator)
+   Purpose: Create cross-platform Agent Skills
+   Standard: agentskills.io (portable across VS Code, CLI, Claude, Cursor)
+   Instructions: GenerateSkill.instructions.md
+   Input: SKILL_NAME, PURPOSE, TARGET_PATH (optional), INCLUDE_EXAMPLES, INCLUDE_SCRIPTS
+   Output: Complete .github/skills/{name}/SKILL.md with examples and docs
+   Scope: Portable across all AI platforms and tools
+```
 
 Creates Agent Skills (agentskills.io open standard) that work across VS Code, GitHub Copilot CLI, Claude, Cursor, and other AI platforms.
 
@@ -341,30 +345,3 @@ After generation, provide:
 
 **Generated**: 2026-01-11 | **Framework**: CopilotCustomizer
 **Purpose**: Cross-platform AI skill generation
-
-**Log Entry Format**:
-```
-[YYYY-MM-DD HH:MM:SS UTC] - Invoked by: {user/system} | Context: {brief description}
-```
-
-**Recent Invocations**:
-_Manual logging - update this section when invoked_
-- [2026-01-14] Added traceability system
-
-### Usage Guidelines
-- This asset should be invoked when: Prompt-specific workflows are needed
-- Expected outcome: Execution of NewSkill Prompt functionality
-- Related assets: See related prompts in the same directory
-
-### Change History
-| Date | Version | Changes | Author |
-|------|---------|---------|--------|
-| 2026-01-14 | v1.0 | Added traceability system | CopilotCustomizer |
-
----
-
----
-
-## Audit
-Last invoked: [Manual log]
-Change history: v1.0 (2026-01-14) - Added traceability

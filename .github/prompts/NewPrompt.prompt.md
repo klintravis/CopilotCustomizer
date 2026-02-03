@@ -7,7 +7,15 @@ agent: CopilotCustomizer
    STATUS: Prompt Ready — Awaiting execution
 ════════════════════════════════════════════════════════════════════════════ -->
 
-# NewPrompt Prompt (v1.0)
+```
+✨ PROMPT ACTIVATED: NewPrompt (Asset Generator)
+   Purpose: Create VS Code slash command prompts
+   Standard: VS Code (.prompt.md with variable blocks)
+   Instructions: GeneratePrompt.instructions.md
+   Input: DOMAIN, GOAL
+   Output: Complete .prompt.md with variables, usage, and validation
+   Scope: VS Code Copilot slash commands
+```
 
 **Paired Instructions**: [GeneratePrompt.instructions.md](../instructions/GeneratePrompt.instructions.md)
 
@@ -47,9 +55,3 @@ Generate complete `*.prompt.md` with:
 ---
 
 *VS Code Copilot Customization Framework v1.0*
-
----
-
-## Audit
-Last invoked: [Manual log]
-Change history: v1.0 (2026-01-14) - Added traceability

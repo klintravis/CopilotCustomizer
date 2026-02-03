@@ -1,14 +1,9 @@
 ---
-applyTo: '.github/skills/**/*'
-description: 'Framework for creating Agent Skills (agentskills.io open standard) for cross-platform AI capabilities'
+applyTo: '.github/skills/**/*.md'
+description: 'Framework for creating Agent Skills (open standard at agentskills.io) that work across VS Code, GitHub Copilot CLI, Claude, Cursor, and other AI platforms'
 ---
 
-<!-- ════════════════════════════════════════════════════════════════════════════
-📢 INVOCATION: GenerateSkill Instructions (Instructions) v1.0
-   STATUS: Instructions Applied — Context loaded
-════════════════════════════════════════════════════════════════════════════ -->
-
-# Generate Agent Skill Instructions (v1.0)
+# Generate Agent Skill Instructions
 
 ## Purpose
 Framework for creating Agent Skills (open standard at agentskills.io) that work across VS Code, GitHub Copilot CLI, Claude, Cursor, and other AI platforms.
@@ -62,14 +57,7 @@ name: skill-name
 description: Clear description of what this skill does and when to use it. Be specific about capabilities and use cases (max 1024 chars).
 ---
 
-<!-- ════════════════════════════════════════════════════════════════════════════
-📢 INVOCATION: {skill-name} Skill (Skill) v1.0
-   STATUS: Skill Active — Methodology engaged
-════════════════════════════════════════════════════════════════════════════ -->
-
-# {SkillName} Skill (v1.0)
-
-## Purpose
+# Skill Purpose
 
 [Brief overview of what this skill accomplishes]
 
@@ -110,28 +98,6 @@ description: Clear description of what this skill does and when to use it. Be sp
 - [ ] [Outcome 1]
 - [ ] [Outcome 2]
 - [ ] [Outcome 3]
-
-**Log Entry Format**:
-```
-[YYYY-MM-DD HH:MM:SS UTC] - Invoked by: {user/system} | Context: {brief description}
-```
-
-**Recent Invocations**:
-_Manual logging - update this section when invoked_
-- [{date}] Initial creation
-
-### Usage Guidelines
-- This skill should be invoked when: {specific trigger conditions}
-- Expected outcome: {what should happen}
-- Related assets: {links to related skills}
-
-### Change History
-| Date | Version | Changes | Author |
-|------|---------|---------|--------|
-| {date} | v1.0 | Initial creation | CopilotCustomizer |
-
----
-*Traceability System v1.0 - Asset tracking enabled*
 ```
 
 ## YAML Frontmatter Requirements
@@ -366,6 +332,15 @@ Skills are stored in:
 6. **Test Discovery**: Verify AI loads skill on relevant prompts
 7. **Document Integration**: Update project AGENTS.md with skill reference
 
+## Standards Integration
+
+When generating skills, check for matched enterprise standards (via [ResolveStandards.instructions.md](ResolveStandards.instructions.md)):
+
+- **Instructions and Best Practices sections**: Reflect matched standard principles as native skill guidance. If TypeScript standards emphasize strict mode, the skill's best practices should include strict compilation as a baseline.
+- **Examples**: Code examples within skills should follow matched coding conventions (naming, error handling, patterns). If React standards prefer functional components, skill examples should use them exclusively.
+- **Description**: Do not mention standards or their origin in the skill description — guidance should appear as inherent to the skill's domain expertise.
+- **Never** reference `.github/standards/` in generated skill files
+
 ## Cross-Reference Pattern
 
 When generating skills, update:
@@ -385,30 +360,3 @@ When generating skills, update:
 
 **Generated**: 2026-01-11 | **Framework**: CopilotCustomizer  
 **Standard**: Agent Skills (agentskills.io) | **Scope**: Cross-platform AI capabilities
-
-**Log Entry Format**:
-```
-[YYYY-MM-DD HH:MM:SS UTC] - Invoked by: {user/system} | Context: {brief description}
-```
-
-**Recent Invocations**:
-_Manual logging - update this section when invoked_
-- [2026-01-14] Added traceability system
-
-### Usage Guidelines
-- This asset should be invoked when: Instructions-specific workflows are needed
-- Expected outcome: Execution of GenerateSkill Instructions functionality
-- Related assets: See related instructionss in the same directory
-
-### Change History
-| Date | Version | Changes | Author |
-|------|---------|---------|--------|
-| 2026-01-14 | v1.0 | Added traceability system | CopilotCustomizer |
-
----
-
----
-
-## Audit
-Last invoked: [Manual log]
-Change history: v1.0 (2026-01-14) - Added traceability

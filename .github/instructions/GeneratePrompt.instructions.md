@@ -3,11 +3,6 @@ applyTo: '.github/**/*.prompt.md'
 description: 'Standardized, modular approach for building high-quality prompt files that pair with custom agents and instruction files'
 ---
 
-<!-- ════════════════════════════════════════════════════════════════════════════
-📢 INVOCATION: GeneratePrompt Instructions (Instructions) v1.0
-   STATUS: Instructions Applied — Context loaded
-════════════════════════════════════════════════════════════════════════════ -->
-
 ## Prompt File Authoring Guide (v1.0)
 
 **Paired Prompt**: [NewPrompt.prompt.md](../prompts/NewPrompt.prompt.md)
@@ -34,15 +29,6 @@ Standardized approach for building `*.prompt.md` files that pair with custom age
 | Refinement Commands | Post-output adjustments |
 | Example | Concrete sample |
 
-### Required Banner
-After YAML front matter, include the invocation alert:
-```markdown
-<!-- ════════════════════════════════════════════════════════════════════════════
-📢 INVOCATION: {PromptName} Prompt (Prompt) v{version}
-   STATUS: Prompt Ready — Awaiting execution
-════════════════════════════════════════════════════════════════════════════ -->
-```
-
 ### Variable Template
 ```markdown
 ---
@@ -64,6 +50,14 @@ If required variable missing (<4 chars), list `Missing Inputs:` and halt with ta
 - `refine: risks` - Risk section rebuild
 - `refine: timeline` - Sequencing recalculation
 
+### Standards Integration
+
+When generating prompt files, check for matched enterprise standards (via [ResolveStandards.instructions.md](ResolveStandards.instructions.md)):
+
+- **Validation rules**: Derive validation checks from matched standards. If standards require public API documentation, add a validation rule that checks for doc comments.
+- **Quality checks**: Align quality criteria with standards requirements. If code review standards set PR size limits, prompt quality checks should reflect scope constraints.
+- **Never** reference `.github/standards/` in generated prompt files
+
 ### Quality Checklist
 - [ ] All mandatory variables set
 - [ ] No unqualified placeholders
@@ -76,29 +70,5 @@ If required variable missing (<4 chars), list `Missing Inputs:` and halt with ta
 - Include: `OutputPath`, `GeneratedAt`, `SourceInstruction`, `Type: prompt`
 - Must include ready-to-run example with resolved inputs
 
-**Log Entry Format**:
-```
-[YYYY-MM-DD HH:MM:SS UTC] - Invoked by: {user/system} | Context: {brief description}
-```
-
-**Recent Invocations**:
-_Manual logging - update this section when invoked_
-- [2026-01-14] Added traceability system
-
-### Usage Guidelines
-- This asset should be invoked when: Instructions-specific workflows are needed
-- Expected outcome: Execution of GeneratePrompt Instructions functionality
-- Related assets: See related instructionss in the same directory
-
-### Change History
-| Date | Version | Changes | Author |
-|------|---------|---------|--------|
-| 2026-01-14 | v1.0 | Added traceability system | CopilotCustomizer |
-
 ---
-
----
-
-## Audit
-Last invoked: [Manual log]
-Change history: v1.0 (2026-01-14) - Added traceability
+*Generated following VS Code Copilot prompt file standards*

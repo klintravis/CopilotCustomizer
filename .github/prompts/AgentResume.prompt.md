@@ -1,9 +1,18 @@
-<!-- ════════════════════════════════════════════════════════════════════════════
-📢 INVOCATION: AgentResume Prompt (Prompt) v2.0
-   STATUS: Prompt Ready — Awaiting execution
-════════════════════════════════════════════════════════════════════════════ -->
 
-# Universal Agent Resume Helper Prompt (v2.0)
+
+# AgentResume.prompt.md
+
+```
+✨ UTILITY ACTIVATED: AgentResume (v2.0-universal)
+   Purpose: Resume and continue productive work with context analysis
+   Standard: Universal helper (works with any agent on any project)
+   Input: WHERE_WE_LEFT_OFF, CONTINUATION_STYLE, optional context
+   Functions: Context analysis, continuation path suggestions, progress guidance
+   Output: Structured next steps tailored to work style and project state
+   Scope: Cross-project, cross-agent productivity helper
+```
+
+## Universal Agent Resume Helper Prompt (v2.0-universal)
 
 ### Task Intent
 Resume productive work with any AI agent on any project by analyzing current context and suggesting optimal continuation paths with friendly, encouraging guidance.

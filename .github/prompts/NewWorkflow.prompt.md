@@ -2,12 +2,17 @@
 agent: CopilotCustomizer
 ---
 
-<!-- ════════════════════════════════════════════════════════════════════════════
-📢 INVOCATION: NewWorkflow Prompt (Prompt) v1.0
-   STATUS: Prompt Ready — Awaiting execution
-════════════════════════════════════════════════════════════════════════════ -->
+## Workflow Creation Prompt (v1.0)
 
-# Workflow Creation Prompt (v1.0)
+```
+✨ PROMPT ACTIVATED: NewWorkflow (Asset Generator)
+   Purpose: Create multi-agent orchestration workflows
+   Standard: VS Code (.agent.md handoff chains)
+   Instructions: GenerateWorkflow.instructions.md
+   Input: WORKFLOW_PURPOSE, AGENT_CHAIN, SUCCESS_CRITERIA
+   Output: Complete workflow with entry point, agents, handoffs, and shared instructions
+   Scope: VS Code-specific multi-step workflows
+```
 
 **Paired Instructions**: [GenerateWorkflow.instructions.md](../instructions/GenerateWorkflow.instructions.md)
 
@@ -37,29 +42,6 @@ SUCCESS_CRITERIA: "{SUCCESS_CRITERIA}"
 
 **Generated using**: [GenerateWorkflow.instructions.md](../instructions/GenerateWorkflow.instructions.md)
 
-**Log Entry Format**:
-```
-[YYYY-MM-DD HH:MM:SS UTC] - Invoked by: {user/system} | Context: {brief description}
-```
-
-**Recent Invocations**:
-_Manual logging - update this section when invoked_
-- [2026-01-14] Added traceability system
-
-### Usage Guidelines
-- This asset should be invoked when: Prompt-specific workflows are needed
-- Expected outcome: Execution of NewWorkflow Prompt functionality
-- Related assets: See related prompts in the same directory
-
-### Change History
-| Date | Version | Changes | Author |
-|------|---------|---------|--------|
-| 2026-01-14 | v1.0 | Added traceability system | CopilotCustomizer |
-
 ---
 
----
-
-## Audit
-Last invoked: [Manual log]
-Change history: v1.0 (2026-01-14) - Added traceability
+*VS Code Copilot Customization Framework v1.0*

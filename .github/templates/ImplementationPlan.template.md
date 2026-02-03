@@ -82,4 +82,4 @@ Design and execute a stepwise implementation plan for the assigned project task.
 ### Generation Notes
 **Optimized by**: GitHub Copilot (Claude 3.5 Sonnet)  
 **Date**: September 14, 2025  
-**Process**: Asset optimization following AssetOptimization.prompt.md guidelines for universal project applicability
+**Process**: Asset optimization following OptimizeAndFormat guidelines for universal project applicability
