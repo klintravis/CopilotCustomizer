@@ -104,7 +104,7 @@ Tier selection:
     - Full conductor + subagents with scoped contexts
     - Parallel groups, context conservation, disjoint write sets
 
-Specification: Include full orchestration spec in this plan (do NOT defer to /NewWorkflowSystem)
+Specification: Include full orchestration spec in this plan (do NOT defer to /NewOrchestratedSystem)
 Reference: multi-agent-orchestration skill, GenerateOrchestratedSystem.instructions.md
 ```
 

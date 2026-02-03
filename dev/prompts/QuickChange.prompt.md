@@ -51,8 +51,7 @@ QuickChange → repository-analysis skill → implementation-planning skill → 
 
 ### Notes
 - Optimized for small diffs (typos, minor refactors, config/documentation tweaks)
-- For asset maintenance (optimize/format), use `OptimizeAndFormat.prompt.md`
-- For cross-asset linkage work (harmonize/validate), use `HarmonizeAndValidate.prompt.md`
+- For asset maintenance (optimize, harmonize, validate), use `Maintain.prompt.md`
 - See docs: `dev/docs/workflows/QuickChange.md`
 
 ---

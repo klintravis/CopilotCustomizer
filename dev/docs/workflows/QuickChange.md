@@ -1,84 +1,74 @@
 # QuickChange Workflow
 
-Fast, minimal-diff change workflow with a single approval gate and automated verification.
+Fast minimal-diff changes with a single approval gate and automated verification.
 
 ## Overview
-Use QuickChange for typos, small refactors, config nits, or documentation tweaks. It scans impact, proposes a tiny plan, applies the change, verifies, and documents.
 
-## Variables
-```
-CHANGE_REQUEST: "Short description of the exact change"
-REASON: "Why this change is needed"
-ACCEPTANCE_CRITERIA: "Observable outcomes to verify the change"
-SCOPE (or "auto-detect"): "Folder(s) or files to limit changes"
-```
+The QuickChange workflow is optimized for small, targeted changes like typos, minor refactors, config tweaks, and documentation updates. It minimizes touched files and provides a streamlined approval process.
 
-## Handoff Chain
-```
-QuickChange → repository-analysis skill → implementation-planning skill → [USER GATE] → ChangeExecutor → VerificationAgent → technical-documentation skill → Complete
-```
+## Workflow Diagram
 
-### Workflow Chain
 ```
-┌──────────────────────────────────────┐
-│ User Input                           │
-│ (CHANGE_REQUEST, REASON,             │
-│  ACCEPTANCE_CRITERIA, SCOPE)         │
-└───────────┬──────────────────────────┘
-            ↓
-┌──────────────────────────────────────┐
-│ QuickChange                          │
-└───────────┬──────────────────────────┘
-            ↓
-┌──────────────────────────────────────┐
-│ repository-analysis skill             │
-└───────────┬──────────────────────────┘
-            ↓
-┌──────────────────────────────────────┐
-│ implementation-planning skill        │
-└───────────┬───────────[confirm]──────┘
-            ↓
-┌──────────────────────────────────────┐
-│ ChangeExecutor                       │
-└───────────┬──────────────────────────┘
-            ↓
-┌──────────────────────────────────────┐
-│ VerificationAgent                    │
-└───────────┬──────────────────────────┘
-            ↓
-┌──────────────────────────────────────┐
-│ technical-documentation skill        │
-└───────────┬──────────────────────────┘
-            ↓
-┌──────────────────────────────────────┐
-│ Workflow Complete                    │
-└──────────────────────────────────────┘
+┌─────────────────────────────────────────────────────────────┐
+│  QuickChange Workflow                                       │
+├─────────────────────────────────────────────────────────────┤
+│                                                             │
+│  Phase 1: Analysis (Auto)                                   │
+│  └── Rapid scan of impacted files and dependencies          │
+│                                                             │
+│  Phase 2: Planning (Auto → Gate)                            │
+│  ├── Minimal implementation plan                            │
+│  └── Explicit file list → USER REVIEW                       │
+│                                                             │
+│  ────────── User types 'confirm' ──────────                 │
+│                                                             │
+│  Phase 3: Implementation (Auto)                             │
+│  └── Apply atomic change within SCOPE only                  │
+│                                                             │
+│  Phase 4: Verification (Auto)                               │
+│  └── Validate against acceptance criteria                   │
+│                                                             │
+│  Phase 5: Documentation (Auto)                              │
+│  └── Generate concise change summary                        │
+│                                                             │
+└─────────────────────────────────────────────────────────────┘
 ```
 
-## Workflow Phases
-1) Analysis — impact scan and dependency check
-2) Planning — minimal implementation plan with explicit file list (user approval required)
-3) Implementation — atomic change within SCOPE only
-4) Verification — lints/build (if applicable) + textual checks vs acceptance criteria
-5) Documentation — concise change summary and results
+## Usage Examples
 
-## Acceptance Criteria
-- Only files in SCOPE are changed
-- VerificationAgent confirms acceptance criteria
-- Build/lint passes when applicable
-- Change summary generated
+### Simple typo fix
+```
+/QuickChange CHANGE_REQUEST: "Fix typo in README.md", REASON: "Incorrect spelling", SCOPE: "README.md"
+```
 
-## How to Run
-1. Use the `/QuickChange` slash command with inline variables
-3. Submit → Review plan → Type `confirm`
+### Config update
+```
+/QuickChange CHANGE_REQUEST: "Update version to 2.0", REASON: "Release prep", SCOPE: "package.json"
+```
 
-## References
-- Framework: `../../../.github/instructions/CopilotFramework.instructions.md`
-- Audit: `../../../.github/instructions/CopilotAudit.instructions.md`
-- Security: `../../../.github/instructions/CopilotSecurity.instructions.md`
-- Slash command: `dev/prompts/QuickChange.prompt.md`
+### Auto-detect scope
+```
+/QuickChange CHANGE_REQUEST: "Rename function foo to bar", REASON: "Better naming", SCOPE: "auto-detect"
+```
 
-## Notes
-- Prefer this for changes that can be safely reviewed and merged quickly
-- For asset maintenance (optimize/format), use `OptimizeAndFormat.prompt.md`
-- For cross-asset linkage work (harmonize/validate), use `HarmonizeAndValidate.prompt.md`
+## Key Files
+
+| File | Purpose |
+|------|---------|
+| `dev/prompts/QuickChange.prompt.md` | Prompt entry point |
+| `.github/agents/ChangeExecutor.agent.md` | File operations |
+| `.github/agents/VerificationAgent.agent.md` | Validation |
+
+## When to Use QuickChange vs Maintain
+
+| Use Case | Recommended Workflow |
+|----------|---------------------|
+| Typos, minor refactors, config changes | QuickChange |
+| Asset optimization and formatting | Maintain (mode: optimize) |
+| Cross-reference binding | Maintain (mode: harmonize) |
+| Asset validation/audit | Maintain (mode: validate) |
+| Complete asset maintenance | Maintain (mode: all) |
+
+---
+
+*CopilotCustomizer Developer Documentation*

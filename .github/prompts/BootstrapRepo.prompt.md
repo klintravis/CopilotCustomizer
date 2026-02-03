@@ -55,13 +55,7 @@ Orchestration Assessment (auto: lightweight-conductor if 3+ agents, orchestra/at
   ↓ [USER GATE: "confirm"]
 AssetGenerator (create all assets - Skills PRIORITY, standards-informed)
   ↓
-VerificationAgent (schema validation)
-  ↓
-OptimizeAndFormat (blocking)
-  ↓
-HarmonizationAgent (bind with metadata)
-  ↓
-HarmonizeAndValidate (CHECKS=all) → VerificationAgent (final check)
+VerificationAgent (schema validation + harmonization + metadata binding)
   ↓
 technical-documentation skill (report)
   ↓
@@ -198,26 +192,16 @@ confirm
 ✓ Subagent I/O contracts: Defined
 ✓ Plan file: Valid structure
 
-[OptimizeAndFormat] Formatting + schema validation (blocking)...
+[VerificationAgent] Validation + harmonization...
+✓ Schema compliance: 100%
 ✓ Format applied where needed
-✓ YAML + handoffs schema: PASS
-Report: /output/format-verify-summary.md
-
-[HarmonizationAgent] Binding ecosystem...
 ✓ Cross-references: 18 added
 ✓ Metadata: Applied to all
 ✓ Handoff chains: 4 validated (conductor → 3 subagents)
 ✓ Terminology: Standardized
-
-[HarmonizeAndValidate] Workflow + linkage validation (CHECKS=all)...
-✓ Links + handoffs + schema: PASS
-Matrix: /output/workflow-validation-matrix.md
-
-[VerificationAgent] Final validation...
 ✓ All cross-references resolved
 ✓ No orphaned assets
 ✓ Orchestrated system complete
-✓ Complete ecosystem
 
 [technical-documentation skill] Creating report...
 ✓ Bootstrap summary generated
@@ -339,10 +323,9 @@ Action: Aborting before documentation; fix generation specs and retry
 - [ ] Asset recommendations generated
 - [ ] <5 user interactions total (ideally 2)
 - [ ] 90%+ handoff success rate
- - [ ] Schema compliance: 100% (YAML + handoffs schema)
- - [ ] Handoffs fields: 100% valid (label, agent, prompt, send)
- - [ ] OptimizeAndFormat: PASS (blocking)
- - [ ] HarmonizeAndValidate (CHECKS=all): PASS
+- [ ] Schema compliance: 100% (YAML + handoffs schema)
+- [ ] Handoffs fields: 100% valid (label, agent, prompt, send)
+- [ ] Verification + harmonization: PASS
 - [ ] Cross-references: All resolved
 - [ ] Documentation: Complete report
 
@@ -382,8 +365,7 @@ Action: Aborting before documentation; fix generation specs and retry
 - [BootstrapRepo.agent.md](../agents/BootstrapRepo.agent.md) - Entry point
 - [AssetPlanner.agent.md](../agents/AssetPlanner.agent.md) - Planning + gate (leverages implementation-planning skill)
 - [AssetGenerator.agent.md](../agents/AssetGenerator.agent.md) - Generation (prioritizes Skills)
-- [VerificationAgent.agent.md](../agents/VerificationAgent.agent.md) - Validation
-- [HarmonizationAgent.agent.md](../agents/HarmonizationAgent.agent.md) - Binding
+- [VerificationAgent.agent.md](../agents/VerificationAgent.agent.md) - Validation + harmonization
 - [ChangeExecutor.agent.md](../agents/ChangeExecutor.agent.md) - File operations
 
 ## Success Metrics

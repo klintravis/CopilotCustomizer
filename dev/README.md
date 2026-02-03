@@ -8,10 +8,8 @@ These prompts are for framework maintainers, not end users:
 
 | Prompt | Purpose |
 |--------|---------|
-| `prompts/OptimizeAndFormat.prompt.md` | Optimize, format, and validate Copilot assets |
-| `prompts/HarmonizeAndValidate.prompt.md` | Harmonize cross-references and validate integrity |
+| `prompts/Maintain.prompt.md` | Unified maintenance (optimize, harmonize, validate) |
 | `prompts/QuickChange.prompt.md` | Fast minimal-diff changes with approval gate |
-| `prompts/AgentResume.prompt.md` | Universal agent resume/continuation helper |
 
 ### How to Use Dev Prompts
 
@@ -21,7 +19,7 @@ These prompts are for framework maintainers, not end users:
 3. Remove the copy when done
 
 **Option B — `#file:` reference in chat**:
-1. In Copilot Chat, type `#file:dev/prompts/OptimizeAndFormat.prompt.md`
+1. In Copilot Chat, type `#file:dev/prompts/Maintain.prompt.md`
 2. Follow with your request
 
 ## Dev Documentation
@@ -31,8 +29,7 @@ These prompts are for framework maintainers, not end users:
 | `ASSETS.md` | Complete asset reference (types, schemas, inventory) |
 | `AGENTS.md` | Architecture, asset inventory, and design patterns |
 | `docs/changelog/CHANGELOG.md` | Framework version history |
-| `docs/workflows/OptimizeAndFormat.md` | OptimizeAndFormat workflow details |
-| `docs/workflows/HarmonizeAndValidate.md` | HarmonizeAndValidate workflow details |
+| `docs/workflows/Maintain.md` | Maintain workflow details (unified maintenance) |
 | `docs/workflows/QuickChange.md` | QuickChange workflow details |
 
 ## User-Facing Tools
@@ -40,7 +37,7 @@ These prompts are for framework maintainers, not end users:
 User-facing slash commands and infrastructure remain in `.github/`:
 
 - **Prompts** (slash commands): `.github/prompts/` — BootstrapRepo, RepoReview, New*
-- **Agents**: `.github/agents/` — 7 workflow agents
+- **Agents**: `.github/agents/` — 6 workflow agents
 - **Instructions**: `.github/instructions/` — 14 coding/generation rules
 - **Skills**: `.github/skills/` — 6 cross-platform capabilities
 - **Templates**: `.github/templates/` — 4 document formats

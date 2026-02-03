@@ -5,7 +5,7 @@ agent: CopilotCustomizer
 ## Orchestrated System Generation Prompt (v1.0)
 
 ```
-✨ PROMPT ACTIVATED: NewWorkflowSystem (Orchestrated System Generator)
+✨ PROMPT ACTIVATED: NewOrchestratedSystem (Orchestrated System Generator)
    Purpose: Generate conductor/subagent orchestrated systems for target repositories
    Standard: VS Code (.agent.md + plans/ + .vscode/settings.json)
    Instructions: GenerateOrchestratedSystem.instructions.md
@@ -100,12 +100,12 @@ PARALLEL_ENABLED [OPTIONAL]: "{true | false}" (default: true for atlas, false fo
 
 ### Usage Example
 ```
-/NewWorkflowSystem SYSTEM_NAME: "FeatureOrchestra", SYSTEM_PATTERN: "orchestra", REPOSITORY_PATH: "/Users/dev/my-api-project", DOMAIN: "Node.js REST API"
+/NewOrchestratedSystem SYSTEM_NAME: "FeatureOrchestra", SYSTEM_PATTERN: "orchestra", REPOSITORY_PATH: "/Users/dev/my-api-project", DOMAIN: "Node.js REST API"
 ```
 
 ### Example with Custom Pattern
 ```
-/NewWorkflowSystem SYSTEM_NAME: "DataPipeline", SYSTEM_PATTERN: "custom", REPOSITORY_PATH: "/Users/dev/etl-project", DOMAIN: "Python ETL", CUSTOM_AGENTS: "planner, extractor, transformer, loader, validator", TDD_ENFORCEMENT: "relaxed"
+/NewOrchestratedSystem SYSTEM_NAME: "DataPipeline", SYSTEM_PATTERN: "custom", REPOSITORY_PATH: "/Users/dev/etl-project", DOMAIN: "Python ETL", CUSTOM_AGENTS: "planner, extractor, transformer, loader, validator", TDD_ENFORCEMENT: "relaxed"
 ```
 
 **Generated using**: [GenerateOrchestratedSystem.instructions.md](../instructions/GenerateOrchestratedSystem.instructions.md)

@@ -21,10 +21,7 @@ $ErrorActionPreference = "Stop"
 $root = Split-Path -Parent $MyInvocation.MyCommand.Definition
 
 $prompts = @(
-    "OptimizeAndFormat.prompt.md",
-    "HarmonizeAndValidate.prompt.md",
-    "QuickChange.prompt.md",
-    "AgentResume.prompt.md"
+    "QuickChange.prompt.md"
 )
 
 $devDir    = Join-Path $root "dev\prompts"

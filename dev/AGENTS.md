@@ -31,14 +31,13 @@ For setup and usage, see:
 
 ### Current Inventory
 
-**Active Agents** (7 total — orchestrated hierarchy):
+**Active Agents** (6 total — orchestrated hierarchy):
 - `CopilotCustomizer.agent.md` — **Central orchestrator** (entry point for all workflows)
   - `BootstrapRepo.agent.md` — Repository bootstrap workflow (subagent)
   - `AssetPlanner.agent.md` — Asset recommendation and specification (subagent)
   - `AssetGenerator.agent.md` — Multi-asset creation engine (subagent)
   - `ChangeExecutor.agent.md` — Precise file operations (subagent)
-  - `HarmonizationAgent.agent.md` — Cross-reference binding (subagent)
-  - `VerificationAgent.agent.md` — Schema validation (subagent)
+  - `VerificationAgent.agent.md` — Schema validation + harmonization (subagent)
 
 **Skills** (core cross-platform capabilities):
 - `repository-analysis/SKILL.md` - Repository understanding methodology
@@ -51,18 +50,17 @@ For setup and usage, see:
 **Note**: Bootstrap automatically generates **project-specific skills** (e.g., `nodejs-patterns/`, `react-frontend/`) alongside core skills when analyzing your repository.
 
 **Instructions** (see `.github/instructions/` for current inventory):
-- Generation frameworks: `GenerateSkill`, `GenerateCopilotAgent`, `GeneratePrompt`, `GenerateInstructions`, `GenerateWorkflow`, `GenerateAgentsFile`
+- Generation frameworks: `GenerateSkill`, `GenerateCopilotAgent`, `GeneratePrompt`, `GenerateInstructions`, `GenerateHandoffChain`, `GenerateAgentsFile`
 - Orchestration: `GenerateOrchestratedSystem`
 - Standards: `ResolveStandards`
 - Quality patterns: `CopilotFramework`, `CopilotAudit`, `CopilotSecurity`, `HarmonizeAssets`, `RepoReview`, `OptimizeAndFormat`
 
 **Prompts — User** (`.github/prompts/`):
 - Core workflows: `BootstrapRepo`, `RepoReview`
-- Asset generation: `NewSkill`, `NewCopilotAgent`, `NewInstructions`, `NewPrompt`, `NewWorkflow`, `NewWorkflowSystem`, `NewAgentsFile`
+- Asset generation: `NewSkill`, `NewCopilotAgent`, `NewInstructions`, `NewPrompt`, `NewHandoffChain`, `NewOrchestratedSystem`, `NewAgentsFile`
 
 **Prompts — Dev/Maintenance** (`dev/prompts/`):
-- Maintenance: `OptimizeAndFormat`, `HarmonizeAndValidate`, `QuickChange`
-- Utilities: `AgentResume`
+- Maintenance: `Maintain`, `QuickChange`
 
 **Templates** (4 files - document formats):
 - `Analysis.template.md`, `ImplementationPlan.template.md`, `OrchestrationPlan.template.md`, `ChangeLog.template.md`
@@ -99,9 +97,14 @@ Standards in `.github/standards/` define organizational coding conventions. Duri
 
 ```
 .github/standards/
-├── languages/       ← Tech-match standards (TypeScript, Python, etc.)
-├── frameworks/      ← Tech-match standards (React, Express, etc.)
-└── practices/       ← Always-apply standards (code review, naming, etc.)
+├── languages/       ← Tech-match standards (TypeScript, Python, Go, etc.)
+├── frameworks/      ← Tech-match standards (React, Express, Django, etc.)
+├── testing/         ← Testing standards (unit, integration, e2e, etc.)
+├── databases/       ← Database standards (SQL, NoSQL, ORM, etc.)
+├── architecture/    ← Architecture standards (API, microservices, etc.)
+├── security/        ← Security standards (app, API, frontend, etc.)
+├── practices/       ← Always-apply standards (code review, naming, etc.)
+└── devops/          ← DevOps standards (containers, CI/CD, IaC)
 ```
 
 ### Skills-First Strategy

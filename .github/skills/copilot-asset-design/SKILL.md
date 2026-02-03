@@ -347,8 +347,8 @@ Q3: Does the project need TDD enforcement, quality gates, or plan tracking?
   → NO: Lightweight conductor is sufficient
 
 Q4: Does the codebase have 50+ files or need parallel execution?
-  → YES: Create an Atlas system (spec inline; /NewWorkflowSystem for advanced customization only)
-  → NO: Create an Orchestra system (spec inline; /NewWorkflowSystem for advanced customization only)
+  → YES: Create an Atlas system (spec inline; /NewOrchestratedSystem for advanced customization only)
+  → NO: Create an Orchestra system (spec inline; /NewOrchestratedSystem for advanced customization only)
 ```
 
 ### Orchestrated System Integration

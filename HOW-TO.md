@@ -68,7 +68,7 @@ EXPLORER
 3. **Iterate and Refine**:
    - Use `/RepoReview` to analyze what was created
    - Use individual generators (`/NewCopilotAgent`, `/NewInstructions`) to add more
-  - Use `/OptimizeAndFormat` to improve and format existing assets
+   - Use `/OptimizeAndFormat` to improve and format existing assets
 
 ---
 
@@ -83,9 +83,9 @@ These appear automatically in the VS Code slash-command palette:
 - `/NewCopilotAgent AGENT_NAME: "Name", DOMAIN: "Area"` — Create a new agent
 - `/NewInstructions DOMAIN: "Area", APPLY_TO: "glob"` — Create coding rules
 - `/NewPrompt PURPOSE: "Template goal"` — Create a prompt template
-- `/NewWorkflowSystem SYSTEM_NAME: "Name", SYSTEM_PATTERN: "orchestra", REPOSITORY_PATH: "/path"` — Generate orchestrated multi-agent system
+- `/NewOrchestratedSystem SYSTEM_NAME: "Name", SYSTEM_PATTERN: "orchestra", REPOSITORY_PATH: "/path"` — Generate orchestrated multi-agent system
 - `/NewSkill SKILL_NAME: "name", PURPOSE: "desc"` — Create a cross-platform skill
-- `/NewWorkflow WORKFLOW_NAME: "name"` — Create a multi-agent workflow
+- `/NewHandoffChain WORKFLOW_NAME: "name"` — Create a multi-agent workflow
 - `/NewAgentsFile REPOSITORY_PATH: "/path"` — Generate workspace AGENTS.md
 
 Tip: Type `/` in Copilot Chat to see all available commands.
@@ -94,10 +94,8 @@ Tip: Type `/` in Copilot Chat to see all available commands.
 
 These live in `dev/prompts/` and are **not** auto-discovered by VS Code. They are for framework maintainers. To use them, copy into `.github/prompts/` temporarily or reference via `#file:dev/prompts/<name>` in chat. See [dev/README.md](dev/README.md) for details.
 
-- `OptimizeAndFormat` — Optimize + format + validate assets
-- `HarmonizeAndValidate` — Harmonize + validate links/handoffs/schema
+- `Maintain` — Unified maintenance (optimize, harmonize, validate with configurable modes)
 - `QuickChange` — Tiny edits with a single approval gate
-- `AgentResume` — Resume and continue work with context analysis
 
 ---
 
@@ -739,7 +737,6 @@ handoffs:
 | Agent Files | `PascalCase.agent.md` | `DatabaseExpert.agent.md` |
 | Prompts | `PascalCase.prompt.md` | `GenerateEndpoint.prompt.md` |
 | Instructions | `PascalCase.instructions.md` | `ReactPatterns.instructions.md` |
-| Prompts | `PascalCase.prompt.md` | `GenerateEndpoint.prompt.md` |
 | Templates | `PascalCase.template.md` | `ChangeLog.template.md` |
 | Workspace File | `AGENTS.md` | `AGENTS.md` |
 
@@ -770,41 +767,25 @@ handoffs:
 - After making changes (validate integrity)
 - Regular audits (maintain quality)
 
-### Optimize & Format
+### Maintain Assets
 
-**Improve Existing Assets (Optimize + Format + Validate)**:
+**Unified Maintenance Workflow (Optimize + Harmonize + Validate)**:
 
 1. In Copilot Chat, specify what to maintain:
   ```
-  Optimize and format these Copilot assets:
+  Maintain these Copilot assets:
   - your-project/.github/agents/APIExpert.agent.md
   - your-project/.github/instructions/APIPatterns.instructions.md
   ```
-  Or use the `/OptimizeAndFormat` slash command:
+  Or use the dev `/Maintain` prompt (copy to `.github/prompts/` or reference via `#file:dev/prompts/Maintain.prompt.md`):
   ```
-  /OptimizeAndFormat for TARGET_PATH: "your-project/.github/", MODE: "both", SEVERITY: "fix"
+  /Maintain TARGET_PATH: "your-project/.github/", MODE: "all"
   ```
-2. Review results:
-  - Token efficiency and clarity improvements
-  - Schema compliance fixes
-  - Cross-reference validation
-
-### Harmonize Assets
-
-**Link Related Assets**:
-
-1. In Copilot Chat, specify assets to link:
-   ```
-   Harmonize these Copilot assets:
-   - TestExpert agent
-   - TestPatterns instructions  
-   - GenerateTest prompt
-   ```
-  Or use the `/HarmonizeAndValidate` slash command:
-  ```
-  /HarmonizeAndValidate for ASSETS: [".github"], CHECKS: "all", MODE: "standard"
-  ```
-2. Assets linked with cross-references and metadata
+2. Available modes:
+  - `optimize` — Token efficiency and clarity improvements
+  - `harmonize` — Cross-reference binding and metadata
+  - `validate` — Schema compliance and link integrity
+  - `all` — Complete maintenance (optimize → harmonize → validate)
 
 ### Workflow Integrity Checks
 
@@ -814,9 +795,9 @@ handoffs:
    ```
    Validate all workflow integrity with strict mode enabled
    ```
-  Or use the `/HarmonizeAndValidate` slash command:
+  Or use the dev `/Maintain` prompt with validate mode:
   ```
-  /HarmonizeAndValidate for ASSETS: [".github"], CHECKS: "all", MODE: "standard"
+  /Maintain TARGET_PATH: ".github", MODE: "validate"
   ```
 2. Comprehensive validation:
    - Agent handoff chains
@@ -921,8 +902,8 @@ Review implementation for:
 **Beyond Handoff Chains** - For complex projects that need conductor-managed phases with TDD enforcement, quality gates, and plan file tracking.
 
 **When to Use Orchestrated Systems vs Handoff Chains**:
-- **Handoff Chains** (`/NewWorkflow`): Linear A → B → C workflows, simple coordination
-- **Orchestrated Systems** (`/NewWorkflowSystem`): Conductor + subagents, quality gates, TDD, plan tracking
+- **Handoff Chains** (`/NewHandoffChain`): Linear A → B → C workflows, simple coordination
+- **Orchestrated Systems** (`/NewOrchestratedSystem`): Conductor + subagents, quality gates, TDD, plan tracking
 
 **Pattern Options**:
 | Pattern | Agents | Best For |
@@ -933,7 +914,7 @@ Review implementation for:
 
 **Example: Generate an Orchestra System**
 ```
-/NewWorkflowSystem SYSTEM_NAME: "FeatureOrchestra",
+/NewOrchestratedSystem SYSTEM_NAME: "FeatureOrchestra",
 SYSTEM_PATTERN: "orchestra",
 REPOSITORY_PATH: "/path/to/your-project",
 DOMAIN: "Node.js REST API"
@@ -941,7 +922,7 @@ DOMAIN: "Node.js REST API"
 
 **Example: Generate an Atlas System with Parallel Execution**
 ```
-/NewWorkflowSystem SYSTEM_NAME: "ProjectAtlas",
+/NewOrchestratedSystem SYSTEM_NAME: "ProjectAtlas",
 SYSTEM_PATTERN: "atlas",
 REPOSITORY_PATH: "/path/to/large-project",
 DOMAIN: "Full-stack TypeScript",
@@ -1150,11 +1131,11 @@ cd /path/to/CopilotCustomizer && git pull origin main
 # Monthly: Run repository review
 # /RepoReview for TARGET_PATH: "your-project"
 
-# Quarterly: Format and verify all assets
-# /OptimizeAndFormat
+# Quarterly: Full maintenance (optimize, harmonize, validate)
+# /Maintain TARGET_PATH: ".github", MODE: "all"
 
 # After major changes: Validate workflow integrity
-# /HarmonizeAndValidate
+# /Maintain TARGET_PATH: ".github", MODE: "validate"
 ```
 
 **Version Management**:
@@ -1410,7 +1391,6 @@ output/
 - **[README.md](README.md)** - Framework overview and quick start
 - **[QUICKSTART.md](QUICKSTART.md)** - 5-minute setup guide
 - **[EXAMPLES.md](EXAMPLES.md)** - Real-world tech stack examples
-- **[EXAMPLES.md](EXAMPLES.md)** - Real-world tech stack examples
 - **[AGENTS.md](dev/AGENTS.md)** - Architecture and asset inventory
 - **[ASSETS.md](dev/ASSETS.md)** - Complete asset reference
 
@@ -1437,7 +1417,7 @@ output/
 2. **Generate, Don't Copy**: Use prompts to generate assets in YOUR project
 3. **Bootstrap First**: Use `BootstrapRepo.prompt.md` for complete setup
 4. **Iterate**: Use individual generators and optimizers to refine
-5. **Validate**: Regular audits with `RepoReview` and `HarmonizeAndValidate`
+5. **Validate**: Regular audits with `RepoReview` and `Maintain`
 6. **Share**: Commit `.github/` folder for team consistency
 
 **Next Steps**:
@@ -1445,7 +1425,7 @@ output/
 - [ ] Set up multi-workspace with your project
 - [ ] Run `BootstrapRepo` to generate initial customization
 - [ ] Test generated assets with project-specific questions
-- [ ] Refine with `OptimizeAndFormat` and additional generators
+- [ ] Refine with `Maintain` and additional generators
 - [ ] Commit to repository and share with team
 
 ---
