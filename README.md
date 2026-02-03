@@ -44,7 +44,7 @@ See [HOW-TO.md](HOW-TO.md) for all commands.
 ## Architecture
 
 See [dev/AGENTS.md](dev/AGENTS.md) for:
-- Asset inventory (6 skills, 7 agents, 14 instructions, 13 prompts, 4 templates)
+- Asset inventory (6 skills, 7 agents, 14 instructions, 9 prompts + 4 dev, 4 templates)
 - Enterprise standards system (`.github/standards/`)
 - Handoff workflows
 - Bootstrap automation workflow

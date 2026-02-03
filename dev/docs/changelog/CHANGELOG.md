@@ -8,7 +8,7 @@ All notable changes to the CopilotCustomizer framework.
 - Added `.github/standards/` system for defining organizational coding conventions
 - Standards influence generated assets naturally (never copied verbatim)
 - YAML frontmatter schema with `scope` (always/tech-match) and `priority` (high/medium/low)
-- Includes example standards for TypeScript, React, and code review practices
+- 43 standards files across 8 categories: languages (9), frameworks (8), testing (5), databases (4), architecture (5), security (4), practices (5), devops (3)
 - New `ResolveStandards.instructions.md` for pipeline integration
 
 ### Multi-Agent Orchestration

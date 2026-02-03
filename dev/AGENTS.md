@@ -99,9 +99,14 @@ Standards in `.github/standards/` define organizational coding conventions. Duri
 
 ```
 .github/standards/
-├── languages/       ← Tech-match standards (TypeScript, Python, etc.)
-├── frameworks/      ← Tech-match standards (React, Express, etc.)
-└── practices/       ← Always-apply standards (code review, naming, etc.)
+├── languages/       ← Tech-match standards (TypeScript, Python, Go, etc.)
+├── frameworks/      ← Tech-match standards (React, Express, Django, etc.)
+├── testing/         ← Testing standards (unit, integration, e2e, etc.)
+├── databases/       ← Database standards (SQL, NoSQL, ORM, etc.)
+├── architecture/    ← Architecture standards (API, microservices, etc.)
+├── security/        ← Security standards (app, API, frontend, etc.)
+├── practices/       ← Always-apply standards (code review, naming, etc.)
+└── devops/          ← DevOps standards (containers, CI/CD, IaC)
 ```
 
 ### Skills-First Strategy

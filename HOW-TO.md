@@ -68,7 +68,7 @@ EXPLORER
 3. **Iterate and Refine**:
    - Use `/RepoReview` to analyze what was created
    - Use individual generators (`/NewCopilotAgent`, `/NewInstructions`) to add more
-  - Use `/OptimizeAndFormat` to improve and format existing assets
+   - Use `/OptimizeAndFormat` to improve and format existing assets
 
 ---
 
@@ -739,7 +739,6 @@ handoffs:
 | Agent Files | `PascalCase.agent.md` | `DatabaseExpert.agent.md` |
 | Prompts | `PascalCase.prompt.md` | `GenerateEndpoint.prompt.md` |
 | Instructions | `PascalCase.instructions.md` | `ReactPatterns.instructions.md` |
-| Prompts | `PascalCase.prompt.md` | `GenerateEndpoint.prompt.md` |
 | Templates | `PascalCase.template.md` | `ChangeLog.template.md` |
 | Workspace File | `AGENTS.md` | `AGENTS.md` |
 
@@ -1409,7 +1408,6 @@ output/
 ### Documentation
 - **[README.md](README.md)** - Framework overview and quick start
 - **[QUICKSTART.md](QUICKSTART.md)** - 5-minute setup guide
-- **[EXAMPLES.md](EXAMPLES.md)** - Real-world tech stack examples
 - **[EXAMPLES.md](EXAMPLES.md)** - Real-world tech stack examples
 - **[AGENTS.md](dev/AGENTS.md)** - Architecture and asset inventory
 - **[ASSETS.md](dev/ASSETS.md)** - Complete asset reference

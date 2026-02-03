@@ -45,7 +45,7 @@
 ### Standards
 ```
 
-**Available**: OptimizeAndFormat, GenerateAgentsFile, GenerateCopilotAgent, GenerateInstructions, GeneratePrompt, GenerateWorkflow, GenerateOrchestratedSystem, HarmonizeAssets, RepoReview, ResolveStandards, CopilotFramework, CopilotAudit, CopilotSecurity
+**Available**: OptimizeAndFormat, GenerateAgentsFile, GenerateCopilotAgent, GenerateInstructions, GeneratePrompt, GenerateSkill, GenerateWorkflow, GenerateOrchestratedSystem, HarmonizeAssets, RepoReview, ResolveStandards, CopilotFramework, CopilotAudit, CopilotSecurity
 
 ## Prompts (`*.prompt.md`)
 **Location**: `.github/prompts/` | **YAML**: `agent` or `mode` (optional)
@@ -389,7 +389,7 @@ Some assets (like `AgentResume.prompt.md`) are designed for cross-repository usa
 ## 📄 License & Attribution
 
 **License**: MIT - See [LICENSE](../LICENSE) for full text  
-**Framework**: CopilotCustomizer v1.0  
+**Framework**: CopilotCustomizer v1.1  
 **Compliance**: VS Code GitHub Copilot Customization Standards v1.108 (v1.106+ compatible)  
 **Generated**: 2026-01-31 via Asset Reference Documentation Framework
 

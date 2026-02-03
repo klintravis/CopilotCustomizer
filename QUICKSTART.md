@@ -47,10 +47,10 @@ Your project-specific customization includes:
 
 | Asset Type | Purpose | Example |
 |------------|---------|---------|
+| **Skills** | Cross-platform AI capabilities | `repository-analysis/SKILL.md` |
 | **Agent Files** | Domain experts for your tech stack | `APIExpert.agent.md` for FastAPI/Express/.NET |
 | **Instructions** | Coding standards and patterns | `TestingPatterns.instructions.md` |
 | **Prompts** | Structured generation templates | `GenerateEndpoint.prompt.md` |
-| **Templates** | Document formats | `ChangeLog.template.md` |
 | **AGENTS.md** | Project development guidance | Build commands, PR checklist |
 
 **Tech Stack Detected**: Framework automatically identifies your languages/frameworks
