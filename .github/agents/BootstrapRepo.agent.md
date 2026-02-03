@@ -51,19 +51,16 @@ Phase 2b: Orchestration Assessment (Standard)
   Automatically included in AssetPlanner specifications:
   - 3+ agents recommended → lightweight-conductor (minimum)
   - 50+ files, TDD needed, multiple domains → orchestra or atlas pattern
-  └─> Orchestration spec embedded in plan (not deferred to /NewWorkflowSystem)
+  └─> Orchestration spec embedded in plan (not deferred to /NewOrchestratedSystem)
 
 Phase 3: Asset Generation (Auto)
   └─> AssetGenerator: Create all recommended assets (Skills-first)
   Uses: implementation-planning skill for specification details
 
-Phase 4: First Validation (Auto)
-  └─> VerificationAgent: Schema compliance, cross-references
+Phase 4: Verification & Harmonization (Auto)
+  └─> VerificationAgent: Schema compliance, cross-references, metadata binding
 
-Phase 5: Harmonization (Auto)
-  └─> HarmonizationAgent: Bind assets with metadata, skill documentation
-
-Phase 6: Final Validation & Documentation (Auto)
+Phase 5: Documentation (Auto)
   Uses: technical-documentation skill to generate comprehensive report
 ```
 
@@ -157,7 +154,7 @@ User: "confirm"
 
 [Fully autonomous execution]
 
-Agent: "✓ Complete: 12 assets generated (1 conductor + 3 subagents + 3 instructions + 2 prompts + 1 plan + VS Code config + AGENTS.md), validated, harmonized.
+Agent: "✓ Complete: 12 assets generated (1 conductor + 3 subagents + 3 instructions + 2 prompts + 1 plan + VS Code config + AGENTS.md), verified and harmonized.
 Documentation: /output/Bootstrap-Report.md"
 ```
 
@@ -173,9 +170,8 @@ AssetPlanner (recommendations ready)
 AssetGenerator (skills created first, then agents/instructions/prompts)
   ↓ [implementation-planning skill: guide specifications]
   ↓
-VerificationAgent (validation complete)
-  ↓
-HarmonizationAgent (binding complete, cross-reference skills)
+VerificationAgent (validation + harmonization complete)
+  ↓ [includes: schema check, cross-reference binding, metadata]
   ↓
 technical-documentation skill (report ready)
   ↓

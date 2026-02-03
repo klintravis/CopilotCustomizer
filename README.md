@@ -36,7 +36,7 @@
 /RepoReview TARGET_PATH: "/path"               # Analyze project
 /NewSkill SKILL_NAME: "name", PURPOSE: "desc"  # New skill
 /NewCopilotAgent AGENT_NAME: "name"            # New agent
-/NewWorkflowSystem SYSTEM_NAME: "name", SYSTEM_PATTERN: "orchestra", REPOSITORY_PATH: "/path"  # Orchestrated system
+/NewOrchestratedSystem SYSTEM_NAME: "name", SYSTEM_PATTERN: "orchestra", REPOSITORY_PATH: "/path"  # Orchestrated system
 ```
 
 See [HOW-TO.md](HOW-TO.md) for all commands.
@@ -44,14 +44,14 @@ See [HOW-TO.md](HOW-TO.md) for all commands.
 ## Architecture
 
 See [dev/AGENTS.md](dev/AGENTS.md) for:
-- Asset inventory (6 skills, 7 agents, 14 instructions, 9 prompts + 4 dev, 4 templates)
+- Asset inventory (6 skills, 6 agents, 14 instructions, 9 prompts + 2 dev, 4 templates)
 - Enterprise standards system (`.github/standards/`)
 - Handoff workflows
 - Bootstrap automation workflow
 
 ## Developer Tools
 
-Maintenance commands (OptimizeAndFormat, HarmonizeAndValidate, QuickChange, AgentResume) live in [`dev/`](dev/README.md) to keep the VS Code slash-command palette clean. See [dev/README.md](dev/README.md) for usage.
+Maintenance commands (Maintain, QuickChange) live in [`dev/`](dev/README.md) to keep the VS Code slash-command palette clean. See [dev/README.md](dev/README.md) for usage.
 
 ## License
 

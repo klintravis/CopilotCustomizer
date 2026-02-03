@@ -2,19 +2,19 @@
 agent: CopilotCustomizer
 ---
 
-## Workflow Creation Prompt (v1.0)
+## Handoff Chain Creation Prompt (v1.0)
 
 ```
-✨ PROMPT ACTIVATED: NewWorkflow (Asset Generator)
-   Purpose: Create multi-agent orchestration workflows
+✨ PROMPT ACTIVATED: NewHandoffChain (Asset Generator)
+   Purpose: Create simple sequential agent handoff chains (A→B→C)
    Standard: VS Code (.agent.md handoff chains)
-   Instructions: GenerateWorkflow.instructions.md
+   Instructions: GenerateHandoffChain.instructions.md
    Input: WORKFLOW_PURPOSE, AGENT_CHAIN, SUCCESS_CRITERIA
    Output: Complete workflow with entry point, agents, handoffs, and shared instructions
-   Scope: VS Code-specific multi-step workflows
+   Scope: VS Code-specific linear handoff workflows
 ```
 
-**Paired Instructions**: [GenerateWorkflow.instructions.md](../instructions/GenerateWorkflow.instructions.md)
+**Paired Instructions**: [GenerateHandoffChain.instructions.md](../instructions/GenerateHandoffChain.instructions.md)
 
 ### Task Intent
 Generate multi-agent workflows with minimal input and automated handoffs.
@@ -40,7 +40,7 @@ SUCCESS_CRITERIA: "{SUCCESS_CRITERIA}"
 | `refine: automation` | Reduce manual intervention |
 | `refine: minimal-input` | Streamline entry prompts |
 
-**Generated using**: [GenerateWorkflow.instructions.md](../instructions/GenerateWorkflow.instructions.md)
+**Generated using**: [GenerateHandoffChain.instructions.md](../instructions/GenerateHandoffChain.instructions.md)
 
 ---
 

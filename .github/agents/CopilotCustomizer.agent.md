@@ -19,13 +19,9 @@ handoffs:
     agent: 'ChangeExecutor'
     prompt: 'Implement approved modifications with atomic operations. Apply file edits, creations, and deletions as specified in the change plan.'
     send: false
-  - label: 'Harmonize Assets'
-    agent: 'HarmonizationAgent'
-    prompt: 'Bind assets with metadata, cross-references, terminology standardization. Establish coherent ecosystem relationships across all generated assets.'
-    send: false
-  - label: 'Verify Assets'
+  - label: 'Verify & Harmonize Assets'
     agent: 'VerificationAgent'
-    prompt: 'Validate for schema compliance, cross-reference integrity, tool approvals, and handoff chain correctness. Report all findings.'
+    prompt: 'Validate for schema compliance, bind assets with metadata and cross-references, check integrity, tool approvals, and handoff chain correctness. Report all findings including harmonization summary.'
     send: false
 ---
 
@@ -67,12 +63,12 @@ Central orchestrator for the CopilotCustomizer framework. Analyzes user requests
 
 | User Intent | Primary Subagent | Chain | Workflow |
 |-------------|-----------------|-------|----------|
-| **Bootstrap a repository** | BootstrapRepo | BootstrapRepo → AssetPlanner → AssetGenerator → VerificationAgent → HarmonizationAgent → VerificationAgent | Full autonomous pipeline |
+| **Bootstrap a repository** | BootstrapRepo | BootstrapRepo → AssetPlanner → AssetGenerator → VerificationAgent | Full autonomous pipeline |
 | **Plan assets for a repo** | AssetPlanner | AssetPlanner → (user gate) → AssetGenerator | Planning with approval gate |
 | **Generate specific assets** | AssetGenerator | AssetGenerator → VerificationAgent | Direct generation + validation |
 | **Make targeted changes** | ChangeExecutor | ChangeExecutor → VerificationAgent | Atomic file operations |
-| **Harmonize existing assets** | HarmonizationAgent | HarmonizationAgent → VerificationAgent | Cross-reference binding |
-| **Validate/audit assets** | VerificationAgent | VerificationAgent (terminal) | Schema + integrity check |
+| **Harmonize existing assets** | VerificationAgent | VerificationAgent (terminal) | Cross-reference binding + validation |
+| **Validate/audit assets** | VerificationAgent | VerificationAgent (terminal) | Schema + integrity check + harmonization |
 | **Review a repository** | (self — analysis) | Analyze → recommend subagent(s) | Advisory analysis |
 | **Architecture advice** | (self — analysis) | Analyze → present recommendations | Advisory only |
 
@@ -84,8 +80,7 @@ Central orchestrator for the CopilotCustomizer framework. Analyzes user requests
 | **AssetPlanner** | `AssetPlanner.agent.md` | Asset recommendation and specification | User needs a plan before generating; part of bootstrap chain |
 | **AssetGenerator** | `AssetGenerator.agent.md` | Multi-asset creation engine | Approved specs ready for file generation |
 | **ChangeExecutor** | `ChangeExecutor.agent.md` | Precise file operations | Targeted edits, renames, or deletions needed |
-| **HarmonizationAgent** | `HarmonizationAgent.agent.md` | Cross-reference binding | Assets need metadata, terminology, and link consistency |
-| **VerificationAgent** | `VerificationAgent.agent.md` | Schema validation and integrity | Post-generation or post-harmonization quality check |
+| **VerificationAgent** | `VerificationAgent.agent.md` | Schema validation, harmonization, and integrity | Post-generation quality check + cross-reference binding |
 
 ### Workflow Orchestration
 
@@ -172,7 +167,7 @@ Between each phase transition, verify:
 **Processing Metadata**:
 - **Standards Version**: VS Code Copilot v2025.11 (Agent Files v1.108, MCP v1.102+)
 - **Role**: Central orchestrator — routes all workflows through specialized subagents
-- **Handoffs**: 6 subagents registered (BootstrapRepo, AssetPlanner, AssetGenerator, ChangeExecutor, HarmonizationAgent, VerificationAgent)
+- **Handoffs**: 5 subagents registered (BootstrapRepo, AssetPlanner, AssetGenerator, ChangeExecutor, VerificationAgent)
 - **Tools**: Analysis and routing only — no implementation tools (`edit`, `editFiles`, `createFile`, `runInTerminal`)
 
 *Generated and optimized following VS Code GitHub Copilot official documentation standards*

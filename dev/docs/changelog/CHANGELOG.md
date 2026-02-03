@@ -1,54 +1,63 @@
 # Changelog
 
-All notable changes to the CopilotCustomizer framework.
+All notable changes to this project will be documented in this file.
 
-## [v1.1] - 2026-01-31
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-### Enterprise Coding Standards
-- Added `.github/standards/` system for defining organizational coding conventions
-- Standards influence generated assets naturally (never copied verbatim)
-- YAML frontmatter schema with `scope` (always/tech-match) and `priority` (high/medium/low)
-- 43 standards files across 8 categories: languages (9), frameworks (8), testing (5), databases (4), architecture (5), security (4), practices (5), devops (3)
-- New `ResolveStandards.instructions.md` for pipeline integration
+## [1.2.0] - 2026-02-02
 
-### Multi-Agent Orchestration
-- New `multi-agent-orchestration` skill for conductor/subagent patterns
-- `/NewWorkflowSystem` slash command for generating orchestrated systems
-- Orchestra (3-5 agents), Atlas (5-10 agents), and Custom patterns
-- TDD lifecycle enforcement, quality gates, plan file architecture
-- New `OrchestrationPlan.template.md` for plan tracking
+### Changed
+- **Renamed workflow prompts for clarity**:
+  - `NewWorkflow.prompt.md` → `NewHandoffChain.prompt.md` (simple sequential A→B→C workflows)
+  - `NewWorkflowSystem.prompt.md` → `NewOrchestratedSystem.prompt.md` (conductor + subagent systems)
+  - `GenerateWorkflow.instructions.md` → `GenerateHandoffChain.instructions.md`
+- **Consolidated HarmonizationAgent into VerificationAgent**:
+  - VerificationAgent now handles both validation AND harmonization
+  - Added `edit` tool to VerificationAgent
+  - Updated workflow to include harmonization phase
+  - Agent count reduced from 7 to 6
+- **Merged dev maintenance prompts into unified Maintain prompt**:
+  - `OptimizeAndFormat.prompt.md` + `HarmonizeAndValidate.prompt.md` → `Maintain.prompt.md`
+  - Configurable modes: optimize, harmonize, validate, all
+  - Dev prompt count reduced from 4 to 2
 
-### Activation Logging
-- All skills, agents, and prompts now display activation notifications
-- Standardized logging format across all asset types
+### Removed
+- `HarmonizationAgent.agent.md` (functionality absorbed into VerificationAgent)
+- `OptimizeAndFormat.prompt.md` (replaced by Maintain with mode: optimize)
+- `HarmonizeAndValidate.prompt.md` (replaced by Maintain with mode: harmonize/validate)
+- `AgentResume.prompt.md` (deprecated)
 
-### Maintenance Simplification
-- Consolidated overlapping prompts into `OptimizeAndFormat` and `HarmonizeAndValidate`
-- Removed 4 legacy agents (converted to cross-platform skills)
-- Removed 8 legacy prompts and 3 legacy instructions (consolidated)
-- Kept `QuickChange` for quick edits
+### Added
+- `dev/prompts/Maintain.prompt.md` - Unified maintenance workflow
+- `dev/docs/workflows/Maintain.md` - Documentation for Maintain workflow
+- `dev/docs/workflows/QuickChange.md` - Documentation for QuickChange workflow
 
-## [v1.0.1] - 2025-11-15
+### Updated
+- All documentation updated to reflect new names and consolidated structure
+- Bootstrap workflow chain simplified: AssetGenerator → VerificationAgent (includes harmonization)
+- README agent count: 7 → 6 agents
+- README dev prompt count: 4 → 2 prompts
 
-### VS Code 1.106 Compatibility
-- Updated to VS Code 1.106 agent metadata (target, name, argument-hint, mcp-servers)
-- Migrated terminology: "Chat modes" to "Custom agents"
-- Added security enhancements: post-approval, source-level trust, workspace MCP config
-- Confirmed `.agent.md` as standard format
-- No breaking changes
+## [1.1.0] - 2026-01-31
 
-## [v1.0] - 2025-11-01
+### Added
+- Enterprise coding standards system (`.github/standards/`)
+- Multi-agent orchestration skill
+- Orchestrated system generation (`NewWorkflowSystem`)
 
-### Initial Release
-- 7 agents, 14 instructions, 13 prompts, 6 skills, 4 templates
-- Agent-first architecture with `.agent.md` format
-- Multi-workspace toolbox pattern
-- BootstrapRepo autonomous workflow
-- Skills-first cross-platform strategy (agentskills.io)
-- Complete documentation suite
+### Changed
+- Skills-first generation approach
+- Enhanced BootstrapRepo with orchestration assessment
 
----
+## [1.0.0] - 2026-01-15
 
-**Framework**: CopilotCustomizer
-**Compliance**: VS Code GitHub Copilot Customization v1.108+
-**Last Updated**: 2026-01-31
+### Added
+- Initial release of CopilotCustomizer framework
+- 6 cross-platform skills
+- 7 workflow agents (including HarmonizationAgent)
+- 14 instruction files
+- 9 user prompts + 4 dev prompts
+- 4 templates
+- Multi-workspace pattern support
+- Bootstrap automation workflow

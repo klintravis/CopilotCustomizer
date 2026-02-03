@@ -22,7 +22,7 @@
 ### Handoff Workflows
 ```
 
-**Available**: `CopilotCustomizer.agent.md`, `ChangeExecutor.agent.md`, `VerificationAgent.agent.md`, `AssetGenerator.agent.md`, `AssetPlanner.agent.md`, `BootstrapRepo.agent.md`, `HarmonizationAgent.agent.md`
+**Available**: `CopilotCustomizer.agent.md`, `ChangeExecutor.agent.md`, `VerificationAgent.agent.md`, `AssetGenerator.agent.md`, `AssetPlanner.agent.md`, `BootstrapRepo.agent.md`
 
 ## Skills (`.github/skills/*/SKILL.md`)
 **Location**: `.github/skills/` | **Purpose**: portable patterns you can reference from prompts/agents across tools (VS Code, CLI, other agents)
@@ -45,7 +45,7 @@
 ### Standards
 ```
 
-**Available**: OptimizeAndFormat, GenerateAgentsFile, GenerateCopilotAgent, GenerateInstructions, GeneratePrompt, GenerateSkill, GenerateWorkflow, GenerateOrchestratedSystem, HarmonizeAssets, RepoReview, ResolveStandards, CopilotFramework, CopilotAudit, CopilotSecurity
+**Available**: OptimizeAndFormat, GenerateAgentsFile, GenerateCopilotAgent, GenerateInstructions, GeneratePrompt, GenerateSkill, GenerateHandoffChain, GenerateOrchestratedSystem, HarmonizeAssets, RepoReview, ResolveStandards, CopilotFramework, CopilotAudit, CopilotSecurity
 
 ## Prompts (`*.prompt.md`)
 **Location**: `.github/prompts/` | **YAML**: `agent` or `mode` (optional)
@@ -58,8 +58,8 @@
 ### Validation Rules
 ```
 
-**Available (user — `.github/prompts/`)**: BootstrapRepo, NewAgentsFile, NewCopilotAgent, NewInstructions, NewPrompt, NewSkill, NewWorkflow, NewWorkflowSystem, RepoReview
-**Available (dev — `dev/prompts/`)**: AgentResume, HarmonizeAndValidate, OptimizeAndFormat, QuickChange
+**Available (user — `.github/prompts/`)**: BootstrapRepo, NewAgentsFile, NewCopilotAgent, NewInstructions, NewPrompt, NewSkill, NewHandoffChain, NewOrchestratedSystem, RepoReview
+**Available (dev — `dev/prompts/`)**: Maintain, QuickChange
 ```
 
 ### Structure Template
@@ -97,13 +97,11 @@
 | `NewInstructions.prompt.md` | Generate instruction files | CopilotCustomizer |
 | `NewPrompt.prompt.md` | Generate prompt files | CopilotCustomizer |
 | `NewSkill.prompt.md` | Generate cross-platform skills | CopilotCustomizer |
-| `NewWorkflow.prompt.md` | Generate multi-agent workflows | CopilotCustomizer |
-| `NewWorkflowSystem.prompt.md` | Generate orchestrated multi-agent systems | CopilotCustomizer |
+| `NewHandoffChain.prompt.md` | Generate multi-agent handoff chains | CopilotCustomizer |
+| `NewOrchestratedSystem.prompt.md` | Generate orchestrated multi-agent systems | CopilotCustomizer |
 | `RepoReview.prompt.md` | Repository analysis execution | CopilotCustomizer |
 | **Dev prompts** (`dev/prompts/`) | | |
-| `AgentResume.prompt.md` | Universal agent workflow helper | None (universal) |
-| `HarmonizeAndValidate.prompt.md` | Harmonize and validate 2-3 assets | CopilotCustomizer |
-| `OptimizeAndFormat.prompt.md` | Optimize + format + validate assets | CopilotCustomizer |
+| `Maintain.prompt.md` | Unified maintenance (optimize, harmonize, validate) | CopilotCustomizer |
 | `QuickChange.prompt.md` | Fast minimal-diff change workflow | CopilotCustomizer |
 
 ---
@@ -193,10 +191,10 @@ Custom Agent ←→ Agent Files (Contextual binding)
 | `GenerateCopilotAgent.instructions.md` | `NewCopilotAgent.prompt.md` | CopilotCustomizer | VS Code .agent.md creation |
 | `GenerateInstructions.instructions.md` | `NewInstructions.prompt.md` | CopilotCustomizer | Instruction file creation |
 | `GeneratePrompt.instructions.md` | `NewPrompt.prompt.md` | CopilotCustomizer | Prompt file creation |
-| `GenerateWorkflow.instructions.md` | `NewWorkflow.prompt.md` | CopilotCustomizer | Multi-agent workflow creation |
-| `GenerateOrchestratedSystem.instructions.md` | `NewWorkflowSystem.prompt.md` | CopilotCustomizer | Orchestrated system generation |
-| `HarmonizeAssets.instructions.md` | `HarmonizeAndValidate.prompt.md` | CopilotCustomizer | Harmonization + validation |
-| `OptimizeAndFormat.instructions.md` | `OptimizeAndFormat.prompt.md` | CopilotCustomizer | Optimization + formatting |
+| `GenerateHandoffChain.instructions.md` | `NewHandoffChain.prompt.md` | CopilotCustomizer | Multi-agent handoff chain creation |
+| `GenerateOrchestratedSystem.instructions.md` | `NewOrchestratedSystem.prompt.md` | CopilotCustomizer | Orchestrated system generation |
+| `HarmonizeAssets.instructions.md` | `Maintain.prompt.md` | CopilotCustomizer | Harmonization + validation (via Maintain) |
+| `OptimizeAndFormat.instructions.md` | `Maintain.prompt.md` | CopilotCustomizer | Optimization + formatting (via Maintain) |
 | `RepoReview.instructions.md` | `RepoReview.prompt.md` | CopilotCustomizer | Repository analysis |
 
 ---
