@@ -317,15 +317,16 @@ mode: ask                       # ask/agent/generate
 
 ### Pattern Selection Matrix
 
-| Criteria | Standalone | Handoff Chain | Orchestra | Atlas |
-|----------|-----------|---------------|-----------|-------|
-| Files affected | <10 | <20 | <50 | 50+ |
-| TDD enforcement | Manual | Per-agent | Per-phase | Per-phase + parallel |
-| Quality gates | None | Optional | 3+ mandatory | 3+ mandatory |
-| Parallel execution | No | No | No | Yes |
-| Plan file tracking | No | No | Yes | Yes |
-| Context conservation | N/A | Prompt transfer | Plan file | Plan file + scoped |
-| Complexity | Low | Medium | Medium-High | High |
+| Criteria | Standalone | Handoff Chain | Lightweight Conductor | Orchestra | Atlas |
+|----------|-----------|---------------|----------------------|-----------|-------|
+| Agent count | 1 | 2 | 3+ | 4-5 | 6-10 |
+| Files affected | <10 | <20 | <50 | <50 | 50+ |
+| TDD enforcement | Manual | Per-agent | Simplified | Per-phase | Per-phase + parallel |
+| Quality gates | None | Optional | 2-3 | 3+ mandatory | 3+ mandatory |
+| Parallel execution | No | No | No | No | Yes |
+| Plan file tracking | No | No | Yes (simplified) | Yes | Yes |
+| Context conservation | N/A | Prompt transfer | Plan file | Plan file | Plan file + scoped |
+| Complexity | Low | Low-Medium | Medium | Medium-High | High |
 
 ### Decision Flow
 ```
@@ -333,17 +334,21 @@ Q1: Does the task need multiple specialized roles?
   → NO: Create a standalone agent
   → YES: Go to Q2
 
-Q2: Is the workflow strictly sequential (A → B → C)?
-  → YES: Create a handoff chain (use /NewWorkflow)
-  → NO: Go to Q3
+Q2: Is the workflow strictly sequential (A → B → C) with only 2 agents?
+  → YES: Create a handoff chain
+  → NO: Go to Q2b
+
+Q2b (Bootstrap context): Are 3+ agents being generated?
+  → YES: Auto-include lightweight conductor (minimum orchestration tier)
+  → NO: Standalone agent or handoff chain
 
 Q3: Does the project need TDD enforcement, quality gates, or plan tracking?
   → YES: Go to Q4
-  → NO: Create a handoff chain
+  → NO: Lightweight conductor is sufficient
 
 Q4: Does the codebase have 50+ files or need parallel execution?
-  → YES: Create an Atlas system (use /NewWorkflowSystem with atlas pattern)
-  → NO: Create an Orchestra system (use /NewWorkflowSystem with orchestra pattern)
+  → YES: Create an Atlas system (spec inline; /NewWorkflowSystem for advanced customization only)
+  → NO: Create an Orchestra system (spec inline; /NewWorkflowSystem for advanced customization only)
 ```
 
 ### Orchestrated System Integration

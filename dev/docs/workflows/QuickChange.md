@@ -73,9 +73,10 @@ QuickChange → repository-analysis skill → implementation-planning skill → 
 3. Submit → Review plan → Type `confirm`
 
 ## References
-- Framework: `../../.github/instructions/CopilotFramework.instructions.md`
-- Audit: `../../.github/instructions/CopilotAudit.instructions.md`
-- Security: `../../.github/instructions/CopilotSecurity.instructions.md`
+- Framework: `../../../.github/instructions/CopilotFramework.instructions.md`
+- Audit: `../../../.github/instructions/CopilotAudit.instructions.md`
+- Security: `../../../.github/instructions/CopilotSecurity.instructions.md`
+- Slash command: `dev/prompts/QuickChange.prompt.md`
 
 ## Notes
 - Prefer this for changes that can be safely reviewed and merged quickly

@@ -72,7 +72,7 @@ User-defined agent composition tailored to specific project needs.
 The conductor is the central orchestration agent that manages the entire workflow lifecycle.
 
 ### Conductor Requirements
-1. **`agents: ["*"]`** — Must be able to invoke any subagent in the system
+1. **`runSubagent` tool + `handoffs` array** — Must be able to invoke any subagent in the system via `runSubagent` (built-in tool) and define all subagent transitions in the `handoffs` YAML field
 2. **State Tracking** — Maintains current phase, completed phases, and blocking issues
 3. **Quality Gates** — Enforces approval checkpoints (minimum 3 pause points)
 4. **No Direct Implementation** — Conductor never writes code or modifies files directly
@@ -84,8 +84,16 @@ The conductor is the central orchestration agent that manages the entire workflo
 ---
 description: 'Orchestrates {SystemName} workflow: coordinates subagents through phases with quality gates and TDD enforcement'
 model: Claude Sonnet 4.5 (copilot)
-tools: ['search', 'search/codebase', 'edit', 'new', 'runSubagent']
-agents: ["*"]
+tools: ['search', 'search/codebase', 'runSubagent']
+handoffs:
+  - label: '{Phase 1 action}'
+    agent: '{Subagent1Name}'
+    prompt: '{Context for subagent}'
+    send: false
+  - label: '{Phase 2 action}'
+    agent: '{Subagent2Name}'
+    prompt: '{Context for subagent}'
+    send: false
 ---
 ```
 

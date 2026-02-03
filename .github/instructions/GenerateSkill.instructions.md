@@ -1,3 +1,8 @@
+---
+applyTo: '.github/skills/**/*.md'
+description: 'Framework for creating Agent Skills (open standard at agentskills.io) that work across VS Code, GitHub Copilot CLI, Claude, Cursor, and other AI platforms'
+---
+
 # Generate Agent Skill Instructions
 
 ## Purpose

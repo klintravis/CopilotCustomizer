@@ -5,6 +5,8 @@ Generate orchestrated multi-agent systems (conductor + subagents) for target rep
 ## Overview
 Creates a complete orchestrated system tailored to the target repository's tech stack and complexity. Supports Orchestra (3-5 agents), Atlas (5-10 agents), and Custom patterns. Goes beyond simple handoff chains to provide full project lifecycle orchestration with conductor-managed phases.
 
+**Note**: Bootstrap (`/BootstrapRepo`) now auto-generates orchestration when 3+ agents are recommended. Use `/NewWorkflowSystem` for advanced customization, retrofitting orchestration onto existing agents, or upgrading from lightweight-conductor to full orchestra/atlas.
+
 **Handoff Visibility**: The generation workflow displays progress notifications at each phase, showing what's being generated and what comes next.
 
 ## Variables
@@ -82,7 +84,7 @@ CopilotCustomizer → repository-analysis skill → Architecture Design → [USE
 ## Acceptance Criteria
 - Repository analyzed and tech stack detected
 - System architecture presented and user-confirmed
-- Conductor agent generated with `agents: ["*"]`, state tracking, quality gates, 3+ pause points
+- Conductor agent generated with `runSubagent` in tools, `handoffs` array defined, state tracking, quality gates, 3+ pause points
 - All subagents generated with role descriptions, I/O contracts, model tiers, scoped tools
 - Plan file (plans/PLAN.md) created from template
 - VS Code settings updated with `chat.customAgentInSubagent.enabled: true`

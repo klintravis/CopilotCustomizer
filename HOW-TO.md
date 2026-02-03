@@ -74,19 +74,30 @@ EXPLORER
 
 ## ⚡ Slash Command Cheat Sheet
 
-Use these commands in Copilot Chat to run workflows directly:
+### User Commands
+
+These appear automatically in the VS Code slash-command palette:
 
 - `/BootstrapRepo REPOSITORY_PATH: "/abs/path/to/project"` — Generate full customization
 - `/RepoReview TARGET_PATH: "/abs/path/to/project"` — Analyze repository and assets
 - `/NewCopilotAgent AGENT_NAME: "Name", DOMAIN: "Area"` — Create a new agent
 - `/NewInstructions DOMAIN: "Area", APPLY_TO: "glob"` — Create coding rules
 - `/NewPrompt PURPOSE: "Template goal"` — Create a prompt template
-- `/OptimizeAndFormat TARGET_PATH: "/abs/path/to/project/.github"` — Optimize + format assets
 - `/NewWorkflowSystem SYSTEM_NAME: "Name", SYSTEM_PATTERN: "orchestra", REPOSITORY_PATH: "/path"` — Generate orchestrated multi-agent system
-- `/HarmonizeAndValidate ASSETS: ["...", "..."]` — Harmonize + validate links/handoffs/schema
-- `/QuickChange CHANGE_REQUEST: "..."` — Tiny edits with a single approval gate
+- `/NewSkill SKILL_NAME: "name", PURPOSE: "desc"` — Create a cross-platform skill
+- `/NewWorkflow WORKFLOW_NAME: "name"` — Create a multi-agent workflow
+- `/NewAgentsFile REPOSITORY_PATH: "/path"` — Generate workspace AGENTS.md
 
 Tip: Type `/` in Copilot Chat to see all available commands.
+
+### Developer / Maintenance Commands
+
+These live in `dev/prompts/` and are **not** auto-discovered by VS Code. They are for framework maintainers. To use them, copy into `.github/prompts/` temporarily or reference via `#file:dev/prompts/<name>` in chat. See [dev/README.md](dev/README.md) for details.
+
+- `OptimizeAndFormat` — Optimize + format + validate assets
+- `HarmonizeAndValidate` — Harmonize + validate links/handoffs/schema
+- `QuickChange` — Tiny edits with a single approval gate
+- `AgentResume` — Resume and continue work with context analysis
 
 ---
 
@@ -1400,8 +1411,8 @@ output/
 - **[QUICKSTART.md](QUICKSTART.md)** - 5-minute setup guide
 - **[EXAMPLES.md](EXAMPLES.md)** - Real-world tech stack examples
 - **[EXAMPLES.md](EXAMPLES.md)** - Real-world tech stack examples
-- **[AGENTS.md](AGENTS.md)** - Project guidance for contributing
-- **[.github/ASSETS.md](.github/ASSETS.md)** - Complete asset reference
+- **[AGENTS.md](dev/AGENTS.md)** - Architecture and asset inventory
+- **[ASSETS.md](dev/ASSETS.md)** - Complete asset reference
 
 ### Official VS Code Resources
 - [VS Code Copilot Customization](https://code.visualstudio.com/docs/copilot/customization/overview)

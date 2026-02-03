@@ -1,5 +1,5 @@
 ---
-agent: BootstrapRepo
+agent: CopilotCustomizer
 ---
 
 # BootstrapRepo Workflow (v1.0)
@@ -7,15 +7,15 @@ agent: BootstrapRepo
 ```
 ✨ PROMPT ACTIVATED: BootstrapRepo (v1.0)
    Purpose: Full repository bootstrap with assets
-   Agent: BootstrapRepo (autonomous workflow)
+   Agent: CopilotCustomizer (central orchestrator) → delegates to BootstrapRepo subagent
    Skills Engaged: repository-analysis, implementation-planning, technical-documentation
    Input Required: Single repository path
-   Workflow: Validation → Analysis → Planning (gate) → Generation → Verification → Harmonization → Documentation
+   Workflow: CopilotCustomizer routes → BootstrapRepo → Analysis → Planning (gate) → Generation → Verification → Harmonization → Documentation
    User Interactions: 2 (start + confirm plan)
    Output: Complete Copilot customization in .github/
 ```
 
-**Paired Agent**: [BootstrapRepo.agent.md](../agents/BootstrapRepo.agent.md)
+**Orchestrator**: [CopilotCustomizer.agent.md](../agents/CopilotCustomizer.agent.md) (routes to [BootstrapRepo.agent.md](../agents/BootstrapRepo.agent.md))
 
 ## Purpose
 Fully autonomous workflow for generating Copilot customization assets for a target repository in the same workspace. **Skills-first approach** - prioritizes cross-platform capabilities (Skills) alongside VS Code-specific assets. Single entry point that orchestrates complete lifecycle: analysis → planning → generation → validation → harmonization → documentation.
@@ -50,6 +50,8 @@ repository-analysis Skill (tech stack detection)
 ResolveStandards (match enterprise standards against tech stack)
   ↓
 implementation-planning Skill (recommendations + specs + standards context)
+  ↓
+Orchestration Assessment (auto: lightweight-conductor if 3+ agents, orchestra/atlas for complex repos)
   ↓ [USER GATE: "confirm"]
 AssetGenerator (create all assets - Skills PRIORITY, standards-informed)
   ↓
@@ -150,7 +152,16 @@ Prompt Files (2) - Task templates:
 ✓ GenerateEndpoint.prompt.md - Endpoint scaffolding
 ✓ DocumentAPI.prompt.md - OpenAPI generation
 
-Risk: MEDIUM | Expected duration: 3-4 minutes
+Orchestrated System (lightweight-conductor):
+✓ APIConductor.agent.md - Workflow conductor (runSubagent, no edit/terminal)
+  Subagents: APIExpert, TestOrchestrator, SecurityReviewer
+  Quality Gates: planning, code review, commit
+  Plan: plans/PLAN.md (strict TDD)
+
+VS Code Config:
+✓ .vscode/settings.json (chat.customAgentInSubagent.enabled: true)
+
+Risk: MEDIUM | Total assets: 12 (1 conductor + 3 subagents + 3 instructions + 2 prompts + 1 plan + 1 config)
 
 Reply "confirm" to generate all assets autonomously.
 ```
@@ -160,26 +171,32 @@ Reply "confirm" to generate all assets autonomously.
 confirm
 ```
 
-### Phase 4-8: Autonomous Execution (3-4m)
+### Phase 4-8: Autonomous Execution
 ```
-[AssetGenerator] Creating 11 assets...
+[AssetGenerator] Creating 12 assets...
+✓ APIConductor.agent.md (conductor, 62 lines)
 ✓ api-development/SKILL.md (65 lines + examples)
 ✓ api-testing/SKILL.md (58 lines + test templates)
 ✓ api-security/SKILL.md (62 lines + checklists)
-✓ APIExpert.agent.md (47 lines)
-✓ TestOrchestrator.agent.md (52 lines)
-✓ SecurityReviewer.agent.md (45 lines)
+✓ APIExpert.agent.md (subagent, 47 lines)
+✓ TestOrchestrator.agent.md (subagent, 52 lines)
+✓ SecurityReviewer.agent.md (subagent, 45 lines)
 ✓ APIPatterns.instructions.md (38 lines)
 ✓ TestingStandards.instructions.md (41 lines)
 ✓ SecurityPatterns.instructions.md (36 lines)
 ✓ GenerateEndpoint.prompt.md (29 lines)
 ✓ DocumentAPI.prompt.md (31 lines)
+✓ plans/PLAN.md (orchestration plan)
+✓ .vscode/settings.json (subagent config)
 
 [VerificationAgent] Validating assets...
 ✓ Schema compliance: 100%
 ✓ YAML validation: All valid
 ✓ Skills format: Valid (agentskills.io)
 ✓ Tool approvals: Verified
+✓ Orchestrated system: Conductor has runSubagent + handoffs, no edit/terminal
+✓ Subagent I/O contracts: Defined
+✓ Plan file: Valid structure
 
 [OptimizeAndFormat] Formatting + schema validation (blocking)...
 ✓ Format applied where needed
@@ -187,9 +204,9 @@ confirm
 Report: /output/format-verify-summary.md
 
 [HarmonizationAgent] Binding ecosystem...
-✓ Cross-references: 14 added
+✓ Cross-references: 18 added
 ✓ Metadata: Applied to all
-✓ Handoff chains: 2 validated
+✓ Handoff chains: 4 validated (conductor → 3 subagents)
 ✓ Terminology: Standardized
 
 [HarmonizeAndValidate] Workflow + linkage validation (CHECKS=all)...
@@ -199,6 +216,7 @@ Matrix: /output/workflow-validation-matrix.md
 [VerificationAgent] Final validation...
 ✓ All cross-references resolved
 ✓ No orphaned assets
+✓ Orchestrated system complete
 ✓ Complete ecosystem
 
 [technical-documentation skill] Creating report...
@@ -211,20 +229,26 @@ Matrix: /output/workflow-validation-matrix.md
 ```
 ## Bootstrap Complete ✓
 
-Generated Assets: 8 files
-- .github/agents/ (3 agent files)
-- .github/instructions/ (3 instruction files)  
+Generated Assets: 12 files
+- .github/agents/ (1 conductor + 3 subagent files)
+- .github/instructions/ (3 instruction files)
 - .github/prompts/ (2 prompt files)
-- AGENTS.md (quick start guide)
+- plans/PLAN.md (orchestration plan)
+- .vscode/settings.json (subagent config)
+- AGENTS.md (quick start guide with orchestrated system inventory)
 
-Documentation: /output/Bootstrap-my-api-server-2025-01-15.md
+Orchestrated System: lightweight-conductor
+- Conductor: APIConductor (runSubagent + handoffs, no edit/terminal)
+- Subagents: APIExpert, TestOrchestrator, SecurityReviewer
+- Plan File: plans/PLAN.md (strict TDD)
+- VS Code: chat.customAgentInSubagent.enabled = true
+
+Documentation: /output/Bootstrap-my-api-server.md
 
 Next Steps:
-1. Review AGENTS.md for usage guide
-2. Test agent modes in VS Code Copilot Chat
-3. Customize assets for project-specific needs
-
-Total time: 3m 47s
+1. Review AGENTS.md for orchestrated system usage guide
+2. Test conductor workflow in VS Code Copilot Chat
+3. Customize subagent I/O contracts for project-specific needs
 ```
 
 ## Validation Rules

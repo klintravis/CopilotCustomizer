@@ -79,7 +79,7 @@ INPUT: Generated assets from AssetGenerator
 | Agent → Instructions | Relative path in "Reused" section | `{InstructionName}.instructions.md` (in `.github/instructions/`) |
 | Prompt → Instructions | "Paired instructions" section | `{InstructionName}.instructions.md` (in `.github/instructions/` or generate via `/NewInstructions`) |
 | Agent → Agent (handoff) | YAML handoffs field | `agent: 'TestOrchestrator'` |
-| Conductor → Subagents | `agents: ["*"]` + role references | Conductor invokes all subagents |
+| Conductor → Subagents | `handoffs` array + `runSubagent` tool | Conductor invokes all subagents |
 | Subagent → Conductor | Output contract delivery | Subagent returns results to conductor |
 | Plan Files → Agents | Plan references agent names | `plans/PLAN.md` lists agents per phase |
 

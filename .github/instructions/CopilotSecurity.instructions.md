@@ -116,5 +116,5 @@ description: 'Security guardrails and tool management safety protocols'
 **MCP Breach**: Disconnect, assess data exposure, rebuild trust chain
 **Configuration Error**: Rollback, validate, test, redeploy
 
-*Complete security framework: [CopilotFramework.instructions.md](../instructions/CopilotFramework.instructions.md)*  
+*Complete security framework: [CopilotFramework.instructions.md](CopilotFramework.instructions.md)*
 *Audit patterns: [CopilotAudit.instructions.md](CopilotAudit.instructions.md)*

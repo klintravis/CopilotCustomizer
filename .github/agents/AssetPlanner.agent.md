@@ -80,23 +80,32 @@ Standard: agentskills.io (open standard)
 Example: api-development/, testing-workflows/, deployment-automation/
 ```
 
-**Orchestrated System Criteria**:
+**Orchestrated System Assessment** (AUTO-INCLUDE):
 ```yaml
-When to recommend an orchestrated system:
+Orchestration assessment is MANDATORY for every plan. Evaluate:
+
+Auto-include orchestration when ANY of these are true:
+  - Plan recommends 3 or more agents (lightweight conductor minimum)
   - Repository has 50+ files or multiple specialized domains
   - TDD lifecycle enforcement is required
-  - Multiple specialized roles needed (planning, implementation, review)
+  - Multiple specialized roles need coordinated execution
   - Parallel execution would improve throughput
-  - Context conservation is critical (large codebase)
 
-Pattern selection:
-  - orchestra: 3-5 agents, sequential phases, structured projects
-  - atlas: 5-10 agents, parallel execution, large/complex codebases
-  - custom: User-defined composition for unique requirements
+Tier selection:
+  lightweight-conductor: 3+ agents
+    - Conductor with runSubagent + handoffs (no implementation tools)
+    - Existing agents become subagents with I/O contracts
+    - plans/PLAN.md with simplified phase tracking
+    - .vscode/settings.json with chat.customAgentInSubagent.enabled: true
+  orchestra: 4-5 agents, sequential phases, TDD lifecycle
+    - Full conductor + dedicated subagents
+    - 3+ quality gates, TDD lifecycle, full plan file tracking
+  atlas: 6-10 agents, parallel execution, large/complex codebases
+    - Full conductor + subagents with scoped contexts
+    - Parallel groups, context conservation, disjoint write sets
 
-Location: .github/agents/ (conductor + subagents) + plans/ (plan files)
-Generation: /NewWorkflowSystem with GenerateOrchestratedSystem.instructions.md
-Reference: multi-agent-orchestration skill
+Specification: Include full orchestration spec in this plan (do NOT defer to /NewWorkflowSystem)
+Reference: multi-agent-orchestration skill, GenerateOrchestratedSystem.instructions.md
 ```
 
 **Agent File Criteria** (VS Code-specific):
@@ -183,13 +192,29 @@ Example: GenerateEndpoint.prompt.md, DocumentAPI.prompt.md
    - Variables: {required inputs}
    - Output: {expected result}
 
-#### Orchestrated System (if warranted)
-1. **{SystemName}** (`.github/agents/` + `plans/`)
-   - Pattern: {orchestra | atlas | custom}
-   - Conductor: {ConductorName} with quality gates
-   - Subagents: {list of subagent roles}
+#### Orchestrated System ({tier})
+> Auto-included when 3+ agents are recommended.
+> Tier: {lightweight-conductor | orchestra | atlas}
+
+1. **Conductor: {ConductorName}.agent.md** (`.github/agents/`)
+   - Description: Orchestrates {domain} workflow
+   - Model: Claude Sonnet 4.5 (copilot)
+   - Tools: ['search', 'search/codebase', 'runSubagent']
+   - Handoffs: [{subagent1}, {subagent2}, ...] with labels and prompts
+   - Constraints: No implementation tools (edit, new, terminal)
+   - Quality Gates: {list of pause points}
+   - State Tracking: plans/PLAN.md
+
+2. **Subagent Conversions**:
+   - {Agent1} → I/O Contract: receives {input}, produces {output}. Scope: {boundaries}.
+   - {Agent2} → I/O Contract: receives {input}, produces {output}. Scope: {boundaries}.
+
+3. **Plan File**: plans/PLAN.md (from OrchestrationPlan.template.md)
+   - Phases: {phase list matching agent sequence}
    - TDD: {strict | relaxed | none}
-   - Generation: `/NewWorkflowSystem`
+
+4. **VS Code Config**: .vscode/settings.json
+   - chat.customAgentInSubagent.enabled: true
 
 ### Implementation Specifications
 {Detailed creation parameters for each asset, including skill structure}
@@ -212,7 +237,7 @@ Example: GenerateEndpoint.prompt.md, DocumentAPI.prompt.md
 - {count} prompt files created
 - Complete cross-reference binding
 - AGENTS.md generated/updated
-- Orchestrated system recommended (if repo complexity warrants it)
+- Orchestrated system specified (conductor + subagent structure, plan files, VS Code config)
 
 ---
 **Reply "confirm" to proceed with asset generation.**
@@ -247,6 +272,24 @@ validationRequirements:
   schema: v1.106+
   crossReferences: true
   toolApprovals: verified
+orchestration:
+  tier: {lightweight-conductor | orchestra | atlas}
+  conductor:
+    name: {ConductorName}
+    description: {orchestration description}
+    tools: ['search', 'search/codebase', 'runSubagent']
+    handoffs: [{subagent list with labels and prompts}]
+    qualityGates: [{gate list}]
+  subagents:
+    - name: {name}
+      inputContract: {description}
+      outputContract: {description}
+      scopeBoundaries: {description}
+  planFile:
+    template: OrchestrationPlan.template.md
+    tddEnforcement: {strict | relaxed | none}
+  vsCodeConfig:
+    chatCustomAgentInSubagentEnabled: true
 ```
 
 ### Reused Instructions
@@ -265,23 +308,53 @@ validationRequirements:
 - **Patterns**: Repository pattern, middleware chains, OpenAPI specs
 - **Existing Assets**: None (bootstrapping)
 
+### Orchestration Assessment
+- **Agents recommended**: 3 (APIExpert, TestOrchestrator, SecurityReviewer)
+- **Tier**: lightweight-conductor (3 agents, 120+ files)
+- **Conductor**: APIConductor.agent.md
+- **TDD Enforcement**: strict
+
 ### Recommended Assets
 
-#### Agent Files (3)
+#### Orchestrated System (lightweight-conductor)
+1. **Conductor: APIConductor.agent.md** (`.github/agents/`)
+   - Description: Orchestrates API development workflow
+   - Model: Claude Sonnet 4.5 (copilot)
+   - Tools: ['search', 'search/codebase', 'runSubagent']
+   - Handoffs: [APIExpert, TestOrchestrator, SecurityReviewer] with context prompts
+   - Constraints: No implementation tools (edit, new, terminal)
+   - Quality Gates: planning approval, code review, commit approval
+   - State Tracking: plans/PLAN.md
+
+2. **Subagent Conversions**:
+   - APIExpert → I/O: receives endpoint specs, produces route/controller/middleware. Scope: src/routes/, src/controllers/.
+   - TestOrchestrator → I/O: receives implementation files, produces test suites. Scope: tests/, *.test.ts.
+   - SecurityReviewer → I/O: receives codebase scan request, produces audit report. Scope: read-only across src/.
+
+3. **Plan File**: plans/PLAN.md (from OrchestrationPlan.template.md)
+   - Phases: Planning → Implementation → Testing → Security Review → Commit
+   - TDD: strict
+
+4. **VS Code Config**: .vscode/settings.json
+   - chat.customAgentInSubagent.enabled: true
+
+#### Agent Files (3) - Subagents
 1. **APIExpert.agent.md**
-   - Purpose: Specialist in RESTful API design, endpoint generation, OpenAPI documentation
+   - Purpose: RESTful API design, endpoint generation, OpenAPI documentation
    - Tools: ['edit', 'search', 'new']
-   - Handoffs: TestOrchestrator for test generation
+   - I/O Contract: receives endpoint specs → produces route/controller/middleware
    - Reuses: APIPatterns.instructions.md
 
 2. **TestOrchestrator.agent.md**
    - Purpose: Automated test generation following Jest conventions
-   - Tools: ['edit', 'new', 'search']
+   - Tools: ['edit', 'new', 'search', 'terminal']
+   - I/O Contract: receives implementation files → produces test suites
    - Reuses: TestingStandards.instructions.md
 
 3. **SecurityReviewer.agent.md**
    - Purpose: API security audits (auth, validation, rate limiting)
    - Tools: ['search', 'search/codebase', 'problems']
+   - I/O Contract: receives scan request → produces audit report
    - Reuses: SecurityPatterns.instructions.md
 
 #### Instruction Files (3)
@@ -309,18 +382,21 @@ validationRequirements:
    - Output: OpenAPI 3.0 specification section
 
 ### Risk Assessment
-- Complexity: MEDIUM (7 files, moderate interdependencies)
-- Dependencies: APIPatterns must exist before APIExpert references it
+- Complexity: MEDIUM (12 files, conductor-managed dependencies)
+- Dependencies: Conductor → all subagents; APIPatterns before APIExpert
 - Potential Conflicts: None (new repository)
 
 ### Expected Outcomes
-- 3 agent files with defined roles and handoffs
+- 1 conductor agent with runSubagent + handoffs
+- 3 subagent files with I/O contracts
 - 3 instruction files with applyTo patterns
 - 2 prompt files with variable systems
-- AGENTS.md with quick start guide
+- 1 plan file (plans/PLAN.md)
+- 1 VS Code config (.vscode/settings.json)
+- AGENTS.md with orchestrated system inventory
 - Complete cross-reference network
 
-**Reply "confirm" to generate all 8 assets autonomously.**
+**Reply "confirm" to generate all 12 assets autonomously.**
 ```
 
 ### Refinement Commands

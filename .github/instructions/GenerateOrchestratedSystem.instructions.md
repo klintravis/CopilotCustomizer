@@ -50,8 +50,12 @@ User-defined agent composition. Minimum: 1 conductor + 2 subagents.
 ---
 description: 'Orchestrates {SystemName}: coordinates {subagent list} through phases with quality gates and TDD enforcement'
 model: Claude Sonnet 4.5 (copilot)
-tools: ['search', 'search/codebase', 'edit', 'new', 'runSubagent']
-agents: ["*"]
+tools: ['search', 'search/codebase', 'runSubagent']
+handoffs:
+  - label: '{Phase action}'
+    agent: '{SubagentName}'
+    prompt: '{Context for subagent}'
+    send: false
 ---
 ```
 
@@ -95,7 +99,7 @@ tools: ['{minimum necessary tools}']
 
 | Archetype | Required Tools | Optional Tools |
 |-----------|---------------|----------------|
-| Conductor | `search`, `search/codebase`, `runSubagent` | `edit`, `new` (plan files only) |
+| Conductor | `search`, `search/codebase`, `runSubagent` | `problems` (diagnostics) |
 | Planner | `search`, `search/codebase` | `fetch` |
 | Implementer | `edit`, `new`, `search` | `terminal`, `problems` |
 | Reviewer | `search`, `problems`, `changes` | `search/codebase` |
@@ -233,7 +237,7 @@ A complete orchestrated system generation produces:
 ## Validation
 
 Generated systems should pass the **Orchestrated System Verification Checklist** in [VerificationAgent.agent.md](../agents/VerificationAgent.agent.md):
-- Conductor has `agents: ["*"]`, state tracking, quality gates, pause points
+- Conductor has `runSubagent` in tools, `handoffs` array defined, state tracking, quality gates, pause points
 - Each subagent has role description, I/O contract, model tier, scoped tools
 - All agent references resolve to existing files
 - Plan files exist with correct structure

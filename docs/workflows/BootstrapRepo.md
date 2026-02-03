@@ -14,7 +14,7 @@ REPOSITORY_PATH: "C:\\path\\to\\repo"
 
 ## Handoff Chain
 ```
-BootstrapRepo → repository-analysis skill → AssetPlanner → [USER GATE] → AssetGenerator → VerificationAgent → HarmonizationAgent → VerificationAgent → technical-documentation skill → Complete
+BootstrapRepo → repository-analysis skill → AssetPlanner (with orchestration assessment) → [USER GATE] → AssetGenerator → VerificationAgent → HarmonizationAgent → VerificationAgent → technical-documentation skill → Complete
 ```
 
 ### Workflow Chain
@@ -63,8 +63,8 @@ BootstrapRepo → repository-analysis skill → AssetPlanner → [USER GATE] →
 
 ## Workflow Phases
 1) Analysis — validate target repo path and detect tech stack
-2) Planning — propose assets and specs; wait for user confirm
-3) Implementation — generate agents, instructions, prompts, and AGENTS.md
+2) Planning — propose assets and specs with orchestration assessment (conductor + subagents when 3+ agents); wait for user confirm
+3) Implementation — generate agents, instructions, prompts, and AGENTS.md including conductor, subagents, plan files, VS Code config
 4) Verification — schema/YAML/tool approvals and link checks; harmonize cross-references
 5) Documentation — bootstrap report, asset inventory, and quick start
 
@@ -74,6 +74,7 @@ BootstrapRepo → repository-analysis skill → AssetPlanner → [USER GATE] →
 - Recommended assets generated on confirmation
 - 100% schema compliance and cross-references resolved
 - Summary documentation created with asset inventory
+- Orchestrated system generated when 3+ agents recommended (conductor + subagents + plan file + VS Code config)
 
 ## How to Run
 1. Use the `/BootstrapRepo` slash command with inline variables

@@ -91,6 +91,15 @@ Context:
 
 **Output**: Selected strategy with justification
 
+**Orchestration Assessment**:
+When the implementation plan involves 3+ specialized agents:
+- Assess whether a conductor/subagent pattern would improve coordination
+- Lightweight conductor: 3 agents, sequential coordination, basic quality gates
+- Orchestra pattern: 4-5 agents, TDD lifecycle, full quality gate framework
+- Atlas pattern: 6-10 agents, parallel execution, context conservation
+- Include orchestration specification in the plan output (do not defer to separate workflow)
+- See `multi-agent-orchestration` skill for complete methodology
+
 ### Phase 3: Change Specification
 **Objective**: Detail every file and change required
 

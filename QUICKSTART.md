@@ -35,7 +35,7 @@ Assets created in `your-project/.github/`:
 
 - [Examples](EXAMPLES.md) - Real-world walkthroughs
 - [All Commands](HOW-TO.md) - Complete reference
-- [Architecture](AGENTS.md) - How it works
+- [Architecture](dev/AGENTS.md) - How it works
 
 **Done!** Close CopilotCustomizer folder: Right-click → `Remove Folder from Workspace`
 
@@ -91,7 +91,7 @@ This guide keeps QUICKSTART lean; the HOW-TO has comprehensive fixes and tips.
 - **[HOW-TO.md](HOW-TO.md)** - Detailed setup & reference
 - **[EXAMPLES.md](EXAMPLES.md)** - Real-world walkthroughs
 - **[README.md](README.md)** - Framework overview
-- **[.github/ASSETS.md](.github/ASSETS.md)** - Complete reference
+- **[ASSETS.md](dev/ASSETS.md)** - Complete reference
 
 ---
 

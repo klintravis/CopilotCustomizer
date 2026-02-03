@@ -88,6 +88,6 @@ Link reusable patterns: `Reference: File.instructions.md (path/to/file)`
 
 When generating workflows, align quality gates with matched enterprise standards (via [ResolveStandards.instructions.md](ResolveStandards.instructions.md)). If standards require security review, recommend a security validation step. If standards set test coverage expectations, include a testing gate that reflects those expectations.
 
-*Framework: [CopilotFramework.instructions.md](../instructions/CopilotFramework.instructions.md)*
-*Security: [CopilotSecurity.instructions.md](../instructions/CopilotSecurity.instructions.md)*
-*Agent Creation: [GenerateCopilotAgent.instructions.md](../instructions/GenerateCopilotAgent.instructions.md)*
+*Framework: [CopilotFramework.instructions.md](CopilotFramework.instructions.md)*
+*Security: [CopilotSecurity.instructions.md](CopilotSecurity.instructions.md)*
+*Agent Creation: [GenerateCopilotAgent.instructions.md](GenerateCopilotAgent.instructions.md)*

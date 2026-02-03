@@ -59,7 +59,7 @@ Quality assurance specialist who validates implemented changes against acceptanc
 When validating orchestrated multi-agent systems (conductor + subagents), apply these additional checks:
 
 **Conductor Validation**:
-- [ ] `agents: ["*"]` present in YAML frontmatter
+- [ ] `runSubagent` present in tools array and `handoffs` array defined in YAML frontmatter
 - [ ] State tracking mechanism defined (plans/PLAN.md management)
 - [ ] Quality gates defined (minimum 3 pause points)
 - [ ] Pause points documented (after planning, after implementation, after review)
@@ -116,7 +116,7 @@ OR
 ⚠️ [count] issues found: [list]
 
 Orchestrated System (if applicable):
-✅ Conductor: agents["*"], state tracking, quality gates, pause points
+✅ Conductor: runSubagent + handoffs, state tracking, quality gates, pause points
 ✅ Subagents: I/O contracts, model tiers, scoped tools
 ✅ System integrity: references valid, no circular deps, plan files exist
 ✅ VS Code config: settings.json updated

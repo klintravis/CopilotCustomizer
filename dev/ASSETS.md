@@ -58,7 +58,8 @@
 ### Validation Rules
 ```
 
-**Available**: AgentResume, BootstrapRepo, HarmonizeAndValidate, NewAgentsFile, NewCopilotAgent, NewInstructions, NewPrompt, NewSkill, NewWorkflow, NewWorkflowSystem, OptimizeAndFormat, QuickChange, RepoReview
+**Available (user — `.github/prompts/`)**: BootstrapRepo, NewAgentsFile, NewCopilotAgent, NewInstructions, NewPrompt, NewSkill, NewWorkflow, NewWorkflowSystem, RepoReview
+**Available (dev — `dev/prompts/`)**: AgentResume, HarmonizeAndValidate, OptimizeAndFormat, QuickChange
 ```
 
 ### Structure Template
@@ -90,9 +91,7 @@
 
 | File | Purpose | Bound Mode |
 |------|---------|------------|
-| `AgentResume.prompt.md` | Universal agent workflow helper | None (universal) |
 | `BootstrapRepo.prompt.md` | Complete repository setup workflow | BootstrapRepo |
-| `HarmonizeAndValidate.prompt.md` | Harmonize and validate 2-3 assets | CopilotCustomizer |
 | `NewAgentsFile.prompt.md` | Generate workspace AGENTS.md | CopilotCustomizer |
 | `NewCopilotAgent.prompt.md` | Generate VS Code .agent.md | CopilotCustomizer |
 | `NewInstructions.prompt.md` | Generate instruction files | CopilotCustomizer |
@@ -100,9 +99,12 @@
 | `NewSkill.prompt.md` | Generate cross-platform skills | CopilotCustomizer |
 | `NewWorkflow.prompt.md` | Generate multi-agent workflows | CopilotCustomizer |
 | `NewWorkflowSystem.prompt.md` | Generate orchestrated multi-agent systems | CopilotCustomizer |
+| `RepoReview.prompt.md` | Repository analysis execution | CopilotCustomizer |
+| **Dev prompts** (`dev/prompts/`) | | |
+| `AgentResume.prompt.md` | Universal agent workflow helper | None (universal) |
+| `HarmonizeAndValidate.prompt.md` | Harmonize and validate 2-3 assets | CopilotCustomizer |
 | `OptimizeAndFormat.prompt.md` | Optimize + format + validate assets | CopilotCustomizer |
 | `QuickChange.prompt.md` | Fast minimal-diff change workflow | CopilotCustomizer |
-| `RepoReview.prompt.md` | Repository analysis execution | CopilotCustomizer |
 
 ---
 
@@ -374,7 +376,7 @@ Some assets (like `AgentResume.prompt.md`) are designed for cross-repository usa
 
 ### Documentation
 - **[HOW-TO.md](../HOW-TO.md)** - Comprehensive usage guide
-- **[AGENTS.md](../AGENTS.md)** - Project development guidance
+- **[AGENTS.md](AGENTS.md)** - Architecture and asset inventory
 - **[VS Code Copilot Docs](https://code.visualstudio.com/docs/copilot/customization/overview)** - Official Microsoft documentation
 
 ### Technical Support

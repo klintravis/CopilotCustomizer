@@ -26,7 +26,7 @@
 |-------|---------|
 | **[QUICKSTART.md](QUICKSTART.md)** | 5-minute setup ← **Start here** |
 | **[EXAMPLES.md](EXAMPLES.md)** | Real-world examples |
-| **[AGENTS.md](AGENTS.md)** | Architecture + asset inventory |
+| **[AGENTS.md](dev/AGENTS.md)** | Architecture + asset inventory |
 | **[HOW-TO.md](HOW-TO.md)** | All commands + troubleshooting |
 
 ## Key Commands
@@ -43,11 +43,15 @@ See [HOW-TO.md](HOW-TO.md) for all commands.
 
 ## Architecture
 
-See [AGENTS.md](AGENTS.md) for:
+See [dev/AGENTS.md](dev/AGENTS.md) for:
 - Asset inventory (6 skills, 7 agents, 14 instructions, 13 prompts, 4 templates)
 - Enterprise standards system (`.github/standards/`)
 - Handoff workflows
 - Bootstrap automation workflow
+
+## Developer Tools
+
+Maintenance commands (OptimizeAndFormat, HarmonizeAndValidate, QuickChange, AgentResume) live in [`dev/`](dev/README.md) to keep the VS Code slash-command palette clean. See [dev/README.md](dev/README.md) for usage.
 
 ## License
 

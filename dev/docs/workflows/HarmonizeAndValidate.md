@@ -64,5 +64,6 @@ HarmonizeAndValidate → repository-analysis skill → HarmonizationAgent → Ve
 3. Submit and review results
 
 ## References
-- Framework: `../../.github/instructions/CopilotFramework.instructions.md`
-- Harmonization: `../../.github/instructions/HarmonizeAssets.instructions.md`
+- Framework: `../../../.github/instructions/CopilotFramework.instructions.md`
+- Harmonization: `../../../.github/instructions/HarmonizeAssets.instructions.md`
+- Slash command: `dev/prompts/HarmonizeAndValidate.prompt.md`

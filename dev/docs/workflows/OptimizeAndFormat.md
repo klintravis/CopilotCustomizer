@@ -36,5 +36,6 @@ OptimizeAndFormat → repository-analysis skill → ChangeExecutor → Verificat
 2. Submit; optionally set REPORT_ONLY=true for a dry run
 
 ## References
-- Framework: `../../.github/instructions/CopilotFramework.instructions.md`
-- Optimize & format: `../../.github/instructions/OptimizeAndFormat.instructions.md`
+- Framework: `../../../.github/instructions/CopilotFramework.instructions.md`
+- Optimize & format: `../../../.github/instructions/OptimizeAndFormat.instructions.md`
+- Slash command: `dev/prompts/OptimizeAndFormat.prompt.md`

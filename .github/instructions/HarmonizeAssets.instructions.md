@@ -84,6 +84,6 @@ bindingVersion: 'harmony-v1.0'
 lastHarmonized: '2025-09-15'
 ```
 
-*Framework: [CopilotFramework.instructions.md](../instructions/CopilotFramework.instructions.md)*  
+*Framework: [CopilotFramework.instructions.md](CopilotFramework.instructions.md)*
 *Standards: [OptimizeAndFormat.instructions.md](OptimizeAndFormat.instructions.md)*  
 *VS Code: [Custom Instructions](https://code.visualstudio.com/docs/copilot/customization/custom-instructions)*

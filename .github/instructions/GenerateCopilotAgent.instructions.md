@@ -40,7 +40,7 @@ Standardized approach for creating VS Code Copilot `.agent.md` custom agent file
 | **Planner/Architect** | `search`, `search/codebase` | `todos`, `usages` | Understand codebase structure, track tasks |
 | **Debugger** | `search`, `problems`, `terminal` | `testFailure`, `changes` | Find errors, run debug commands |
 | **Security Reviewer** | `search`, `search/codebase`, `problems` | `changes` | Scan for vulnerabilities, review changes |
-| **Conductor/Orchestrator** | `search`, `search/codebase`, `runSubagent` | `edit`, `new` (plan files) | Coordinate subagents, manage phases |
+| **Conductor/Orchestrator** | `search`, `search/codebase`, `runSubagent` | `problems` (diagnostics) | Coordinate subagents, manage phases |
 
 **Available VS Code Tools**:
 - `edit` - Modify existing files
@@ -98,7 +98,7 @@ When generating agents for conductor/subagent orchestrated systems, use these ar
 
 | Archetype | YAML Key | Model Tier | Required Tools | Handoff Pattern |
 |-----------|----------|------------|----------------|-----------------|
-| **Conductor** | `agents: ["*"]` | High (Claude Sonnet 4.5) | `search`, `search/codebase`, `runSubagent` | Invokes all subagents |
+| **Conductor** | `handoffs: [...]` | High (Claude Sonnet 4.5) | `search`, `search/codebase`, `runSubagent` | Invokes all subagents via `runSubagent` + `handoffs` |
 | **Planner** | — | High (Claude Sonnet 4.5) | `search`, `search/codebase` | Conductor → Planner → Conductor |
 | **Implementer** | — | Medium (Auto) | `edit`, `new`, `search`, `terminal` | Conductor → Implementer → Conductor |
 | **Reviewer** | — | High (Claude Sonnet 4.5) | `search`, `problems`, `changes` | Conductor → Reviewer → Conductor |
@@ -106,7 +106,7 @@ When generating agents for conductor/subagent orchestrated systems, use these ar
 | **Domain Specialist** | — | Medium-High | Domain-specific | Conductor → Specialist → Conductor |
 
 **Conductor-Specific Requirements**:
-- Must include `agents: ["*"]` in YAML to invoke subagents
+- Must include `runSubagent` in tools and define `handoffs` array with all subagent transitions
 - Must track state via `plans/PLAN.md`
 - Must enforce quality gates (minimum 3 pause points)
 - Must NOT include implementation tools (`edit`, `terminal`) for code changes
@@ -119,6 +119,25 @@ When generating agents for conductor/subagent orchestrated systems, use these ar
 - Tool set should be minimal for the role
 
 **References**: [multi-agent-orchestration skill](../skills/multi-agent-orchestration/SKILL.md) | [GenerateOrchestratedSystem.instructions.md](GenerateOrchestratedSystem.instructions.md)
+
+### Orchestration by Default (Bootstrap Workflow)
+
+When generating 3 or more agents for a repository via the bootstrap workflow:
+
+1. **Always include a conductor agent** — Even for simple multi-agent setups, a lightweight conductor provides workflow coordination, quality gates, and plan tracking.
+
+2. **Convert standalone agents to subagents** — Add I/O contracts, scope boundaries, and model tier assignments. The conductor manages all transitions.
+
+3. **Conductor is the only agent with `runSubagent`** — Subagents do not invoke each other directly.
+
+4. **Minimum viable conductor** includes:
+   - Tools: `['search', 'search/codebase', 'runSubagent']`
+   - Handoffs array with all subagents
+   - State tracking via plans/PLAN.md
+   - 3 quality gates (planning, review, commit)
+   - No implementation tools (`edit`, `new`, `terminal`)
+
+5. **Exception**: Only 1-2 agents → standalone agents or handoff chain (no conductor needed).
 
 ### Handoffs Schema Requirements (MANDATORY when `handoffs` present)
 
@@ -301,15 +320,14 @@ Expert in REST API architecture specializing in OpenAPI 3.0+ specifications, end
 
 ---
 *Agent file generated following VS Code Copilot standards*
-```
 
 ### Quality Guidelines
 - Clear expertise boundaries
 - Concrete workflow steps
 - Proper framework references
 - Valid YAML and markdown
- - Approved tools only
- - Clear handoff conditions (see Handoffs Schema Requirements)
+- Approved tools only
+- Clear handoff conditions (see Handoffs Schema Requirements)
 
 ### Standards Integration
 
@@ -328,5 +346,5 @@ When generating agent files, check for matched enterprise standards (via [Resolv
 **Tool Ecosystem**: MCP servers, approval patterns
 **Handoffs**: Context preservation, validation
 
-*Complete framework: [CopilotFramework.instructions.md](../instructions/CopilotFramework.instructions.md)*
+*Complete framework: [CopilotFramework.instructions.md](CopilotFramework.instructions.md)*
 *VS Code: [Agent Files](https://code.visualstudio.com/docs/copilot/customization/custom-chat-modes)*

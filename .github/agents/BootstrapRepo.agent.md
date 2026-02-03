@@ -1,7 +1,7 @@
 ---
 description: 'Autonomous workflow for bootstrapping Copilot customization assets in a target repository within the same workspace'
 model: Auto (copilot)
-tools: ['search', 'search/codebase', 'edit', 'new']
+tools: ['search', 'search/codebase', 'runSubagent']
 handoffs:
   - label: 'Plan Assets'
     agent: 'AssetPlanner'
@@ -47,9 +47,11 @@ Phase 2: Asset Planning (Auto → Gate)
   Skills Priority: .github/skills/ generated first
   Standards context passed to AssetPlanner for informed recommendations
 
-Phase 2b: Orchestration Assessment (Conditional)
-  If repo complexity warrants orchestration (50+ files, TDD needed, multiple domains):
-  └─> Recommend Orchestra or Atlas pattern via /NewWorkflowSystem
+Phase 2b: Orchestration Assessment (Standard)
+  Automatically included in AssetPlanner specifications:
+  - 3+ agents recommended → lightweight-conductor (minimum)
+  - 50+ files, TDD needed, multiple domains → orchestra or atlas pattern
+  └─> Orchestration spec embedded in plan (not deferred to /NewWorkflowSystem)
 
 Phase 3: Asset Generation (Auto)
   └─> AssetGenerator: Create all recommended assets (Skills-first)
@@ -102,7 +104,7 @@ if (repo.name.contains("CopilotCustomizer")) {
 - [implementation-planning](../skills/implementation-planning/SKILL.md) - Asset specifications and prioritization
 - [technical-documentation](../skills/technical-documentation/SKILL.md) - Report generation
 - [copilot-asset-design](../skills/copilot-asset-design/SKILL.md) - Decision framework for asset types
-- [multi-agent-orchestration](../skills/multi-agent-orchestration/SKILL.md) - Orchestrated system patterns (Orchestra, Atlas)
+- [multi-agent-orchestration](../skills/multi-agent-orchestration/SKILL.md) - Orchestrated system patterns (auto-included when 3+ agents)
 
 **Instructions** (70%+ reuse from framework):
 - [CopilotFramework.instructions.md](../instructions/CopilotFramework.instructions.md) - Universal workflows
@@ -123,6 +125,7 @@ if (repo.name.contains("CopilotCustomizer")) {
 - [ ] Schema validation passed (100%)
 - [ ] Cross-references harmonized
 - [ ] Documentation generated
+- [ ] Orchestration spec included when 3+ agents recommended
 - [ ] <5 user interactions total (ideally 2: start + confirm plan)
 
 ### Example Interaction
@@ -137,14 +140,16 @@ Agent:
 [After analysis chain]
 
 Agent: "Ready to generate:
-- AGENTS.md with API dev workflows
-- APIExpert.agent.md for endpoint design
-- TestingStandards.instructions.md
-- Harmonized with cross-references
+- APIConductor.agent.md (conductor: runSubagent + handoffs)
+- APIExpert.agent.md (subagent: endpoint design)
+- TestOrchestrator.agent.md (subagent: Jest testing)
+- SecurityReviewer.agent.md (subagent: security audits)
+- 3 instruction files, 2 prompt files
+- plans/PLAN.md (lightweight-conductor, strict TDD)
+- .vscode/settings.json (subagent config)
+- AGENTS.md with orchestrated system inventory
 
-Note: This repo has 120+ files across frontend/backend/database.
-Consider running /NewWorkflowSystem with 'atlas' pattern for
-orchestrated multi-agent development workflows.
+Orchestration: lightweight-conductor (3 agents, 120+ files)
 
 Reply 'confirm' to proceed."
 
@@ -152,8 +157,8 @@ User: "confirm"
 
 [Fully autonomous execution]
 
-Agent: "✓ Complete: 3 assets generated, validated, harmonized.
-Documentation: /output/Bootstrap-Report-2025-11-01.md"
+Agent: "✓ Complete: 12 assets generated (1 conductor + 3 subagents + 3 instructions + 2 prompts + 1 plan + VS Code config + AGENTS.md), validated, harmonized.
+Documentation: /output/Bootstrap-Report.md"
 ```
 
 ### Handoff Chain (Skills-First)
