@@ -3,7 +3,10 @@ applyTo: '.github/prompts/RepoReview.prompt.md'
 description: 'Comprehensive framework for conducting repository analysis of Copilot customization assets, providing structured assessment, prioritization, and ready-to-run improvement prompts for agents, instructions, prompts, and workspace files'
 ---
 
-# RepoReview.instructions.md
+<!-- ════════════════════════════════════════════════════════════════════════════
+📢 INVOCATION: RepoReview Instructions (Instructions) v1.3
+   STATUS: Instructions Applied — Context loaded
+════════════════════════════════════════════════════════════════════════════ -->
 
 ## Repo Review Instructions (v1.3)
 
@@ -280,4 +283,6 @@ handoffs:
 **Cross-References**: Enhanced with bidirectional binding | **Schema**: VS Code v1.0 compliant  
 **Workflow Analysis**: Added workflow patterns, handoff opportunities, automation recommendations
 
-*Generated and formatted following VS Code GitHub Copilot official documentation standards*
+## Audit
+Last invoked: [Manual log]
+Change history: v1.0 (2026-01-14) - Added traceability

@@ -2,7 +2,10 @@
 agent: CopilotCustomizer
 ---
 
-# NewInstructions.prompt.md
+<!-- ════════════════════════════════════════════════════════════════════════════
+📢 INVOCATION: NewInstructions Prompt (Prompt) v1.0
+   STATUS: Prompt Ready — Awaiting execution
+════════════════════════════════════════════════════════════════════════════ -->
 
 ```
 ✨ PROMPT ACTIVATED: NewInstructions (Asset Generator)
@@ -76,3 +79,9 @@ Standardizes `*.instructions.md` creation with minimal inputs, smart inference, 
 **Cross-References**: Enhanced with bidirectional binding | **Schema**: VS Code v1.0 compliant  
 
 *Generated and formatted following VS Code GitHub Copilot official documentation standards*
+
+---
+
+## Audit
+Last invoked: [Manual log]
+Change history: v1.0 (2026-01-14) - Added traceability

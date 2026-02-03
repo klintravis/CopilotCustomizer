@@ -2,7 +2,10 @@
 agent: CopilotCustomizer
 ---
 
-# RepoReview.prompt.md
+<!-- ════════════════════════════════════════════════════════════════════════════
+📢 INVOCATION: RepoReview Prompt (Prompt) v1.0
+   STATUS: Prompt Ready — Awaiting execution
+════════════════════════════════════════════════════════════════════════════ -->
 
 ```
 ✨ PROMPT ACTIVATED: RepoReview (Repository Analysis)
@@ -68,3 +71,9 @@ Repository analysis and scaffolding prompt (v1.1-h1) for comprehensive Copilot c
 **Cross-References**: Enhanced with bidirectional binding | **Schema**: VS Code v1.0 compliant  
 
 *Generated and formatted following VS Code GitHub Copilot official documentation standards*
+
+---
+
+## Audit
+Last invoked: [Manual log]
+Change history: v1.0 (2026-01-14) - Added traceability

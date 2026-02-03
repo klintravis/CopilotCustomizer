@@ -1,4 +1,4 @@
-# CopilotCustomizer
+# CopilotCustomizer Architecture
 
 A VS Code GitHub Copilot customization framework for generating tech-stack-specific agents, instructions, prompts, and skills. All workflows route through the **CopilotCustomizer** central orchestrator, which delegates to specialized subagents.
 
