@@ -3,14 +3,18 @@ name: copilot-asset-design
 description: Design and validate GitHub Copilot customization assets including agents, skills, instructions, and prompts. Provides architecture patterns, quality criteria, and integration strategies. Use when creating or improving Copilot customizations.
 ---
 
-<!-- ════════════════════════════════════════════════════════════════════════════
-📢 INVOCATION: copilot-asset-design Skill (Skill) v1.0
-   STATUS: Skill Active — Methodology engaged
-════════════════════════════════════════════════════════════════════════════ -->
+# Copilot Asset Design Skill
 
-# Copilot Asset Design Skill (v1.0)
+```
+✨ SKILL ACTIVATED: copilot-asset-design
+   Purpose: Design and validate GitHub Copilot customization assets
+   Functionality: Asset architecture patterns, quality criteria, compliance validation, integration strategies
+   Output: Asset design specifications and validation checklists
+   Scope: Portable across VS Code, CLI, Claude, Cursor, and compatible agents
+```
 
 ## Purpose
+Comprehensive methodology for designing, structuring, and validating GitHub Copilot customization assets. Covers agents, skills, instructions, prompts, and their integration patterns following VS Code and agentskills.io standards.
 
 ## When to Use This Skill
 - Designing new Copilot customization assets
@@ -300,6 +304,64 @@ mode: ask                       # ask/agent/generate
 - [ ] Agent/mode specified if needed
 - [ ] Instructions referenced appropriately
 
+## Orchestration Decision Framework
+
+### When to Create Each System Type
+
+| Approach | When to Use | Agent Count | Coordination |
+|----------|-------------|-------------|-------------|
+| **Standalone Agent** | Single-purpose task, no coordination needed | 1 | None |
+| **Handoff Chain** | Linear workflow, sequential steps (plan → implement → review) | 2-4 | Sequential handoffs |
+| **Orchestra System** | Structured multi-phase projects, TDD required, quality gates needed | 3-5 | Conductor-managed |
+| **Atlas System** | Large codebases (50+ files), parallel work opportunities, context conservation critical | 5-10 | Conductor + parallel |
+
+### Pattern Selection Matrix
+
+| Criteria | Standalone | Handoff Chain | Lightweight Conductor | Orchestra | Atlas |
+|----------|-----------|---------------|----------------------|-----------|-------|
+| Agent count | 1 | 2 | 3+ | 4-5 | 6-10 |
+| Files affected | <10 | <20 | <50 | <50 | 50+ |
+| TDD enforcement | Manual | Per-agent | Simplified | Per-phase | Per-phase + parallel |
+| Quality gates | None | Optional | 2-3 | 3+ mandatory | 3+ mandatory |
+| Parallel execution | No | No | No | No | Yes |
+| Plan file tracking | No | No | Yes (simplified) | Yes | Yes |
+| Context conservation | N/A | Prompt transfer | Plan file | Plan file | Plan file + scoped |
+| Complexity | Low | Low-Medium | Medium | Medium-High | High |
+
+### Decision Flow
+```
+Q1: Does the task need multiple specialized roles?
+  → NO: Create a standalone agent
+  → YES: Go to Q2
+
+Q2: Is the workflow strictly sequential (A → B → C) with only 2 agents?
+  → YES: Create a handoff chain
+  → NO: Go to Q2b
+
+Q2b (Bootstrap context): Are 3+ agents being generated?
+  → YES: Auto-include lightweight conductor (minimum orchestration tier)
+  → NO: Standalone agent or handoff chain
+
+Q3: Does the project need TDD enforcement, quality gates, or plan tracking?
+  → YES: Go to Q4
+  → NO: Lightweight conductor is sufficient
+
+Q4: Does the codebase have 50+ files or need parallel execution?
+  → YES: Create an Atlas system (spec inline; /NewOrchestratedSystem for advanced customization only)
+  → NO: Create an Orchestra system (spec inline; /NewOrchestratedSystem for advanced customization only)
+```
+
+### Orchestrated System Integration
+```
+Orchestrated System
+├── Conductor (.agent.md) — manages phases, quality gates, plan files
+├── Subagents (.agent.md) — specialized roles (planner, implementer, reviewer)
+├── Plan Files (plans/) — PLAN.md, phase completion records
+└── VS Code Config (.vscode/settings.json) — enables subagent invocation
+```
+
+**Reference**: [multi-agent-orchestration skill](../multi-agent-orchestration/SKILL.md) for complete methodology
+
 ## Integration Patterns
 
 ### Skills + Agents
@@ -508,30 +570,3 @@ Well-designed Copilot customization provides:
 **Prerequisites**: Understanding of VS Code Copilot customization, agentskills.io standard
 
 **Cross-Platform**: Design methodology works across all platforms; validation requires VS Code for agent testing.
-
-**Log Entry Format**:
-```
-[YYYY-MM-DD HH:MM:SS UTC] - Invoked by: {user/system} | Context: {brief description}
-```
-
-**Recent Invocations**:
-_Manual logging - update this section when invoked_
-- [2026-01-14] Added traceability system
-
-### Usage Guidelines
-- This asset should be invoked when: Skill-specific workflows are needed
-- Expected outcome: Execution of copilot-asset-design Skill functionality
-- Related assets: See related skills in the same directory
-
-### Change History
-| Date | Version | Changes | Author |
-|------|---------|---------|--------|
-| 2026-01-14 | v1.0 | Added traceability system | CopilotCustomizer |
-
----
-
----
-
-## Audit
-Last invoked: [Manual log]
-Change history: v1.0 (2026-01-14) - Added traceability

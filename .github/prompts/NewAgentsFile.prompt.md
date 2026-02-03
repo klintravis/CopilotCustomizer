@@ -2,12 +2,17 @@
 agent: CopilotCustomizer
 ---
 
-<!-- ════════════════════════════════════════════════════════════════════════════
-📢 INVOCATION: NewAgentsFile Prompt (Prompt) v1.0
-   STATUS: Prompt Ready — Awaiting execution
-════════════════════════════════════════════════════════════════════════════ -->
-
 # AGENTS.md Workspace File Generator (v1.0)
+
+```
+✨ PROMPT ACTIVATED: NewAgentsFile (Asset Generator)
+   Purpose: Generate workspace-level AGENTS.md guidance files
+   Standard: VS Code/GitHub workspace documentation
+   Instructions: GenerateAgentsFile.instructions.md
+   Input: PROJECT_NAME, PRIMARY_TASKS
+   Output: Complete AGENTS.md with quick start, style guide, testing, PR guidelines
+   Scope: Workspace-wide developer guidance
+```
 
 **Paired Instructions**: [GenerateAgentsFile.instructions.md](../instructions/GenerateAgentsFile.instructions.md)
 
@@ -15,6 +20,10 @@ agent: CopilotCustomizer
 Generate concise, actionable `AGENTS.md` workspace files.
 
 ## Variable Block
+---
+**Project Name** [REQUIRED]: "{PROJECT_NAME}"
+**Primary Tasks** [REQUIRED]: "{PRIMARY_TASKS}"
+---
 
 ## Validation
 - Required: `{PROJECT_NAME}` and `{PRIMARY_TASKS}`
@@ -34,29 +43,6 @@ Generate complete `AGENTS.md` with:
 
 **Generated using**: [GenerateAgentsFile.instructions.md](../instructions/GenerateAgentsFile.instructions.md)
 
-**Log Entry Format**:
-```
-[YYYY-MM-DD HH:MM:SS UTC] - Invoked by: {user/system} | Context: {brief description}
-```
-
-**Recent Invocations**:
-_Manual logging - update this section when invoked_
-- [2026-01-14] Added traceability system
-
-### Usage Guidelines
-- This asset should be invoked when: Prompt-specific workflows are needed
-- Expected outcome: Execution of NewAgentsFile Prompt functionality
-- Related assets: See related prompts in the same directory
-
-### Change History
-| Date | Version | Changes | Author |
-|------|---------|---------|--------|
-| 2026-01-14 | v1.0 | Added traceability system | CopilotCustomizer |
-
 ---
 
----
-
-## Audit
-Last invoked: [Manual log]
-Change history: v1.0 (2026-01-14) - Added traceability
+*VS Code Copilot Customization Framework v1.0*

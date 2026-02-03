@@ -8,7 +8,7 @@ description: 'Comprehensive framework for conducting repository analysis of Copi
    STATUS: Instructions Applied — Context loaded
 ════════════════════════════════════════════════════════════════════════════ -->
 
-# RepoReview Instructions (v1.3)
+## Repo Review Instructions (v1.3)
 
 **Paired Prompt**: [RepoReview.prompt.md](../prompts/RepoReview.prompt.md)
 
@@ -220,7 +220,7 @@ handoffs:
 ```yaml
 handoffs:
   - label: 'Generate Documentation'
-    agent: 'DocumentationGenerator'
+    agent: 'DocumentationAgent'
     prompt: 'Generate comprehensive documentation including: {{filesModified}}, {{featuresAdded}}, {{testsCoverage}}. Context: {{repositoryAnalysis}}'
     send: true
 ```
@@ -238,12 +238,9 @@ handoffs:
 
 **Workflow Instructions**:
 - [GenerateWorkflow.instructions.md](GenerateWorkflow.instructions.md) - Multi-chain workflow framework
-- [WorkflowValidation.instructions.md](WorkflowValidation.instructions.md) - Workflow integrity validation patterns
 
 **Workflow Validation**:
-- [WorkflowValidator.agent.md](../agents/WorkflowValidator.agent.md) - Handoff chain testing and automation metrics
-- Validates handoff integrity, context transfer, quality gate placement
-- Provides workflow health grades and optimization recommendations
+- Use `HarmonizeAndValidate` for integrated link/handoff/schema validation.
 
 **Handoff Documentation**:
 - Agent files with `handoffs` YAML field for automatic transitions
@@ -279,28 +276,12 @@ handoffs:
 *Workflow Framework: [GenerateWorkflow.instructions.md](GenerateWorkflow.instructions.md)*  
 *VS Code: [Custom Instructions](https://code.visualstudio.com/docs/copilot/customization/custom-instructions)*
 
-**Log Entry Format**:
-```
-[YYYY-MM-DD HH:MM:SS UTC] - Invoked by: {user/system} | Context: {brief description}
-```
-
-**Recent Invocations**:
-_Manual logging - update this section when invoked_
-- [2026-01-14] Added traceability system
-
-### Usage Guidelines
-- This asset should be invoked when: Instructions-specific workflows are needed
-- Expected outcome: Execution of RepoReview Instructions functionality
-- Related assets: See related instructionss in the same directory
-
-### Change History
-| Date | Version | Changes | Author |
-|------|---------|---------|--------|
-| 2026-01-14 | v1.0 | Added traceability system | CopilotCustomizer |
-
 ---
 
----
+**Version**: v1.3 (2025-11-01)  
+**Harmonization Applied**: 2025-09-15 | **Asset Integration**: 16-file ecosystem  
+**Cross-References**: Enhanced with bidirectional binding | **Schema**: VS Code v1.0 compliant  
+**Workflow Analysis**: Added workflow patterns, handoff opportunities, automation recommendations
 
 ## Audit
 Last invoked: [Manual log]

@@ -21,6 +21,11 @@ Comprehensive technical guide for using CopilotCustomizer with the multi-workspa
 - Copilot subscription (Individual/Business/Enterprise)
 - CopilotCustomizer cloned locally
 
+**VS Code Version**:
+- Recommended: **v1.108+** (full feature support including enhanced MCP patterns)
+- Minimum: **v1.106** (agent files, handoffs)
+- Backwards compatible with v1.105 and earlier (some advanced features unavailable)
+
 **No additional dependencies required** - Framework is pure markdown
 
 ### Multi-Workspace Setup (Recommended Pattern)
@@ -43,7 +48,7 @@ EXPLORER
 └── COPILOTCUSTOMIZER     ← The toolbox (read-only)
 ```
 
-**See**: [MULTI-WORKSPACE.md](MULTI-WORKSPACE.md) for detailed setup patterns
+**See**: [Best Practices](#-best-practices) section below for cleanup and multi-project patterns
 
 ### First Steps with the Framework
 
@@ -63,24 +68,34 @@ EXPLORER
 3. **Iterate and Refine**:
    - Use `/RepoReview` to analyze what was created
    - Use individual generators (`/NewCopilotAgent`, `/NewInstructions`) to add more
-   - Use `/AssetOptimization` to improve existing assets
+   - Use `/OptimizeAndFormat` to improve and format existing assets
 
 ---
 
 ## ⚡ Slash Command Cheat Sheet
 
-Use these commands in Copilot Chat to run workflows directly:
+### User Commands
+
+These appear automatically in the VS Code slash-command palette:
 
 - `/BootstrapRepo REPOSITORY_PATH: "/abs/path/to/project"` — Generate full customization
 - `/RepoReview TARGET_PATH: "/abs/path/to/project"` — Analyze repository and assets
 - `/NewCopilotAgent AGENT_NAME: "Name", DOMAIN: "Area"` — Create a new agent
 - `/NewInstructions DOMAIN: "Area", APPLY_TO: "glob"` — Create coding rules
 - `/NewPrompt PURPOSE: "Template goal"` — Create a prompt template
-- `/AssetOptimization TARGET_PATH: "/abs/path/to/project/.github"` — Improve assets
-- `/FormatAssets TARGET_PATH: "/abs/path/to/project/.github"` — Format and verify assets
-- `/WorkflowValidator WORKFLOW: "all", STRICT: "true"` — Validate workflow integrity
+- `/NewOrchestratedSystem SYSTEM_NAME: "Name", SYSTEM_PATTERN: "orchestra", REPOSITORY_PATH: "/path"` — Generate orchestrated multi-agent system
+- `/NewSkill SKILL_NAME: "name", PURPOSE: "desc"` — Create a cross-platform skill
+- `/NewHandoffChain WORKFLOW_NAME: "name"` — Create a multi-agent workflow
+- `/NewAgentsFile REPOSITORY_PATH: "/path"` — Generate workspace AGENTS.md
 
 Tip: Type `/` in Copilot Chat to see all available commands.
+
+### Developer / Maintenance Commands
+
+These live in `dev/prompts/` and are **not** auto-discovered by VS Code. They are for framework maintainers. To use them, copy into `.github/prompts/` temporarily or reference via `#file:dev/prompts/<name>` in chat. See [dev/README.md](dev/README.md) for details.
+
+- `Maintain` — Unified maintenance (optimize, harmonize, validate with configurable modes)
+- `QuickChange` — Tiny edits with a single approval gate
 
 ---
 
@@ -122,7 +137,7 @@ Question 3: Is this reusable across many files/projects?
   → NO: Create a Prompt
 ```
 
-### The 3 Available Skills
+### The 6 Available Skills
 
 **1. repository-analysis** 🔍
 - **Purpose**: Deep repository analysis methodology
@@ -135,7 +150,20 @@ Question 3: Is this reusable across many files/projects?
   What's the tech stack, architecture pattern, and dependencies?
   ```
 
-**2. copilot-asset-design** 🎨
+**2. implementation-planning** 📋
+- **Purpose**: Strategic implementation planning methodology
+- **Teaches**: How to plan complex changes with requirements clarification, strategy design, risk mitigation, testing strategy
+- **Use When**: Planning features, refactoring, complex code changes, establishing validation approaches
+- **Platforms**: VS Code, CLI, Claude, Cursor
+- **Example**:
+  ```
+  Use implementation-planning skill to plan:
+  1. Add API authentication (JWT)
+  2. Create database migrations
+  3. Generate test suite
+  ```
+
+**3. copilot-asset-design** 🎨
 - **Purpose**: Design and validate GitHub Copilot customization assets
 - **Teaches**: Decision frameworks for Skill vs Agent vs Instructions vs Prompts, architecture patterns, quality criteria, integration strategies
 - **Use When**: Creating new customizations, validating asset structure, planning architecture for tools
@@ -146,7 +174,7 @@ Question 3: Is this reusable across many files/projects?
   Should it be a Skill, Agent, or both? Use copilot-asset-design skill.
   ```
 
-**3. technical-documentation** 📝
+**4. technical-documentation** 📝
 - **Purpose**: Structured technical documentation generation
 - **Teaches**: How to write change summaries, API documentation, architectural decisions, implementation reports, user guides with consistent format
 - **Use When**: Documenting code changes, features, API endpoints, architecture decisions, deployment procedures
@@ -157,6 +185,32 @@ Question 3: Is this reusable across many files/projects?
   - POST /users (create)
   - GET /users/:id (retrieve)
   - PUT /users/:id (update)
+  ```
+
+**5. deployment-automation** 🚀
+- **Purpose**: CI/CD pipeline design and deployment strategies
+- **Teaches**: GitHub Actions workflows, deployment strategies (blue-green, canary, rolling), environment configuration, testing, monitoring, rollback procedures
+- **Use When**: Setting up CI/CD pipelines, designing deployment strategies, planning release workflows, implementing infrastructure automation
+- **Platforms**: VS Code, CLI, Claude, Cursor
+- **Example**:
+  ```
+  Using deployment-automation skill, design a CI/CD pipeline for:
+  - Build and test on every push
+  - Deploy to staging automatically
+  - Manual approval for production
+  ```
+
+**6. multi-agent-orchestration** 🎭
+- **Purpose**: Design conductor/subagent orchestrated systems
+- **Teaches**: Orchestration patterns (Orchestra, Atlas, Custom), conductor design, subagent archetypes, TDD lifecycle enforcement, quality gates, plan file architecture, parallel execution
+- **Use When**: Project needs coordinated multi-agent workflows beyond simple handoff chains, TDD enforcement across phases, or parallel execution
+- **Platforms**: VS Code, CLI, Claude, Cursor
+- **Example**:
+  ```
+  Using multi-agent-orchestration skill, design an Orchestra system for:
+  - Feature implementation with TDD
+  - 3 quality gates (planning, review, commit)
+  - Plan file tracking in plans/PLAN.md
   ```
 
 ### How to Use Skills
@@ -172,7 +226,7 @@ Use the repository-analysis skill to analyze my project at /path/to/project
 Or ask Copilot to apply a skill:
 
 ```
-Help me design assets for this API using the copilot-asset-design skill
+Help me plan this feature using the implementation-planning skill
 ```
 
 #### In GitHub Copilot CLI
@@ -182,9 +236,9 @@ Help me design assets for this API using the copilot-asset-design skill
 copilot --skill repository-analysis \
   --input "Analyze /Users/dev/my-project for tech stack and dependencies"
 
-# Or use skill for documentation
-copilot --skill technical-documentation \
-  --input "Document the authentication module changes"
+# Or use skill for planning
+copilot --skill implementation-planning \
+  --input "Plan implementation of user authentication feature"
 ```
 
 #### In Claude Desktop
@@ -201,8 +255,8 @@ understand the codebase structure and tech stack.
 Cursor supports skills through its AI chat:
 
 ```
-@codebase Use the repository-analysis skill to analyze
-the authentication module structure.
+@codebase Use the implementation-planning skill to plan refactoring 
+of the authentication module.
 ```
 
 ### Skill Examples in Action
@@ -241,22 +295,24 @@ Claude (using skill):
 - Recommendations: Consider microservices extraction
 ```
 
-**Example 2: Technical Documentation Across Platforms**
+**Example 2: Implementation Planning for Multi-Phase Project**
 
 **In VS Code**:
 ```
-User: "Document the API changes for the user module"
-AI (using technical-documentation):
-1. Analyzes endpoint changes
-2. Creates structured API documentation
-3. Generates change summary
-4. Produces migration notes
-5. Adds code examples
+User: "Plan the implementation of payment processing (Stripe integration)"
+AI (using implementation-planning):
+1. Requirements clarification
+2. Strategy design (incremental approach recommended)
+3. Change specification (4 phases)
+4. Testing strategy (unit + integration + manual)
+5. Risk mitigation (PCI compliance, refund handling)
+6. Validation planning
+7. Team handoff (communication plan)
 
-Result: Complete API documentation with examples
+Result: Complete 6-week roadmap with milestones
 ```
 
-**Across platforms**: Get same structured documentation in VS Code, CLI, Claude, or Cursor.
+**Across platforms**: Get same structured plan in VS Code, CLI, Claude, or Cursor.
 
 **Example 3: Asset Design Decision**
 
@@ -284,9 +340,10 @@ Available in VS Code, CLI, Claude, and all platforms.
 ### Skill Examples Files
 
 Each skill includes real-world examples:
-- **repository-analysis**: [Express.js API analysis example](.github/skills/repository-analysis/examples/example-express-api.md)
-- **copilot-asset-design**: [APISpecialist design example](.github/skills/copilot-asset-design/examples/example-api-specialist-design.md)
-- **technical-documentation**: [Change summary documentation example](.github/skills/technical-documentation/examples/example-api-change-summary.md)
+- **repository-analysis**: [Express.js API analysis example](./.github/skills/repository-analysis/examples/example-express-api.md)
+- **implementation-planning**: [API customization planning example](./.github/skills/implementation-planning/examples/example-api-customization.md)
+- **copilot-asset-design**: [APISpecialist design example](./.github/skills/copilot-asset-design/examples/example-api-specialist-design.md)
+- **technical-documentation**: [Change summary documentation example](./.github/skills/technical-documentation/examples/example-api-change-summary.md)
 
 ---
 
@@ -543,11 +600,8 @@ Templates provide standardized formats for documentation and analysis.
 **Available Templates**:
 - **Analysis.template.md**: Universal analysis framework
 - **ImplementationPlan.template.md**: Project planning format
-- **ProgressLog.template.md**: Quick progress tracking
-- **TestStrategy.template.md**: Test planning and TDD workflows
-- **SecurityReview.template.md**: Security assessments
+- **OrchestrationPlan.template.md**: Orchestrated system plan tracking
 - **ChangeLog.template.md**: Release notes format
-- **AssetInventory.template.md**: Asset tracking
 
 ---
 
@@ -683,8 +737,7 @@ handoffs:
 | Agent Files | `PascalCase.agent.md` | `DatabaseExpert.agent.md` |
 | Prompts | `PascalCase.prompt.md` | `GenerateEndpoint.prompt.md` |
 | Instructions | `PascalCase.instructions.md` | `ReactPatterns.instructions.md` |
-| Prompts | `PascalCase.prompt.md` | `GenerateEndpoint.prompt.md` |
-| Templates | `PascalCase.template.md` | `SecurityReview.template.md` |
+| Templates | `PascalCase.template.md` | `ChangeLog.template.md` |
 | Workspace File | `AGENTS.md` | `AGENTS.md` |
 
 ---
@@ -714,58 +767,25 @@ handoffs:
 - After making changes (validate integrity)
 - Regular audits (maintain quality)
 
-### Asset Optimization
+### Maintain Assets
 
-**Improve Existing Assets**:
+**Unified Maintenance Workflow (Optimize + Harmonize + Validate)**:
 
-1. In Copilot Chat, specify what to optimize:
-   ```
-   Optimize these Copilot assets:
-   - your-project/.github/agents/APIExpert.agent.md
-   - your-project/.github/instructions/APIPatterns.instructions.md
-   ```
-   Or use the `/AssetOptimization` slash command:
-   ```
-   /AssetOptimization for files in your-project/.github/
-   ```
-2. Review improvements:
-   - Token efficiency gains
-   - Clarity enhancements
-   - Schema compliance fixes
-
-### Format and Verify Assets
-
-**Standardize Formatting**:
-
-1. In Copilot Chat, request formatting:
-   ```
-   Format and verify all Copilot assets in your-project/.github/ and fix any issues
-   ```
-   Or use the `/FormatAssets` slash command:
-   ```
-   /FormatAssets for TARGET_PATH: "your-project/.github/", SEVERITY: "fix"
-   ```
-2. Automatic formatting applied:
-   - YAML front matter standardization
-   - Markdown structure consistency
-   - Cross-reference validation
-
-### Harmonize Assets
-
-**Link Related Assets**:
-
-1. In Copilot Chat, specify assets to link:
-   ```
-   Harmonize these Copilot assets:
-   - TestExpert agent
-   - TestPatterns instructions  
-   - GenerateTest prompt
-   ```
-   Or use the `/HarmonizeAssets` slash command:
-   ```
-   /HarmonizeAssets for these assets in your-project/.github/
-   ```
-2. Assets linked with cross-references and metadata
+1. In Copilot Chat, specify what to maintain:
+  ```
+  Maintain these Copilot assets:
+  - your-project/.github/agents/APIExpert.agent.md
+  - your-project/.github/instructions/APIPatterns.instructions.md
+  ```
+  Or use the dev `/Maintain` prompt (copy to `.github/prompts/` or reference via `#file:dev/prompts/Maintain.prompt.md`):
+  ```
+  /Maintain TARGET_PATH: "your-project/.github/", MODE: "all"
+  ```
+2. Available modes:
+  - `optimize` — Token efficiency and clarity improvements
+  - `harmonize` — Cross-reference binding and metadata
+  - `validate` — Schema compliance and link integrity
+  - `all` — Complete maintenance (optimize → harmonize → validate)
 
 ### Workflow Integrity Checks
 
@@ -775,10 +795,10 @@ handoffs:
    ```
    Validate all workflow integrity with strict mode enabled
    ```
-   Or use the `/WorkflowValidator` slash command:
-   ```
-   /WorkflowValidator for WORKFLOW: "all", STRICT: "true"
-   ```
+  Or use the dev `/Maintain` prompt with validate mode:
+  ```
+  /Maintain TARGET_PATH: ".github", MODE: "validate"
+  ```
 2. Comprehensive validation:
    - Agent handoff chains
    - Cross-reference integrity
@@ -877,6 +897,146 @@ Review implementation for:
 - ✅ No manual mode switching or prompt crafting
 - ✅ Consistent, repeatable processes
 
+### Creating Orchestrated Multi-Agent Systems
+
+**Beyond Handoff Chains** - For complex projects that need conductor-managed phases with TDD enforcement, quality gates, and plan file tracking.
+
+**When to Use Orchestrated Systems vs Handoff Chains**:
+- **Handoff Chains** (`/NewHandoffChain`): Linear A → B → C workflows, simple coordination
+- **Orchestrated Systems** (`/NewOrchestratedSystem`): Conductor + subagents, quality gates, TDD, plan tracking
+
+**Pattern Options**:
+| Pattern | Agents | Best For |
+|---------|--------|----------|
+| **Orchestra** | 3-5 | Structured feature implementation, refactoring |
+| **Atlas** | 5-10 | Large codebases, parallel work, cross-cutting changes |
+| **Custom** | User-defined | Unique requirements, specialized domains |
+
+**Example: Generate an Orchestra System**
+```
+/NewOrchestratedSystem SYSTEM_NAME: "FeatureOrchestra",
+SYSTEM_PATTERN: "orchestra",
+REPOSITORY_PATH: "/path/to/your-project",
+DOMAIN: "Node.js REST API"
+```
+
+**Example: Generate an Atlas System with Parallel Execution**
+```
+/NewOrchestratedSystem SYSTEM_NAME: "ProjectAtlas",
+SYSTEM_PATTERN: "atlas",
+REPOSITORY_PATH: "/path/to/large-project",
+DOMAIN: "Full-stack TypeScript",
+PARALLEL_ENABLED: "true"
+```
+
+**What Gets Generated**:
+- Conductor agent (orchestrates phases, manages quality gates)
+- Subagent files (planner, implementer, reviewer, etc.)
+- Plan file template (`plans/PLAN.md`)
+- VS Code settings (`chat.customAgentInSubagent.enabled: true`)
+- Updated AGENTS.md with system inventory
+
+**Skills Reference**: The `multi-agent-orchestration` skill provides the complete methodology for orchestration patterns, conductor design, subagent archetypes, TDD lifecycle, and quality gates.
+
+---
+
+## 🏢 Enterprise Coding Standards
+
+### Overview
+
+CopilotCustomizer supports enterprise coding standards that influence generated assets. Standards are markdown files with YAML frontmatter stored in `.github/standards/`. When generating assets for a target repository, the system matches relevant standards by tech stack and weaves those principles into generated skills, agents, and instructions.
+
+### Where Standards Live
+
+```
+.github/standards/
+├── README.md                          ← Documentation and schema reference
+├── languages/                         ← Language-specific standards
+│   └── typescript-standards.md        ← Matched when TypeScript is detected
+├── frameworks/                        ← Framework-specific standards
+│   └── react-standards.md             ← Matched when React is detected
+└── practices/                         ← Universal practices
+    └── code-review-standards.md       ← Always applied to all projects
+```
+
+### Adding a New Standard
+
+1. Create a markdown file in the appropriate subfolder
+2. Add YAML frontmatter with required fields:
+
+```yaml
+---
+name: python-standards
+description: Python coding conventions and patterns
+version: "1.0"
+technologies: [python, flask, django, fastapi]
+categories: [backend, languages]
+scope: tech-match     # "always" for universal, "tech-match" for conditional
+priority: high        # high | medium | low
+---
+
+## Your Standards Content
+- Focus on principles and patterns
+- Avoid prescriptive code blocks
+- Write guidance that stays relevant as libraries evolve
+```
+
+### How Standards Flow Through the Pipeline
+
+```
+1. User adds standards to .github/standards/
+2. /BootstrapRepo (or individual generators) runs
+3. repository-analysis skill detects target repo tech stack
+4. ResolveStandards instruction matches standards by technology + scope
+5. Matched standards flow as context to AssetPlanner and AssetGenerator
+6. Generated assets naturally reflect the principles
+7. VerificationAgent confirms no verbatim copying or direct references
+```
+
+### Key Rules
+
+- Standards **influence** generated output — they are never copied verbatim
+- Generated assets never reference `.github/standards/` or mention "enterprise standards"
+- Principles appear as native, project-specific guidance in generated assets
+- If no standards match, generation proceeds normally (backward compatible)
+
+### Example: Adding Python Standards
+
+Create `.github/standards/languages/python-standards.md`:
+
+```yaml
+---
+name: python-standards
+description: Python coding conventions including type hints, error handling, and testing
+version: "1.0"
+technologies: [python, flask, django, fastapi]
+categories: [backend, languages]
+scope: tech-match
+priority: high
+---
+
+## Type Hints
+- Use type hints for all public function signatures
+- Prefer dataclasses or Pydantic for structured data
+
+## Error Handling
+- Use specific exception types
+- Define custom exception hierarchies for domain errors
+
+## Testing
+- Use pytest with fixtures
+- Behavior-driven test names: test_user_can_reset_password
+```
+
+When `/BootstrapRepo` runs on a Flask project, the generated instruction files will naturally include guidance about type hints, specific exception types, and pytest patterns — without ever mentioning the standards file.
+
+### Writing Effective Standards
+
+- **Focus on principles**: "Prefer composition over inheritance" not a 50-line code template
+- **Be durable**: Guidance should stay relevant as specific APIs change
+- **Be concise**: Standards are design constraints, not textbooks
+- **Use canonical tech identifiers**: See `.github/standards/README.md` for the full list
+
 ---
 
 ## 💡 Best Practices
@@ -895,6 +1055,29 @@ Review implementation for:
 - Modify CopilotCustomizer framework files directly
 - Commit CopilotCustomizer to your project repository
 - Use relative paths in prompts (can be ambiguous)
+
+### Cleanup (When You're Done Generating)
+
+Simply close the CopilotCustomizer folder:
+- **Remove from Workspace**: Right-click `CopilotCustomizer` in Explorer → `Remove Folder from Workspace`
+- **Or close workspace entirely**: `File` → `Close Workspace`, then reopen just your project
+
+All generated assets remain in your project's `.github/` folder — they work without CopilotCustomizer being open.
+
+### Using CopilotCustomizer Across Multiple Projects
+
+Reuse the same CopilotCustomizer clone for different projects:
+
+```
+Project 1 Workspace:        Project 2 Workspace:
+├── my-api-project/         ├── my-web-app/
+└── CopilotCustomizer/      └── CopilotCustomizer/
+```
+
+Keep it updated without affecting your projects:
+```bash
+cd /path/to/CopilotCustomizer && git pull origin main
+```
 
 ### Asset Design Principles
 
@@ -948,11 +1131,11 @@ Review implementation for:
 # Monthly: Run repository review
 # /RepoReview for TARGET_PATH: "your-project"
 
-# Quarterly: Format and verify all assets
-# /FormatAssets
+# Quarterly: Full maintenance (optimize, harmonize, validate)
+# /Maintain TARGET_PATH: ".github", MODE: "all"
 
 # After major changes: Validate workflow integrity
-# /WorkflowValidator
+# /Maintain TARGET_PATH: ".github", MODE: "validate"
 ```
 
 **Version Management**:
@@ -1026,10 +1209,10 @@ Review implementation for:
 **Symptoms**: Links between assets don't work
 
 **Solutions**:
-1. Run `/HarmonizeAssets` to fix links
+1. Run `/HarmonizeAndValidate` to fix links and validate integrity
 2. Check relative paths are correct
 3. Verify referenced files exist
-4. Use `/WorkflowValidator` to validate
+4. Use `/HarmonizeAndValidate` to validate
 5. Regenerate assets if structure changed
 
 #### Performance Issues
@@ -1038,7 +1221,7 @@ Review implementation for:
 
 **Solutions**:
 1. Use specific file references (`#file:name.ts`) instead of `@workspace`
-2. Optimize assets with `/AssetOptimization`
+2. Optimize assets with `/OptimizeAndFormat`
 3. Implement quick-advice modes for fast queries
 4. Reduce number of active instructions (use specific `applyTo` patterns)
 5. Close CopilotCustomizer workspace when not generating assets
@@ -1092,7 +1275,7 @@ If handoff buttons aren't available, use text-based confirmation:
 ```bash
 # In Copilot Chat:
 # "Check all workflow integrity in strict mode"
-# Or: "/WorkflowValidator for WORKFLOW: 'all', STRICT: 'true'"
+# Or: "/HarmonizeAndValidate for ASSETS: ['.github'], CHECKS: 'all', MODE: 'standard'"
 ```
 
 **Test Handoff Workflows** (VS Code 1.106+):
@@ -1208,9 +1391,8 @@ output/
 - **[README.md](README.md)** - Framework overview and quick start
 - **[QUICKSTART.md](QUICKSTART.md)** - 5-minute setup guide
 - **[EXAMPLES.md](EXAMPLES.md)** - Real-world tech stack examples
-- **[MULTI-WORKSPACE.md](MULTI-WORKSPACE.md)** - Detailed multi-workspace patterns
-- **[AGENTS.md](AGENTS.md)** - Project guidance for contributing
-- **[.github/ASSETS.md](.github/ASSETS.md)** - Complete asset reference
+- **[AGENTS.md](dev/AGENTS.md)** - Architecture and asset inventory
+- **[ASSETS.md](dev/ASSETS.md)** - Complete asset reference
 
 ### Official VS Code Resources
 - [VS Code Copilot Customization](https://code.visualstudio.com/docs/copilot/customization/overview)
@@ -1235,7 +1417,7 @@ output/
 2. **Generate, Don't Copy**: Use prompts to generate assets in YOUR project
 3. **Bootstrap First**: Use `BootstrapRepo.prompt.md` for complete setup
 4. **Iterate**: Use individual generators and optimizers to refine
-5. **Validate**: Regular audits with `RepoReview` and `WorkflowIntegrityCheck`
+5. **Validate**: Regular audits with `RepoReview` and `Maintain`
 6. **Share**: Commit `.github/` folder for team consistency
 
 **Next Steps**:
@@ -1243,10 +1425,10 @@ output/
 - [ ] Set up multi-workspace with your project
 - [ ] Run `BootstrapRepo` to generate initial customization
 - [ ] Test generated assets with project-specific questions
-- [ ] Refine with `AssetOptimization` and additional generators
+- [ ] Refine with `Maintain` and additional generators
 - [ ] Commit to repository and share with team
 
 ---
 
 *Enterprise-ready VS Code GitHub Copilot customization framework*
-**Version**: 2.0 | **Updated**: January 2026
+**Version**: 1.1 | **Updated**: January 2026

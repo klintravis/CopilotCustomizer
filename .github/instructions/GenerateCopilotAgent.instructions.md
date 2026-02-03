@@ -3,11 +3,6 @@ applyTo: '.github/**/*.agent.md'
 description: 'Framework for creating VS Code Copilot custom agent files with roles, tools, handoffs, and workflows'
 ---
 
-<!-- ════════════════════════════════════════════════════════════════════════════
-📢 INVOCATION: GenerateCopilotAgent Instructions (Instructions) v1.1
-   STATUS: Instructions Applied — Context loaded
-════════════════════════════════════════════════════════════════════════════ -->
-
 # VS Code Copilot Agent File Guide (v1.1 - VS Code 1.106)
 
 **Paired Prompt**: [NewCopilotAgent.prompt.md](../prompts/NewCopilotAgent.prompt.md)
@@ -45,6 +40,7 @@ Standardized approach for creating VS Code Copilot `.agent.md` custom agent file
 | **Planner/Architect** | `search`, `search/codebase` | `todos`, `usages` | Understand codebase structure, track tasks |
 | **Debugger** | `search`, `problems`, `terminal` | `testFailure`, `changes` | Find errors, run debug commands |
 | **Security Reviewer** | `search`, `search/codebase`, `problems` | `changes` | Scan for vulnerabilities, review changes |
+| **Conductor/Orchestrator** | `search`, `search/codebase`, `runSubagent` | `problems` (diagnostics) | Coordinate subagents, manage phases |
 
 **Available VS Code Tools**:
 - `edit` - Modify existing files
@@ -64,6 +60,8 @@ Standardized approach for creating VS Code Copilot `.agent.md` custom agent file
 - `vscodeAPI` - Access VS Code extension API
 - `extensions` - Manage VS Code extensions
 - `githubRepo` - Search GitHub repositories
+- `runSubagent` - Invoke another agent programmatically (requires `chat.customAgentInSubagent.enabled`)
+- `agent` - Reference other agents for orchestration
 
 **Tool Selection Principles**:
 1. **Minimal Set**: Include only tools needed for core objectives
@@ -94,6 +92,53 @@ Standardized approach for creating VS Code Copilot `.agent.md` custom agent file
 ❌ Use tools unrelated to agent's domain  
 ❌ Forget to document why specific tools are needed
 
+### Orchestrated System Agent Archetypes
+
+When generating agents for conductor/subagent orchestrated systems, use these archetypes:
+
+| Archetype | YAML Key | Model Tier | Required Tools | Handoff Pattern |
+|-----------|----------|------------|----------------|-----------------|
+| **Conductor** | `handoffs: [...]` | High (Claude Sonnet 4.5) | `search`, `search/codebase`, `runSubagent` | Invokes all subagents via `runSubagent` + `handoffs` |
+| **Planner** | — | High (Claude Sonnet 4.5) | `search`, `search/codebase` | Conductor → Planner → Conductor |
+| **Implementer** | — | Medium (Auto) | `edit`, `new`, `search`, `terminal` | Conductor → Implementer → Conductor |
+| **Reviewer** | — | High (Claude Sonnet 4.5) | `search`, `problems`, `changes` | Conductor → Reviewer → Conductor |
+| **Researcher/Scout** | — | Low-Medium (Auto) | `search`, `search/codebase` | Conductor → Scout → Conductor |
+| **Domain Specialist** | — | Medium-High | Domain-specific | Conductor → Specialist → Conductor |
+
+**Conductor-Specific Requirements**:
+- Must include `runSubagent` in tools and define `handoffs` array with all subagent transitions
+- Must track state via `plans/PLAN.md`
+- Must enforce quality gates (minimum 3 pause points)
+- Must NOT include implementation tools (`edit`, `terminal`) for code changes
+- Only writes to plan files, never to source code
+
+**Subagent-Specific Requirements**:
+- Must define input/output contract (what it receives, what it produces)
+- Must define scope boundaries (what it can and cannot modify)
+- Model tier should match role complexity
+- Tool set should be minimal for the role
+
+**References**: [multi-agent-orchestration skill](../skills/multi-agent-orchestration/SKILL.md) | [GenerateOrchestratedSystem.instructions.md](GenerateOrchestratedSystem.instructions.md)
+
+### Orchestration by Default (Bootstrap Workflow)
+
+When generating 3 or more agents for a repository via the bootstrap workflow:
+
+1. **Always include a conductor agent** — Even for simple multi-agent setups, a lightweight conductor provides workflow coordination, quality gates, and plan tracking.
+
+2. **Convert standalone agents to subagents** — Add I/O contracts, scope boundaries, and model tier assignments. The conductor manages all transitions.
+
+3. **Conductor is the only agent with `runSubagent`** — Subagents do not invoke each other directly.
+
+4. **Minimum viable conductor** includes:
+   - Tools: `['search', 'search/codebase', 'runSubagent']`
+   - Handoffs array with all subagents
+   - State tracking via plans/PLAN.md
+   - 3 quality gates (planning, review, commit)
+   - No implementation tools (`edit`, `new`, `terminal`)
+
+5. **Exception**: Only 1-2 agents → standalone agents or handoff chain (no conductor needed).
+
 ### Handoffs Schema Requirements (MANDATORY when `handoffs` present)
 
 When defining handoffs in the YAML front matter of an agent file, each handoff entry MUST include these fields:
@@ -119,21 +164,12 @@ Example (valid):
 description: "Security reviewer for API endpoints"
 tools: [search, problems]
 handoffs:
-  - label: "Escalate critical findings to ImplementationPlanner"
-    agent: "ImplementationPlanner"
+  - label: "Escalate critical findings to ChangeExecutor"
+    agent: "ChangeExecutor"
     prompt: "Implement remediations for the following validated issues with references to files and line ranges."
     send: false
 ---
 ```
-
-**REQUIRED**: After YAML front matter, include the invocation alert banner:
-```markdown
-<!-- ════════════════════════════════════════════════════════════════════════════
-📢 INVOCATION: {AgentName} Agent (Agent) v{version}
-   STATUS: Agent Active — Processing requests
-════════════════════════════════════════════════════════════════════════════ -->
-```
-
 ---
 
 ## Agent Name: Specialist Role
@@ -274,36 +310,41 @@ Expert in REST API architecture specializing in OpenAPI 3.0+ specifications, end
 - **doc-generator**: For API reference documentation creation
 ```
 
+
 ---
 
-*Related Instructions*: [FormatAssets.instructions.md](FormatAssets.instructions.md), [CopilotFramework.instructions.md](CopilotFramework.instructions.md)
+*Related Instructions*: [OptimizeAndFormat.instructions.md](OptimizeAndFormat.instructions.md), [CopilotFramework.instructions.md](CopilotFramework.instructions.md)
 
 ### Refinement Commands
 - refine: [domain] | refine: optimize | refine: validate
 
-**Log Entry Format**:
-```
-[YYYY-MM-DD HH:MM:SS UTC] - Invoked by: {user/system} | Context: {brief description}
-```
-
-**Recent Invocations**:
-_Manual logging - update this section when invoked_
-- [2026-01-14] Added traceability system
-
-### Usage Guidelines
-- This asset should be invoked when: Instructions-specific workflows are needed
-- Expected outcome: Execution of GenerateCopilotAgent Instructions functionality
-- Related assets: See related instructionss in the same directory
-
-### Change History
-| Date | Version | Changes | Author |
-|------|---------|---------|--------|
-| 2026-01-14 | v1.0 | Added traceability system | CopilotCustomizer |
-
 ---
+*Agent file generated following VS Code Copilot standards*
 
----
+### Quality Guidelines
+- Clear expertise boundaries
+- Concrete workflow steps
+- Proper framework references
+- Valid YAML and markdown
+- Approved tools only
+- Clear handoff conditions (see Handoffs Schema Requirements)
 
-## Audit
-Last invoked: [Manual log]
-Change history: v1.0 (2026-01-14) - Added traceability
+### Standards Integration
+
+When generating agent files, check for matched enterprise standards (via [ResolveStandards.instructions.md](ResolveStandards.instructions.md)):
+
+- **Role section**: Weave matched standard principles into the agent's expertise description. If TypeScript standards emphasize strict typing, the agent's role should reflect type safety as a core competency.
+- **Core Objectives**: Align objectives with matched standards. If code review standards require documentation for public APIs, include a documentation objective.
+- **Workflow sections**: Incorporate standards-derived validation steps. If standards require regression tests for bug fixes, add a testing validation step in the workflow.
+- **Never** reference `.github/standards/` in generated agent files
+- **Never** quote standards verbatim — paraphrase and adapt to the agent's domain
+
+**Example**: If TypeScript standards emphasize strict typing and discriminated unions, the generated agent's workflow should include type safety validation steps, and its role should mention type-safe patterns as a core practice.
+
+### Integration Patterns
+**Shared Instructions**: Framework, Security, Audit references
+**Tool Ecosystem**: MCP servers, approval patterns
+**Handoffs**: Context preservation, validation
+
+*Complete framework: [CopilotFramework.instructions.md](CopilotFramework.instructions.md)*
+*VS Code: [Agent Files](https://code.visualstudio.com/docs/copilot/customization/custom-chat-modes)*

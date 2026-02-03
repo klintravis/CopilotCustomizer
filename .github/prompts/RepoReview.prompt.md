@@ -7,7 +7,16 @@ agent: CopilotCustomizer
    STATUS: Prompt Ready — Awaiting execution
 ════════════════════════════════════════════════════════════════════════════ -->
 
-# RepoReview Prompt (v1.0)
+```
+✨ PROMPT ACTIVATED: RepoReview (Repository Analysis)
+   Purpose: Comprehensive repository asset analysis
+   Agent: CopilotCustomizer (interactive mode)
+   Skills Engaged: repository-analysis
+   Input Required: Target repository path
+   Functions: Asset audit, gap analysis, recommendations
+   Output Format: Analysis report with improvement suggestions
+   Refinement: Supports refine commands for focused analysis
+```
 
 **Paired Instructions**: [RepoReview.instructions.md](../instructions/RepoReview.instructions.md)
 

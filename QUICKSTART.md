@@ -1,32 +1,17 @@
-# Quick Start Guide
-
-> Get AI customization for your project in 5 minutes
-
----
+# Quick Start (5 Minutes)
 
 ## Prerequisites
 
-- VS Code with GitHub Copilot extension
-- GitHub Copilot subscription (Individual/Business/Enterprise)
+- VS Code + GitHub Copilot extension + subscription
+- Your project open in VS Code
 
----
+## Setup
 
-## Setup (3 Steps)
+### 1. Add CopilotCustomizer to Workspace
 
-### Step 1: Add CopilotCustomizer to Workspace
+`File` → `Add Folder to Workspace` → select CopilotCustomizer
 
-```
-File → Add Folder to Workspace → Select CopilotCustomizer
-```
-
-Your workspace should now show both folders:
-```
-EXPLORER
-├── YOUR-PROJECT
-└── COPILOTCUSTOMIZER
-```
-
-### Step 2: Generate Customization
+### 2. Generate Customization
 
 Open Copilot Chat (`Ctrl+Shift+I`) and run:
 
@@ -34,112 +19,90 @@ Open Copilot Chat (`Ctrl+Shift+I`) and run:
 /BootstrapRepo REPOSITORY_PATH: "/absolute/path/to/your-project"
 ```
 
-### Step 3: Confirm Generation
+Review the plan, then type: `confirm`
 
-Review the analysis and recommendations, then type:
-```
-confirm
-```
+**Wait**: 3-4 minutes
 
-**Wait ~3-4 minutes** for asset generation.
+### 3. Done!
+
+Assets created in `your-project/.github/`:
+- `skills/` - Cross-platform AI capabilities
+- `agents/` - VS Code specialists
+- `instructions/` - Coding standards
+- `prompts/` - Task templates
+
+## Next Steps
+
+- [Examples](EXAMPLES.md) - Real-world walkthroughs
+- [All Commands](HOW-TO.md) - Complete reference
+- [Architecture](dev/AGENTS.md) - How it works
+
+**Done!** Close CopilotCustomizer folder: Right-click → `Remove Folder from Workspace`
 
 ---
 
-## What Gets Created
+## 🎯 What You Just Got
 
-Assets are generated in `your-project/.github/`:
-
-```
-your-project/
-├── .github/
-│   ├── skills/          # Cross-platform AI capabilities
-│   ├── agents/          # VS Code specialists
-│   ├── instructions/    # Coding standards
-│   └── prompts/         # Task templates
-└── AGENTS.md            # Project guidance
-```
+Your project-specific customization includes:
 
 | Asset Type | Purpose | Example |
 |------------|---------|---------|
-| **Skills** | Cross-platform capabilities | `api-testing/SKILL.md` |
-| **Agents** | Tech stack experts | `APIExpert.agent.md` |
-| **Instructions** | Coding standards | `TestingPatterns.instructions.md` |
-| **Prompts** | Generation templates | `GenerateEndpoint.prompt.md` |
+| **Skills** | Cross-platform AI capabilities | `repository-analysis/SKILL.md` |
+| **Agent Files** | Domain experts for your tech stack | `APIExpert.agent.md` for FastAPI/Express/.NET |
+| **Instructions** | Coding standards and patterns | `TestingPatterns.instructions.md` |
+| **Prompts** | Structured generation templates | `GenerateEndpoint.prompt.md` |
+| **AGENTS.md** | Project development guidance | Build commands, PR checklist |
 
-**Tech stack auto-detected**: Framework identifies your languages and frameworks automatically.
-
----
-
-## Done!
-
-Close CopilotCustomizer when finished:
-```
-Right-click COPILOTCUSTOMIZER → Remove Folder from Workspace
-```
-
-Your customization stays in your project and works without CopilotCustomizer.
+**Tech Stack Detected**: Framework automatically identifies your languages/frameworks
 
 ---
 
-## Customize Further
+## 🔧 Troubleshooting
 
-### Add a New Agent
-```
-/NewCopilotAgent AGENT_NAME: "DatabaseExpert", DOMAIN: "PostgreSQL"
-```
+For common issues (prompt visibility, output location, confirmations, performance), see:
 
-### Add Coding Rules
-```
-/NewInstructions DOMAIN: "Testing", APPLY_TO: "**/*.test.ts"
-```
+- `HOW-TO.md` → Troubleshooting
+- Direct link: HOW-TO.md section “Troubleshooting”
 
-### Add a New Skill
-```
-/NewSkill SKILL_NAME: "api-testing", PURPOSE: "Jest API testing patterns"
-```
-
-### Review What Was Created
-```
-/RepoReview TARGET_PATH: "/path/to/your-project"
-```
+This guide keeps QUICKSTART lean; the HOW-TO has comprehensive fixes and tips.
 
 ---
 
-## Pro Tips
+## 📚 Next Steps
 
-- Use **absolute paths** in `REPOSITORY_PATH`
-- **Close CopilotCustomizer** when not generating assets
-- **Reuse for multiple projects** - same framework, different targets
-- **Keep it updated**: `cd CopilotCustomizer && git pull`
-- **Share with team**: Commit `.github/` folder to your repository
+### Customize Further
 
----
+**Add specific agents:**
+- Type: `/NewCopilotAgent` and specify agent details when prompted
+- Example: `/NewCopilotAgent AGENT_NAME: "DatabaseExpert", DOMAIN: "PostgreSQL"`
+- Agent will ask for any missing details
 
-## Troubleshooting
+**Add coding rules:**
+- Type: `/NewInstructions` and specify domain and rules
+- Example: `/NewInstructions DOMAIN: "Testing", APPLY_TO: "**/*.test.ts"`
+- Specify rules inline or agent will ask
 
-| Issue | Solution |
-|-------|----------|
-| Prompts not found | Verify CopilotCustomizer is in workspace, reload VS Code |
-| Assets in wrong location | Use absolute path, not relative |
-| Agent not appearing | Check `.github/agents/`, reload window |
-| Instructions not applied | Verify `applyTo` pattern matches your files |
+**Review what was created:**
+- Type: `/RepoReview TARGET_PATH: "/path/to/your-project"`
+- Get comprehensive analysis of your Copilot assets
 
-> **See [HOW-TO.md](HOW-TO.md)** for detailed troubleshooting
+### Learn More
 
----
-
-## Learn More
-
-| Guide | Description |
-|-------|-------------|
-| [EXAMPLES.md](EXAMPLES.md) | Real-world walkthroughs |
-| [SKILLS-MIGRATION.md](SKILLS-MIGRATION.md) | Cross-platform Skills guide |
-| [HOW-TO.md](HOW-TO.md) | Complete command reference |
-| [MULTI-WORKSPACE.md](MULTI-WORKSPACE.md) | Advanced setup patterns |
-| [AGENTS.md](AGENTS.md) | Architecture overview |
+- **[HOW-TO.md](HOW-TO.md)** - Detailed setup & reference
+- **[EXAMPLES.md](EXAMPLES.md)** - Real-world walkthroughs
+- **[README.md](README.md)** - Framework overview
+- **[ASSETS.md](dev/ASSETS.md)** - Complete reference
 
 ---
 
-<p align="center">
-<strong>Time to value</strong>: 5 minutes | <strong>Complexity</strong>: Beginner-friendly | <strong>Result</strong>: Production-ready AI customization
-</p>
+## 💡 Pro Tips
+
+✅ **Use absolute paths** in `REPOSITORY_PATH` variable  
+✅ **Close CopilotCustomizer** when not generating assets  
+✅ **Reuse for multiple projects** - same framework, different targets  
+✅ **Keep it updated** - `cd CopilotCustomizer && git pull`  
+✅ **Save workspace files** - Quick access to common configurations
+
+---
+
+**Time to value**: 5 minutes | **Complexity**: Beginner-friendly | **Result**: Production-ready AI customization
