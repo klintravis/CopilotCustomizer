@@ -2,8 +2,6 @@
 
 Define your organization's coding standards here. When CopilotCustomizer generates assets for target repositories, it matches relevant standards by tech stack and weaves those principles into generated skills, agents, and instructions — without copying verbatim or referencing this folder in output.
 
-> **Note**: The included TypeScript, React, and code review standards are **examples** to demonstrate the format. Replace or customize them with your own organization's standards.
-
 ## Philosophy
 
 Standards **influence** generated assets. They are not copied, quoted, or linked in output. Instead, the principles you define here are internalized during generation and reflected naturally in the guidance, workflows, and best practices that CopilotCustomizer produces.
@@ -12,14 +10,61 @@ Standards **influence** generated assets. They are not copied, quoted, or linked
 
 ```
 .github/standards/
-├── README.md                          ← You are here
-├── languages/                         ← Language-specific standards
-│   └── typescript-standards.md
-├── frameworks/                        ← Framework-specific standards
-│   └── react-standards.md
-└── practices/                         ← Universal practices (always apply)
-    └── code-review-standards.md
+├── README.md                                        ← You are here
+├── languages/                                       ← Language-specific standards (9 files)
+│   ├── typescript-standards.md
+│   ├── javascript-standards.md
+│   ├── python-standards.md
+│   ├── rust-standards.md
+│   ├── go-standards.md
+│   ├── java-standards.md
+│   ├── csharp-standards.md
+│   ├── ruby-standards.md
+│   └── php-standards.md
+├── frameworks/                                      ← Framework-specific standards (8 files)
+│   ├── react-standards.md
+│   ├── vue-standards.md
+│   ├── angular-standards.md
+│   ├── svelte-standards.md
+│   ├── nextjs-standards.md
+│   ├── express-node-standards.md
+│   ├── django-flask-standards.md
+│   └── spring-standards.md
+├── testing/                                         ← Testing standards (5 files)
+│   ├── unit-testing-standards.md
+│   ├── integration-testing-standards.md
+│   ├── e2e-testing-standards.md
+│   ├── test-framework-jest-vitest-standards.md
+│   └── python-testing-standards.md
+├── databases/                                       ← Database standards (4 files)
+│   ├── sql-database-standards.md
+│   ├── nosql-database-standards.md
+│   ├── orm-standards.md
+│   └── data-access-layer-standards.md
+├── architecture/                                    ← Architecture standards (5 files)
+│   ├── api-design-standards.md
+│   ├── clean-architecture-standards.md
+│   ├── microservices-standards.md
+│   ├── event-driven-standards.md
+│   └── monorepo-standards.md
+├── security/                                        ← Security standards (4 files)
+│   ├── application-security-standards.md
+│   ├── dependency-security-standards.md
+│   ├── api-security-standards.md
+│   └── frontend-security-standards.md
+├── practices/                                       ← Universal practices (5 files)
+│   ├── code-review-standards.md
+│   ├── documentation-standards.md
+│   ├── error-handling-standards.md
+│   ├── logging-observability-standards.md
+│   └── git-workflow-standards.md
+└── devops/                                          ← DevOps standards (3 files)
+    ├── containerization-standards.md
+    ├── ci-cd-standards.md
+    └── infrastructure-as-code-standards.md
 ```
+
+**Total: 43 standards files across 8 categories.**
 
 Organize standards into whichever subfolder makes sense. The matching algorithm scans recursively — subfolder names are for human organization only.
 
