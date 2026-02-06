@@ -64,7 +64,7 @@ Quality assurance and harmonization specialist who validates implemented changes
 ```markdown
 ---
 **Processing Metadata**:
-- **Standards Version**: VS Code Copilot v2025.11 (Agent Files v1.106)
+- **Standards Version**: VS Code Copilot v2025.11 (Agent Files v1.109)
 - **Generation**: AssetGenerator v1.0 ({date})
 - **Harmonization**: {date} | Cross-references established
 
@@ -83,6 +83,10 @@ Quality assurance and harmonization specialist who validates implemented changes
 ### Verification Checklist
 - [ ] All acceptance criteria met
 - [ ] Schema compliance validated (YAML front matter, structure)
+- [ ] V1.109 frontmatter fields validated (user-invokable, disable-model-invocation, agents)
+- [ ] Model field format valid (string or array of strings)
+- [ ] Handoff model parameters valid (if present)
+- [ ] Tool names current (`agent` not deprecated `runSubagent`)
 - [ ] Cross-references resolve correctly
 - [ ] No errors or warnings detected
 - [ ] File integrity maintained
@@ -91,17 +95,39 @@ Quality assurance and harmonization specialist who validates implemented changes
 - [ ] No references to `.github/standards/` in generated output
 - [ ] Consistent standards representation across generated assets
 
+### V1.109 Schema Validation Rules
+
+When validating agent files (*.agent.md), check:
+
+**New Frontmatter Fields** (all optional):
+- `user-invokable`: boolean only (true/false, not string)
+- `disable-model-invocation`: boolean only (true/false, not string)
+- `agents`: array of strings, each must resolve to existing `.agent.md` file
+- `model`: string OR array of strings (fallback support)
+- `handoffs[].model`: string in format `'Model Name (vendor)'` (optional per handoff)
+
+**Tool Updates**:
+- `agent` tool is current standard for orchestration
+- `runSubagent` tool is deprecated (warn if found, suggest migration to `agent`)
+
+**Orchestration Controls**:
+- If `agents` field present, must include `agent` tool in tools array
+- If `user-invokable: false`, agent won't appear in picker (orchestration-only)
+- If `disable-model-invocation: true`, agent cannot be auto-invoked by other agents
+
 ### Orchestrated System Verification Checklist
 
 When validating orchestrated multi-agent systems (conductor + subagents), apply these additional checks:
 
 **Conductor Validation**:
-- [ ] `runSubagent` present in tools array and `handoffs` array defined in YAML frontmatter
+- [ ] `agent` tool present in tools array and `handoffs` array defined in YAML frontmatter
+- [ ] Optional `agents` field lists allowed subagents (if present, validates against existing files)
 - [ ] State tracking mechanism defined (plans/PLAN.md management)
 - [ ] Quality gates defined (minimum 3 pause points)
 - [ ] Pause points documented (after planning, after implementation, after review)
 - [ ] No implementation tools used for source code changes
 - [ ] Model tier appropriate (High — Claude Sonnet 4.5 or equivalent)
+- [ ] Note: Deprecated `runSubagent` tool should be replaced with `agent`
 
 **Subagent Validation**:
 - [ ] Role description is specific and focused
@@ -109,6 +135,7 @@ When validating orchestrated multi-agent systems (conductor + subagents), apply 
 - [ ] Model tier matches role complexity
 - [ ] Tool selection is minimal and appropriate for role
 - [ ] Scope boundaries defined (what it can/cannot modify)
+- [ ] Consider `user-invokable: false` for orchestration-only agents
 
 **System Integrity**:
 - [ ] All conductor agent references resolve to existing subagent files
@@ -116,9 +143,10 @@ When validating orchestrated multi-agent systems (conductor + subagents), apply 
 - [ ] Plan files exist (`plans/PLAN.md` with correct template structure)
 - [ ] TDD lifecycle documented per enforcement level
 - [ ] Quality gate flow is sequential (no skipped gates)
-- [ ] AGENTS.md updated with orchestrated system inventory
-
-**VS Code Configuration**:
+- [ ] AGENTS.md updated with orchestrated system inventory (if using custom agents as subagents)
+- [ ] Model assignments valid per agent archetype
+- [ ] Tool approvals appropriate for each agent's role
+- [ ] V1.109 features properly configured (user-invokable, agents field, etc.)
 - [ ] `.vscode/settings.json` includes `chat.customAgentInSubagent.enabled: true`
 - [ ] Model assignments valid per agent archetype
 - [ ] Tool approvals appropriate for each agent's role
@@ -154,10 +182,11 @@ Cross-References:
 
 Problems Detected:
 ✅ No errors found
-OR
-⚠️ [count] issues found: [list]
-
-Orchestrated System (if applicable):
+ORagent tool + handoffs, agents field valid, state tracking, quality gates, pause points
+✅ Subagents: I/O contracts, model tiers, scoped tools, user-invokable settings
+✅ System integrity: references valid, no circular deps, plan files exist
+✅ VS Code config: settings.json updated
+✅ V1.109 compliance: orchestration controls validated, deprecated tools flagg
 ✅ Conductor: runSubagent + handoffs, state tracking, quality gates, pause points
 ✅ Subagents: I/O contracts, model tiers, scoped tools
 ✅ System integrity: references valid, no circular deps, plan files exist

@@ -11,7 +11,7 @@
 | Templates | `*.template.md` | Document formats | - |
 
 ## Agent Files (`*.agent.md`)
-**Location**: `.github/agents/` | **YAML**: `description` (required), `target`, `name`, `argument-hint`, `tools`, `model`, `handoffs`, `mcp-servers` (optional - VS Code 1.106+)
+**Location**: `.github/agents/` | **YAML**: `description` (required), `target`, `name`, `argument-hint`, `tools`, `model` (string or array), `handoffs`, `mcp-servers`, `user-invokable`, `disable-model-invocation`, `agents` (optional - VS Code 1.109)
 
 ```markdown
 ## [Agent Name] (v[Version])
@@ -314,13 +314,15 @@ done
 
 ### VS Code Copilot Requirements
 
-This framework complies with **VS Code Copilot Customization v1.108** standards (backwards compatible with v1.106+):
+This framework complies with **VS Code Copilot Customization v1.109** standards (backwards compatible with v1.106+):
 
-- **Custom Agents**: Required `description`, optional `target`, `name`, `argument-hint`, `tools`, `model`, `handoffs`, `mcp-servers` (VS Code 1.106+; enhanced in 1.108)
-- **Instructions**: Required `applyTo` and `description` fields
+- **Custom Agents**: Required `description`; optional `target`, `name`, `argument-hint`, `tools`, `model` (string or array for fallback), `handoffs` (with optional model parameter), `mcp-servers`, `user-invokable`, `disable-model-invocation`, `agents` (VS Code 1.109; enhanced orchestration controls)
+- **Agent Skills**: Generally available (GA) in v1.109; enabled by default with custom location support
+- **Instructions**: Required `applyTo` and `description` fields; supports organization-wide instructions
 - **Prompts**: Optional `mode` binding, structured YAML front matter
-- **File Organization**: Standard `.github/` directory structure
+- **File Organization**: Standard `.github/` directory structure with configurable locations
 - **Cross-References**: Relative path linking between assets
+- **Parallel Execution**: Subagents run in parallel automatically when independent (v1.109+)
 
 ### Framework Extensions
 
@@ -387,9 +389,9 @@ Some assets (like `AgentResume.prompt.md`) are designed for cross-repository usa
 ## 📄 License & Attribution
 
 **License**: MIT - See [LICENSE](../LICENSE) for full text  
-**Framework**: CopilotCustomizer v1.1  
-**Compliance**: VS Code GitHub Copilot Customization Standards v1.108 (v1.106+ compatible)  
-**Generated**: 2026-01-31 via Asset Reference Documentation Framework
+**Framework**: CopilotCustomizer v1.2  
+**Compliance**: VS Code GitHub Copilot Customization Standards v1.109 (v1.106+ compatible)  
+**Generated**: 2026-02-06 via Asset Reference Documentation Framework
 
 ---
 

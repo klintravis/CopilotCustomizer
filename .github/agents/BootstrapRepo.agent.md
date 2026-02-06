@@ -1,7 +1,7 @@
 ---
 description: 'Autonomous workflow for bootstrapping Copilot customization assets in a target repository within the same workspace'
 model: Auto (copilot)
-tools: ['search', 'search/codebase', 'runSubagent']
+tools: ['search', 'search/codebase', 'agent']
 handoffs:
   - label: 'Plan Assets'
     agent: 'AssetPlanner'
@@ -41,6 +41,24 @@ Phase 1: Repository Analysis (Using repository-analysis Skill)
 Phase 1b: Standards Resolution (Auto)
   Scan .github/standards/, match against detected tech stack
   Uses: ResolveStandards.instructions.md
+
+Phase 1c: Tech Stack Validation & Refinement (Auto → Gate)
+  Action: Display detected stack (languages, frameworks, testing tools, patterns)
+  Validation: Cross-check against actual usage:
+    - Check package.json/requirements.txt/.csproj for dependencies
+    - Scan imports/usings for actual library usage (e.g., Moq vs FakeItEasy)
+    - Verify testing frameworks, assertion libraries, mocking tools
+    - Confirm build tools, bundlers, linters in actual use
+  User Options:
+    1. "confirm" → Detection accurate, proceed to planning
+    2. "refine" → Enter detailed correction mode:
+       - Specify testing framework (Jest/Vitest/NUnit/xUnit/Mocha)
+       - Correct mocking library (Moq/FakeItEasy/NSubstitute/Sinon)
+       - Fix assertion library (FluentAssertions/Shouldly/Chai/none)
+       - Adjust build tools (Webpack/Vite/Rollup/MSBuild)
+       - Override detected frameworks if misidentified
+  Output: Validated tech stack context → passed to AssetPlanner
+  Note: Prevents generating assets referencing tools not in repo
 
 Phase 2: Asset Planning (Auto → Gate)
   └─> AssetPlanner: Recommend Skills, agents, instructions, prompts → USER APPROVAL
@@ -116,14 +134,16 @@ if (repo.name.contains("CopilotCustomizer")) {
 
 ### Success Criteria
 - [ ] Repository analysis complete with tech stack identified
+- [ ] Tech stack validated against actual repo usage (package files, imports)
+- [ ] User confirmed detection accuracy or provided refinements
 - [ ] Relevant enterprise standards identified and matched (if present)
-- [ ] Asset recommendations generated
-- [ ] All recommended assets created
+- [ ] Asset recommendations generated with validated tooling context
+- [ ] All recommended assets created (no references to unused tools)
 - [ ] Schema validation passed (100%)
 - [ ] Cross-references harmonized
 - [ ] Documentation generated
 - [ ] Orchestration spec included when 3+ agents recommended
-- [ ] <5 user interactions total (ideally 2: start + confirm plan)
+- [ ] <5 user interactions total (ideally 3: start + validate/refine + confirm plan)
 
 ### Example Interaction
 ```
@@ -134,7 +154,40 @@ Agent:
 2. Scans: Node.js/TypeScript API project detected
 3. Uses `repository-analysis` skill...
 
-[After analysis chain]
+[After analysis, shows validation]
+
+Agent: "📋 Tech Stack Detected:
+- Language: TypeScript 5.x
+- Framework: Express.js 4.x
+- Testing: Jest 29.x
+- Mocking: Found 'FakeItEasy' references (unusual for Node/Jest)
+- Assertions: No FluentAssertions found
+- Build: Rollup
+
+⚠️ Validation Check: 'FakeItEasy' is .NET library but detected in Node project.
+Actual usage scan: Only Jest mocks found in tests.
+
+Options:
+- Type 'confirm' if detection looks accurate
+- Type 'refine' to correct any misdetections"
+
+User: "refine"
+
+Agent: "Refinement Mode:
+1. Testing framework: Jest ✓ (correct)
+2. Mocking library: [Detected: FakeItEasy ❌] → Correction options:
+   - jest.mock (native)
+   - sinon
+   - none (native only)
+3. Assertions: [Detected: FluentAssertions ❌] → Using Jest expect (native)
+
+Please specify corrections or type 'done'."
+
+User: "Use jest.mock for mocking, jest expect for assertions"
+
+Agent: "✓ Updated: Jest native mocking + assertions
+
+[Proceeds to planning]
 
 Agent: "Ready to generate:
 - APIConductor.agent.md (conductor: runSubagent + handoffs)
@@ -163,7 +216,10 @@ Documentation: /output/Bootstrap-Report.md"
 BootstrapRepo
   ↓ [repository-analysis skill: detect tech stack]
   ↓
-AssetPlanner (recommendations ready)
+  [Phase 1c: Validate detection against actual repo usage]
+  ↓ [USER GATE: confirm detection or refine]
+  ↓
+AssetPlanner (recommendations ready with validated context)
   Skills Priority: repository-analysis, implementation-planning
   ↓ [USER GATE: confirm plan]
   ↓

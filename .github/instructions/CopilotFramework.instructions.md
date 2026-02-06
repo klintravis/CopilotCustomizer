@@ -44,10 +44,12 @@ Universal validation criteria for all Copilot customization work:
 
 ## Standards Compliance
 
-### VS Code Copilot Schema (v1.106)
-**Agent Files**: `description` (required), `target`, `name`, `argument-hint`, `tools`, `model`, `handoffs`, `mcp-servers` (optional)  
-**Instructions**: `applyTo` (required), `description` (optional)  
-**Prompts**: variable blocks, usage instructions; optional `agent`, `tools`, `model`
+### VS Code Copilot Schema (v1.109)
+**Agent Files**: `description` (required), `target`, `name`, `argument-hint`, `tools`, `model` (string or array), `handoffs` (with optional model parameter), `mcp-servers`, `user-invokable`, `disable-model-invocation`, `agents` (optional)  
+**Agent Skills**: Generally available (GA), enabled by default; custom locations via `chat.agentSkillsLocations`  
+**Instructions**: `applyTo` (required), `description` (optional); organization-wide instructions supported  
+**Prompts**: variable blocks, usage instructions; optional `agent`, `tools`, `model`  
+**Orchestration**: Parallel subagent execution, `agent` tool replaces deprecated `runSubagent`
 
 ### Documentation Sources
 - [Customization Overview](https://code.visualstudio.com/docs/copilot/customization/overview)

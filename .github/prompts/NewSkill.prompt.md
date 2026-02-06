@@ -337,7 +337,7 @@ After generation, provide:
 ## Standards Compliance
 
 **Format**: Agent Skills (agentskills.io)
-**VS Code Support**: v1.108+ (Preview)
+**VS Code Support**: v1.109+ (GA - enabled by default)
 **File Structure**: `.github/skills/[name]/SKILL.md`
 **Frontmatter**: YAML with required fields (name, description)
 

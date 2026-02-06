@@ -7,7 +7,7 @@ agent: CopilotCustomizer
 ```
 ✨ PROMPT ACTIVATED: NewCopilotAgent (Asset Generator)
    Purpose: Create VS Code-specific Copilot custom agents
-   Standard: VS Code v1.106+ (.agent.md schema)
+   Standard: VS Code v1.109 (.agent.md schema with orchestration controls)
    Instructions: GenerateCopilotAgent.instructions.md
    Input: AGENT_NAME, DOMAIN, PRIMARY_ROLE
    Output: Complete .agent.md with role, tools, handoffs, workflows

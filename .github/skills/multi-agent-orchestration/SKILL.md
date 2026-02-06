@@ -72,7 +72,8 @@ User-defined agent composition tailored to specific project needs.
 The conductor is the central orchestration agent that manages the entire workflow lifecycle.
 
 ### Conductor Requirements
-1. **`runSubagent` tool + `handoffs` array** — Must be able to invoke any subagent in the system via `runSubagent` (built-in tool) and define all subagent transitions in the `handoffs` YAML field
+1. **`agent` tool + `handoffs` array** — Must be able to invoke any subagent in the system via `agent` tool (replaces deprecated `runSubagent`) and define all subagent transitions in the `handoffs` YAML field
+2. **Optional `agents` field** — Can explicitly list allowed subagents for security and workflow control
 2. **State Tracking** — Maintains current phase, completed phases, and blocking issues
 3. **Quality Gates** — Enforces approval checkpoints (minimum 3 pause points)
 4. **No Direct Implementation** — Conductor never writes code or modifies files directly
@@ -84,7 +85,9 @@ The conductor is the central orchestration agent that manages the entire workflo
 ---
 description: 'Orchestrates {SystemName} workflow: coordinates subagents through phases with quality gates and TDD enforcement'
 model: Claude Sonnet 4.5 (copilot)
-tools: ['search', 'search/codebase', 'runSubagent']
+tools: ['search', 'search/codebase', 'agent']
+user-invokable: true
+agents: ['Planner', 'Implementer', 'Reviewer']  # Optional: explicit subagent list
 handoffs:
   - label: '{Phase 1 action}'
     agent: '{Subagent1Name}'
@@ -241,7 +244,10 @@ Key sections:
 **Action**: {next step based on result}
 ```
 
-## Parallel Execution (Atlas Pattern)
+## Parallel Execution (v1.109)
+
+### Automatic Parallel Execution
+**VS Code 1.109+**: Independent subagents automatically run in parallel when invoked by the conductor. No manual configuration needed — the system detects independence and executes concurrently.
 
 ### When to Use Parallel Execution
 - Independent code areas (frontend/backend/database)
@@ -274,7 +280,12 @@ For large codebases, limit each subagent's context to relevant files:
 }
 ```
 
-This setting enables the `runSubagent` tool, allowing the conductor to invoke subagents programmatically.
+VS Code 1.109+ enables the `agent` tool for subagent invocation. Independent subagents run in parallel automatically, improving throughput for multi-agent workflows.
+
+**New Frontmatter Controls (v1.109)**:
+- `user-invokable: false` — Hide subagents from picker (orchestration-only)
+- `disable-model-invocation: true` — Prevent auto-invocation by other agents  
+- `agents: ['AgentA', 'AgentB']` — Limit which subagents can be invoked (requires `agent` tool)
 
 ### Model Assignments
 Configure per-agent model assignments in VS Code settings or agent YAML `model` field to match the recommended model tier for each archetype.

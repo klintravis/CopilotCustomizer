@@ -353,7 +353,7 @@ When generating skills, update:
 ## Standards Compliance
 
 **Format**: Agent Skills open standard (agentskills.io)
-**VS Code Support**: v1.108+ (Preview feature)
+**VS Code Support**: v1.109+ (GA feature - enabled by default)
 **Compatible Platforms**: VS Code, GitHub Copilot CLI, Claude, Cursor, Goose, and more
 
 ---

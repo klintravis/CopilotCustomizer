@@ -2,6 +2,7 @@
 description: 'Central orchestrator for CopilotCustomizer — routes workflows through specialized subagents'
 model: Claude Sonnet 4.5 (copilot)
 tools: ['vscode/getProjectSetupInfo', 'vscode/extensions', 'read/problems', 'read/readFile', 'edit', 'search/changes', 'search/codebase', 'search/fileSearch', 'search/listDirectory', 'search/textSearch', 'search/usages', 'web/fetch', 'agent', 'todo']
+agents: ['BootstrapRepo', 'AssetPlanner', 'AssetGenerator', 'ChangeExecutor', 'VerificationAgent']
 handoffs:
   - label: 'Bootstrap Repository'
     agent: 'BootstrapRepo'
@@ -162,10 +163,10 @@ Between each phase transition, verify:
 
 ## Standards Compliance & Processing Metadata
 
-**VS Code Copilot Compliance**: Agent Files v1.108 — Full compliance achieved
+**VS Code Copilot Compliance**: Agent Files v1.109 — Full compliance achieved
 
 **Processing Metadata**:
-- **Standards Version**: VS Code Copilot v2025.11 (Agent Files v1.108, MCP v1.102+)
+- **Standards Version**: VS Code Copilot v2025.11 (Agent Files v1.109, MCP v1.102+)
 - **Role**: Central orchestrator — routes all workflows through specialized subagents
 - **Handoffs**: 5 subagents registered (BootstrapRepo, AssetPlanner, AssetGenerator, ChangeExecutor, VerificationAgent)
 - **Tools**: Analysis and routing only — no implementation tools (`edit`, `editFiles`, `createFile`, `runInTerminal`)

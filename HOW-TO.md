@@ -22,7 +22,7 @@ Comprehensive technical guide for using CopilotCustomizer with the multi-workspa
 - CopilotCustomizer cloned locally
 
 **VS Code Version**:
-- Recommended: **v1.108+** (full feature support including enhanced MCP patterns)
+- Recommended: **v1.109+** (full feature support including agent orchestration controls, parallel subagents, Skills GA)
 - Minimum: **v1.106** (agent files, handoffs)
 - Backwards compatible with v1.105 and earlier (some advanced features unavailable)
 
@@ -102,6 +102,8 @@ These live in `dev/prompts/` and are **not** auto-discovered by VS Code. They ar
 ## 🌍 Understanding Skills (Cross-Platform Capabilities)
 
 Skills are **portable AI capabilities** that work across multiple platforms: VS Code, GitHub Copilot CLI, Claude, Cursor, Goose, and other compatible agents. Based on the open standard at [agentskills.io](https://agentskills.io).
+
+**Status**: Agent Skills are **generally available** in VS Code 1.109+ (enabled by default). Organization-wide skills and custom locations are supported.
 
 ### What Are Skills?
 
@@ -358,18 +360,22 @@ Agent files define AI personas with specific behaviors and capabilities for VS C
 description: 'Brief description of the agent'
 ```
 
-**Optional Fields (VS Code 1.106+)**:
+**Optional Fields (VS Code 1.109)**:
 ```yaml
 target: 'vscode'                    # Optimization: 'vscode' or 'github-copilot'
 name: 'Display Name'                # Override file-based name
 argument-hint: 'Usage guidance'     # Show guidance in chat input
 tools: ['search', 'edit']           # Approved tools array
-model: 'gpt-4'                      # Preferred AI model
+model: 'gpt-4'                      # Preferred AI model (or array for fallback)
+user-invokable: true                # Show in agent picker (default: true)
+disable-model-invocation: false     # Prevent auto-invocation by other agents (default: false)
+agents: ['SubagentA', 'SubagentB']  # Limit which subagents can be invoked (requires 'agent' tool)
 handoffs:                            # Workflow transitions
   - label: 'Next Step'
     agent: 'target-agent'
     prompt: 'Context for next agent'
     send: false
+    model: 'GPT-5 (copilot)'        # Optional: model for this handoff
 mcp-servers: ['server-name']        # External MCP tool servers
 ```
 
@@ -377,6 +383,16 @@ mcp-servers: ['server-name']        # External MCP tool servers
 - `target: vscode` - Optimizes for local VS Code chat (supports all properties)
 - `target: github-copilot` - Optimizes for GitHub Copilot cloud agents and CLI
 - Omit for compatibility with both environments
+
+**Orchestration Control Fields (VS Code 1.109)**:
+- `user-invokable: false` - Hides agent from picker (orchestration-only agents)
+- `disable-model-invocation: true` - Prevents auto-invocation by other agents
+- `agents: ['AgentA', 'AgentB']` - Limits which subagents can be invoked (requires `agent` tool)
+
+**Model Configuration (VS Code 1.109)**:
+- Single model: `model: 'Claude Sonnet 4.5 (copilot)'`
+- Fallback array: `model: ['Claude Sonnet 4.5 (copilot)', 'GPT-5 (copilot)']`
+- Handoff-specific: Add `model: 'Model Name (vendor)'` to individual handoffs
 
 **Structure**:
 ```markdown
@@ -410,7 +426,7 @@ description: 'Expert in database optimization'
 
 #### Handoff Buttons for Multi-Step Workflows
 
-**Available in VS Code 1.106+** - Create guided workflows with interactive confirmation buttons.
+**Available in VS Code 1.109** - Create guided workflows with interactive confirmation buttons and parallel subagent execution.
 
 **How It Works**:
 1. Agent completes its response
@@ -472,7 +488,7 @@ handoffs:
 - Keep prompts clear and contextual
 - Chain related workflows (plan → implement → review → test)
 
-**Note**: In VS Code 1.106+, use interactive handoff buttons. In earlier versions, use text-based confirmation (type "confirm").
+**Note**: In VS Code 1.109, use interactive handoff buttons and parallel subagent execution. In earlier versions (1.106-1.108), handoffs are sequential.
 
 ### Instruction Files (`*.instructions.md`)
 
@@ -730,7 +746,7 @@ handoffs:
 
 ### Asset Naming Conventions
 
-**Note**: Legacy `.chatmode.md` files are deprecated. Use `.agent.md` (VS Code 1.106+ supports enhanced handoffs in `.agent.md`).
+**Note**: Legacy `.chatmode.md` files are deprecated. Use `.agent.md` (VS Code 1.109 supports enhanced handoffs, orchestration controls, and parallel execution in `.agent.md`).
 
 | Asset Type | Pattern | Example |
 |------------|---------|---------|
@@ -1231,11 +1247,11 @@ cd /path/to/CopilotCustomizer && git pull origin main
 **Symptoms**: Expected handoff buttons don't show after agent response
 
 **Solutions**:
-1. **Verify VS Code Version**: Handoff buttons require VS Code 1.106+ with custom agents
+1. **Verify VS Code Version**: Handoff buttons require VS Code 1.109+ with custom agents
    - Update VS Code to latest version
    - Check version: Help → About
-2. **Check File Extension**: Use `.agent.md` or `.agents.md` for full handoff support
-   - Standard format is `.agent.md` (VS Code 1.106+)
+2. **Check File Extension**: Use `.agent.md` for full handoff support
+   - Standard format is `.agent.md` (VS Code 1.109 supports parallel execution)
 3. **Validate YAML Syntax**:
    ```yaml
    handoffs:
@@ -1278,13 +1294,54 @@ If handoff buttons aren't available, use text-based confirmation:
 # Or: "/HarmonizeAndValidate for ASSETS: ['.github'], CHECKS: 'all', MODE: 'standard'"
 ```
 
-**Test Handoff Workflows** (VS Code 1.106+):
+**Test Handoff Workflows** (VS Code 1.109):
 1. Open agent file with handoffs defined
 2. Activate the agent in Chat view mode picker
 3. Send a test message
 4. After response completes, verify handoff buttons appear
 5. Click button and verify target agent activates
 6. Check prompt is pre-filled correctly
+7. Test parallel execution with independent subagents
+
+### VS Code 1.109 Features
+
+**Agent Skills (Generally Available)**:
+- Skills are now enabled by default (`chat.useAgentSkills`)
+- Configure custom locations with `chat.agentSkillsLocations`
+- Organization-wide skills supported
+- Use "Chat: Configure Skills" command to manage
+
+**Organization-Wide Instructions**:
+- Automatically applied from GitHub organization settings
+- Consistent guidance across your team
+- Disable with `github.copilot.chat.organizationInstructions.enabled: false`
+
+**Custom Agent File Locations**:
+```json
+{
+  "chat.agentFilesLocations": {
+    "~/.vscode/agents": true,
+    "shared/team-agents": true
+  }
+}
+```
+
+**Chat Customization Diagnostics**:
+- Right-click in Chat view → select "Diagnostics"
+- Shows all loaded agents, prompts, instructions, and skills
+- Displays errors and load status
+- Useful for troubleshooting customization issues
+
+**Parallel Subagent Execution**:
+- Independent subagents now run in parallel automatically
+- Improves performance for multi-agent workflows
+- Configure with `agents` field to control invocation patterns
+
+**Agent Orchestration Controls**:
+- `user-invokable: false` - Hide from picker (internal agents only)
+- `disable-model-invocation: true` - Prevent auto-invocation
+- `agents: ['AgentA', 'AgentB']` - Limit subagent access (requires `agent` tool)
+- Use `agent` tool instead of deprecated `runSubagent`
 
 ---
 

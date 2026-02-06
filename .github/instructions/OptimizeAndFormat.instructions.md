@@ -25,10 +25,10 @@ This instruction intentionally merges the prior responsibilities of formatting a
 5. **Cross-Reference Validation**: Verify links, paired relationships, and referenced file paths
 6. **Report**: Summarize what changed, why, and what remains intentionally unchanged
 
-## YAML Front Matter Rules (v1.106+ through v1.108)
+## YAML Front Matter Rules (v1.109)
 Only use officially supported fields:
 
-- `*.agent.md`: `description` (required); optional `tools`, `model`, `handoffs`, `mcp-servers`, `target`, `name`, `argument-hint` (v1.108 enhances MCP patterns)
+- `*.agent.md`: `description` (required); optional `tools`, `model` (string or array), `handoffs` (with optional model parameter), `mcp-servers`, `target`, `name`, `argument-hint`, `user-invokable`, `disable-model-invocation`, `agents` (v1.109 adds orchestration controls and parallel execution)
 - `*.instructions.md`: `applyTo` (required); optional `description`
 - `*.prompt.md`: optional `agent`, `tools`, `model`
 
