@@ -85,7 +85,7 @@ Central orchestrator for the CopilotCustomizer framework. Analyzes user requests
 
 ### Workflow Orchestration
 
-**Multi-step workflows** (autonomous chains): Use `runSubagent` to invoke each subagent in sequence, passing context between phases. Track state and enforce quality gates at each transition.
+**Multi-step workflows** (autonomous chains): Use `agent` tool to invoke each subagent in sequence, passing context between phases. Track state and enforce quality gates at each transition.
 
 **User-directed workflows** (manual handoffs): Present handoff options to the user and let them choose which subagent to invoke next. Use `handoffs` for these transitions.
 
@@ -95,7 +95,7 @@ Central orchestrator for the CopilotCustomizer framework. Analyzes user requests
 2. Classify intent (see Routing Matrix)
 3. If advisory → analyze and respond directly (no subagent needed)
 4. If workflow → invoke subagent chain:
-   a. Pass context via runSubagent prompt
+   a. Pass context via agent tool prompt
    b. Receive subagent output
    c. Quality gate check (verify output meets criteria)
    d. If PASS → invoke next subagent in chain

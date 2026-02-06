@@ -190,7 +190,7 @@ Agent: "✓ Updated: Jest native mocking + assertions
 [Proceeds to planning]
 
 Agent: "Ready to generate:
-- APIConductor.agent.md (conductor: runSubagent + handoffs)
+- APIConductor.agent.md (conductor: agent tool + handoffs)
 - APIExpert.agent.md (subagent: endpoint design)
 - TestOrchestrator.agent.md (subagent: Jest testing)
 - SecurityReviewer.agent.md (subagent: security audits)

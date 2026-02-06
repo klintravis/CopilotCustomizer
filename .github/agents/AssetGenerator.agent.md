@@ -63,7 +63,7 @@ INPUT: Asset specifications from AssetPlanner
    - Quality criteria
   ↓
 4. Generate Orchestrated System (standard when plan includes 3+ agents)
-   - Conductor agent file with runSubagent tool, handoffs array, state tracking, quality gates
+   - Conductor agent file with agent tool, handoffs array, state tracking, quality gates
    - Subagent files with I/O contracts, model tiers, scoped tools
    - Plan file template (plans/PLAN.md)
    - VS Code settings update (.vscode/settings.json)
@@ -144,7 +144,7 @@ handoffs:
 | **Test creation** | `new`, `edit`, `terminal` | Create tests and run them |
 | **Documentation** | `new`, `edit`, `search`, `fetch` | Write docs, research content |
 | **Planning** | `search`, `search/codebase`, `todos` | Understand structure, track work |
-| **Orchestrator** | `search`, `search/codebase`, `runSubagent` | Coordinate subagents, manage phases |
+| **Orchestrator** | `search`, `search/codebase`, `agent` | Coordinate subagents, manage phases |
 | **Review changes** | `search`, `changes`, `problems` | Inspect diffs and issues |
 | **Debug issues** | `search`, `problems`, `terminal` | Find errors, run diagnostics |
 
@@ -268,7 +268,7 @@ mode: {ask|agent|generate}
 ---
 description: 'Orchestrates {SystemName}: coordinates subagents through phases with quality gates'
 model: Claude Sonnet 4.5 (copilot)
-tools: ['search', 'search/codebase', 'runSubagent']
+tools: ['search', 'search/codebase', 'agent']
 handoffs:
   - label: '{Phase action}'
     agent: '{SubagentName}'
@@ -343,7 +343,7 @@ tools: ['{scoped tools}']
 ✓ .vscode/settings.json (updated)
 
 ### Orchestrated System
-- Conductor: {ConductorName} (runSubagent + handoffs, no implementation tools)
+- Conductor: {ConductorName} (agent tool + handoffs, no implementation tools)
 - Subagents: {count} ({list})
 - Plan File: plans/PLAN.md
 - VS Code: chat.customAgentInSubagent.enabled = true
@@ -395,7 +395,7 @@ if (crossReferenceInvalid) {
 - [ ] Handoff syntax correct
 - [ ] AGENTS.md generated/updated
 - [ ] Summary report complete
-- [ ] Conductor has runSubagent + handoffs, no implementation tools
+- [ ] Conductor has agent tool + handoffs, no implementation tools
 - [ ] Subagents have I/O contracts, scoped tools, model tiers
 - [ ] Plan file uses OrchestrationPlan.template.md structure
 - [ ] .vscode/settings.json includes chat.customAgentInSubagent.enabled: true

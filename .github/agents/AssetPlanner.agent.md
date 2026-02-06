@@ -93,7 +93,7 @@ Auto-include orchestration when ANY of these are true:
 
 Tier selection:
   lightweight-conductor: 3+ agents
-    - Conductor with runSubagent + handoffs (no implementation tools)
+    - Conductor with agent tool + handoffs (no implementation tools)
     - Existing agents become subagents with I/O contracts
     - plans/PLAN.md with simplified phase tracking
     - .vscode/settings.json with chat.customAgentInSubagent.enabled: true
@@ -199,7 +199,7 @@ Example: GenerateEndpoint.prompt.md, DocumentAPI.prompt.md
 1. **Conductor: {ConductorName}.agent.md** (`.github/agents/`)
    - Description: Orchestrates {domain} workflow
    - Model: Claude Sonnet 4.5 (copilot)
-   - Tools: ['search', 'search/codebase', 'runSubagent']
+   - Tools: ['search', 'search/codebase', 'agent']
    - Handoffs: [{subagent1}, {subagent2}, ...] with labels and prompts
    - Constraints: No implementation tools (edit, new, terminal)
    - Quality Gates: {list of pause points}
@@ -277,7 +277,7 @@ orchestration:
   conductor:
     name: {ConductorName}
     description: {orchestration description}
-    tools: ['search', 'search/codebase', 'runSubagent']
+    tools: ['search', 'search/codebase', 'agent']
     handoffs: [{subagent list with labels and prompts}]
     qualityGates: [{gate list}]
   subagents:
@@ -320,7 +320,7 @@ orchestration:
 1. **Conductor: APIConductor.agent.md** (`.github/agents/`)
    - Description: Orchestrates API development workflow
    - Model: Claude Sonnet 4.5 (copilot)
-   - Tools: ['search', 'search/codebase', 'runSubagent']
+   - Tools: ['search', 'search/codebase', 'agent']
    - Handoffs: [APIExpert, TestOrchestrator, SecurityReviewer] with context prompts
    - Constraints: No implementation tools (edit, new, terminal)
    - Quality Gates: planning approval, code review, commit approval
@@ -387,7 +387,7 @@ orchestration:
 - Potential Conflicts: None (new repository)
 
 ### Expected Outcomes
-- 1 conductor agent with runSubagent + handoffs
+- 1 conductor agent with agent tool + handoffs
 - 3 subagent files with I/O contracts
 - 3 instruction files with applyTo patterns
 - 2 prompt files with variable systems

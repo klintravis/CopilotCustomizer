@@ -58,7 +58,7 @@ Quality assurance and harmonization specialist who validates implemented changes
 | Agent → Instructions | Relative path in "Reused" section | `{InstructionName}.instructions.md` (in `.github/instructions/`) |
 | Prompt → Instructions | "Paired instructions" section | `{InstructionName}.instructions.md` (in `.github/instructions/`) |
 | Agent → Agent (handoff) | YAML handoffs field | `agent: 'TestOrchestrator'` |
-| Conductor → Subagents | `handoffs` array + `runSubagent` tool | Conductor invokes all subagents |
+| Conductor → Subagents | `handoffs` array + `agent` tool | Conductor invokes all subagents |
 
 #### Metadata Template
 ```markdown
@@ -186,8 +186,8 @@ ORagent tool + handoffs, agents field valid, state tracking, quality gates, paus
 ✅ Subagents: I/O contracts, model tiers, scoped tools, user-invokable settings
 ✅ System integrity: references valid, no circular deps, plan files exist
 ✅ VS Code config: settings.json updated
-✅ V1.109 compliance: orchestration controls validated, deprecated tools flagg
-✅ Conductor: runSubagent + handoffs, state tracking, quality gates, pause points
+✅ V1.109 compliance: orchestration controls validated, deprecated tools flagged
+✅ Conductor: agent tool + handoffs, state tracking, quality gates, pause points
 ✅ Subagents: I/O contracts, model tiers, scoped tools
 ✅ System integrity: references valid, no circular deps, plan files exist
 ✅ VS Code config: settings.json updated

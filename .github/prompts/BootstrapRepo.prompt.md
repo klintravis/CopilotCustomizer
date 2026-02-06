@@ -147,7 +147,7 @@ Prompt Files (2) - Task templates:
 ✓ DocumentAPI.prompt.md - OpenAPI generation
 
 Orchestrated System (lightweight-conductor):
-✓ APIConductor.agent.md - Workflow conductor (runSubagent, no edit/terminal)
+✓ APIConductor.agent.md - Workflow conductor (agent tool, no edit/terminal)
   Subagents: APIExpert, TestOrchestrator, SecurityReviewer
   Quality Gates: planning, code review, commit
   Plan: plans/PLAN.md (strict TDD)
@@ -188,7 +188,7 @@ confirm
 ✓ YAML validation: All valid
 ✓ Skills format: Valid (agentskills.io)
 ✓ Tool approvals: Verified
-✓ Orchestrated system: Conductor has runSubagent + handoffs, no edit/terminal
+✓ Orchestrated system: Conductor has agent tool + handoffs, no edit/terminal
 ✓ Subagent I/O contracts: Defined
 ✓ Plan file: Valid structure
 
@@ -222,7 +222,7 @@ Generated Assets: 12 files
 - AGENTS.md (quick start guide with orchestrated system inventory)
 
 Orchestrated System: lightweight-conductor
-- Conductor: APIConductor (runSubagent + handoffs, no edit/terminal)
+- Conductor: APIConductor (agent tool + handoffs, no edit/terminal)
 - Subagents: APIExpert, TestOrchestrator, SecurityReviewer
 - Plan File: plans/PLAN.md (strict TDD)
 - VS Code: chat.customAgentInSubagent.enabled = true

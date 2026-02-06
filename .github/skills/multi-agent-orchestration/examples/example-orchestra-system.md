@@ -32,7 +32,7 @@ my-api-project/.github/
 ---
 description: 'Orchestrates feature implementation: coordinates planning, implementation, and review phases with TDD enforcement and quality gates'
 model: Claude Sonnet 4.5 (copilot)
-tools: ['search', 'search/codebase', 'runSubagent']
+tools: ['search', 'search/codebase', 'agent']
 handoffs:
   - label: 'Plan Feature'
     agent: 'FeaturePlanner'

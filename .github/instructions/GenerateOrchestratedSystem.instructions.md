@@ -5,14 +5,14 @@ description: 'Framework for generating conductor/subagent orchestrated systems w
 
 # Orchestrated System Generation Guide (v1.0)
 
-**Paired Prompt**: [NewWorkflowSystem.prompt.md](../prompts/NewWorkflowSystem.prompt.md)
+**Paired Prompt**: [NewOrchestratedSystem.prompt.md](../prompts/NewOrchestratedSystem.prompt.md)
 
 ### Purpose
 Generate complete orchestrated multi-agent systems (conductor + subagents) for target repositories. Produces all agent files, plan file templates, and VS Code configuration needed for coordinated multi-agent workflows.
 
-### Distinction: NewWorkflow vs NewWorkflowSystem
+### Distinction: NewHandoffChain vs NewOrchestratedSystem
 
-| Aspect | `/NewWorkflow` | `/NewWorkflowSystem` |
+| Aspect | `/NewHandoffChain` | `/NewOrchestratedSystem` |
 |--------|----------------|----------------------|
 | **Creates** | Handoff chain between agents | Conductor + subagent orchestrated system |
 | **Coordination** | Sequential handoffs | Conductor-managed phases |

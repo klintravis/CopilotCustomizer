@@ -132,7 +132,7 @@ When generating 3 or more agents for a repository via the bootstrap workflow:
 
 2. **Convert standalone agents to subagents** — Add I/O contracts, scope boundaries, and model tier assignments. The conductor manages all transitions.
 
-3. **Conductor is the only agent with `runSubagent`** — Subagents do not invoke each other directly.
+3. **Conductor is the only agent with `agent` tool** — Subagents do not invoke each other directly.
 
 4. **Minimum viable conductor** includes:
    - Tools: `['search', 'search/codebase', 'agent']`
