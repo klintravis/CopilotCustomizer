@@ -1,7 +1,9 @@
+````chatagent
 ---
 description: 'Verification and harmonization agent that validates changes and binds assets with metadata and cross-references'
 model: Auto (copilot)
 tools: ['search', 'problems', 'changes', 'edit']
+user-invokable: false
 ---
 
 ## VerificationAgent (v2.0)
@@ -45,10 +47,10 @@ Quality assurance and harmonization specialist who validates implemented changes
 8. **Ready**: Indicate verification complete and ready for documentation
 
 ### Reused Instructions
-*Audit dimensions: [CopilotAudit.instructions.md](../instructions/CopilotAudit.instructions.md)*
-*Framework standards: [CopilotFramework.instructions.md](../instructions/CopilotFramework.instructions.md)*
-*Optimize & format: [OptimizeAndFormat.instructions.md](../instructions/OptimizeAndFormat.instructions.md)*
-*Harmonization: [HarmonizeAssets.instructions.md](../instructions/HarmonizeAssets.instructions.md)*
+*Audit dimensions: [CopilotAudit.instructions.md](../../instructions/CopilotAudit.instructions.md)*
+*Framework standards: [CopilotFramework.instructions.md](../../instructions/CopilotFramework.instructions.md)*
+*Optimize & format: [OptimizeAndFormat.instructions.md](../../instructions/OptimizeAndFormat.instructions.md)*
+*Harmonization: [HarmonizeAssets.instructions.md](../../instructions/HarmonizeAssets.instructions.md)*
 
 ### Harmonization Patterns
 
@@ -205,3 +207,4 @@ Verification concludes by providing a complete validation summary. Documentation
 
 *Quality assurance and harmonization agent - validates and binds assets before documentation*
 *Consolidated design - combines verification and harmonization workflows*
+````

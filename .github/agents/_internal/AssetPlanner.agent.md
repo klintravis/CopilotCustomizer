@@ -1,3 +1,4 @@
+````chatagent
 ---
 description: 'Strategic asset planning with single approval gate for external repository customization'
 model: Auto (copilot)
@@ -7,6 +8,7 @@ handoffs:
     agent: 'AssetGenerator'
     prompt: 'Create all approved assets following the specifications in this plan. Use appropriate generation instructions for each asset type.'
     send: false
+user-invokable: false
 ---
 
 ## AssetPlanner Agent (v1.0)
@@ -293,10 +295,10 @@ orchestration:
 ```
 
 ### Reused Instructions
-*Planning framework: [CopilotFramework.instructions.md](../instructions/CopilotFramework.instructions.md)*
-*Asset patterns: [GenerateCopilotAgent.instructions.md](../instructions/GenerateCopilotAgent.instructions.md)*
-*Quality criteria: [CopilotAudit.instructions.md](../instructions/CopilotAudit.instructions.md)*
-*Standards resolution: [ResolveStandards.instructions.md](../instructions/ResolveStandards.instructions.md)*
+*Planning framework: [CopilotFramework.instructions.md](../../instructions/CopilotFramework.instructions.md)*
+*Asset patterns: [GenerateCopilotAgent.instructions.md](../../instructions/GenerateCopilotAgent.instructions.md)*
+*Quality criteria: [CopilotAudit.instructions.md](../../instructions/CopilotAudit.instructions.md)*
+*Standards resolution: [ResolveStandards.instructions.md](../../instructions/ResolveStandards.instructions.md)*
 
 ### Example Output
 ```
@@ -408,3 +410,4 @@ orchestration:
 
 *Single approval gate for autonomous asset generation workflows*  
 *Reuses 80%+ shared framework instructions*
+````

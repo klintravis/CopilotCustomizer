@@ -33,11 +33,11 @@ For setup and usage, see:
 
 **Active Agents** (6 total — orchestrated hierarchy):
 - `CopilotCustomizer.agent.md` — **Central orchestrator** (entry point for all workflows)
-  - `BootstrapRepo.agent.md` — Repository bootstrap workflow (subagent)
-  - `AssetPlanner.agent.md` — Asset recommendation and specification (subagent)
-  - `AssetGenerator.agent.md` — Multi-asset creation engine (subagent)
-  - `ChangeExecutor.agent.md` — Precise file operations (subagent)
-  - `VerificationAgent.agent.md` — Schema validation + harmonization (subagent)
+  - `_internal/BootstrapRepo.agent.md` — Repository bootstrap workflow (subagent)
+  - `_internal/AssetPlanner.agent.md` — Asset recommendation and specification (subagent)
+  - `_internal/AssetGenerator.agent.md` — Multi-asset creation engine (subagent)
+  - `_internal/ChangeExecutor.agent.md` — Precise file operations (subagent)
+  - `_internal/VerificationAgent.agent.md` — Schema validation + harmonization (subagent)
 
 **Skills** (core cross-platform capabilities):
 - `repository-analysis/SKILL.md` - Repository understanding methodology
@@ -76,12 +76,14 @@ VS Code Workspace
 │   ├── .github/            ← Generated assets here
 │   │   ├── skills/
 │   │   ├── agents/
+│   │   │   └── _internal/  ← Subagents (hidden from picker)
 │   │   ├── instructions/
 │   │   └── prompts/
 │   └── AGENTS.md
 └── CopilotCustomizer/      ← The framework (read-only)
     ├── .github/
     │   ├── agents/         ← Uses these to generate
+    │   │   └── _internal/  ← Subagents (hidden from picker)
     │   ├── instructions/
     │   ├── prompts/
     │   ├── skills/

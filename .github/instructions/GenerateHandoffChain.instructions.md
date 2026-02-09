@@ -10,6 +10,8 @@ description: 'Framework for creating multi-chain agent workflows with automated 
 ### Purpose
 Framework for multi-chain agent workflows with automated handoffs, shared instructions, and minimal user input.
 
+**Note**: For orchestrated systems with 3+ agents, subagents should be placed in `.github/agents/_internal/` with `user-invokable: false` to keep them hidden from the picker. Only entry-point agents remain at `.github/agents/` level.
+
 ### Objectives
 - 1-2 prompts gather complete context
 - <5 user interactions per workflow

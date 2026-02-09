@@ -93,7 +93,8 @@ User-facing assets remain in `.github/` for automatic discovery by VS Code:
 **Structure**:
 ```
 .github/
-├── agents/           ← 6 workflow agents (CopilotCustomizer orchestrator + 5 subagents)
+├── agents/           ← 1 orchestrator (CopilotCustomizer)
+│   └── _internal/    ← 5 subagents (hidden from picker)
 ├── instructions/     ← 14 generation and quality frameworks
 ├── prompts/          ← 11 user commands (bootstrap, generation, review, workflows)
 ├── skills/           ← 6 cross-platform capabilities (repository-analysis, etc.)
@@ -160,12 +161,12 @@ For small typos or minor corrections:
 Periodically verify actual files match documented counts:
 ```bash
 # Windows PowerShell
-(Get-ChildItem .github\agents\*.agent.md).Count
+(Get-ChildItem .github\agents\*.agent.md -Recurse).Count  # Includes _internal/ subdir
 (Get-ChildItem .github\skills\*\SKILL.md).Count
 (Get-ChildItem .github\standards\**\*.md -Exclude README.md).Count
 
 # macOS/Linux
-ls .github/agents/*.agent.md | wc -l
+find .github/agents -name "*.agent.md" | wc -l  # Includes _internal/ subdir
 ls .github/skills/*/SKILL.md | wc -l
 find .github/standards -name "*.md" ! -name "README.md" | wc -l
 ```

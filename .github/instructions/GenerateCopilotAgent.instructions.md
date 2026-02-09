@@ -130,7 +130,7 @@ When generating 3 or more agents for a repository via the bootstrap workflow:
 
 1. **Always include a conductor agent** — Even for simple multi-agent setups, a lightweight conductor provides workflow coordination, quality gates, and plan tracking.
 
-2. **Convert standalone agents to subagents** — Add I/O contracts, scope boundaries, and model tier assignments. The conductor manages all transitions.
+2. **Convert standalone agents to subagents** — Place subagents in `.github/agents/_internal/` directory and add `user-invokable: false` to their YAML frontmatter. Add I/O contracts, scope boundaries, and model tier assignments. The conductor manages all transitions.
 
 3. **Conductor is the only agent with `agent` tool** — Subagents do not invoke each other directly.
 

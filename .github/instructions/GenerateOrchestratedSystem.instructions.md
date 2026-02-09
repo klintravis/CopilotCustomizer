@@ -81,6 +81,7 @@ handoffs:
 description: '{Archetype}: {specific capability for this project}'
 model: {tier per archetype table}
 tools: ['{minimum necessary tools}']
+user-invokable: false  # Hidden from picker, orchestration-only
 ---
 ```
 
@@ -227,13 +228,15 @@ A complete orchestrated system generation produces:
 
 | File | Location | Purpose |
 |------|----------|---------|
-| `{Conductor}.agent.md` | `.github/agents/` | Conductor agent |
-| `{Subagent1}.agent.md` | `.github/agents/` | Subagent |
-| `{Subagent2}.agent.md` | `.github/agents/` | Subagent |
-| `{SubagentN}.agent.md` | `.github/agents/` | Subagent |
+| `{Conductor}.agent.md` | `.github/agents/` | Conductor agent (user-invokable) |
+| `{Subagent1}.agent.md` | `.github/agents/_internal/` | Subagent (user-invokable: false) |
+| `{Subagent2}.agent.md` | `.github/agents/_internal/` | Subagent (user-invokable: false) |
+| `{SubagentN}.agent.md` | `.github/agents/_internal/` | Subagent (user-invokable: false) |
 | `PLAN.md` | `plans/` | Orchestration plan |
 | `settings.json` | `.vscode/` | VS Code config (merge) |
 | `AGENTS.md` | Root (update) | Add system to inventory |
+
+**Note**: Subagents are placed in `_internal/` subdirectory and marked with `user-invokable: false` to keep them hidden from the agent picker. Only the conductor agent appears in the picker for user invocation.
 
 ## Validation
 

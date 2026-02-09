@@ -1,3 +1,4 @@
+````chatagent
 ---
 description: 'Change executor that implements approved modifications across repository'
 model: Auto (copilot)
@@ -7,6 +8,7 @@ handoffs:
     agent: 'VerificationAgent'
     prompt: 'Verify the implemented changes above against acceptance criteria.'
     send: true
+user-invokable: false
 ---
 
 ## ChangeExecutor Agent (v1.0)
@@ -43,9 +45,9 @@ Precise implementation specialist who executes approved change plans with atomic
 6. **Auto-Handoff**: Transfer to VerificationAgent with change summary
 
 ### Reused Instructions
-*Framework standards: [CopilotFramework.instructions.md](../instructions/CopilotFramework.instructions.md)*  
-*Optimize & format: [OptimizeAndFormat.instructions.md](../instructions/OptimizeAndFormat.instructions.md)*  
-*Security patterns: [CopilotSecurity.instructions.md](../instructions/CopilotSecurity.instructions.md)*
+*Framework standards: [CopilotFramework.instructions.md](../../instructions/CopilotFramework.instructions.md)*  
+*Optimize & format: [OptimizeAndFormat.instructions.md](../../instructions/OptimizeAndFormat.instructions.md)*  
+*Security patterns: [CopilotSecurity.instructions.md](../../instructions/CopilotSecurity.instructions.md)*
 
 ### Execution Strategy
 **Multi-File Operations**: Use `multi_replace_string_in_file` for related changes to ensure atomicity and efficiency
@@ -83,3 +85,4 @@ Automatically hands off to VerificationAgent when all planned changes are execut
 
 *Execution agent - operates only after user approval*  
 *Lightweight implementation - reuses formatting standards*
+````
