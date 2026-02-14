@@ -117,22 +117,22 @@ if (repo.name.contains("CopilotCustomizer")) {
 ### Skills & Instructions Used
 
 **Skills** (cross-platform analysis and planning):
-- [repository-analysis](../../skills/repository-analysis/SKILL.md) - Tech stack detection, pattern recognition
-- [implementation-planning](../../skills/implementation-planning/SKILL.md) - Asset specifications and prioritization
-- [technical-documentation](../../skills/technical-documentation/SKILL.md) - Report generation
-- [copilot-asset-design](../../skills/copilot-asset-design/SKILL.md) - Decision framework for asset types
-- [multi-agent-orchestration](../../skills/multi-agent-orchestration/SKILL.md) - Orchestrated system patterns (auto-included when 3+ agents)
+- [repository-analysis](../skills/repository-analysis/SKILL.md) - Tech stack detection, pattern recognition
+- [implementation-planning](../skills/implementation-planning/SKILL.md) - Asset specifications and prioritization
+- [technical-documentation](../skills/technical-documentation/SKILL.md) - Report generation
+- [copilot-asset-design](../skills/copilot-asset-design/SKILL.md) - Decision framework for asset types
+- [multi-agent-orchestration](../skills/multi-agent-orchestration/SKILL.md) - Orchestrated system patterns (auto-included when 3+ agents)
 
 **Instructions** (70%+ reuse from framework):
-- [CopilotFramework.instructions.md](../../instructions/CopilotFramework.instructions.md) - Universal workflows
-- [RepoReview.instructions.md](../../instructions/RepoReview.instructions.md) - Analysis patterns
-- [GenerateSkill.instructions.md](../../instructions/GenerateSkill.instructions.md) - Skills-first generation (PRIORITY)
-- [GenerateCopilotAgent.instructions.md](../../instructions/GenerateCopilotAgent.instructions.md) - Agent generation
-- [GenerateInstructions.instructions.md](../../instructions/GenerateInstructions.instructions.md) - Instruction files
-- [GeneratePrompt.instructions.md](../../instructions/GeneratePrompt.instructions.md) - Prompt templates
-- [HarmonizeAssets.instructions.md](../../instructions/HarmonizeAssets.instructions.md) - Asset binding
-- [CopilotAudit.instructions.md](../../instructions/CopilotAudit.instructions.md) - Quality assurance
-- [ResolveStandards.instructions.md](../../instructions/ResolveStandards.instructions.md) - Enterprise standards matching
+- [CopilotFramework.instructions.md](../instructions/CopilotFramework.instructions.md) - Universal workflows
+- [RepoReview.instructions.md](../instructions/RepoReview.instructions.md) - Analysis patterns
+- [GenerateSkill.instructions.md](../instructions/GenerateSkill.instructions.md) - Skills-first generation (PRIORITY)
+- [GenerateCopilotAgent.instructions.md](../instructions/GenerateCopilotAgent.instructions.md) - Agent generation
+- [GenerateInstructions.instructions.md](../instructions/GenerateInstructions.instructions.md) - Instruction files
+- [GeneratePrompt.instructions.md](../instructions/GeneratePrompt.instructions.md) - Prompt templates
+- [HarmonizeAssets.instructions.md](../instructions/HarmonizeAssets.instructions.md) - Asset binding
+- [CopilotAudit.instructions.md](../instructions/CopilotAudit.instructions.md) - Quality assurance
+- [ResolveStandards.instructions.md](../instructions/ResolveStandards.instructions.md) - Enterprise standards matching
 
 ### Success Criteria
 - [ ] Repository analysis complete with tech stack identified

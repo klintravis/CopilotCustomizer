@@ -263,7 +263,7 @@ mode: {ask|agent|generate}
 **Medium-risk (session)**: `terminal`, `runCommands`  
 **High-risk (persistent)**: `runTasks`, `changes`
 
-*Security patterns: [CopilotSecurity.instructions.md](../../instructions/CopilotSecurity.instructions.md)*
+*Security patterns: [CopilotSecurity.instructions.md](../instructions/CopilotSecurity.instructions.md)*
 
 ### Conductor Agent File Structure
 ```markdown
@@ -319,17 +319,17 @@ tools: ['{scoped tools}']
 ```
 
 ### Plan File Templates
-- **plans/PLAN.md** — Use [OrchestrationPlan.template.md](../../templates/OrchestrationPlan.template.md)
+- **plans/PLAN.md** — Use [OrchestrationPlan.template.md](../templates/OrchestrationPlan.template.md)
 - **plans/phase-{N}-complete.md** — Phase completion records
 - **plans/FINAL-REPORT.md** — Generated on system completion
 
 ### Generation Instructions Used
-**Agent Creation**: [GenerateCopilotAgent.instructions.md](../../instructions/GenerateCopilotAgent.instructions.md)
-**Instruction Creation**: [GenerateInstructions.instructions.md](../../instructions/GenerateInstructions.instructions.md)
-**Prompt Creation**: [GeneratePrompt.instructions.md](../../instructions/GeneratePrompt.instructions.md)
-**AGENTS.md Creation**: [GenerateAgentsFile.instructions.md](../../instructions/GenerateAgentsFile.instructions.md)
-**Orchestrated System**: [GenerateOrchestratedSystem.instructions.md](../../instructions/GenerateOrchestratedSystem.instructions.md)
-**Standards Integration**: [ResolveStandards.instructions.md](../../instructions/ResolveStandards.instructions.md)
+**Agent Creation**: [GenerateCopilotAgent.instructions.md](../instructions/GenerateCopilotAgent.instructions.md)
+**Instruction Creation**: [GenerateInstructions.instructions.md](../instructions/GenerateInstructions.instructions.md)
+**Prompt Creation**: [GeneratePrompt.instructions.md](../instructions/GeneratePrompt.instructions.md)
+**AGENTS.md Creation**: [GenerateAgentsFile.instructions.md](../instructions/GenerateAgentsFile.instructions.md)
+**Orchestrated System**: [GenerateOrchestratedSystem.instructions.md](../instructions/GenerateOrchestratedSystem.instructions.md)
+**Standards Integration**: [ResolveStandards.instructions.md](../instructions/ResolveStandards.instructions.md)
 
 ### Output Report Format
 ```
@@ -404,8 +404,8 @@ if (crossReferenceInvalid) {
 
 ### Reused Instructions
 *Asset generation: All Generate*.instructions.md files*  
-*Framework standards: [CopilotFramework.instructions.md](../../instructions/CopilotFramework.instructions.md)*  
-*Security patterns: [CopilotSecurity.instructions.md](../../instructions/CopilotSecurity.instructions.md)*
+*Framework standards: [CopilotFramework.instructions.md](../instructions/CopilotFramework.instructions.md)*  
+*Security patterns: [CopilotSecurity.instructions.md](../instructions/CopilotSecurity.instructions.md)*
 
 ---
 

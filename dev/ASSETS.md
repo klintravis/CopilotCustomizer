@@ -11,7 +11,7 @@
 | Templates | `*.template.md` | Document formats | - |
 
 ## Agent Files (`*.agent.md`)
-**Location**: `.github/agents/` (orchestrators), `.github/agents/_internal/` (subagents) | **YAML**: `description` (required), `target`, `name`, `argument-hint`, `tools`, `model` (string or array), `handoffs`, `mcp-servers`, `user-invokable`, `disable-model-invocation`, `agents` (optional - VS Code 1.109)
+**Location**: `.github/agents/` | **YAML**: `description` (required), `target`, `name`, `argument-hint`, `tools`, `model` (string or array), `handoffs`, `mcp-servers`, `user-invokable`, `disable-model-invocation`, `agents` (optional - VS Code 1.109)
 
 ```markdown
 ## [Agent Name] (v[Version])
@@ -22,7 +22,7 @@
 ### Handoff Workflows
 ```
 
-**Available**: `CopilotCustomizer.agent.md` (orchestrator), `_internal/BootstrapRepo.agent.md`, `_internal/AssetPlanner.agent.md`, `_internal/AssetGenerator.agent.md`, `_internal/ChangeExecutor.agent.md`, `_internal/VerificationAgent.agent.md` (subagents)
+**Available**: `CopilotCustomizer.agent.md`, `ChangeExecutor.agent.md`, `VerificationAgent.agent.md`, `AssetGenerator.agent.md`, `AssetPlanner.agent.md`, `BootstrapRepo.agent.md`
 
 ## Skills (`.github/skills/*/SKILL.md`)
 **Location**: `.github/skills/` | **Purpose**: portable patterns you can reference from prompts/agents across tools (VS Code, CLI, other agents)
@@ -205,7 +205,7 @@ To avoid inventory drift, treat the folders as the source of truth:
 
 - Prompts: `.github/prompts/`
 - Instructions: `.github/instructions/`
-- Agents: `.github/agents/` (orchestrators), `.github/agents/_internal/` (subagents)
+- Agents: `.github/agents/`
 - Skills: `.github/skills/`
 - Standards: `.github/standards/`
 - Templates: `.github/templates/`
@@ -272,9 +272,8 @@ To avoid inventory drift, treat the folders as the source of truth:
 
 **Asset Not Loading**
 - Check YAML front matter syntax
-- Verify file is in correct directory (`.github/agents/` or `.github/agents/_internal/`, `.github/instructions/`, `.github/prompts/`)
+- Verify file is in correct directory (`.github/agents/`, `.github/instructions/`, `.github/prompts/`)
 - Ensure file extension matches pattern (`*.agent.md`, etc.)
-- Subagents in `_internal/` should have `user-invokable: false` to hide from picker
 
 **Custom Agent Not Available**  
 - Confirm `description` field is present in YAML

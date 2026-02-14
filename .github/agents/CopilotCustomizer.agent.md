@@ -77,11 +77,11 @@ Central orchestrator for the CopilotCustomizer framework. Analyzes user requests
 
 | Subagent | File | Role | When to Invoke |
 |----------|------|------|----------------|
-| **BootstrapRepo** | `_internal/BootstrapRepo.agent.md` | Full repository bootstrap | User wants complete asset generation for a new repo |
-| **AssetPlanner** | `_internal/AssetPlanner.agent.md` | Asset recommendation and specification | User needs a plan before generating; part of bootstrap chain |
-| **AssetGenerator** | `_internal/AssetGenerator.agent.md` | Multi-asset creation engine | Approved specs ready for file generation |
-| **ChangeExecutor** | `_internal/ChangeExecutor.agent.md` | Precise file operations | Targeted edits, renames, or deletions needed |
-| **VerificationAgent** | `_internal/VerificationAgent.agent.md` | Schema validation, harmonization, and integrity | Post-generation quality check + cross-reference binding |
+| **BootstrapRepo** | `BootstrapRepo.agent.md` | Full repository bootstrap | User wants complete asset generation for a new repo |
+| **AssetPlanner** | `AssetPlanner.agent.md` | Asset recommendation and specification | User needs a plan before generating; part of bootstrap chain |
+| **AssetGenerator** | `AssetGenerator.agent.md` | Multi-asset creation engine | Approved specs ready for file generation |
+| **ChangeExecutor** | `ChangeExecutor.agent.md` | Precise file operations | Targeted edits, renames, or deletions needed |
+| **VerificationAgent** | `VerificationAgent.agent.md` | Schema validation, harmonization, and integrity | Post-generation quality check + cross-reference binding |
 
 ### Workflow Orchestration
 

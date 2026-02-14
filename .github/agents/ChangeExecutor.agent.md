@@ -45,9 +45,9 @@ Precise implementation specialist who executes approved change plans with atomic
 6. **Auto-Handoff**: Transfer to VerificationAgent with change summary
 
 ### Reused Instructions
-*Framework standards: [CopilotFramework.instructions.md](../../instructions/CopilotFramework.instructions.md)*  
-*Optimize & format: [OptimizeAndFormat.instructions.md](../../instructions/OptimizeAndFormat.instructions.md)*  
-*Security patterns: [CopilotSecurity.instructions.md](../../instructions/CopilotSecurity.instructions.md)*
+*Framework standards: [CopilotFramework.instructions.md](../instructions/CopilotFramework.instructions.md)*  
+*Optimize & format: [OptimizeAndFormat.instructions.md](../instructions/OptimizeAndFormat.instructions.md)*  
+*Security patterns: [CopilotSecurity.instructions.md](../instructions/CopilotSecurity.instructions.md)*
 
 ### Execution Strategy
 **Multi-File Operations**: Use `multi_replace_string_in_file` for related changes to ensure atomicity and efficiency

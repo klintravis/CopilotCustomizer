@@ -295,10 +295,10 @@ orchestration:
 ```
 
 ### Reused Instructions
-*Planning framework: [CopilotFramework.instructions.md](../../instructions/CopilotFramework.instructions.md)*
-*Asset patterns: [GenerateCopilotAgent.instructions.md](../../instructions/GenerateCopilotAgent.instructions.md)*
-*Quality criteria: [CopilotAudit.instructions.md](../../instructions/CopilotAudit.instructions.md)*
-*Standards resolution: [ResolveStandards.instructions.md](../../instructions/ResolveStandards.instructions.md)*
+*Planning framework: [CopilotFramework.instructions.md](../instructions/CopilotFramework.instructions.md)*
+*Asset patterns: [GenerateCopilotAgent.instructions.md](../instructions/GenerateCopilotAgent.instructions.md)*
+*Quality criteria: [CopilotAudit.instructions.md](../instructions/CopilotAudit.instructions.md)*
+*Standards resolution: [ResolveStandards.instructions.md](../instructions/ResolveStandards.instructions.md)*
 
 ### Example Output
 ```
