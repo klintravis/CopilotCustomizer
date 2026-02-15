@@ -34,8 +34,19 @@ Framework for creating high-quality `*.instructions.md` files with consistency, 
 ---
 applyTo: '**'
 description: 'Brief description'
+name: 'Display Name'          # Optional: UI display name (defaults to filename if omitted)
 ---
 ```
+
+**Frontmatter Fields**:
+
+| Field | Required | Type | Purpose |
+|-------|----------|------|---------|
+| `applyTo` | Yes | glob string | File pattern for auto-application |
+| `description` | No | string | Brief description of instruction content |
+| `name` | No | string | Display name in VS Code UI (defaults to filename) |
+
+The `name` field (VS Code 1.109+) provides a user-friendly display name instead of the filename. Example: `name: 'Python Standards'` displays as "Python Standards" instead of `python-standards.instructions.md`.
 
 ### Refinement Commands
 - `refine: concise` - Compress prose
@@ -127,6 +138,52 @@ When generating this asset type, integrate matched enterprise standards via [Sta
 
 ### Conformance Note
 This instruction file aligns with the broader Copilot customization ecosystem and integrates with [NewInstructions.prompt.md](../prompts/NewInstructions.prompt.md) for execution workflow. Focuses on maintainable, high-quality instruction file generation following established patterns.
+
+## Claude Instructions Format Compatibility (VS Code 1.109)
+
+VS Code 1.109 reads instruction content from both VS Code native formats and Claude Code formats, enabling cross-tool compatibility.
+
+### Format Comparison
+
+| Format | Location | Activation | Scope |
+|--------|----------|------------|-------|
+| `.github/instructions/*.instructions.md` | VS Code native | `applyTo` glob pattern | File-scoped |
+| `.github/copilot-instructions.md` | VS Code + GitHub.com | Always-on | Workspace-wide |
+| `AGENTS.md` | Multi-tool standard | Always-on | Workspace-wide |
+| `CLAUDE.md` | Claude Code + VS Code | Always-on | Workspace-wide |
+| `.claude/CLAUDE.md` | Claude Code + VS Code | Always-on | Folder-scoped |
+| `~/.claude/CLAUDE.md` | Claude Code + VS Code | Always-on | User-level |
+| `CLAUDE.local.md` | Claude Code + VS Code | Always-on (local) | Not committed to VCS |
+| `.claude/rules/*.md` | Claude Code + VS Code | `paths` glob pattern | File-scoped |
+
+### Claude Rules Format
+
+Claude Code uses `.claude/rules/*.md` for file-scoped instructions (similar to VS Code's `.instructions.md` files):
+
+```yaml
+---
+description: 'Python code standards'
+paths: 'src/**/*.py'            # Glob pattern (equivalent to VS Code applyTo)
+---
+
+# Python Standards
+[instruction content...]
+```
+
+**Key Differences**:
+- Claude uses `paths` instead of `applyTo` for glob patterns
+- `paths` defaults to `**` (all files) if omitted
+- Claude rules use plain `.md` extension (not `.instructions.md`)
+
+### Cross-Tool Compatibility Matrix
+
+| Need | VS Code | GitHub.com | Claude Code | Cursor |
+|------|---------|-----------|-------------|--------|
+| Always-on instructions | `copilot-instructions.md` | `copilot-instructions.md` | `CLAUDE.md` | `AGENTS.md` |
+| File-scoped rules | `.instructions.md` (`applyTo`) | Limited | `.claude/rules/` (`paths`) | `.instructions.md` |
+| Project guidance | `AGENTS.md` | `AGENTS.md` | `CLAUDE.md` | `AGENTS.md` |
+
+**Recommendation**: For maximum cross-tool compatibility, maintain both `copilot-instructions.md` (VS Code + GitHub) and `CLAUDE.md` (Claude Code + VS Code) with aligned content.
 
 ### Change History
 | Date | Version | Changes | Author |

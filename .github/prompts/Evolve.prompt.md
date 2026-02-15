@@ -49,7 +49,7 @@ Quick entry point for common CopilotCustomizer toolkit improvement workflows. Ro
 | `instructions` | `.github/instructions/*.instructions.md` |
 | `prompts` | `.github/prompts/*.prompt.md` |
 | `skills` | `.github/skills/*/SKILL.md` |
-| `docs` | `README.md`, `QUICKSTART.md`, `HOW-TO.md`, `EXAMPLES.md`, `AGENTS.md`, `dev/AGENTS.md` |
+| `docs` | README.md, QUICKSTART.md, HOW-TO.md, EXAMPLES.md, AGENTS.md, docs/ARCHITECTURE.md |
 
 ### Depth Modes
 
@@ -67,6 +67,7 @@ Quick entry point for common CopilotCustomizer toolkit improvement workflows. Ro
 **Phase 4: Execution** (Conditional) — If AUTO_EXECUTE=true for low-risk items, or user approves, implement changes
 **Phase 5: Verification** (Auto) — Validate all changes via Verifier
 **Phase 6: Documentation** (Auto) — Generate summary report with changelog entries
+**Phase 7: Plan Archival** (Auto) — Persist approved plan to `docs/plans/` for audit trail
 
 ### Orchestration Chain
 ```

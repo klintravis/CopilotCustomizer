@@ -5,6 +5,39 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.5.0] - 2026-02-15
+
+### Changed
+- **Documentation restructure**: Moved `QUICKSTART.md`, `HOW-TO.md`, `EXAMPLES.md`, `ARCHITECTURE.md`, `CHANGELOG.md` from root/dev/ to `docs/` folder for improved organization
+- **Evolve plan tracking**: Introduced `docs/plans/` (gitignored) as standardized location for Evolve improvement plans with status lifecycle and audit trail
+- **Updated all doc references**: Fixed 16+ broken cross-references across root files, documentation, and `.github/` assets following restructure
+
+### Added
+- **Plan tracking convention**: Standardized naming, structure, and status lifecycle for Evolve plans documented in ToolkitOps.instructions.md
+- **Plan persistence**: Evolve agent and prompt now document plan archival workflow in `docs/plans/`
+
+## [1.4.0] - 2026-02-15
+
+### Added
+- **Agent Hooks guidance** (Preview): 8 lifecycle events documented in Framework.instructions.md with configuration examples, use cases, and design principles
+- **Claude compatibility**: Cross-tool agent/skill/instruction format support in AgentAuthoring, SkillAuthoring, and InstructionAuthoring instructions
+- **Skills as Slash Commands**: `user-invokable`, `disable-model-invocation`, `argument-hint` fields with decision table in SkillAuthoring.instructions.md
+- **`chatSkills` contribution point**: Extension packaging guide for distributing skills via VS Code Marketplace
+- **MCP Apps**: Rich interactive UI capability documented in Framework.instructions.md
+- **Organization-wide assets**: Org-level instructions and agents pattern in Framework.instructions.md
+- **Chat diagnostics reference**: Added diagnostics view step to Verifier workflow
+- **`/init` command**: Quick alternative bootstrap documented in QUICKSTART.md
+- **Instruction `name` field**: Display name support in InstructionAuthoring.instructions.md
+- **Claude folder detection**: Bootstrap and Generator agents detect `.claude/` folders for cross-tool generation
+
+### Changed
+- **AgentAuthoring schema**: Added `agents` field, `handoffs.send`, `handoffs.model` parameters; deprecated `infer` field with migration path
+- **SkillAuthoring schema**: Added invocation control fields, slash command pattern, updated GA status references
+- **Framework.instructions.md**: Added Agent Hooks, MCP Apps, Organization-Wide Assets, and expanded documentation sources
+
+### Deprecated
+- **`infer` frontmatter field**: Use `user-invokable` + `disable-model-invocation` instead (migration path documented)
+
 ## [1.3.0] - 2026-02-14
 
 ### Changed

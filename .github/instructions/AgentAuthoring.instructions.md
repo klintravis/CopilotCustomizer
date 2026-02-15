@@ -16,6 +16,10 @@ Standardized approach for creating VS Code Copilot `.agent.md` custom agent file
 **Required**: `description` (clear agent role)  
 **Optional**: `target` (vscode/github-copilot), `name` (display override), `argument-hint` (input guidance), `tools` (approved tools array), `model` (AI model or array for fallback), `handoffs` (workflow transitions), `mcp-servers` (external tools), `user-invokable` (visibility control), `disable-model-invocation` (prevent auto-invocation), `agents` (constrain subagent access)
 
+> **Deprecation Notice**: The `infer` frontmatter field is deprecated as of VS Code 1.109. Use `user-invokable` and `disable-model-invocation` instead.  
+> Migration: `infer: true` → `user-invokable: true, disable-model-invocation: false` (default behavior)  
+> Migration: `infer: false` → `user-invokable: false, disable-model-invocation: true`
+
 ### Recommended Sections
 | Section | Required | Purpose |
 |---------|----------|---------|
@@ -154,13 +158,24 @@ handoffs:
   - label: "Human-readable action name"    # required (string)
     agent: "TargetAgentName"               # required (string, matches .agent.md basename)
     prompt: "What to send/ask the target"  # required (string, describes context transfer)
-    send: false                             # required (boolean; true = auto, false = manual)
+    send: false                             # required (boolean; true = auto-submit, false = manual confirm)
+    model: 'GPT-5 (copilot)'              # optional (string; override model for this handoff)
 ```
+
+**`send` parameter** (boolean, required):
+- `false` (default) — Prompt requires user confirmation before handoff executes
+- `true` — Prompt auto-submits immediately (use for automated chains)
+
+**`model` parameter** (string, optional):
+- Overrides the target agent's default model for this specific handoff
+- Format: `'Model Name (vendor)'` e.g., `'GPT-5 (copilot)'`, `'Claude Sonnet 4.5 (copilot)'`
+- Use when a specific handoff benefits from a different model than the target's default
 
 Validation rules:
 - `agent` must resolve to an existing file: `.github/agents/{agent}.agent.md`
 - `send` must be boolean (not string)
 - `prompt` should describe context being transferred (avoid generic text)
+- `model` format must follow `'Name (vendor)'` pattern
 - If no handoffs are needed, omit the `handoffs` key entirely
 
 Example (valid):
@@ -461,6 +476,68 @@ Conductor agent orchestrating feature development through planning, parallel imp
 
 *Related Instructions*: [Maintenance.instructions.md](Maintenance.instructions.md), [Framework.instructions.md](Framework.instructions.md)
 
+## Claude Agent Format Compatibility (VS Code 1.109)
+
+VS Code 1.109 reads agent files from both `.github/agents/` (VS Code native) and `.claude/agents/` (Claude Code format). This enables cross-tool compatibility.
+
+### Format Comparison
+
+| Property | VS Code Format (`.agent.md`) | Claude Format (`.md`) |
+|----------|-----------------------------|-----------------------|
+| **Location** | `.github/agents/*.agent.md` | `.claude/agents/*.md` |
+| **Tools** | YAML array: `['search', 'edit']` | Comma string: `"Read, Grep, Glob, Bash"` |
+| **Blocked tools** | (use minimal tool sets) | `disallowedTools: "Bash, Write"` |
+| **Frontmatter** | Full schema (description, tools, handoffs, agents, etc.) | Simplified (description, tools, disallowedTools) |
+| **Orchestration** | `handoffs`, `agents`, `agent` tool | Not supported in Claude format |
+
+### Tool Name Mapping
+
+| VS Code Tool | Claude Tool | Notes |
+|-------------|-------------|-------|
+| `search` | `Read`, `Grep`, `Glob` | Claude splits search functionality |
+| `edit` | `Write` | File modification |
+| `terminal` | `Bash` | Shell command execution |
+| `new` | `Write` | File creation |
+| `fetch` | `WebFetch` | Web content retrieval |
+| `search/codebase` | `Grep`, `Glob` | Semantic vs text search |
+
+### Cross-Tool Compatibility Pattern
+
+```
+.github/agents/APIExpert.agent.md    ← VS Code native (full feature set)
+.claude/agents/APIExpert.md          ← Claude Code compatible (subset)
+```
+
+- **VS Code reads both** directories automatically
+- **Claude Code reads only** `.claude/agents/`
+- For maximum compatibility, maintain agents in both formats
+- For VS Code-only features (handoffs, orchestration), use `.github/agents/` only
+
+### When to Generate Claude-Compatible Agents
+
+| Scenario | Recommended Format |
+|----------|--------------------|
+| VS Code only (handoffs, orchestration) | `.github/agents/` only |
+| Cross-tool (VS Code + Claude Code) | Both `.github/agents/` and `.claude/agents/` |
+| Claude Code primary | `.claude/agents/` only |
+| Simple agents (no VS Code features) | Either or both |
+
+## Hooks Integration (VS Code 1.109 Preview)
+
+Agent Hooks provide deterministic lifecycle automation that complements agent behavior.
+
+**How Hooks Complement Agents**:
+- Agents handle AI-driven decision making and tool orchestration
+- Hooks execute deterministic commands at specific lifecycle points
+- Together, they enable policy enforcement, automation, and audit trails
+
+**Integration Examples**:
+- **Security Agent** + `PreToolUse` hook: Hook blocks risky tool operations before agent executes them
+- **Code Quality Agent** + `PostToolUse` hook: Hook runs formatters/linters after agent modifies files
+- **Audit Agent** + `SessionStart` hook: Hook logs session context before agent begins analysis
+
+**Agent Design Consideration**: When designing agents expected to work with hooks, document the expected hook events in the agent's workflow section. Reference: [Framework.instructions.md](Framework.instructions.md) (Agent Hooks section)
+
 ### Refinement Commands
 - refine: [domain] | refine: optimize | refine: validate
 
@@ -487,7 +564,7 @@ When generating this asset type, integrate matched enterprise standards via [Sta
 ## Change History
 
 | Version | Date | Changes |
-|---------|------|---------||
+|---------|------|---------|
 | v1.0 | 2026-01-15 | Initial release |
 
 *Complete framework: [Framework.instructions.md](Framework.instructions.md)*

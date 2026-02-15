@@ -52,12 +52,10 @@ The framework analyzes your repository, detects your tech stack, and generates S
 
 | Guide | Purpose |
 |-------|---------|
-| **[QUICKSTART.md](QUICKSTART.md)** | 5-minute setup guide ← **Start here** |
-| **[EXAMPLES.md](EXAMPLES.md)** | Real-world examples with React, Python, .NET, Node.js, and more |
-| **[HOW-TO.md](HOW-TO.md)** | Complete commands reference + troubleshooting |
-| **[dev/ARCHITECTURE.md](dev/ARCHITECTURE.md)** | Architecture deep-dive + asset inventory |
-
-## Key Commands
+| **[QUICKSTART.md](docs/QUICKSTART.md)** | 5-minute setup guide ← **Start here** |
+| **[EXAMPLES.md](docs/EXAMPLES.md)** | Real-world examples with React, Python, .NET, Node.js, and more |
+| **[HOW-TO.md](docs/HOW-TO.md)** | Complete commands reference + troubleshooting |
+| **[docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)** | Architecture deep-dive + asset inventory |
 
 All commands work via slash commands in Copilot Chat or natural language:
 
@@ -82,7 +80,7 @@ All commands work via slash commands in Copilot Chat or natural language:
 
 **Tip**: Type `/` in Copilot Chat to see all available commands with auto-completion.
 
-See [HOW-TO.md](HOW-TO.md) for detailed command documentation and advanced usage patterns.
+See [HOW-TO.md](docs/HOW-TO.md) for detailed command documentation and advanced usage patterns.
 
 ## Architecture
 
@@ -102,7 +100,7 @@ CopilotCustomizer uses an **orchestrated agent system** where a unified orchestr
 - **Quality Gates** — Automatic schema validation, harmonization, and integrity verification
 - **Programmatic Orchestration** — All subagent invocation via `agent` tool (no manual handoffs)
 
-See [dev/ARCHITECTURE.md](dev/ARCHITECTURE.md) for complete architecture documentation:
+See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for complete architecture documentation:
 - Full asset inventory with file counts and purposes
 - Enterprise standards system details  
 - Agent handoff workflows and orchestration patterns

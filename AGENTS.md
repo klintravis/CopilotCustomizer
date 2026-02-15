@@ -4,8 +4,8 @@ A VS Code GitHub Copilot customization framework for generating tech-stack-speci
 
 ## Documentation
 
-- [QUICKSTART.md](QUICKSTART.md) — Get started in 5 minutes
-- [HOW-TO.md](HOW-TO.md) — Complete commands reference
+- [QUICKSTART.md](docs/QUICKSTART.md) — Get started in 5 minutes
+- [HOW-TO.md](docs/HOW-TO.md) — Complete commands reference
 - [README.md](README.md) — Overview and key commands
 
 ## Unified Orchestrator Architecture
@@ -23,4 +23,4 @@ A VS Code GitHub Copilot customization framework for generating tech-stack-speci
 
 ## Architecture & Asset Inventory
 
-For the full asset inventory, design patterns, and contributor details, see [dev/ARCHITECTURE.md](dev/ARCHITECTURE.md).
+For the full asset inventory, design patterns, and contributor details, see [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).

@@ -1,11 +1,11 @@
 ---
-applyTo: '.github/agents/ToolkitEvolution.agent.md'
+applyTo: '.github/agents/Evolve.agent.md'
 description: 'Reusable workflows for CopilotCustomizer toolkit-specific maintenance including release monitoring, documentation standards, and self-validation protocols'
 ---
 
 ## Toolkit Maintenance Patterns (v1.0)
 
-Reusable maintenance workflows for the CopilotCustomizer toolkit. These patterns guide the ToolkitEvolution specialist subagent when performing self-improvement tasks on the framework itself.
+Reusable maintenance workflows for the CopilotCustomizer toolkit. These patterns guide the Evolve specialist subagent when performing self-improvement tasks on the framework itself.
 
 **Scope**: CopilotCustomizer repository only. For patterns that apply to user repositories, see [Framework.instructions.md](Framework.instructions.md).
 
@@ -102,8 +102,8 @@ Present release monitoring findings as:
 | `HOW-TO.md` | Regular users | Complete command reference, examples, troubleshooting |
 | `EXAMPLES.md` | Evaluating users | Real-world scenarios demonstrating value |
 | `AGENTS.md` (root) | AI coding agents | Architecture overview, navigation to dev docs |
-| `dev/AGENTS.md` | Contributors | Full asset inventory, design patterns, conventions |
-| `dev/README.md` | Maintainers | Dev tool usage, maintenance procedures |
+| `docs/ARCHITECTURE.md` | Contributors & maintainers | Full asset inventory, architecture, design patterns |
+| `docs/CHANGELOG.md` | All users | Release history, breaking changes, migration guides |
 
 #### Review Checklist
 
@@ -338,12 +338,70 @@ When changes are made to the toolkit, generate changelog entries:
 
 ---
 
-## Cross-References
+### 7. Plan Tracking & Persistence
 
-**Paired Agent**: [Evolve.agent.md](../agents/Evolve.agent.md)
-**Framework Standards**: [Framework.instructions.md](Framework.instructions.md)
-**Security Guardrails**: [Security.instructions.md](Security.instructions.md)
+#### Plan Storage Convention
 
+All Evolve improvement plans are saved to `docs/plans/` (gitignored by default):
+
+**Naming Pattern**:
+- Feature implementations: `Toolkit-{Feature-Name}.md`
+- Release alignment: `Toolkit-VSCode-v{version}-Alignment.md`
+- Ad-hoc improvements: `Toolkit-{Task-Type}-{YYYYMMDD}.md`
+
+#### Plan Structure
+
+```markdown
+# Evolve Plan: {Title}
+
+**Plan ID**: {kebab-case-id}
+**Date**: {YYYY-MM-DD}
+**Task**: {task type from Evolve.prompt.md}
+**Scope**: {scope from Evolve.prompt.md}
+**Depth**: {depth from Evolve.prompt.md}
+**Status**: {PENDING APPROVAL | IN PROGRESS | COMPLETED | ARCHIVED}
+
+---
+
+## Context
+{Why this plan exists}
+
+## Findings
+{Analysis results}
+
+## Execution Plan
+{Phased implementation steps}
+
+## Risk Assessment
+{Impact analysis}
+```
+
+#### Status Lifecycle
+
+| Status | Meaning | Next Action |
+|--------|---------|-------------|
+| PENDING APPROVAL | Plan generated, awaiting user approval | User reviews → approves/rejects |
+| IN PROGRESS | Implementation underway | Editor executing changes |
+| COMPLETED | All phases executed and verified | Update plan status, summarize results |
+| ARCHIVED | Historical reference only | No action — preserved for audit trail |
+
+#### Plan Benefits
+
+- **Audit Trail**: Track all toolkit improvements over time
+- **Resumability**: Pick up multi-phase improvements after interruptions
+- **Transparency**: Users see what changes are planned before execution
+- **Quality Gate**: Formal approval process for medium/high-risk changes
+- **Documentation**: Self-documenting improvement history
+
+#### Integration with Changelog
+
+When a plan status moves to COMPLETED:
+1. Extract key changes from plan execution
+2. Generate changelog entry per Section 6 format
+3. Add entry to `docs/CHANGELOG.md`
+4. Update plan with completion date and changelog reference
+
+---
 ## Change History
 
 | Version | Date | Changes |
@@ -355,7 +413,7 @@ When changes are made to the toolkit, generate changelog entries:
 ## Processing Metadata
 
 - **Standards Version**: VS Code Copilot v2025.11 (Agent Files v1.109)
-- **ApplyTo**: `.github/agents/ToolkitEvolution.agent.md`
+- **ApplyTo**: `.github/agents/Evolve.agent.md`
 - **Purpose**: Toolkit-specific maintenance patterns for self-improvement orchestrator
 - **Scope**: CopilotCustomizer repository only
 

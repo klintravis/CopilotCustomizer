@@ -13,9 +13,9 @@ A comprehensive VS Code GitHub Copilot customization framework for asset generat
 ### Documentation
 
 For setup and usage, see:
-- [QUICKSTART.md](../QUICKSTART.md) - Get started in 5 minutes
+- [QUICKSTART.md](QUICKSTART.md) - Get started in 5 minutes
 - [README.md](../README.md) - Overview + key commands
-- [HOW-TO.md](../HOW-TO.md) - Complete commands reference and skills guide
+- [HOW-TO.md](HOW-TO.md) - Complete commands reference and skills guide
 
 ---
 
@@ -260,8 +260,8 @@ Refinement commands:
 ## Support & Resources
 
 ### Documentation
-- **[QUICKSTART.md](../QUICKSTART.md)** - Get started in 5 minutes
-- **[HOW-TO.md](../HOW-TO.md)** - Comprehensive usage guide and slash commands
+- **[QUICKSTART.md](QUICKSTART.md)** - Get started in 5 minutes
+- **[HOW-TO.md](HOW-TO.md)** - Comprehensive usage guide and slash commands
 - **[README.md](../README.md)** - Project overview and core concepts
 - **[VS Code Copilot Docs](https://code.visualstudio.com/docs/copilot/customization/overview)** - Official Microsoft documentation
 

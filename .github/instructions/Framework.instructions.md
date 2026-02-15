@@ -58,6 +58,132 @@ Universal validation criteria for all Copilot customization work:
 - [Prompt Files](https://code.visualstudio.com/docs/copilot/customization/prompt-files)
 - [MCP Servers](https://code.visualstudio.com/docs/copilot/customization/mcp-servers)
 - [Tool Management](https://code.visualstudio.com/docs/copilot/chat/chat-tools)
+- [Agent Hooks](https://code.visualstudio.com/docs/copilot/customization/hooks)
+
+## Agent Hooks (VS Code 1.109 Preview)
+
+Hooks execute deterministic shell commands at agent lifecycle points. Unlike agents (AI-driven), hooks are predictable automation that runs every time a lifecycle event fires.
+
+### Use Cases
+- **Security policies**: Block dangerous tool operations before execution
+- **Code quality**: Run formatters/linters after file modifications
+- **Audit trails**: Log all agent sessions and tool usage
+- **Context injection**: Add environment data to agent prompts
+- **Notifications**: Send alerts on session completion or failures
+
+### Hook Configuration Locations
+
+| Location | Scope | Format |
+|----------|-------|--------|
+| `.github/hooks/*.json` | Workspace (VS Code native) | JSON |
+| `.claude/settings.json` | Workspace (Claude compatible) | JSON (`hooks` key) |
+| `~/.claude/settings.json` | User-level | JSON (`hooks` key) |
+
+### Lifecycle Events
+
+| Event | When It Fires | Common Use Cases |
+|-------|---------------|-----------------|
+| `SessionStart` | Agent session begins | Initialize resources, log session start, inject context |
+| `UserPromptSubmit` | User sends a message | Audit requests, inject environment context, validate input |
+| `PreToolUse` | Before a tool executes | Block risky ops, require approval, modify tool input |
+| `PostToolUse` | After a tool completes | Run formatters, log results, trigger follow-up actions |
+| `PreCompact` | Before context compaction | Export important context, save checkpoints |
+| `SubagentStart` | Nested agent invoked | Track subagent usage, log delegation chain |
+| `SubagentStop` | Nested agent completes | Aggregate results, cleanup resources |
+| `Stop` | Agent session ends | Generate reports, cleanup, send notifications |
+
+### Configuration Example
+
+```json
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "type": "command",
+        "command": "./scripts/validate-tool.sh",
+        "timeout": 15
+      }
+    ],
+    "PostToolUse": [
+      {
+        "type": "command",
+        "command": "./scripts/format-changed-files.sh",
+        "timeout": 30
+      }
+    ],
+    "Stop": [
+      {
+        "type": "command",
+        "command": "./scripts/generate-session-report.sh",
+        "timeout": 60
+      }
+    ]
+  }
+}
+```
+
+### Hook Design Principles
+1. **Deterministic**: Hooks run the same command every time (no AI variance)
+2. **Fast**: Set reasonable timeouts; hooks block the agent pipeline
+3. **Non-destructive**: Prefer read-only or logging hooks; use caution with file-modifying hooks
+4. **Scoped**: Use `PreToolUse` for specific tool filtering, not blanket blocking
+5. **Complementary**: Hooks enhance agents, not replace them
+
+### Hooks vs Agents vs Instructions
+
+| Mechanism | Nature | When to Use |
+|-----------|--------|-------------|
+| **Hooks** | Deterministic commands | Automation, policy enforcement, logging |
+| **Agents** | AI-driven specialists | Decision making, code generation, analysis |
+| **Instructions** | Static guidelines | Coding standards, project conventions |
+
+**Reference**: [Agent Hooks Documentation](https://code.visualstudio.com/docs/copilot/customization/hooks)
+
+## MCP Apps (VS Code 1.109)
+
+MCP servers can now provide **rich interactive UI** in chat responses via MCP Apps.
+
+### Capabilities
+- **Dashboards**: Display data visualizations, metrics, flame graphs
+- **Forms**: Interactive input for configuration or parameters
+- **Visualizations**: Render charts, diagrams, and custom widgets
+- **Rich output**: Go beyond plain text responses with dynamic content
+
+### Use Cases
+- Performance profiling tools returning flame graphs
+- Database tools with interactive query builders
+- Deployment tools with status dashboards
+- Configuration tools with form-based editors
+
+**Reference**: [MCP Servers Documentation](https://code.visualstudio.com/docs/copilot/customization/mcp-servers)
+
+## Organization-Wide Assets (VS Code 1.109)
+
+Organizations can share Copilot customization assets (instructions and agents) across all repositories within the organization.
+
+### Organization Instructions
+- Shared coding standards and guidelines applied organization-wide
+- Configured through GitHub organization Copilot settings
+- Controlled via: `github.copilot.chat.organizationInstructions.enabled` setting
+
+### Organization Agents
+- Shared specialist agents accessible across all organization repositories
+- Managed centrally by organization admins
+- Users can enable/disable: `github.copilot.chat.organizationAgents.enabled`
+
+### Pattern
+```
+Organization Level (GitHub settings)
+├── Shared instructions (coding standards, security policies)
+└── Shared agents (org-wide specialists)
+
+Repository Level (.github/)
+├── Project-specific instructions
+├── Project-specific agents
+└── Project-specific skills + prompts
+```
+
+Organization-level assets complement (not replace) repository-level customization.
 
 ## Efficiency Guidelines
 
@@ -145,7 +271,7 @@ Security: Strengthen approval patterns and trust
 ## Change History
 
 | Version | Date | Changes |
-|---------|------|---------||
+|---------|------|---------|
 | v1.0 | 2026-01-15 | Initial release |
 
 *Complete security patterns: [Security.instructions.md](Security.instructions.md)*

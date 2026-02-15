@@ -108,6 +108,30 @@ name: skill-name          # Lowercase, hyphens only, max 64 chars
 description: What this skill does and when to use it  # Max 1024 chars
 ```
 
+### Optional Fields
+```yaml
+user-invokable: true               # Show as slash command in / menu (default: true)
+disable-model-invocation: false     # Prevent auto-loading by relevance (default: false)
+argument-hint: '[test file] [options]'  # Hint text shown in chat input when invoked
+```
+
+### Invocation Control Fields
+
+| Field | Type | Default | Purpose |
+|-------|------|---------|--------|
+| `user-invokable` | boolean | `true` | Controls visibility in slash command menu (`/`) |
+| `disable-model-invocation` | boolean | `false` | Prevents automatic loading based on context relevance |
+| `argument-hint` | string | (none) | Placeholder text shown in chat input after `/skill-name` |
+
+**Decision Table — Field Combinations**:
+
+| `user-invokable` | `disable-model-invocation` | Behavior |
+|-------------------|--------------------------|----------|
+| `true` (default) | `false` (default) | Visible in `/` menu AND auto-loaded on relevance |
+| `true` | `true` | Visible in `/` menu only — must be manually invoked |
+| `false` | `false` | Hidden from `/` menu, but auto-loads when relevant |
+| `false` | `true` | Fully hidden — only accessible programmatically |
+
 ### Naming Convention
 - Use lowercase with hyphens: `webapp-testing`, `api-debugging`
 - Be specific and descriptive: `react-component-generation` not `react-stuff`
@@ -274,20 +298,75 @@ Before creating a skill, verify:
 - [ ] Skill provides value beyond simple instructions
 - [ ] Skill is focused on specific domain/capability
 
+## Skills as Slash Commands (VS Code 1.109+)
+
+Skills are now invokable as **slash commands** in Copilot Chat. Users type `/skill-name` to activate a skill directly.
+
+**Invocation Pattern**:
+```
+/webapp-testing Run end-to-end tests for the login flow
+```
+
+**How It Works**:
+1. VS Code discovers skills from configured skill locations
+2. Skills with `user-invokable: true` (default) appear in the `/` completions menu
+3. When invoked, the full `SKILL.md` body is loaded into the agent's context
+4. The `argument-hint` field (if set) provides placeholder guidance in the chat input
+
+**Example — Slash command skill**:
+```yaml
+---
+name: webapp-testing
+description: Automated web application testing with Playwright
+argument-hint: '[test scenario or URL to test]'
+---
+```
+Result: User types `/webapp-testing` and sees hint `[test scenario or URL to test]` in input.
+
+**Example — Hidden auto-load skill**:
+```yaml
+---
+name: code-review-standards
+description: Code review guidelines for pull request feedback
+user-invokable: false
+disable-model-invocation: false
+---
+```
+Result: Not shown in `/` menu, but automatically loaded when user discusses code reviews.
+
+## Extension Packaging: `chatSkills` Contribution Point
+
+For VS Code extension authors, skills can be bundled and distributed via the `chatSkills` contribution point in `package.json`:
+
+```json
+{
+  "contributes": {
+    "chatSkills": [
+      {
+        "name": "webapp-testing",
+        "folder": "skills/webapp-testing"
+      }
+    ]
+  }
+}
+```
+
+This enables skill distribution through the VS Code Marketplace alongside extensions.
+
 ## Multi-Platform Compatibility
 
 Skills work across these AI platforms:
-- ✅ VS Code with GitHub Copilot
+- ✅ VS Code with GitHub Copilot (GA — enabled by default since v1.109)
 - ✅ GitHub Copilot CLI
 - ✅ GitHub Copilot coding agent
-- ✅ Claude (Anthropic)
+- ✅ Claude (Anthropic) — via `.claude/skills/` or `.github/skills/`
 - ✅ Cursor
 - ✅ Goose
 - ✅ Any agent supporting agentskills.io standard
 
 **Testing**: After creating a skill, verify it:
-1. Appears in VS Code skill discovery
-2. Loads automatically on relevant prompts
+1. Appears in VS Code slash command menu (`/skill-name`)
+2. Loads automatically on relevant prompts (if `disable-model-invocation` is `false`)
 3. Can access included resources
 4. Provides expected capabilities
 
@@ -301,9 +380,11 @@ Enable Skills support in VS Code:
 ```
 
 Skills are stored in:
-- **Project skills**: `.github/skills/` (recommended)
+- **Project skills**: `.github/skills/` (recommended — works across all platforms)
 - **User profile skills**: `~/.github/skills/` (personal reuse)
-- **Legacy support**: `.claude/skills/` (backward compatibility)
+- **Claude Code compatibility**: `.claude/skills/` (read by Claude Code and VS Code)
+- **Claude user skills**: `~/.claude/skills/` (personal Claude Code skills, also read by VS Code)
+- **Custom locations**: Configure via `chat.agentSkillsLocations` setting
 
 ## Best Practices
 
@@ -347,14 +428,16 @@ When generating skills, update:
 
 ## Standards Compliance
 
-**Format**: Agent Skills open standard (agentskills.io)
-**VS Code Support**: v1.109+ (GA feature - enabled by default)
-**Compatible Platforms**: VS Code, GitHub Copilot CLI, Claude, Cursor, Goose, and more
+**Format**: Agent Skills open standard (agentskills.io)  
+**VS Code Support**: v1.109+ (GA — Generally Available, enabled by default)  
+**Compatible Platforms**: VS Code, GitHub Copilot CLI, Claude, Cursor, Goose, and more  
+**Invocation**: Slash commands (`/skill-name`) + automatic relevance loading  
+**Extension Distribution**: `chatSkills` contribution point in `package.json`
 
 ## Change History
 
 | Version | Date | Changes |
-|---------|------|---------||
+|---------|------|---------|
 | v1.0 | 2026-01-15 | Initial release |
 
 ---

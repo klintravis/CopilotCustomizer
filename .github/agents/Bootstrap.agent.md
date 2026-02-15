@@ -68,6 +68,7 @@ REPOSITORY_PATH: "/path/to/repository"
 - Required asset types
 - Complexity level
 - Applicable coding standards from `.github/standards/`
+- Claude Code compatibility (`.claude/` folder presence)
 
 ### Validation Rules
 ```yaml
@@ -76,6 +77,17 @@ Pre-Flight Checks:
   - Target is not the CopilotCustomizer folder: REQUIRED
   - Git repository: RECOMMENDED
   - VS Code workspace: RECOMMENDED
+  - Claude folder detection: AUTO
+```
+
+**Claude Compatibility Detection**:
+```
+if (repo.hasFolder('.claude/')) {
+  enableCrossToolCompatibility()
+  generateBothFormats()  // .github/ AND .claude/
+} else {
+  useVSCodeNativeFormat()  // .github/ only (default)
+}
 ```
 
 **Exclusion Logic**:

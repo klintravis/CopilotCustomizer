@@ -42,8 +42,9 @@ Quality assurance and harmonization specialist who validates implemented changes
    - Terminology standardization
 5. **Cross-Reference Check**: Verify all links resolve correctly (validates harmonization)
 6. **Problem Scan**: Use problems tool to detect errors
-7. **Results Summary**: Document validation and harmonization outcomes
-8. **Ready**: Indicate verification complete and ready for documentation
+7. **Diagnostics Check**: Reference Chat Customization Diagnostics view (right-click in Chat view → Diagnostics) for loaded agents, prompts, instructions, skills, and any schema errors
+8. **Results Summary**: Document validation and harmonization outcomes
+9. **Ready**: Indicate verification complete and ready for documentation
 
 ### Reused Instructions
 *Audit dimensions: [Framework.instructions.md](../instructions/Framework.instructions.md)*

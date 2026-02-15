@@ -132,6 +132,14 @@ INPUT: Asset specifications from Planner
 **Instructions → Related Instructions**: Link to other project instructions for shared patterns
 **Prompts → Instructions**: Reference paired instruction files in the same project
 
+**Cross-Tool Compatibility**:
+When target repository contains a `.claude/` folder, also generate:
+- `.claude/agents/*.md` — Simplified agent format (description + comma-separated tools)
+- `.claude/skills/` — Skill copies for Claude Code discovery
+- `CLAUDE.md` — Workspace-level instructions (mirrors `copilot-instructions.md` content)
+
+See [AgentAuthoring.instructions.md](../instructions/AgentAuthoring.instructions.md) (Claude Agent Format Compatibility) for format mapping details.
+
 **Example**:
 ```markdown
 *Related patterns: See other instructions in `.github/instructions/` or generate via `/NewInstructions`

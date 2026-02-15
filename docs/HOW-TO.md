@@ -447,10 +447,10 @@ Store tech-stack-specific standards in `.github/standards/` (languages/, framewo
 ## 📚 Additional Resources
 
 ### Documentation
-- **[README.md](README.md)** - Framework overview and quick start
+- **[README.md](../README.md)** - Framework overview and quick start
 - **[QUICKSTART.md](QUICKSTART.md)** - 5-minute setup guide
 - **[EXAMPLES.md](EXAMPLES.md)** - Real-world tech stack examples
-- **[dev/ARCHITECTURE.md](dev/ARCHITECTURE.md)** - Architecture and asset inventory
+- **[ARCHITECTURE.md](ARCHITECTURE.md)** - Architecture and asset inventory
 
 ### Official VS Code Resources
 - [VS Code Copilot Customization](https://code.visualstudio.com/docs/copilot/customization/overview)

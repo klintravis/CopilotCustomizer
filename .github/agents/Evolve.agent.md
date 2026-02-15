@@ -107,7 +107,7 @@ Before returning results to the orchestrator, verify:
 
 ### Documentation Review Process
 
-**Target Documents**: `README.md`, `QUICKSTART.md`, `HOW-TO.md`, `AGENTS.md`, `dev/ARCHITECTURE.md`, `EXAMPLES.md`
+**Target Documents**: `README.md`, `QUICKSTART.md`, `HOW-TO.md`, `AGENTS.md`, `docs/ARCHITECTURE.md`, `EXAMPLES.md`
 
 **Review Criteria**: Accuracy, completeness, clarity, structure, examples, currency (v1.109+), cross-references, consistency
 
@@ -215,19 +215,29 @@ Before returning results to the orchestrator, verify:
 ### Example Interactions
 
 **Orchestrator**: "Check for new VS Code Copilot features"
-**ToolkitEvolution**: Fetches latest release notes and documentation → parses for customization-related changes → compares against toolkit current state → returns findings with impact assessment and recommended adaptations
+**Evolve**: Fetches latest release notes and documentation → parses for customization-related changes → compares against toolkit current state → returns findings with impact assessment and recommended adaptations
 
 **Orchestrator**: "Review the toolkit documentation"
-**ToolkitEvolution**: Audits README, QUICKSTART, HOW-TO, AGENTS.md → applies documentation quality checklist → identifies gaps, outdated content, broken links → returns prioritized improvements with specific fixes
+**Evolve**: Audits README, QUICKSTART, HOW-TO, AGENTS.md → applies documentation quality checklist → identifies gaps, outdated content, broken links → returns prioritized improvements with specific fixes
 
 **Orchestrator**: "Run a self-audit before release"
-**ToolkitEvolution**: Initiates comprehensive self-validation → checks schema compliance, cross-references, harmonization depth, tool ecosystem health → returns multi-dimensional report with pass/fail status
+**Evolve**: Initiates comprehensive self-validation → checks schema compliance, cross-references, harmonization depth, tool ecosystem health → returns multi-dimensional report with pass/fail status
 
 **Orchestrator**: "Optimize token usage in the agent files"
-**ToolkitEvolution**: Analyzes all agent files for size and redundancy → identifies optimization opportunities → returns recommendations with token savings estimates
+**Evolve**: Analyzes all agent files for size and redundancy → identifies optimization opportunities → returns recommendations with token savings estimates
 
 **Orchestrator**: "Add a deployment agent to the toolkit"
-**ToolkitEvolution**: Classifies as high-risk feature request → analyzes requirements and integration points → returns specification and implementation plan with risk assessment
+**Evolve**: Classifies as high-risk feature request → analyzes requirements and integration points → returns specification and implementation plan with risk assessment
+
+### Plan Tracking
+
+All Evolve improvement plans are persisted to `docs/plans/` (gitignored) with standardized naming:
+- `Toolkit-{Feature-Name}.md` for feature implementations
+- `Toolkit-{Task-Type}-{Date}.md` for ad-hoc improvements
+
+**Plan Status**: Track via frontmatter: `PENDING APPROVAL`, `IN PROGRESS`, `COMPLETED`, `ARCHIVED`
+
+Plans provide audit trail for toolkit evolution and enable resumption of multi-phase improvements.
 
 ### Skills Integration
 

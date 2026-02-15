@@ -27,7 +27,7 @@ EXPLORER
 
 Open Copilot Chat (`Ctrl+Shift+I` on Windows/Linux or `Cmd+Shift+I` on Mac) and run:
 
-**Option A - Slash Command** (recommended):
+**Option A - Slash Command** (recommended for full customization):
 ```
 /Bootstrap REPOSITORY_PATH: "/absolute/path/to/your-project"
 ```
@@ -36,6 +36,12 @@ Open Copilot Chat (`Ctrl+Shift+I` on Windows/Linux or `Cmd+Shift+I` on Mac) and 
 ```
 Bootstrap Copilot assets for my project at /absolute/path/to/your-project
 ```
+
+**Option C - Quick Start with `/init`** (VS Code 1.109+, instructions only):
+```
+/init
+```
+The `/init` command analyzes your workspace and generates a `copilot-instructions.md` file. Use this for a fast, lightweight setup when you only need custom instructions (no agents, skills, or prompts). For the full orchestrated workflow with all asset types, use Option A or B.
 
 **Important**: Use the **absolute path** to your project:
 - ✅ Correct: `/Users/yourname/projects/my-app` or `C:\Users\yourname\projects\my-app`
@@ -91,8 +97,7 @@ Each generated asset type serves a specific purpose:
 
 For common issues (prompt visibility, output location, confirmations, performance), see:
 
-- `HOW-TO.md` → Troubleshooting
-- Direct link: HOW-TO.md section “Troubleshooting”
+- [HOW-TO.md → Troubleshooting](HOW-TO.md#-troubleshooting)
 
 This guide keeps QUICKSTART lean; the HOW-TO has comprehensive fixes and tips.
 
@@ -120,8 +125,8 @@ This guide keeps QUICKSTART lean; the HOW-TO has comprehensive fixes and tips.
 
 - **[EXAMPLES.md](EXAMPLES.md)** - Real-world examples with React, Python, .NET, Node.js, PHP, and monorepos
 - **[HOW-TO.md](HOW-TO.md)** - Complete commands reference + advanced workflows + troubleshooting
-- **[README.md](README.md)** - Framework overview and architecture
-- **[dev/ARCHITECTURE.md](dev/ARCHITECTURE.md)** - Full architecture deep-dive + asset inventory
+- **[README.md](../README.md)** - Framework overview and architecture
+- **[ARCHITECTURE.md](ARCHITECTURE.md)** - Full architecture deep-dive + asset inventory
 
 ### Common Troubleshooting
 
