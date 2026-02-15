@@ -430,3 +430,30 @@ jobs:
 6. **Documented** - Playbooks for common scenarios
 7. **Gated** - Approval gates for production changes
 8. **Measurable** - DORA metrics (deployment frequency, lead time, MTTR, change failure rate)
+
+## Integration with Other Skills
+
+**Works well with**:
+- **repo-analysis** — Detect existing CI/CD infrastructure and deployment patterns
+- **planning** — Create phased deployment implementation plans with risk mitigation
+- **orchestration** — Design conductor/subagent systems for complex multi-stage deployments
+- **documentation** — Generate runbooks, deployment guides, and incident response docs
+
+**Typical workflow**: repo-analysis discovers current deployment state → this skill designs target CI/CD architecture → planning creates migration roadmap → orchestration coordinates multi-phase rollout → documentation generates operational guides
+
+## Success Criteria
+
+- [ ] CI/CD pipeline successfully builds and deploys application
+- [ ] All test phases pass (unit, integration, e2e)
+- [ ] Security scans integrated and passing
+- [ ] Deployment completes in acceptable time (< 15 minutes typical)
+- [ ] Rollback procedure tested and documented
+- [ ] Monitoring and alerting configured for deployment metrics
+- [ ] Environment promotion strategy clearly defined
+- [ ] Team trained on deployment process and runbooks available
+- [ ] DORA metrics tracked and improving over time
+- [ ] Infrastructure-as-code commits pass validation checks
+
+---
+
+*Generated following Agent Skills standard (agentskills.io)*

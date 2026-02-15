@@ -29,7 +29,7 @@ Open Copilot Chat (`Ctrl+Shift+I` on Windows/Linux or `Cmd+Shift+I` on Mac) and 
 
 **Option A - Slash Command** (recommended):
 ```
-/BootstrapRepo REPOSITORY_PATH: "/absolute/path/to/your-project"
+/Bootstrap REPOSITORY_PATH: "/absolute/path/to/your-project"
 ```
 
 **Option B - Natural Language**:
@@ -77,7 +77,7 @@ Each generated asset type serves a specific purpose:
 
 | Asset Type | What It Does | Example |
 |------------|--------------|---------|
-| **Skills** | Portable AI methodologies that work across VS Code, CLI, Claude, Cursor | `repository-analysis/` - Teaches systematic codebase analysis |
+| **Skills** | Portable AI methodologies that work across VS Code, CLI, Claude, Cursor | `repo-analysis/` - Teaches systematic codebase analysis |
 | **Agents** | VS Code specialists with tool access tailored to your tech stack | `APIExpert.agent.md` - FastAPI/Express/.NET API specialist |
 | **Instructions** | Coding standards auto-applied to matching files | `TestingPatterns.instructions.md` - Applied to all `*.test.*` files |
 | **Prompts** | Interactive slash commands with parameters | `/GenerateEndpoint` - Scaffolds API endpoint + tests |
@@ -103,8 +103,8 @@ This guide keeps QUICKSTART lean; the HOW-TO has comprehensive fixes and tips.
 ### Customize Further
 
 **Add specific agents:**
-- Type: `/NewCopilotAgent` and specify agent details when prompted
-- Example: `/NewCopilotAgent AGENT_NAME: "DatabaseExpert", DOMAIN: "PostgreSQL"`
+- Type: `/NewAgent` and specify agent details when prompted
+- Example: `/NewAgent AGENT_NAME: "DatabaseExpert", DOMAIN: "PostgreSQL"`
 - Agent will ask for any missing details
 
 **Add coding rules:**
@@ -113,7 +113,7 @@ This guide keeps QUICKSTART lean; the HOW-TO has comprehensive fixes and tips.
 - Specify rules inline or agent will ask
 
 **Review what was created:**
-- Type: `/RepoReview TARGET_PATH: "/path/to/your-project"`
+- Type: `/Review TARGET_PATH: "/path/to/your-project"`
 - Get comprehensive analysis of your Copilot assets
 
 ### Learn More
@@ -121,7 +121,7 @@ This guide keeps QUICKSTART lean; the HOW-TO has comprehensive fixes and tips.
 - **[EXAMPLES.md](EXAMPLES.md)** - Real-world examples with React, Python, .NET, Node.js, PHP, and monorepos
 - **[HOW-TO.md](HOW-TO.md)** - Complete commands reference + advanced workflows + troubleshooting
 - **[README.md](README.md)** - Framework overview and architecture
-- **[dev/AGENTS.md](dev/AGENTS.md)** - Full architecture deep-dive + asset inventory
+- **[dev/ARCHITECTURE.md](dev/ARCHITECTURE.md)** - Full architecture deep-dive + asset inventory
 
 ### Common Troubleshooting
 

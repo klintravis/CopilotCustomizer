@@ -1,5 +1,5 @@
 ---
-applyTo: '.github/prompts/RepoReview.prompt.md'
+applyTo: '.github/prompts/Review.prompt.md'
 description: 'Comprehensive framework for conducting repository analysis of Copilot customization assets, providing structured assessment, prioritization, and ready-to-run improvement prompts for agents, instructions, prompts, and workspace files'
 ---
 
@@ -10,7 +10,7 @@ description: 'Comprehensive framework for conducting repository analysis of Copi
 
 ## Repo Review Instructions (v1.3)
 
-**Paired Prompt**: [RepoReview.prompt.md](../prompts/RepoReview.prompt.md)
+**Paired Prompt**: [Review.prompt.md](../prompts/Review.prompt.md)
 
 ### Purpose
 Guide AI agents to audit Copilot customization assets and deliver actionable improvement analysis via `templates/Analysis.template.md`. Includes workflow orchestration analysis, agent handoff opportunities, and automation recommendations.
@@ -44,30 +44,13 @@ Guide AI agents to audit Copilot customization assets and deliver actionable imp
 - Error handling and fallback paths
 
 #### 3. Handoff Opportunities
-**Analyze Existing Handoffs**:
-- Agent-to-agent transitions (YAML handoffs field)
-- Manual handoffs (user-initiated)
-- Automatic handoffs (send: true)
-- Conditional handoffs (send: false with validation)
-
-**Identify Missing Handoffs**:
-- Agents that should chain together
-- Repetitive multi-step processes
-- Manual workflows that could be automated
-- Context transfer gaps
+**Assess**: Existing handoffs (automatic/manual/conditional), missing chains, repetitive multi-step processes, context transfer gaps
 
 #### 4. Automation Potential
-**Workflow Orchestration**:
-- Single-entry point workflows for complex tasks
+- Single-entry workflows for complex tasks
 - Multi-agent chains for specialized domains
-- Autonomous execution after approval gates
-- Batch operations and parallel processing
-
-**Agent Specialization**:
-- Domain experts (API, testing, security, documentation)
-- Process orchestrators (planning, execution, verification)
-- Quality assurance agents (validation, harmonization)
-- Reporting agents (documentation, summaries)
+- Agent specialization (domain experts, orchestrators, QA, reporting)
+- Autonomous execution with approval gates
 
 ### Output Requirements
 **Location**: `CopilotCustomizer/output/<repo-name> - Repo Review - <YYYY-MM-DD>.md`  
@@ -102,19 +85,11 @@ Guide AI agents to audit Copilot customization assets and deliver actionable imp
 ```markdown
 ## Handoff Opportunities
 
-### High-Priority Handoffs (Immediate Value)
-1. **{SourceAgent} → {TargetAgent}**
-   - Use Case: {Description}
-   - Context: {What transfers}
-   - Benefit: {Time saved, quality improved}
-   - Implementation: {Concrete YAML example}
+### High-Priority Handoffs
+1. **{SourceAgent} → {TargetAgent}**: {Use Case} | Context: {What transfers} | Benefit: {Impact}
 
 ### Missing Workflow Chains
-1. **{Process Name}**
-   - Current: Manual {X}-step process
-   - Proposed: {AgentA} → {AgentB} → {AgentC}
-   - Entry Point: {Prompt to create}
-   - Expected ROI: {Efficiency gain}
+1. **{Process Name}**: Manual {X}-step → Proposed: {AgentChain} | Entry: {Prompt} | ROI: {Gain}
 ```
 
 **Automation Recommendations Output**:
@@ -122,18 +97,10 @@ Guide AI agents to audit Copilot customization assets and deliver actionable imp
 ## Automation Recommendations
 
 ### Priority 1: High-Impact Workflows
-1. **{Workflow Name}**
-   - Current State: {Manual steps}
-   - Automation Plan: {Agent chain design}
-   - Required Assets: {New agents/instructions}
-   - Effort: {Low/Medium/High}
-   - Value: {Time saved, consistency gained}
+1. **{Workflow Name}**: {Current State} → {Automation Plan} | Effort: {Low/Med/High} | Value: {Impact}
 
 ### Priority 2: Agent Specialization
-1. **{Domain} Expert**
-   - Need: {Specific capability gap}
-   - Handoffs: {Integration points}
-   - Reusable Instructions: {Existing assets to leverage}
+1. **{Domain} Expert**: {Capability gap} | Handoffs: {Integration points}
 ```
 
 **Prompt Standards**:
@@ -158,123 +125,39 @@ Guide AI agents to audit Copilot customization assets and deliver actionable imp
 - [ ] Workflow integration notes added
 - [ ] No placeholder variables
 
-### Workflow Pattern Examples
-
-**Linear Workflow**:
-```yaml
-# Single-path sequential execution
-EntryPoint → AnalysisAgent → PlanningAgent → ExecutionAgent → ValidationAgent → Complete
-Quality Gate: After PlanningAgent (user confirms plan)
-```
-
-**Branching Workflow**:
-```yaml
-# Parallel execution paths
-EntryPoint → Coordinator
-  ├─> SecurityAgent → Merge
-  ├─> PerformanceAgent → Merge
-  └─> DocumentationAgent → Merge
-Merge → ReportGenerator → Complete
-```
-
-**Conditional Workflow**:
-```yaml
-# Dynamic routing based on context
-EntryPoint → ClassifierAgent
-  ├─> [New Feature] → FeatureAgent → TestAgent
-  ├─> [Bug Fix] → BugfixAgent → ValidationAgent
-  └─> [Refactor] → RefactorAgent → ReviewAgent
-All paths → DocumentationAgent → Complete
-```
-
-**Iterative Workflow**:
-```yaml
-# Refinement loop until criteria met
-EntryPoint → GeneratorAgent → ValidationAgent
-  ├─> [Valid] → Complete
-  └─> [Issues] → RefinementAgent → GeneratorAgent (loop)
-Max iterations: 3
-```
-
-### Handoff YAML Examples
-
-**Automatic Handoff** (no user intervention):
-```yaml
-handoffs:
-  - label: 'Validate Generated Code'
-    agent: 'ValidationAgent'
-    prompt: 'Validate the generated code for syntax errors, test coverage, and best practices compliance.'
-    send: true
-```
-
-**Conditional Handoff** (requires validation):
-```yaml
-handoffs:
-  - label: 'Execute Approved Plan'
-    agent: 'ExecutionAgent'
-    prompt: 'Execute the approved implementation plan with precise file modifications.'
-    send: false  # Waits for user confirmation
-```
-
-**Context-Rich Handoff** (transfers detailed state):
-```yaml
-handoffs:
-  - label: 'Generate Documentation'
-    agent: 'DocumentationAgent'
-    prompt: 'Generate comprehensive documentation including: {{filesModified}}, {{featuresAdded}}, {{testsCoverage}}. Context: {{repositoryAnalysis}}'
-    send: true
-```
+### Workflow & Handoff Patterns
 
 ### Generator Prompts
 - [NewAgentsFile.prompt.md](../prompts/NewAgentsFile.prompt.md) → AGENTS.md
 - [NewInstructions.prompt.md](../prompts/NewInstructions.prompt.md) → Instructions
 - [NewPrompt.prompt.md](../prompts/NewPrompt.prompt.md) → Prompts
-- [NewCopilotAgent.prompt.md](../prompts/NewCopilotAgent.prompt.md) → Agents
-- [BootstrapRepo.prompt.md](../prompts/BootstrapRepo.prompt.md) → Complete workflow (NEW)
+- [NewAgent.prompt.md](../prompts/NewAgent.prompt.md) → Agents
+- [Bootstrap.prompt.md](../prompts/Bootstrap.prompt.md) → Complete workflow
 
 ### Workflow References
-**Existing Workflows**:
-- [BootstrapRepo](../../docs/workflows/BootstrapRepo.md) - Autonomous asset generation for a target repo in the same workspace
-
-**Workflow Instructions**:
-- [GenerateWorkflow.instructions.md](GenerateWorkflow.instructions.md) - Multi-chain workflow framework
-
-**Workflow Validation**:
-- Use `HarmonizeAndValidate` for integrated link/handoff/schema validation.
-
-**Handoff Documentation**:
-- Agent files with `handoffs` YAML field for automatic transitions
-- Context transfer via structured prompt templates
-- Quality gates for user approval checkpoints
+**Bootstrap autonomous workflow**: Use [Bootstrap.prompt.md](../prompts/Bootstrap.prompt.md) to generate complete asset set for a repository
+- [Orchestration.instructions.md](Orchestration.instructions.md) - Conductor/subagent patterns
+- Use `Maintain` for integrated validation
 
 ### Analysis Guidelines
 
-**When Reviewing Workflows**:
-1. **Map Entry Points**: Identify user-facing prompts that launch workflows
-2. **Trace Handoffs**: Follow agent-to-agent transitions through the chain
-3. **Evaluate Autonomy**: Assess automation level (manual vs automatic handoffs)
-4. **Check Context Transfer**: Verify complete information passes between agents
-5. **Validate Quality Gates**: Ensure approval points exist at strategic moments
-6. **Measure Efficiency**: Calculate user interactions required vs workflow complexity
+**Reviewing Workflows**: Map entry points → Trace handoffs → Evaluate autonomy → Check context transfer → Validate quality gates → Measure efficiency
 
-**When Identifying Opportunities**:
-1. **Repetitive Patterns**: Look for manual processes repeated frequently
-2. **Multi-Step Tasks**: Identify sequences that could be chained
-3. **Domain Expertise**: Note specialized knowledge that could be agent-ified
-4. **Context Gaps**: Find information loss between steps
-5. **Missing Automation**: Spot manual handoffs that could be automatic
-6. **Scalability Issues**: Recognize bottlenecks from manual orchestration
+**Identifying Opportunities**: Repetitive patterns, multi-step tasks, domain expertise needs, context gaps, missing automation, scalability bottlenecks
 
 **Priority Framework**:
-| Priority | Criteria | Examples |
-|----------|----------|----------|
-| **High** | Frequent use + high manual effort + clear automation path | Daily code review workflow, repetitive documentation tasks |
-| **Medium** | Moderate frequency + medium complexity + some manual judgment needed | Weekly security audits, periodic refactoring |
-| **Low** | Rare use + high complexity + requires significant custom logic | One-off migrations, exploratory research tasks |
+- **High**: Frequent use + high manual effort + clear automation path
+- **Medium**: Moderate frequency + some complexity + requires judgment
+- **Low**: Rare use + high complexity + significant custom logic
 
 *Framework: [CopilotCustomizer.agent.md](../agents/CopilotCustomizer.agent.md)*  
-*Workflow Framework: [GenerateWorkflow.instructions.md](GenerateWorkflow.instructions.md)*  
 *VS Code: [Custom Instructions](https://code.visualstudio.com/docs/copilot/customization/custom-instructions)*
+
+## Change History
+
+| Version | Date | Changes |
+|---------|------|---------||
+| v1.0 | 2026-01-15 | Initial release |
 
 ---
 

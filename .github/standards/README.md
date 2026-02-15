@@ -149,7 +149,7 @@ Use these identifiers in the `technologies` array for consistent matching:
 2. **Create the markdown file** - Use kebab-case naming (e.g., `my-standard.md`)
 3. **Add YAML frontmatter** - Include all required fields (see schema above)
 4. **Write principles, not prescriptions** - Focus on guidance that stays relevant as libraries evolve
-5. **Test the standard** - Run `/BootstrapRepo` on a matching project to verify influence
+5. **Test the standard** - Run `/Bootstrap` on a matching project to verify influence
 
 ### Example: Creating a Python Standard
 
@@ -261,25 +261,25 @@ Understanding how your standards influence generated assets:
 
 ```
 ┌─────────────────────────────────────────────────────────┐
-│ 1. User runs /BootstrapRepo on target project          │
+│ 1. User runs /Bootstrap on target project          │
 │    └─ or uses individual generators                     │
 └────────────────────┬────────────────────────────────────┘
                      │
 ┌────────────────────▼────────────────────────────────────┐
-│ 2. repository-analysis skill detects tech stack        │
+│ 2. repo-analysis skill detects tech stack        │
 │    └─ Languages, frameworks, tools identified           │
 └────────────────────┬────────────────────────────────────┘
                      │
 ┌────────────────────▼────────────────────────────────────┐
-│ 3. ResolveStandards instruction matches standards      │
+│ 3. Standards instruction matches standards      │
 │    └─ By technologies + scope (always or tech-match)    │
 │    └─ Prioritizes: high > medium > low                  │
 └────────────────────┬────────────────────────────────────┘
                      │
 ┌────────────────────▼────────────────────────────────────┐
 │ 4. Matched standards passed as context to:             │
-│    └─ AssetPlanner (for recommendations)                │
-│    └─ AssetGenerator (for file creation)                │
+│    └─ Planner (for recommendations)                │
+│    └─ Generator (for file creation)                │
 └────────────────────┬────────────────────────────────────┘
                      │
 ┌────────────────────▼────────────────────────────────────┐
@@ -290,7 +290,7 @@ Understanding how your standards influence generated assets:
 └────────────────────┬────────────────────────────────────┘
                      │
 ┌────────────────────▼────────────────────────────────────┐
-│ 6. VerificationAgent validates                          │
+│ 6. Verifier validates                          │
 │    └─ Confirms natural integration                      │
 │    └─ Ensures no copy-paste violations                  │
 └─────────────────────────────────────────────────────────┘
@@ -323,7 +323,7 @@ Understanding how your standards influence generated assets:
 
 - **Be concise** - Standards guide, they don't dictate every detail
 - **Stay current** - Review and update versions as practices evolve
-- **Test influence** - Run `/BootstrapRepo` on sample projects to verify impact
+- **Test influence** - Run `/Bootstrap` on sample projects to verify impact
 - **Document intent** - Use descriptions that explain the "why" behind principles
 
 ### Organize for Discovery

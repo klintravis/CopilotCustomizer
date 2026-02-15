@@ -1,35 +1,33 @@
 ---
+description: Create a new VS Code custom instruction file with coding standards and patterns
+argument-hint: Describe the domain for these instructions
 agent: CopilotCustomizer
 ---
-
-<!-- ════════════════════════════════════════════════════════════════════════════
-📢 INVOCATION: NewInstructions Prompt (Prompt) v1.0
-   STATUS: Prompt Ready — Awaiting execution
-════════════════════════════════════════════════════════════════════════════ -->
 
 ```
 ✨ PROMPT ACTIVATED: NewInstructions (Asset Generator)
    Purpose: Create VS Code custom instruction files
    Standard: VS Code (.instructions.md with applyTo scoping)
-   Instructions: GenerateInstructions.instructions.md
+   Instructions: InstructionAuthoring.instructions.md
    Input: DOMAIN, OBJECTIVE
    Output: Complete .instructions.md with coding standards and patterns
    Scope: VS Code-specific (auto-applies to matching files)
 ```
 
-**Paired Instructions**: [GenerateInstructions.instructions.md](../instructions/GenerateInstructions.instructions.md)
+**Paired Instructions**: [InstructionAuthoring.instructions.md](../instructions/InstructionAuthoring.instructions.md)
 
 ### Task Intent
 Generate `*.instructions.md` files.
 
 ### Variable Block
 ---
-**Domain** [REQUIRED]: "{DOMAIN}"
-**Objective** [REQUIRED]: "{OBJECTIVE}"
+**Domain** [REQUIRED]: ${input:domain:e.g., React frontend, Node.js API, Python ML}
+**Objective** [OPTIONAL]: ${input:objective:What should these instructions enforce?}
 ---
 
 ### Validation Rules
-- Required: `{DOMAIN}` and `{OBJECTIVE}`
+- Required: `domain`
+- Optional (inferred from domain and context if omitted): `objective`
 - All other details (tech stack, security level, sections, refinement commands) inferred from domain and objective
 
 ### Generation Gate
@@ -47,41 +45,11 @@ Generate complete `*.instructions.md` with:
 | `refine: expand` | Add details |
 | `refine: security` | Enhance security section |
 
-**Generated using**: [GenerateInstructions.instructions.md](../instructions/GenerateInstructions.instructions.md)
+**Generated using**: [InstructionAuthoring.instructions.md](../instructions/InstructionAuthoring.instructions.md)
 
 ### After Generation
 Issue refinement commands or tweak variables and resend to regenerate.
 
-### Standards Compliance & Processing Metadata
-
-**VS Code Copilot Compliance**: Prompt Files Schema - Full compliance achieved  
-**Schema Requirements**: 
-- ✅ Markdown body with clear usage instructions and variable blocks
-- ✅ Optional `agent`, `tools`, and `model` fields when useful
-- ✅ Documentation sources referenced per schema guidelines
-
-**Standards Sources**: 
-- [VS Code Prompt Files](https://code.visualstudio.com/docs/copilot/customization/prompt-files)
-- [VS Code Copilot Documentation](https://code.visualstudio.com/docs/copilot/customization/)
-
-**Processing Metadata**:
-- **Standards Version**: VS Code Copilot v2025.11 (Prompt Files latest)
-- **Harmonization**: comprehensive-harmony-v1.0 (enhanced cross-references)
-- **Content Preservation**: 100% functionality maintained with enhanced standards
-- **Formatting Applied**: 2025-09-15 | Standards compliance verified
-
-### Summary
-Standardizes `*.instructions.md` creation with minimal inputs, smart inference, and strict schema conformance to [GenerateInstructions.instructions.md](../instructions/GenerateInstructions.instructions.md). Integrates seamlessly with the complete Copilot customization asset ecosystem.
-
 ---
 
-**Harmonization Applied**: 2025-09-15 | **Asset Integration**: 16-file ecosystem  
-**Cross-References**: Enhanced with bidirectional binding | **Schema**: VS Code v1.0 compliant  
-
-*Generated and formatted following VS Code GitHub Copilot official documentation standards*
-
----
-
-## Audit
-Last invoked: [Manual log]
-Change history: v1.0 (2026-01-14) - Added traceability
+*VS Code Copilot Customization Framework v1.0*

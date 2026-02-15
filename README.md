@@ -40,7 +40,7 @@ GitHub Copilot is powerful, but generic. Your team needs AI that understands *yo
 1. **Add to workspace**: `File` → `Add Folder to Workspace` → Select CopilotCustomizer directory
 2. **Generate assets**: Open Copilot Chat (`Ctrl+Shift+I` or `Cmd+Shift+I`) and run:
    ```
-   /BootstrapRepo REPOSITORY_PATH: "/absolute/path/to/your-project"
+   /Bootstrap REPOSITORY_PATH: "/absolute/path/to/your-project"
    ```
 3. **Confirm generation**: Review the analysis, then type `confirm` (or click the confirm button in VS Code 1.109+)
 
@@ -55,7 +55,7 @@ The framework analyzes your repository, detects your tech stack, and generates S
 | **[QUICKSTART.md](QUICKSTART.md)** | 5-minute setup guide ← **Start here** |
 | **[EXAMPLES.md](EXAMPLES.md)** | Real-world examples with React, Python, .NET, Node.js, and more |
 | **[HOW-TO.md](HOW-TO.md)** | Complete commands reference + troubleshooting |
-| **[dev/AGENTS.md](dev/AGENTS.md)** | Architecture deep-dive + asset inventory |
+| **[dev/ARCHITECTURE.md](dev/ARCHITECTURE.md)** | Architecture deep-dive + asset inventory |
 
 ## Key Commands
 
@@ -63,20 +63,20 @@ All commands work via slash commands in Copilot Chat or natural language:
 
 ```bash
 # Complete setup - analyzes repo and generates all assets
-/BootstrapRepo REPOSITORY_PATH: "/path/to/project"
+/Bootstrap REPOSITORY_PATH: "/path/to/project"
 
 # Analyze project - understand tech stack and recommend improvements
-/RepoReview TARGET_PATH: "/path/to/project"
+/Review TARGET_PATH: "/path/to/project"
 
 # Create individual assets
 /NewSkill SKILL_NAME: "name", PURPOSE: "description"
-/NewCopilotAgent AGENT_NAME: "name", DOMAIN: "area"
+/NewAgent AGENT_NAME: "name", DOMAIN: "area"
 /NewInstructions DOMAIN: "area", APPLY_TO: "**/*.ts"
 /NewPrompt PURPOSE: "template goal"
 
 # Advanced workflows
-/NewHandoffChain WORKFLOW_NAME: "name"
-/NewOrchestratedSystem SYSTEM_NAME: "name", SYSTEM_PATTERN: "orchestra"
+/NewMultiAgent SYSTEM_NAME: "name", COMPLEXITY: "linear"
+/NewMultiAgent SYSTEM_NAME: "name", COMPLEXITY: "orchestra"
 /NewAgentsFile REPOSITORY_PATH: "/path/to/project"
 ```
 
@@ -86,31 +86,37 @@ See [HOW-TO.md](HOW-TO.md) for detailed command documentation and advanced usage
 
 ## Architecture
 
-CopilotCustomizer uses an **orchestrated agent system** where a central coordinator (CopilotCustomizer agent) intelligently routes work to specialized subagents. All five asset types work synergistically to create a cohesive AI development environment.
+CopilotCustomizer uses an **orchestrated agent system** where a unified orchestrator (CopilotCustomizer agent) programmatically routes all work—including both external repository operations and toolkit self-improvement—to specialized subagents via the `agent` tool.
 
 **Core Components**:
-- **Central Orchestrator** - Routes workflows to specialized subagents
-- **6 Specialized Agents** - BootstrapRepo, AssetPlanner, AssetGenerator, ChangeExecutor, VerificationAgent
-- **6 Core Skills** - repository-analysis, implementation-planning, copilot-asset-design, technical-documentation, deployment-automation, multi-agent-orchestration
-- **14 Instructions** - Generation frameworks, quality patterns, standards resolution
-- **11 User Prompts** - Interactive commands for common workflows
-- **Enterprise Standards** - Organization-wide conventions (43 standards across 8 categories)
+- **Unified Orchestrator** — Routes all workflows (user repos + toolkit) to specialized subagents
+- **7 Agents** — CopilotCustomizer (orchestrator), Bootstrap, Planner, Generator, Editor, Verifier, Evolve
+- **6 Core Skills** — repo-analysis, planning, asset-design, documentation, deployment-automation, orchestration
+- **12 Instructions** — Generation frameworks, quality patterns, standards resolution, toolkit maintenance
+- **11 Prompts** — Interactive commands for workflows, asset generation, maintenance, and toolkit evolution
+- **Enterprise Standards** — Organization-wide conventions (43 standards across 8 categories)
 
 **Key Patterns**:
-- **Multi-Workspace Pattern** - CopilotCustomizer stays separate, generates into your projects
-- **Skills-First Strategy** - Cross-platform analysis and planning before VS Code-specific operations
-- **Quality Gates** - Automatic schema validation, harmonization, and integrity verification
-- **Handoff Orchestration** - Guided workflows with context preservation (VS Code 1.109+)
+- **Multi-Workspace Pattern** — CopilotCustomizer stays separate, generates into your projects
+- **Skills-First Strategy** — Cross-platform analysis and planning before VS Code-specific operations
+- **Quality Gates** — Automatic schema validation, harmonization, and integrity verification
+- **Programmatic Orchestration** — All subagent invocation via `agent` tool (no manual handoffs)
 
-See [dev/AGENTS.md](dev/AGENTS.md) for complete architecture documentation:
+See [dev/ARCHITECTURE.md](dev/ARCHITECTURE.md) for complete architecture documentation:
 - Full asset inventory with file counts and purposes
 - Enterprise standards system details  
 - Agent handoff workflows and orchestration patterns
 - Bootstrap automation workflow breakdown
 
-## Developer Tools
+## Maintenance & Toolkit Evolution
 
-Maintenance commands (`/Maintain`, `/QuickChange`) live in [`dev/`](dev/README.md) to keep the VS Code slash-command palette clean and focused on user workflows. See [dev/README.md](dev/README.md) for developer tool usage.
+All maintenance and toolkit evolution commands are available as standard slash commands:
+
+- `/Maintain` — Unified asset maintenance via AssetMaintenance instruction (optimize, harmonize, format, validate)
+- `/QuickFix` — Fast minimal-diff changes with single approval gate
+- `/Evolve` — Monitor VS Code Copilot releases, audit toolkit assets, review documentation, optimize performance, and implement feature requests
+
+**Toolkit Self-Improvement**: Use `/Evolve` to evolve the framework itself. The CopilotCustomizer orchestrator routes these requests to the Evolve specialist subagent.
 
 ## Requirements
 

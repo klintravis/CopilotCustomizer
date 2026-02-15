@@ -1,35 +1,33 @@
 ---
+description: Create a new VS Code prompt file (slash command) with variables and validation
+argument-hint: Describe the domain and goal for this prompt
 agent: CopilotCustomizer
 ---
-
-<!-- ════════════════════════════════════════════════════════════════════════════
-📢 INVOCATION: NewPrompt Prompt (Prompt) v1.0
-   STATUS: Prompt Ready — Awaiting execution
-════════════════════════════════════════════════════════════════════════════ -->
 
 ```
 ✨ PROMPT ACTIVATED: NewPrompt (Asset Generator)
    Purpose: Create VS Code slash command prompts
    Standard: VS Code (.prompt.md with variable blocks)
-   Instructions: GeneratePrompt.instructions.md
+   Instructions: PromptAuthoring.instructions.md
    Input: DOMAIN, GOAL
    Output: Complete .prompt.md with variables, usage, and validation
    Scope: VS Code Copilot slash commands
 ```
 
-**Paired Instructions**: [GeneratePrompt.instructions.md](../instructions/GeneratePrompt.instructions.md)
+**Paired Instructions**: [PromptAuthoring.instructions.md](../instructions/PromptAuthoring.instructions.md)
 
 ### Task Intent
 Generate `*.prompt.md` files.
 
 ### Variable Block
 ---
-**Domain** [REQUIRED]: "{DOMAIN}"
-**Goal** [REQUIRED]: "{GOAL}"
+**Domain** [REQUIRED]: ${input:domain:e.g., React frontend, Node.js API, Python ML}
+**Goal** [OPTIONAL]: ${input:goal:What should this prompt accomplish?}
 ---
 
 ### Validation Rules
-- Required: `{DOMAIN}` and `{GOAL}`
+- Required: `domain`
+- Optional (inferred from domain and context if omitted): `goal`
 - All other details (variables, output sections, refinement commands) inferred from domain and goal
 
 ### Generation Gate
@@ -50,7 +48,7 @@ Generate complete `*.prompt.md` with:
 | `refine: expand` | Add details |
 | `refine: optimize` | Remove redundancy |
 
-**Generated using**: [GeneratePrompt.instructions.md](../instructions/GeneratePrompt.instructions.md)
+**Generated using**: [PromptAuthoring.instructions.md](../instructions/PromptAuthoring.instructions.md)
 
 ---
 

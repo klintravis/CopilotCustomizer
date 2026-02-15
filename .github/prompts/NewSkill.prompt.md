@@ -1,15 +1,16 @@
 ---
 description: Generate new Agent Skill for cross-platform AI capabilities
+argument-hint: Provide the skill name and optionally its purpose
 agent: CopilotCustomizer
 ---
 
-# New Agent Skill Generator
+## New Agent Skill Generator
 
 ```
 ✨ PROMPT ACTIVATED: NewSkill (Asset Generator)
    Purpose: Create cross-platform Agent Skills
    Standard: agentskills.io (portable across VS Code, CLI, Claude, Cursor)
-   Instructions: GenerateSkill.instructions.md
+   Instructions: SkillAuthoring.instructions.md
    Input: SKILL_NAME, PURPOSE, TARGET_PATH (optional), INCLUDE_EXAMPLES, INCLUDE_SCRIPTS
    Output: Complete .github/skills/{name}/SKILL.md with examples and docs
    Scope: Portable across all AI platforms and tools
@@ -19,11 +20,11 @@ Creates Agent Skills (agentskills.io open standard) that work across VS Code, Gi
 
 ## Parameters
 
-- **SKILL_NAME** (required): Skill identifier (lowercase-with-hyphens, max 64 chars)
-- **PURPOSE** (required): What capability this skill provides
-- **TARGET_PATH** (optional): Repository path (defaults to current workspace)
-- **INCLUDE_EXAMPLES** (optional): true/false (default: true)
-- **INCLUDE_SCRIPTS** (optional): true/false (default: false)
+- **Skill Name** [REQUIRED]: ${input:skillName:lowercase-with-hyphens, e.g., webapp-testing}
+- **Purpose** [OPTIONAL]: ${input:purpose:What capability does this skill provide?}
+- **Target Path** [OPTIONAL]: ${input:targetPath:defaults to current workspace}
+- **Include Examples** [OPTIONAL]: ${input:includeExamples:true or false (default: true)}
+- **Include Scripts** [OPTIONAL]: ${input:includeScripts:true or false (default: false)}
 
 ## Usage Examples
 
@@ -94,6 +95,9 @@ TARGET_PATH/.github/skills/
 ✅ **Good**: `webapp-testing`, `api-debugging`, `github-actions-debug`
 ❌ **Bad**: `WebAppTesting`, `api_debugging`, `TESTING`
 
+### Instruction Reference
+See **SkillAuthoring.instructions.md** for complete template and structure guidelines.
+
 ### Description Format
 ```yaml
 description: |
@@ -102,58 +106,11 @@ description: |
   Provides [key capabilities].
 ```
 
-**Example**:
-```yaml
-description: |
-  Automates Playwright test creation and execution for web applications.
-  Use when building or debugging end-to-end tests.
-  Provides test templates, execution patterns, and debugging strategies.
-```
+**Example**: "Automates Playwright test creation and execution for web applications. Use when building or debugging end-to-end tests."
 
 ### Content Structure
 
-```markdown
----
-name: skill-name
-description: Clear, specific description under 1024 characters
----
-
-# Skill Purpose
-[Brief overview]
-
-## When to Use This Skill
-- Scenario 1
-- Scenario 2
-- Scenario 3
-
-## Instructions
-
-### Step 1: [Action]
-[Detailed steps...]
-
-### Step 2: [Action]
-[Detailed steps...]
-
-## Examples
-
-### Example 1: [Use Case]
-\`\`\`language
-[Code example]
-\`\`\`
-
-### Example 2: [Use Case]
-\`\`\`language
-[Code example]
-\`\`\`
-
-## Resources
-- [Script](./scripts/helper.sh)
-- [Template](./resources/template.md)
-
-## Success Criteria
-- [ ] Outcome 1
-- [ ] Outcome 2
-```
+See **SkillAuthoring.instructions.md** for complete template and structure guidelines.
 
 ## Tech Stack Awareness
 
@@ -167,70 +124,13 @@ Generate skills based on detected technologies:
 | .NET/C# | `controller-generation`, `entity-framework`, `unit-testing` |
 | Docker/K8s | `container-debugging`, `deployment-automation`, `config-validation` |
 
-## Common Skill Templates
+## Skill Templates & Examples
 
-### Testing Skill
-```yaml
----
-name: [framework]-testing
-description: Automated testing for [framework] applications with [tool]. Use when creating or debugging tests.
----
-
-# [Framework] Testing Skill
-
-## Purpose
-Provides patterns for writing effective tests...
-
-## Instructions
-### 1. Test Structure
-[Framework-specific test patterns]
-
-### 2. Running Tests
-[Execution commands and options]
-
-## Examples
-[Real test examples]
-```
-
-### Debugging Skill
-```yaml
----
-name: [domain]-debugging
-description: Debug [domain] issues by analyzing [data sources] and suggesting fixes for common problems.
----
-
-# [Domain] Debugging Skill
-
-## Purpose
-Identifies and resolves common [domain] failures...
-
-## Instructions
-### 1. Problem Identification
-[How to diagnose issues]
-
-### 2. Resolution Strategies
-[Step-by-step fixes]
-```
-
-### Code Generation Skill
-```yaml
----
-name: [component]-generation
-description: Generate [components] with proper [patterns]. Use when building new [features].
----
-
-# [Component] Generation Skill
-
-## Purpose
-Creates production-ready [components] following best practices...
-
-## Instructions
-### 1. Component Structure
-[Template and patterns]
-
-### 2. Integration
-[How to use generated code]
-```
+See **SkillAuthoring.instructions.md** for comprehensive templates covering:
+- Testing skills (unit/integration/e2e)
+- Debugging skills (domain-specific troubleshooting)
+- Code generation skills (components/patterns)
+- Deployment skills (automation/validation)
 
 ## Cross-Platform Verification
 
@@ -252,31 +152,10 @@ After generation, verify skill works across platforms:
 
 ## Integration with Existing Assets
 
-### Link to Instructions
-```markdown
-# In SKILL.md
-Follow coding standards defined in [standards.instructions.md](../instructions/CodingStandards.instructions.md)
-```
-
-### Reference in Agents
-```markdown
-# In agent file
----
-description: Testing specialist
----
-
-Use the webapp-testing skill for test patterns, then execute with terminal tools.
-```
-
-### Combine with Prompts
-```markdown
-# In prompt file
----
-description: Generate comprehensive tests
----
-
-Leverage available testing skills to create test suite...
-```
+- **Link to Instructions**: Reference related instruction files for standards and patterns
+- **Reference in Agents**: Update agent descriptions to mention new skill capabilities
+- **Combine with Prompts**: Leverage skills in prompt workflows for enhanced functionality
+- **Update AGENTS.md**: Document skill in architecture inventory
 
 ## Output Format
 
@@ -310,10 +189,11 @@ After generation, provide:
 
 1. **Focused Scope**: One skill = one specialized capability
 2. **Clear Activation**: Description triggers on specific prompts
-3. **Rich Resources**: Include examples, scripts, templates
-4. **Cross-Platform**: Avoid platform-specific dependencies
-5. **Progressive Disclosure**: Keep heavy resources in separate files
-6. **Maintainable**: Clear structure, well-documented
+3. **Cross-Platform**: Avoid platform-specific dependencies
+4. **Progressive Disclosure**: Keep resources in separate files
+5. **Maintainable**: Clear structure, well-documented
+
+See **SkillAuthoring.instructions.md** for detailed quality criteria and validation steps.
 
 ## Anti-Patterns to Avoid
 

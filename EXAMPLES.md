@@ -26,7 +26,7 @@ code .
 ### Generate Assets
 ```bash
 # In Copilot Chat, type the slash command:
-/BootstrapRepo REPOSITORY_PATH: "/Users/dev/my-react-app"
+/Bootstrap REPOSITORY_PATH: "/Users/dev/my-react-app"
 
 # Review analysis and recommendations
 # Type: confirm
@@ -85,7 +85,7 @@ code .
 ### Generate Assets
 ```bash
 # In Copilot Chat, type the slash command:
-/BootstrapRepo REPOSITORY_PATH: "/home/dev/my-api"
+/Bootstrap REPOSITORY_PATH: "/home/dev/my-api"
 
 # Review analysis and recommendations
 # Type: confirm
@@ -144,7 +144,7 @@ code .
 ### Generate Assets
 ```bash
 # In Copilot Chat, type the slash command:
-/BootstrapRepo REPOSITORY_PATH: "C:\Projects\MyApi"
+/Bootstrap REPOSITORY_PATH: "C:\Projects\MyApi"
 
 # Review analysis and recommendations
 # Type: confirm
@@ -204,7 +204,7 @@ code .
 ### Generate Assets
 ```bash
 # In Copilot Chat, type the slash command:
-/BootstrapRepo REPOSITORY_PATH: "/Users/dev/my-express-api"
+/Bootstrap REPOSITORY_PATH: "/Users/dev/my-express-api"
 
 # Review analysis and recommendations
 # Type: confirm
@@ -260,10 +260,10 @@ code .
 ### Generate Assets
 ```bash
 # In Copilot Chat, analyze first:
-/RepoReview TARGET_PATH: "/var/www/my-laravel-app"
+/Review TARGET_PATH: "/var/www/my-laravel-app"
 
 # Review recommendations, then bootstrap:
-/BootstrapRepo REPOSITORY_PATH: "/var/www/my-laravel-app"
+/Bootstrap REPOSITORY_PATH: "/var/www/my-laravel-app"
 
 # Type: confirm
 ```
@@ -322,7 +322,7 @@ code my-monorepo
 ```bash
 # In Copilot Chat, type the slash command:
 # Bootstrap detects ALL languages automatically
-/BootstrapRepo REPOSITORY_PATH: "/Users/dev/my-monorepo"
+/Bootstrap REPOSITORY_PATH: "/Users/dev/my-monorepo"
 
 # Review multi-language analysis
 # Type: confirm
