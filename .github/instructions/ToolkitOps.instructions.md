@@ -162,10 +162,10 @@ The toolkit must follow its own generation standards:
 | Standard | Applied To | Check |
 |----------|-----------|-------|
 | `AgentAuthoring.instructions.md` | All `.agent.md` files | YAML schema, role sections, tool selections |
-| `GenerateInstructions.instructions.md` | All `.instructions.md` files | applyTo patterns, section structure |
-| `GeneratePrompt.instructions.md` | All `.prompt.md` files | Variable blocks, workflow phases |
-| `GenerateSkill.instructions.md` | All `SKILL.md` files | Skill schema, cross-platform sections |
-| `GenerateAgentsFile.instructions.md` | `AGENTS.md` files | Architecture sections, navigation |
+| `InstructionAuthoring.instructions.md` | All `.instructions.md` files | applyTo patterns, section structure |
+| `PromptAuthoring.instructions.md` | All `.prompt.md` files | Variable blocks, workflow phases |
+| `SkillAuthoring.instructions.md` | All `SKILL.md` files | Skill schema, cross-platform sections |
+| `AgentsFile.instructions.md` | `AGENTS.md` files | Architecture sections, navigation |
 | `Framework.instructions.md` | All assets | Framework patterns, quality criteria |
 
 #### Harmonization Checks
@@ -224,7 +224,7 @@ Look for these common duplication patterns:
 3. **Overlapping tool guidance**: Same tool usage patterns in multiple agents
    - **Fix**: Add to `AgentAuthoring.instructions.md` as reference section
 4. **Repeated quality criteria**: Same checklists appearing in multiple files
-   - **Fix**: Reference `CopilotAudit.instructions.md` instead of duplicating
+   - **Fix**: Reference `Framework.instructions.md` Audit Framework section instead of duplicating
 
 #### Optimization Workflow
 
@@ -294,11 +294,11 @@ For medium/high risk features, evaluate:
 ```
 1. Classify request (see matrix above)
 2. Conduct impact assessment
-3. Route to AssetPlanner for detailed specification
+3. Route to Planner for detailed specification
 4. Present plan to user with risk assessment
 5. Gate: Require explicit user approval
-6. Route to ChangeExecutor for implementation
-7. Route to VerificationAgent for validation
+6. Route to Editor for implementation
+7. Route to Verifier for validation
 8. Update CHANGELOG.md with change entry
 9. Update documentation if needed
 10. Present completion summary
@@ -402,10 +402,130 @@ When a plan status moves to COMPLETED:
 4. Update plan with completion date and changelog reference
 
 ---
+
+### 8. Hook Configuration Maintenance
+
+#### Hook File Locations
+
+| Location | Purpose | Contents |
+|----------|---------|----------|
+| `.github/hooks/*.json` | Hook configurations | Lifecycle event definitions, commands, timeouts |
+| `.github/scripts/` | Hook implementations | Shell scripts or Node.js scripts invoked by hooks |
+| `.github/logs/` | Hook output | Orchestration logs, metrics files (gitignored) |
+
+#### Validation Checklist
+
+When auditing hook configurations:
+
+- [ ] **JSON Well-Formed**: All `.github/hooks/*.json` files parse without errors
+- [ ] **Commands Executable**: Every hook `command` field references an existing script
+- [ ] **Scripts Exist**: All referenced scripts in `.github/scripts/` are present and executable
+- [ ] **Timeouts Within Bounds**: All timeout values ≤10s (hooks block agent pipeline)
+- [ ] **Lifecycle Coverage**: 8 lifecycle events configured: SessionStart, UserPromptSubmit, SubagentStart, SubagentStop, PreToolUse, PostToolUse, PreCompact, Stop
+- [ ] **Stdin JSON Fields**: Scripts correctly read VS Code stdin JSON fields (snake_case convention):
+  - Common (all events): `timestamp`, `cwd`, `sessionId`, `hookEventName`, `transcript_path`
+  - SessionStart: `source`
+  - UserPromptSubmit: `prompt`
+  - PreToolUse: `tool_name`, `tool_input`, `tool_use_id`
+  - PostToolUse: `tool_name`, `tool_input`, `tool_use_id`, `tool_response`
+  - SubagentStart: `agent_id`, `agent_type`
+  - SubagentStop: `agent_id`, `agent_type`, `stop_hook_active`
+  - PreCompact: `trigger`
+  - Stop: `stop_hook_active`
+- [ ] **Session State**: Scripts maintain `session-state.json` to track active subagent stack (VS Code does not include agent identity in PreToolUse/PostToolUse stdin)
+
+#### Health Check Workflow
+
+```
+1. Parse hook JSON files
+   - Validate JSON syntax
+   - Extract command paths and timeout values
+
+2. Verify script paths
+   - Check each command references existing file
+   - Verify scripts have execute permissions (Unix)
+
+3. Test hook execution (optional dry-run)
+   - Run script with test event: node .github/scripts/{script}.js TestEvent
+   - Confirm log output appears in expected location
+   - Validate no errors in execution
+
+4. Generate health report
+   - List all hooks and their status (valid/invalid)
+   - Flag missing scripts or malformed commands
+   - Report timeout values exceeding recommended limits
+```
+
+#### Hook Invocation Verification
+
+**How Hooks Are Invoked**: VS Code automatically discovers hook configurations from `.github/hooks/*.json` and invokes them when lifecycle events occur. No manual triggering or agent calls required — hooks fire deterministically whenever their lifecycle event happens.
+
+**Discovery Requirements**:
+1. Hook JSON files must be in `.github/hooks/` directory
+2. VS Code workspace must have `.vscode/settings.json` with chat customization enabled
+3. Hook commands must reference existing, executable scripts
+
+**Verification Workflow** (run after any orchestrated session):
+
+```bash
+# 1. Check session logs exist (confirms hooks fired)
+ls -la .github/logs/sessions/          # List session directories
+ls -la .github/logs/current-session.txt # Current session marker
+
+# 2. Verify log content (should show session events with real names, not "Unknown")
+cat .github/logs/sessions/$(cat .github/logs/current-session.txt)/orchestration.log | tail -20
+
+# 3. Check metrics (should show subagent invocations)
+cat .github/logs/sessions/$(cat .github/logs/current-session.txt)/metrics.json
+
+# 4. Test hook script directly (pipe mock stdin JSON)
+echo '{"sessionId":"test-123","source":"new"}' | node .github/scripts/log-orchestration.js SessionStart
+echo '{"tool_name":"readFile","tool_use_id":"t-1"}' | node .github/scripts/log-orchestration.js PreToolUse
+echo '{"agent_type":"Editor","agent_id":"sub-1"}' | node .github/scripts/log-orchestration.js SubagentStart
+# Should log real names (not "Unknown" or "unknown")
+```
+
+**Troubleshooting Hook Invocation**:
+
+| Symptom | Likely Cause | Fix |
+|---------|--------------|-----|
+| No logs generated after agent runs | VS Code not discovering hooks | Add `.vscode/settings.json` with `chat.customAgentInSubagent.enabled: true` |
+| Logs empty or incomplete | Hook script errors | Run script manually with test event, check for errors |
+| Only some events logging | Hook JSON missing lifecycle events | Verify all 8 events defined in hook config |
+| Hooks not firing for subagents | Subagent invocation not via `agent` tool | Verify conductors use `agent` tool (not deprecated patterns) |
+
+#### Maintenance Triggers
+
+Re-validate hook configurations when:
+
+1. **Subagent Registry Changes**: Adding/removing subagents may require hook script updates (e.g., `SUBAGENT_REGISTRY` array in `log-orchestration.js`)
+2. **Schema Version Updates**: New VS Code releases may introduce hook lifecycle events or change stdin JSON fields
+3. **Orchestration Pattern Changes**: Changes to workflow types or phase tracking may need hook logging adjustments
+4. **Script Modifications**: After editing any `.github/scripts/` file, re-run health check
+5. **No Logs After Session**: If hooks stop firing, verify `.vscode/settings.json` exists and VS Code has reloaded customizations
+
+#### Hook Configuration Standards
+
+**Timeout Guidelines**:
+- Logging hooks: 3-5s (SessionStart, UserPromptSubmit, SubagentStart, SubagentStop, PreToolUse, PostToolUse, PreCompact)
+- Summary hooks: 5-10s (Stop event with metrics aggregation)
+- Never exceed 30s (VS Code default timeout; keep ≤10s for logging hooks)
+
+**Command Patterns**:
+- Prefer Node.js scripts for cross-platform compatibility: `node .github/scripts/{name}.js {args}`
+- Use shell scripts only when necessary: `bash .github/scripts/{name}.sh {args}` (Unix-only)
+- Pass event name as first argument for routing within script
+
+**Error Handling**:
+- Hooks should fail gracefully (exit 0 even on non-critical errors)
+- Log errors to hook output files, don't block agent execution
+- Use timeouts to prevent hung hooks from blocking workflows
+
+---
 ## Change History
 
 | Version | Date | Changes |
-|---------|------|---------||
+|---------|------|---------|
 | v1.0 | 2026-01-15 | Initial release |
 
 ---

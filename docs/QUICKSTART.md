@@ -52,7 +52,7 @@ The agent will analyze your project, detect your tech stack, and present a gener
 ### Step 3: Confirm and Wait
 
 Review the analysis, then confirm:
-- **VS Code 1.109+**: Click the `Confirm` button
+- **VS Code 1.106+**: Click the `Confirm` button
 - **Earlier versions**: Type `confirm` in the chat
 
 **Wait 3-4 minutes** while CopilotCustomizer generates your customization.

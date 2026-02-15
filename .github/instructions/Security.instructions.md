@@ -1,11 +1,11 @@
 ---
-applyTo: '.github/**/*'
+applyTo: '.github/**/*.{agent.md,instructions.md,prompt.md}'
 description: 'Security guardrails and tool management safety protocols'
 ---
 
 # Security.instructions.md
 
-## Universal Security Guardrails (v1.1 - VS Code 1.106)
+## Universal Security Guardrails (v1.2 - VS Code 1.109)
 
 ### Core Security Principles
 **Data Protection**: Never fabricate external repository contents, protect sensitive information, avoid proprietary policy language unless user-supplied.
@@ -50,7 +50,7 @@ description: 'Security guardrails and tool management safety protocols'
 
 ### Tool Approval Workflows
 | Risk Level | Approval Type | Examples | Requirements |
-|------------|---------------|----------|--------------||
+|------------|---------------|----------|--------------|
 | **Auto-approve** | None | Search, fetch (internal) | Safe, read-only operations |
 | **Pre-approval** | User confirmation | File read, terminal | Review tool invocation before execution |
 | **Post-approval** | Content review | External fetch, MCP openWorldHint | Review fetched data before use (VS Code 1.106+) |
@@ -116,10 +116,21 @@ description: 'Security guardrails and tool management safety protocols'
 **MCP Breach**: Disconnect, assess data exposure, rebuild trust chain
 **Configuration Error**: Rollback, validate, test, redeploy
 
+### VS Code 1.107-1.109 Security Enhancements
+
+**Agent Hooks**: Improved lifecycle management with pre/post execution hooks for security validation
+
+**MCP Trust Models**: Enhanced Model Context Protocol trust boundaries with explicit permission scopes and runtime validation
+
+**Parallel Execution Safeguards**: Tool execution isolation in parallel agent workflows prevents resource conflicts and ensures atomic operations
+
+**Tool Approval Evolution**: Granular per-tool approval with context-aware permission requests (vs blanket approval)
+
 ## Change History
 
 | Version | Date | Changes |
-|---------|------|---------||
+|---------|------|---------|
+| v1.2 | 2026-02-15 | Updated to VS Code 1.109, added v1.107-1.109 security enhancements |
 | v1.0 | 2026-01-15 | Initial release |
 
 *Complete security framework: [Framework.instructions.md](Framework.instructions.md)*

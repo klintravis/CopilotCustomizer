@@ -48,6 +48,9 @@ All orchestration is programmatic via the `agent` tool — no manual handoff but
 | **Prompts** | `.github/prompts/*.prompt.md` | Slash commands | Optional: `agent`/`mode` |
 | **Standards** | `.github/standards/**/*.md` | Enterprise standards | `name`, `scope`, `priority` |
 | **Templates** | `.github/templates/*.template.md` | Document formats | None |
+| **Hooks** | `.github/hooks/*.json` | Lifecycle automation | Hook schema (event, command, timeout) |
+| **Scripts** | `.github/scripts/*.js` | Hook implementations | None |
+| **Plans** | `docs/plans/*.md` | Archived implementation plans | None |
 | **AGENTS.md** | Repository root | Project guidance | None |
 
 **Skills** (6 core + project-specific): `repo-analysis`, `planning`, `asset-design`, `documentation`, `deployment-automation`, `orchestration` | Bootstrap generates project-specific skills based on tech stack
@@ -59,6 +62,12 @@ All orchestration is programmatic via the `agent` tool — no manual handoff but
 **Prompts** (11): Core (`Bootstrap`, `Review`), Generation (`NewSkill`, `NewAgent`, `NewInstructions`, `NewPrompt`, `NewMultiAgent`, `NewAgentsFile`), Evolution (`Evolve`), Maintenance (`Maintain`, `QuickFix`)
 
 **Templates** (4): `Analysis`, `ImplementationPlan`, `OrchestrationPlan`, `ChangeLog`
+
+**Hooks** (1): `subagent-tracking.json` — Orchestration lifecycle logging for all 8 VS Code hook events (SessionStart, UserPromptSubmit, SubagentStart, SubagentStop, PreToolUse, PostToolUse, PreCompact, Stop)
+
+**Scripts** (1): `log-orchestration.js` — Hook implementation for automated orchestration metrics with session-based logging to `.github/logs/sessions/<timestamp>/` (orchestration.log, metrics.json, session-state.json)
+
+**Plans** (2): Archived implementation plans with decision records (`Toolkit-Structure-Standardization.md`, `VSCode-v1109-Alignment.md`)
 
 ---
 
@@ -246,6 +255,12 @@ Refinement commands:
 
 ---
 
+**Framework**: CopilotCustomizer v1.5.0  
+**Standards**: VS Code Copilot v2025.11 (Agent Files v1.109)  
+**Contributors**: Asset validation via Verifier + Evolve agents
+
+---
+
 ## Troubleshooting
 
 **Asset Not Loading**: Check YAML syntax, verify directory, ensure file extension matches  
@@ -275,7 +290,7 @@ Refinement commands:
 ## License & Attribution
 
 **License**: MIT - See [LICENSE](../LICENSE) for full text  
-**Framework**: CopilotCustomizer v1.3.0  
+**Framework**: CopilotCustomizer v1.5.0  
 **Compliance**: VS Code GitHub Copilot Customization Standards v1.109 (v1.106+ compatible)  
 **Generated**: 2026-02-15 via Documentation Harmonization
 

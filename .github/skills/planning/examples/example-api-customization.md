@@ -34,7 +34,7 @@ Use planning skill to create a roadmap.
 ### In GitHub Copilot CLI
 
 ```bash
-copilot --skill implementation-planning \
+copilot --skill planning \
   --input "Plan implementation of 4 AI skills for Express.js API project"
 ```
 

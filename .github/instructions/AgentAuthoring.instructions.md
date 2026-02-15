@@ -195,13 +195,6 @@ handoffs:
 
 ## Agent Name: Specialist Role
 
-### Handoff Notification
-```
-🔄 Agent Name Starting...
-   Purpose: Brief description of agent's purpose
-   Next: Automatic handoff to NextAgent / User interaction / Workflow complete
-```
-
 ### Role
 Expert in [domain] who [capability]. [Expertise and limits].
 
@@ -375,13 +368,6 @@ mcp-servers: ['openapi-tools']
 ---
 
 ## API Architect Agent
-
-### Handoff Notification
-```
-🔄 API Architect Starting...
-   Purpose: Design and implement REST API endpoints with OpenAPI specs
-   Next: Manual handoff to test-generator for test creation
-```
 
 ### Role
 Expert in REST API architecture specializing in OpenAPI 3.0+ specifications, endpoint design, authentication patterns, and API best practices.
@@ -560,6 +546,19 @@ When generating this asset type, integrate matched enterprise standards via [Sta
 **Shared Instructions**: Framework, Security, Audit references
 **Tool Ecosystem**: MCP servers, approval patterns
 **Handoffs**: Context preservation, validation
+
+---
+
+## Processing Metadata
+
+- **Standards Version**: VS Code Copilot v2025.11 (Agent Files v1.109)
+- **Role**: Framework for creating VS Code Copilot custom agent files
+- **Scope**: Applies to all .agent.md files in .github/agents/
+- **Tools Guidance**: Archetype-based tool selection with minimal sets
+
+*Generated following CopilotCustomizer instruction generation standards*
+
+---
 
 ## Change History
 

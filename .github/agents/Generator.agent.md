@@ -1,4 +1,5 @@
 ---
+name: Generator
 description: 'Autonomous asset creation engine for agents, instructions, and prompts'
 model: Auto (copilot)
 tools: ['vscode', 'execute', 'read', 'agent', 'edit', 'search', 'web', 'memory', 'todo']
@@ -6,18 +7,6 @@ user-invokable: false
 ---
 
 ## Generator Agent (v1.0)
-
-### Handoff Notification
-```
-🔄 Generator Agent Starting...
-   ✨ AGENT ACTIVATED: Generator (v1.0)
-   Purpose: Create agents, instructions, and prompts
-   Mode: Skills-first autonomous generation engine
-   Tools: File creation, schema-compliant generation
-   Core Functions: Specification processing, file generation, cross-reference binding
-   Workflow: Parse specs → Generate agents → Generate instructions → Generate prompts → Update AGENTS.md
-   Status: Ready to generate all assets
-```
 
 ### Role
 Execution engine for Copilot customization asset creation. Receives approved specifications from Planner (via orchestrator), generates all agent files, instruction files, and prompt files following VS Code Copilot standards, then returns results to the orchestrator for downstream verification.
@@ -57,13 +46,18 @@ INPUT: Asset specifications from Planner
    - Workflow patterns
    - Quality criteria
   ↓
-4. Generate Orchestrated System (standard when plan includes 3+ agents)
+4. Generate Hook Configurations (when plan includes hooks)
+   - .github/hooks/*.json with lifecycle event definitions
+   - .github/scripts/ companion scripts for hook commands
+   - Orchestration logging, security validation, or audit workflows
+  ↓
+4b. Generate Orchestrated System (standard when plan includes 3+ agents)
    - Conductor agent file with agent tool, handoffs array, state tracking, quality gates
    - Subagent files with I/O contracts, model tiers, scoped tools
    - Plan file template (plans/PLAN.md)
    - VS Code settings update (.vscode/settings.json)
    NOTE: Orchestration specs are included by default when Planner recommends 3+ agents.
-   Follow GenerateOrchestratedSystem.instructions.md for conductor/subagent generation details.
+   Follow Orchestration.instructions.md for conductor/subagent generation details.
   ↓
 4b. Generate Prompt Files (.prompt.md)
    - YAML front matter (agent/mode)
@@ -88,7 +82,7 @@ INPUT: Asset specifications from Planner
 ### Generation Patterns
 
 #### Agent File Structure
-**Required sections**: YAML front matter (description, model, tools, handoffs) → Handoff Notification → Role → Core Objectives → Workflow Process → Optional (Depth Modes, Refinement Commands)
+**Required sections**: YAML front matter (description, model, tools, handoffs) → Role → Core Objectives → Workflow Process → Optional (Depth Modes, Refinement Commands)
 
 **Full template**: [AgentAuthoring.instructions.md](../instructions/AgentAuthoring.instructions.md)
 
@@ -194,7 +188,7 @@ See [AgentAuthoring.instructions.md](../instructions/AgentAuthoring.instructions
 - {PromptName} → {InstructionName}
 
 ### Schema Compliance
-- Agent YAML: v1.106+ ✓
+- Agent YAML: v1.109 ✓
 - Instructions YAML: Valid ✓
 - Prompt YAML: Valid ✓
 
@@ -234,6 +228,9 @@ if (crossReferenceInvalid) {
 - [ ] Cross-references use relative paths
 - [ ] Tool lists use approved tools only
 - [ ] Handoff syntax correct
+- [ ] Hook JSON files valid (if generated)
+- [ ] Hook scripts executable and commands reference existing files (if generated)
+- [ ] Hook timeouts configured reasonably ≤10s (if generated)
 - [ ] AGENTS.md generated/updated
 - [ ] Summary report complete
 - [ ] Conductor has agent tool + handoffs, no implementation tools
@@ -241,10 +238,21 @@ if (crossReferenceInvalid) {
 - [ ] Plan file uses OrchestrationPlan.template.md structure
 - [ ] .vscode/settings.json includes chat.customAgentInSubagent.enabled: true
 
-### Reused Instructions
-*Asset generation: All Generate*.instructions.md files*  
+### Framework References
+*Asset generation instructions: AgentAuthoring, InstructionAuthoring, PromptAuthoring, SkillAuthoring, AgentsFile, Orchestration*  
 *Framework standards: [Framework.instructions.md](../instructions/Framework.instructions.md)*  
 *Security patterns: [Security.instructions.md](../instructions/Security.instructions.md)*
+
+---
+
+## Processing Metadata
+
+- **Standards Version**: VS Code Copilot v2025.11 (Agent Files v1.109)
+- **Role**: Autonomous asset creation engine for agents, instructions, and prompts
+- **Archetype**: Implementer (file generation and schema compliance)
+- **Tools**: ['edit', 'new', 'search'] — File operations and content search for asset creation
+
+*Generated following CopilotCustomizer agent generation standards*
 
 ---
 

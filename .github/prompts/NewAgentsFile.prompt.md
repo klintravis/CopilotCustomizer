@@ -2,19 +2,12 @@
 description: Generate an AGENTS.md workspace guidance file for a project
 argument-hint: Optionally provide the project name and primary tasks
 agent: CopilotCustomizer
+name: NewAgentsFile
+model: Claude Sonnet 4.5 (copilot)
+tools: ['execute', 'read', 'edit', 'search', 'web', 'agent', 'todo']
 ---
 
 # AGENTS.md Workspace File Generator (v1.0)
-
-```
-✨ PROMPT ACTIVATED: NewAgentsFile (Asset Generator)
-   Purpose: Generate workspace-level AGENTS.md guidance files
-   Standard: VS Code/GitHub workspace documentation
-   Instructions: AgentsFile.instructions.md
-   Input: PROJECT_NAME, PRIMARY_TASKS
-   Output: Complete AGENTS.md with quick start, style guide, testing, PR guidelines
-   Scope: Workspace-wide developer guidance
-```
 
 **Paired Instructions**: [AgentsFile.instructions.md](../instructions/AgentsFile.instructions.md)
 
@@ -35,6 +28,30 @@ Generate concise, actionable `AGENTS.md` workspace files.
 Generate complete `AGENTS.md` with:
 - Title, Quick Start (install/build/test/lint), Code Style, Testing, PR Instructions, Conflict Resolution, Example Commands
 - Conditional: Security (high risk), Monorepo Guidance (if monorepo=true)
+
+### Workflow Phases
+
+**Phase 1: Repository Analysis** (Auto) — Scan project structure, detect tech stack, identify conventions  
+**Phase 2: Context Gathering** (Auto) — Extract package.json, build configs, test framework  
+**Phase 3: Generation** (Auto) — Create AGENTS.md with project-specific guidance  
+**Phase 4: Validation** (Auto) — Verify all commands are executable and references valid
+
+### Example Invocations
+
+**Generate with defaults** (infers everything):
+```
+/NewAgentsFile
+```
+
+**Specify project focus**:
+```
+/NewAgentsFile projectName: "MyApp", primaryTasks: "API development, testing"
+```
+
+**For a specific project**:
+```
+/NewAgentsFile primaryTasks: "CI/CD, deployment automation"
+```
 
 ## Refinement Commands
 | Command | Action |

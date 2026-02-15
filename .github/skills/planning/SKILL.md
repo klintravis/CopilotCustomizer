@@ -538,29 +538,6 @@ tests/* (depends on implementations)
 - Allow for plan adjustments
 - Don't over-specify (leave room for implementation decisions)
 
-## Integration with Other Capabilities
-
-**Upstream** (feeds from):
-- `repo-analysis` skill for codebase understanding
-- Requirements gathering from user
-
-**Downstream** (feeds to):
-- VS Code Editor agent for implementation
-- Documentation generation for tracking
-
-**Workflow**:
-```
-repository-analysis (understand context)
-  ↓
-implementation-planning (create strategy) ← THIS SKILL
-  ↓
-[USER APPROVAL GATE] ✋
-  ↓
-VS Code Editor (execute plan)
-  ↓
-VS Code Verifier (validate)
-```
-
 ## Integration with Other Skills
 
 **Works well with**:
@@ -570,6 +547,19 @@ VS Code Verifier (validate)
 - **documentation** — Document implementation approach and decisions
 
 **Typical workflow**: repo-analysis identifies scope → this skill creates implementation plan → user approves → execution proceeds → documentation captures outcomes
+
+**Workflow Example**:
+```
+repo-analysis (understand context)
+  ↓
+planning (create strategy) ← THIS SKILL
+  ↓
+[USER APPROVAL GATE] ✋
+  ↓
+VS Code Editor (execute plan)
+  ↓
+VS Code Verifier (validate)
+```
 
 ## Success Criteria
 

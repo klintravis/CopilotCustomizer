@@ -2,17 +2,10 @@
 description: Create a new VS Code prompt file (slash command) with variables and validation
 argument-hint: Describe the domain and goal for this prompt
 agent: CopilotCustomizer
+name: NewPrompt
+model: Claude Sonnet 4.5 (copilot)
+tools: ['execute', 'read', 'edit', 'search', 'web', 'agent', 'todo']
 ---
-
-```
-✨ PROMPT ACTIVATED: NewPrompt (Asset Generator)
-   Purpose: Create VS Code slash command prompts
-   Standard: VS Code (.prompt.md with variable blocks)
-   Instructions: PromptAuthoring.instructions.md
-   Input: DOMAIN, GOAL
-   Output: Complete .prompt.md with variables, usage, and validation
-   Scope: VS Code Copilot slash commands
-```
 
 **Paired Instructions**: [PromptAuthoring.instructions.md](../instructions/PromptAuthoring.instructions.md)
 
@@ -47,6 +40,23 @@ Generate complete `*.prompt.md` with:
 | `refine: concise` | Compress output |
 | `refine: expand` | Add details |
 | `refine: optimize` | Remove redundancy |
+
+### Example Invocations
+
+**Create a deployment automation prompt**:
+```
+/NewPrompt purpose: "Automate deployment workflow", agent: "DeploymentAgent"
+```
+
+**Create a code review prompt**:
+```
+/NewPrompt purpose: "Security-focused code review"
+```
+
+**Create a refactoring prompt**:
+```
+/NewPrompt purpose: "Extract components for better modularity", agent: "Refactor"
+```
 
 **Generated using**: [PromptAuthoring.instructions.md](../instructions/PromptAuthoring.instructions.md)
 

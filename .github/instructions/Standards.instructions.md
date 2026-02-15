@@ -135,10 +135,23 @@ Pass `standardsContext` to downstream agents as part of the context handoff:
 - **Generator**: Uses standards as design constraints during file generation
 - **Verifier**: Checks that standards principles are reflected (not copied) in generated output
 
+---
+
+## Processing Metadata
+
+- **Standards Version**: VS Code Copilot v2025.11 (Agent Files v1.109)
+- **Role**: Discovers, matches, and integrates enterprise coding standards
+- **Scope**: Standards from .github/standards/ into generated assets
+- **Integration**: Provides standardsContext to Planner, Generator, and Verifier
+
+*Generated following CopilotCustomizer instruction generation standards*
+
+---
+
 ## Change History
 
 | Version | Date | Changes |
-|---------|------|---------||
+|---------|------|---------|
 | v1.0 | 2026-01-15 | Initial release |
 
 ---

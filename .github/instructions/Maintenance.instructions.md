@@ -103,14 +103,21 @@ Only use officially supported fields by asset type:
 **Prompt files (`*.prompt.md`)**:
 - Optional: `agent`, `tools`, `model`
 
-**Harmonization metadata** (append to existing front matter in Harmonize mode):
-```yaml
-harmonizedWith: ['file1.md', 'file2.md']
-bindingVersion: 'harmony-v1.0'
-lastHarmonized: 'YYYY-MM-DD'
-```
-
 **Do not add** unsupported fields (e.g., `schemaVersion`, `depthModes`, `refinementCommands`) to YAML front matter.
+
+## Harmonization Metadata (Markdown Content)
+
+When running in Harmonize mode, add the following metadata as a markdown section at the end of the file (NOT in YAML frontmatter):
+
+```markdown
+---
+
+## Harmonization Record
+
+**Harmonized With**: file1.md, file2.md  
+**Binding Version**: harmony-v1.0  
+**Last Harmonized**: YYYY-MM-DD
+```
 
 ## Coding Standards
 
@@ -203,6 +210,19 @@ Append `-h1`, `-h2` for harmony iterations when creating backup versions.
 - [Any manual steps or recommendations]
 ```
 
+---
+
+## Processing Metadata
+
+- **Standards Version**: VS Code Copilot v2025.11 (Agent Files v1.109)
+- **Role**: Comprehensive maintenance for Copilot customization assets
+- **Scope**: Optimization, harmonization, formatting, and validation operations
+- **Operations**: Schema compliance, cross-reference preservation, content integrity
+
+*Generated following CopilotCustomizer instruction generation standards*
+
+---
+
 ## Related Framework
 - Repository analysis: `RepoReview.instructions.md`
 - Security guardrails: `Security.instructions.md`
@@ -211,5 +231,5 @@ Append `-h1`, `-h2` for harmony iterations when creating backup versions.
 ## Change History
 
 | Version | Date | Changes |
-|---------|------|---------||
+|---------|------|---------|
 | v1.0 | 2026-01-15 | Initial release |

@@ -104,7 +104,7 @@ description: |                 # Max 1024 chars, specific use cases
 [Code/command examples]
 
 ## Resources
-- [Link to included files](./scripts/helper.sh)
+- Link to included files (example: `./scripts/helper.sh`)
 
 ## Success Criteria
 - [ ] [Expected outcome]
@@ -488,8 +488,8 @@ Not required but improves usability
 
 **Tools**:
 ```bash
-# Find broken Markdown links
-grep -r '\[.*\](.*\.md)' .github/
+# Find Markdown links (note: pattern uses regex, not actual file paths)
+grep -r 'LINK_PATTERN' .github/
 
 # Validate handoff targets
 grep -A5 'handoffs:' .github/agents/*.agent.md

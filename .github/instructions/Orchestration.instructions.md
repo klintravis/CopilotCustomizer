@@ -34,7 +34,6 @@ handoffs:
     agent: 'agent-id'
     prompt: 'Task description with context.'
     send: true
-    context: ['var1', 'var2']
 ```
 
 **Entry Point Design**:
@@ -278,10 +277,23 @@ Generated systems should pass the **Orchestrated System Verification Checklist**
 - **Framework**: [Framework.instructions.md](Framework.instructions.md) — Universal standards
 - **Template**: [OrchestrationPlan.template.md](../templates/OrchestrationPlan.template.md) — Plan file format
 
+---
+
+## Processing Metadata
+
+- **Standards Version**: VS Code Copilot v2025.11 (Agent Files v1.109)
+- **Role**: Framework for generating conductor/subagent orchestrated systems
+- **Scope**: Multi-agent workflows with TDD lifecycle, quality gates, and plan files
+- **Patterns**: Lightweight, Orchestra, Atlas with parallel execution strategies
+
+*Generated following CopilotCustomizer instruction generation standards*
+
+---
+
 ## Change History
 
 | Version | Date | Changes |
-|---------|------|---------||
+|---------|------|---------|
 | v1.0 | 2026-01-15 | Initial release |
 
 ---

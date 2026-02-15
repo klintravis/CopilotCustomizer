@@ -75,10 +75,10 @@ The conductor is the central orchestration agent that manages the entire workflo
 1. **`agent` tool + `handoffs` array** — Must be able to invoke any subagent in the system via `agent` tool and define all subagent transitions in the `handoffs` YAML field
 2. **Optional `agents` field** — Can explicitly list allowed subagents for security and workflow control
 3. **State Tracking** — Maintains current phase, completed phases, and blocking issues
-3. **Quality Gates** — Enforces approval checkpoints (minimum 3 pause points)
-4. **No Direct Implementation** — Conductor never writes code or modifies files directly
-5. **Plan File Management** — Creates and updates `plans/PLAN.md` for progress tracking
-6. **Model Tier** — Uses highest-capability model (e.g., `Claude Sonnet 4.5`, `GPT-4`)
+4. **Quality Gates** — Enforces approval checkpoints (minimum 3 pause points)
+5. **No Direct Implementation** — Conductor never writes code or modifies files directly
+6. **Plan File Management** — Creates and updates `plans/PLAN.md` for progress tracking
+7. **Model Tier** — Uses highest-capability model (e.g., `Claude Sonnet 4.5`, `GPT-4`)
 
 ### Conductor YAML Structure
 ```yaml

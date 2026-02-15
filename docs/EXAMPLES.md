@@ -45,6 +45,8 @@ my-react-app/.github/
 ├── prompts/
 │   ├── GenerateComponent.prompt.md   # Component scaffolding
 │   └── GenerateTest.prompt.md
+├── skills/
+│   └── react-testing/SKILL.md        # Cross-platform testing skill
 └── AGENTS.md                         # Project guidance
 ```
 

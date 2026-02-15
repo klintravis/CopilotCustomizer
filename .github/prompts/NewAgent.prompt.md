@@ -2,19 +2,12 @@
 description: Create a new VS Code Copilot custom agent with role, tools, and handoffs
 argument-hint: Describe the agent you want to create
 agent: CopilotCustomizer
+name: NewAgent
+model: Claude Sonnet 4.5 (copilot)
+tools: ['execute', 'read', 'edit', 'search', 'web', 'agent', 'todo']
 ---
 
 # VS Code Copilot Agent Generator (v1.0)
-
-```
-✨ PROMPT ACTIVATED: NewAgent (Asset Generator)
-   Purpose: Create VS Code-specific Copilot custom agents
-   Standard: VS Code v1.109 (.agent.md schema with orchestration controls)
-   Instructions: AgentAuthoring.instructions.md
-   Input: AGENT_NAME, DOMAIN, PRIMARY_ROLE
-   Output: Complete .agent.md with role, tools, handoffs, workflows
-   Scope: VS Code Copilot only (not cross-platform)
-```
 
 **Paired Instructions**: [AgentAuthoring.instructions.md](../instructions/AgentAuthoring.instructions.md)
 
@@ -58,7 +51,7 @@ Complete `.agent.md` with:
 5. Depth modes
 6. Refinement commands
 7. Tool integration
- 8. Handoff workflows (if present, conform to handoffs schema: label, agent, prompt, send)
+8. Handoff workflows (if present, conform to handoffs schema: label, agent, prompt, send)
 9. Framework integration
 
 ### Agent Patterns
@@ -70,6 +63,23 @@ Complete `.agent.md` with:
 - `refine: role` - Clarify boundaries
 - `refine: tools` - Optimize selection
 - `refine: workflow` - Enhance sequences
+
+### Example Invocations
+
+**Create a security-focused code reviewer**:
+```
+/NewAgent agentName: "SecurityReviewer", domain: "security", primaryRole: "code reviewer"
+```
+
+**Create a test generator**:
+```
+/NewAgent agentName: "TestGenerator", domain: "testing"
+```
+
+**Create a documentation specialist**:
+```
+/NewAgent agentName: "DocWriter"
+```
 
 *Instructions: [AgentAuthoring.instructions.md](../instructions/AgentAuthoring.instructions.md)*  
 *Framework: [CopilotCustomizer.agent.md](../agents/CopilotCustomizer.agent.md)*  

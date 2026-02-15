@@ -90,11 +90,25 @@ When generating this asset type, integrate matched enterprise standards via [Sta
 - Include: `OutputPath`, `GeneratedAt`, `SourceInstruction`, `Type: prompt`
 - Must include ready-to-run example with resolved inputs
 
+---
+
+## Processing Metadata
+
+- **Standards Version**: VS Code Copilot v2025.11 (Prompt Files latest)
+- **Role**: Standardized framework for building high-quality prompt files
+- **Scope**: Applies to all .prompt.md files in .github/prompts/
+- **Integration**: Pairs with custom agents and instruction files
+
+*Generated following CopilotCustomizer instruction generation standards*
+
+---
+
 ## Change History
 
 | Version | Date | Changes |
-|---------|------|---------||
+|---------|------|---------|
 | v1.0 | 2026-01-15 | Initial release |
 
 ---
-*Generated following VS Code Copilot prompt file standards*
+
+*Generated following CopilotCustomizer prompt authoring standards*

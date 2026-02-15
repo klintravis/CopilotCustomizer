@@ -128,7 +128,7 @@ Append discovered tool documentation links to generated instructions.
   ```yaml
   OutputPath: CopilotCustomizer/output/instructions/CopilotCustomizer - instructions - 2025-09-13.md
   GeneratedAt: 2025-09-13T12:00:00Z
-  SourceInstruction: instructions/GenerateInstructions.instructions.md
+  SourceInstruction: instructions/InstructionAuthoring.instructions.md
   Type: instructions
   ```
 

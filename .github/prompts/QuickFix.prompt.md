@@ -2,32 +2,21 @@
 description: Fast minimal-diff change with single approval gate and automated verification
 argument-hint: Describe the change you want to make
 agent: CopilotCustomizer
+name: QuickFix
+model: Claude Sonnet 4.5 (copilot)
+tools: ['execute', 'read', 'edit', 'search', 'web', 'agent', 'todo']
 ---
 
 ## QuickFix (v1.0)
-
-```
-✨ PROMPT ACTIVATED: QuickFix (v1.0)
-   Purpose: Fast minimal-diff changes with single approval gate
-   Agent: CopilotCustomizer (interactive mode)
-   Skills Engaged: repo-analysis, planning, documentation
-   Agents Engaged: Editor, Verifier
-   Input: CHANGE_REQUEST, REASON, ACCEPTANCE_CRITERIA, SCOPE
-   Workflow: Analysis → Planning (gate) → Implementation → Verification → Documentation
-   User Interactions: 1 (confirm plan)
-   Output: Minimal changes with validation and summary
-```
 
 ### Task Intent
 Perform a small, targeted change with a fast approval gate and automated verification and documentation, minimizing touched files.
 
 ### Variable Block
-```
-CHANGE_REQUEST: "${input:change_request:Brief description of change needed}"
-REASON: "{REASON}"
-ACCEPTANCE_CRITERIA: "{ACCEPTANCE_CRITERIA}"
-SCOPE (or "auto-detect"): "${input:target_path:/absolute/path/to/file or folder}"
-```
+---
+**Change Request** [REQUIRED]: ${input:changeRequest:Brief description of change needed}
+**Scope** [OPTIONAL]: ${input:targetPath:/absolute/path/to/file or folder or "auto-detect"}
+---
 
 ### Workflow Phases
 **Phase 1: Analysis** (Auto) - Rapid scan of impacted files and dependencies
@@ -48,7 +37,24 @@ Reply `confirm` after Phase 2 to proceed.
 
 ### Orchestration Chain
 ```
-QuickChange → CopilotCustomizer orchestrator → repo-analysis skill → planning skill → [USER GATE] → Editor → Verifier → documentation skill → Complete
+QuickFix → CopilotCustomizer orchestrator → repo-analysis skill → planning skill → [USER GATE] → Editor → Verifier → documentation skill → Complete
+```
+
+### Example Invocations
+
+**Fix a typo**:
+```
+/QuickFix changeRequest: "Fix typo in README: 'analize' should be 'analyze'"
+```
+
+**Update configuration**:
+```
+/QuickFix changeRequest: "Change port from 3000 to 8080 in server config", targetPath: "src/config"
+```
+
+**Refactor a function name**:
+```
+/QuickFix changeRequest: "Rename getUserData() to fetchUserProfile() for clarity"
 ```
 
 ### Notes

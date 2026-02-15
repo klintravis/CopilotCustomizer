@@ -87,10 +87,23 @@ Never explicitly reference `.github/standards/` files in the generated AGENTS.md
 - Include: `OutputPath`, `GeneratedAt`, `SourceInstruction`, `Type: agent`
 - Include ready-to-run Quick Start commands
 
+---
+
+## Processing Metadata
+
+- **Standards Version**: VS Code Copilot v2025.11 (Custom Instructions latest)
+- **Role**: Framework for generating AGENTS.md coding guidance files
+- **Scope**: Applies to AGENTS.md files in external repositories
+- **Distinction**: Workspace guidance files, not VS Code .agent.md custom agents
+
+*Generated following CopilotCustomizer instruction generation standards*
+
+---
+
 ## Change History
 
 | Version | Date | Changes |
-|---------|------|---------||
+|---------|------|---------|
 | v1.0 | 2026-01-15 | Initial release |
 
 *Framework: [CopilotCustomizer.agent.md](../agents/CopilotCustomizer.agent.md)*  

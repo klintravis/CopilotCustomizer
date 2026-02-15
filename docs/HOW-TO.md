@@ -55,7 +55,7 @@ EXPLORER
 1. **Bootstrap Complete Customization**:
    - In Copilot Chat, use the `/Bootstrap` slash command:
      ```
-     /Bootstrap for REPOSITORY_PATH: "/path/to/your-project"
+     /Bootstrap REPOSITORY_PATH: "/path/to/your-project"
      ```
    - Or ask directly: `Bootstrap my repository at /path/to/your-project`
    - Agent will confirm details and generate assets in YOUR project
@@ -220,7 +220,7 @@ Conductor/subagent systems with TDD lifecycle, quality gates, plan tracking, and
    - **VS Code 1.106+**: Click the confirmation button
    - **Earlier versions**: Type "confirm" in chat
 
-**Result**: Complete customization generated in 2-3 minutes:
+**Result**: Complete customization generated in 3-4 minutes:
 - Agents tailored to your tech stack
 - Instructions for your patterns
 - Prompts for common workflows
@@ -489,4 +489,4 @@ Store tech-stack-specific standards in `.github/standards/` (languages/, framewo
 ---
 
 *Enterprise-ready VS Code GitHub Copilot customization framework*
-**Version**: 1.3.0 | **Updated**: February 2026
+**Version**: 1.5.0 | **Updated**: February 2026

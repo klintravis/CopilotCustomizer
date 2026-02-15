@@ -2,17 +2,10 @@
 description: Create a new VS Code custom instruction file with coding standards and patterns
 argument-hint: Describe the domain for these instructions
 agent: CopilotCustomizer
+name: NewInstructions
+model: Claude Sonnet 4.5 (copilot)
+tools: ['execute', 'read', 'edit', 'search', 'web', 'agent', 'todo']
 ---
-
-```
-✨ PROMPT ACTIVATED: NewInstructions (Asset Generator)
-   Purpose: Create VS Code custom instruction files
-   Standard: VS Code (.instructions.md with applyTo scoping)
-   Instructions: InstructionAuthoring.instructions.md
-   Input: DOMAIN, OBJECTIVE
-   Output: Complete .instructions.md with coding standards and patterns
-   Scope: VS Code-specific (auto-applies to matching files)
-```
 
 **Paired Instructions**: [InstructionAuthoring.instructions.md](../instructions/InstructionAuthoring.instructions.md)
 
@@ -44,6 +37,23 @@ Generate complete `*.instructions.md` with:
 | `refine: concise` | Compress output |
 | `refine: expand` | Add details |
 | `refine: security` | Enhance security section |
+
+### Example Invocations
+
+**Create TypeScript coding standards**:
+```
+/NewInstructions domain: "TypeScript", applyTo: "src/**/*.ts"
+```
+
+**Create React component guidelines**:
+```
+/NewInstructions domain: "React components", applyTo: "src/components/**/*.tsx"
+```
+
+**Create API security standards**:
+```
+/NewInstructions domain: "API security"
+```
 
 **Generated using**: [InstructionAuthoring.instructions.md](../instructions/InstructionAuthoring.instructions.md)
 

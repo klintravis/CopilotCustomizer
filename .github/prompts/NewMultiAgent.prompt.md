@@ -2,20 +2,13 @@
 description: Generate a complete conductor/subagent orchestrated system for a target repository
 argument-hint: Provide the system name and repository path
 agent: CopilotCustomizer
+name: NewMultiAgent
+model: Claude Sonnet 4.5 (copilot)
+tools: ['execute', 'read', 'edit', 'search', 'web', 'agent', 'todo']
+
 ---
 
 ## Multi-Agent System Generation Prompt (v2.0)
-
-```
-✨ PROMPT ACTIVATED: NewMultiAgent (Multi-Agent System Generator)
-   Purpose: Generate multi-agent systems from simple handoff chains to complex orchestration
-   Standard: VS Code (.agent.md + plans/ + .vscode/settings.json)
-   Instructions: Orchestration.instructions.md
-   Skills: orchestration
-   Input: SYSTEM_NAME, SYSTEM_PATTERN, REPOSITORY_PATH
-   Output: Complete multi-agent system with agents, handoffs, and orchestration framework
-   Scope: Simple linear handoffs to complex conductor/subagent orchestration
-```
 
 **Paired Instructions**: [Orchestration.instructions.md](../instructions/Orchestration.instructions.md)
 **Skill Reference**: [orchestration](../skills/orchestration/SKILL.md)

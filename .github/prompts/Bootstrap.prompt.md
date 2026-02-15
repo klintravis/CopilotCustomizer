@@ -2,20 +2,12 @@
 description: Full autonomous workflow to bootstrap Copilot customization assets for a target repository
 argument-hint: Provide the absolute path to the repository to bootstrap
 agent: CopilotCustomizer
+model: Claude Sonnet 4.5 (copilot)
+tools: ['vscode', 'execute', 'read', 'agent', 'edit', 'search', 'web', 'memory', 'todo']
+name: Bootstrap
 ---
 
 ## Bootstrap Workflow (v1.0)
-
-```
-✨ PROMPT ACTIVATED: Bootstrap (v1.0)
-   Purpose: Full repository bootstrap with assets
-   Agent: CopilotCustomizer (central orchestrator) → delegates to Bootstrap subagent
-   Skills Engaged: repo-analysis, planning, documentation
-   Input Required: Single repository path
-   Workflow: CopilotCustomizer routes → Bootstrap → Analysis → Planning (gate) → Generation → Verification → Harmonization → Documentation
-   User Interactions: 2 (start + confirm plan)
-   Output: Complete Copilot customization in .github/
-```
 
 **Orchestrator**: [CopilotCustomizer.agent.md](../agents/CopilotCustomizer.agent.md) (routes to [Bootstrap.agent.md](../agents/Bootstrap.agent.md))
 
@@ -93,7 +85,7 @@ COMPLETE
 
 ## Example Execution
 
-For a complete example walkthrough showing validation, analysis, planning, and autonomous execution phases, see [EXAMPLES.md](../../EXAMPLES.md) or [QUICKSTART.md](../../QUICKSTART.md).
+For a complete example walkthrough showing validation, analysis, planning, and autonomous execution phases, see [EXAMPLES.md](../../docs/EXAMPLES.md) or [QUICKSTART.md](../../docs/QUICKSTART.md).
 
 ## Validation Rules
 

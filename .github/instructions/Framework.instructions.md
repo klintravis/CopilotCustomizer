@@ -268,6 +268,19 @@ Workflow: Eliminate redundant steps
 Tool Integration: Enhance MCP and tool configs  
 Security: Strengthen approval patterns and trust
 
+---
+
+## Processing Metadata
+
+- **Standards Version**: VS Code Copilot v2025.11 (Agent Files v1.109)
+- **Role**: Universal Copilot customization workflows, standards, and quality patterns
+- **Scope**: Applies to all assets (.github/**/*)
+- **Audit Framework**: 6-dimensional quality assessment criteria
+
+*Generated following CopilotCustomizer instruction generation standards*
+
+---
+
 ## Change History
 
 | Version | Date | Changes |

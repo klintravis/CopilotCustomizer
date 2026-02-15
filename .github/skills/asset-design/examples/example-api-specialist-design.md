@@ -6,7 +6,7 @@
 
 ## Scenario
 
-You've planned to create 4 new AI customizations using implementation-planning. Now you need to design the first one: an `APISpecialist` agent that helps developers generate Express.js endpoints.
+You've planned to create 4 new AI customizations using planning. Now you need to design the first one: an `APISpecialist` agent that helps developers generate Express.js endpoints.
 
 The question: **Should this be a Skill or an Agent?**
 

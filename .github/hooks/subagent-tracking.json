@@ -1,0 +1,60 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "type": "command",
+        "command": "node .github/scripts/log-orchestration.js SessionStart",
+        "timeout": 5
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "type": "command",
+        "command": "node .github/scripts/log-orchestration.js UserPromptSubmit",
+        "timeout": 3
+      }
+    ],
+    "SubagentStart": [
+      {
+        "type": "command",
+        "command": "node .github/scripts/log-orchestration.js SubagentStart",
+        "timeout": 5
+      }
+    ],
+    "SubagentStop": [
+      {
+        "type": "command",
+        "command": "node .github/scripts/log-orchestration.js SubagentStop",
+        "timeout": 5
+      }
+    ],
+    "PreToolUse": [
+      {
+        "type": "command",
+        "command": "node .github/scripts/log-orchestration.js PreToolUse",
+        "timeout": 3
+      }
+    ],
+    "PostToolUse": [
+      {
+        "type": "command",
+        "command": "node .github/scripts/log-orchestration.js PostToolUse",
+        "timeout": 3
+      }
+    ],
+    "PreCompact": [
+      {
+        "type": "command",
+        "command": "node .github/scripts/log-orchestration.js PreCompact",
+        "timeout": 3
+      }
+    ],
+    "Stop": [
+      {
+        "type": "command",
+        "command": "node .github/scripts/log-orchestration.js Stop",
+        "timeout": 10
+      }
+    ]
+  }
+}

@@ -2,19 +2,12 @@
 description: Generate new Agent Skill for cross-platform AI capabilities
 argument-hint: Provide the skill name and optionally its purpose
 agent: CopilotCustomizer
+name: NewSkill
+model: Claude Sonnet 4.5 (copilot)
+tools: ['execute', 'read', 'edit', 'search', 'web', 'agent', 'todo']
 ---
 
 ## New Agent Skill Generator
-
-```
-✨ PROMPT ACTIVATED: NewSkill (Asset Generator)
-   Purpose: Create cross-platform Agent Skills
-   Standard: agentskills.io (portable across VS Code, CLI, Claude, Cursor)
-   Instructions: SkillAuthoring.instructions.md
-   Input: SKILL_NAME, PURPOSE, TARGET_PATH (optional), INCLUDE_EXAMPLES, INCLUDE_SCRIPTS
-   Output: Complete .github/skills/{name}/SKILL.md with examples and docs
-   Scope: Portable across all AI platforms and tools
-```
 
 Creates Agent Skills (agentskills.io open standard) that work across VS Code, GitHub Copilot CLI, Claude, Cursor, and other AI platforms.
 
@@ -88,6 +81,16 @@ TARGET_PATH/.github/skills/
    - Check name length (≤64 chars)
    - Confirm description length (≤1024 chars)
    - Test skill discovery and loading
+
+### Refinement Commands
+
+| Command | Action |
+|---------|--------|
+| refine: examples | Expand example scenarios with more diverse use cases |
+| refine: cross-platform | Enhance CLI/Claude/Cursor usage sections |
+| refine: integration | Add integration patterns with other skills and agents |
+| refine: scope | Adjust skill scope (broaden or narrow focus) |
+| refine: resources | Add helper scripts, templates, or documentation |
 
 ## Skill Generation Guidelines
 

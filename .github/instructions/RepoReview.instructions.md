@@ -153,19 +153,22 @@ Guide AI agents to audit Copilot customization assets and deliver actionable imp
 *Framework: [CopilotCustomizer.agent.md](../agents/CopilotCustomizer.agent.md)*  
 *VS Code: [Custom Instructions](https://code.visualstudio.com/docs/copilot/customization/custom-instructions)*
 
-## Change History
+---
 
-| Version | Date | Changes |
-|---------|------|---------||
-| v1.0 | 2026-01-15 | Initial release |
+## Processing Metadata
+
+- **Standards Version**: VS Code Copilot v2025.11 (Agent Files v1.109)
+- **Role**: Comprehensive framework for repository analysis of Copilot customization assets
+- **Scope**: Structured assessment, prioritization, and improvement prompts
+- **Output**: Ready-to-run improvement prompts for agents, instructions, prompts, and workspace files
+
+*Generated following CopilotCustomizer instruction generation standards*
 
 ---
 
-**Version**: v1.3 (2025-11-01)  
-**Harmonization Applied**: 2025-09-15 | **Asset Integration**: 16-file ecosystem  
-**Cross-References**: Enhanced with bidirectional binding | **Schema**: VS Code v1.0 compliant  
-**Workflow Analysis**: Added workflow patterns, handoff opportunities, automation recommendations
+## Change History
 
-## Audit
-Last invoked: [Manual log]
-Change history: v1.0 (2026-01-14) - Added traceability
+| Version | Date | Changes |
+|---------|------|---------|
+| v1.1 | 2026-02-15 | Fixed legacy metadata, harmonized version tracking |
+| v1.0 | 2026-01-15 | Initial release |

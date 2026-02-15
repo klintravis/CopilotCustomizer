@@ -347,8 +347,8 @@ Authorization: Bearer {token}
 
 > [One-line description]
 
-[![License](badge)](link)
-[![Build](badge)](link)
+[![License](https://img.shields.io/badge/license-MIT-blue)](https://example.com/license)
+[![Build](https://img.shields.io/badge/build-passing-green)](https://example.com/build)
 
 ## Features
 - ✨ Feature 1
@@ -393,23 +393,23 @@ const config = {
 [Link to detailed API docs]
 
 ### Examples
-- [Example 1](link)
-- [Example 2](link)
+- [Example 1](https://example.com/example1)
+- [Example 2](https://example.com/example2)
 
 ### Guides
-- [Getting Started Guide](link)
-- [Advanced Usage](link)
+- [Getting Started Guide](https://example.com/getting-started)
+- [Advanced Usage](https://example.com/advanced)
 
 ## Contributing
-See [CONTRIBUTING.md](link)
+See [CONTRIBUTING.md](https://example.com/contributing)
 
 ## License
-[License type] - see [LICENSE](link)
+[License type] - see [LICENSE](https://example.com/license)
 
 ## Support
-- [Documentation](link)
-- [Issue Tracker](link)
-- [Discussions](link)
+- [Documentation](https://example.com/docs)
+- [Issue Tracker](https://example.com/issues)
+- [Discussions](https://example.com/discussions)
 ```
 
 ## Documentation Best Practices
@@ -471,10 +471,9 @@ const example = "code";
 ```
 
 ### Links
-```markdown
-[Link text](URL) - External links
-[Link text](./relative/path.md) - Internal links
-```
+
+**External links**: Use standard markdown syntax with URLs  
+**Internal links**: Use relative paths to workspace files (e.g., `docs/`, `src/`, `README.md`)
 
 ### Callouts
 ```markdown
@@ -513,19 +512,21 @@ Before publishing documentation:
 - Maintain docs as first-class artifacts
 - Keep examples current
 
-## Integration with Other Capabilities
+## Integration with Other Skills
 
-**Pairs Well With**:
-- `repo-analysis` skill for context gathering
-- `planning` skill for planning phase docs
-- Version control for documentation versioning
-- Documentation generators (JSDoc, Sphinx, etc.)
+**Works well with**:
+- **planning** — Document implementation plans and strategies
+- **repo-analysis** — Generate comprehensive repository analysis reports and context gathering
+- **asset-design** — Create architecture documentation for customization assets
+- **orchestration** — Document orchestrated system workflows and patterns
+
+**Typical workflow**: Implementation complete → this skill generates documentation → assets become maintainable and discoverable
 
 **Workflow Example**:
 ```
-repository-analysis (gather context)
+repo-analysis (gather context)
   ↓
-implementation-planning (create plan)
+planning (create plan)
   ↓
 Implementation (code changes)
   ↓
@@ -533,16 +534,6 @@ documentation (document changes) ← THIS SKILL
   ↓
 Code review (include doc review)
 ```
-
-## Integration with Other Skills
-
-**Works well with**:
-- **planning** — Document implementation plans and strategies
-- **repo-analysis** — Generate comprehensive repository analysis reports
-- **asset-design** — Create architecture documentation for customization assets
-- **orchestration** — Document orchestrated system workflows and patterns
-
-**Typical workflow**: implementation complete → this skill generates documentation → assets become maintainable and discoverable
 
 ## Success Criteria
 

@@ -56,6 +56,7 @@ The framework analyzes your repository, detects your tech stack, and generates S
 | **[EXAMPLES.md](docs/EXAMPLES.md)** | Real-world examples with React, Python, .NET, Node.js, and more |
 | **[HOW-TO.md](docs/HOW-TO.md)** | Complete commands reference + troubleshooting |
 | **[docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)** | Architecture deep-dive + asset inventory |
+| **[docs/CHANGELOG.md](docs/CHANGELOG.md)** | Release history and breaking changes |
 
 All commands work via slash commands in Copilot Chat or natural language:
 
@@ -73,8 +74,8 @@ All commands work via slash commands in Copilot Chat or natural language:
 /NewPrompt PURPOSE: "template goal"
 
 # Advanced workflows
-/NewMultiAgent SYSTEM_NAME: "name", COMPLEXITY: "linear"
-/NewMultiAgent SYSTEM_NAME: "name", COMPLEXITY: "orchestra"
+/NewMultiAgent SYSTEM_NAME: "name", SYSTEM_PATTERN: "linear"
+/NewMultiAgent SYSTEM_NAME: "name", SYSTEM_PATTERN: "orchestra"
 /NewAgentsFile REPOSITORY_PATH: "/path/to/project"
 ```
 

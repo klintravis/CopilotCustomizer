@@ -1,4 +1,4 @@
-# CopilotCustomizer Architecture
+# CopilotCustomizer
 
 A VS Code GitHub Copilot customization framework for generating tech-stack-specific agents, instructions, prompts, and skills. Uses a **unified orchestrator architecture**: the **CopilotCustomizer** orchestrator routes all workflows — both external user repository operations and toolkit self-improvement — through specialized subagents via programmatic orchestration.
 
@@ -20,6 +20,15 @@ A VS Code GitHub Copilot customization framework for generating tech-stack-speci
   - `Evolve.agent.md` — Toolkit self-improvement specialist (subagent)
 
 **Orchestration model**: All workflows are driven programmatically via the `agent` tool. No manual handoff buttons — the orchestrator manages the full subagent chain autonomously.
+
+## Asset Types
+
+- **Agents** (7): CopilotCustomizer (orchestrator), Bootstrap, Planner, Generator, Editor, Verifier, Evolve  
+- **Instructions** (12): AgentAuthoring, AgentsFile, Framework, InstructionAuthoring, Maintenance, Orchestration, PromptAuthoring, RepoReview, Security, SkillAuthoring, Standards, ToolkitOps  
+- **Prompts** (11): Bootstrap, Evolve, Maintain, NewAgent, NewAgentsFile, NewInstructions, NewMultiAgent, NewPrompt, NewSkill, QuickFix, Review  
+- **Skills** (6): asset-design, deployment-automation, documentation, orchestration, planning, repo-analysis  
+- **Standards** (43 across 8 categories): architecture, databases, devops, frameworks, languages, practices, security, testing
+- **Templates** (4): Analysis, ChangeLog, ImplementationPlan, OrchestrationPlan
 
 ## Architecture & Asset Inventory
 

@@ -2,21 +2,12 @@
 description: 'Quick entry point for CopilotCustomizer toolkit improvement tasks with smart defaults'
 argument-hint: 'All inputs optional — runs with intelligent defaults'
 agent: CopilotCustomizer
-model: Claude Opus 4.6 (copilot)
+model: Claude Sonnet 4.5 (copilot)
+name: Evolve
+tools: ['execute', 'read', 'edit', 'search', 'web', 'agent', 'todo']
 ---
 
 ## EvolveTool (v2.0)
-
-```
-✨ PROMPT ACTIVATED: EvolveTool (v2.0)
-   Purpose: Quick toolkit improvement workflow
-   Agent: CopilotCustomizer (unified orchestrator) → Evolve (specialist subagent)
-   Skills Engaged: repo-analysis, planning, asset-design
-   Agents Engaged: Evolve, Editor, Verifier (as needed)
-   Input: TASK, SCOPE, DEPTH, AUTO_EXECUTE
-   Workflow: Analysis → Recommendations → Approval Gate → Execution → Verification
-   Output: Improved toolkit assets with validation report
-```
 
 ### Task Intent
 Quick entry point for common CopilotCustomizer toolkit improvement workflows. Routes through the CopilotCustomizer orchestrator to the Evolve specialist subagent with pre-configured task context for streamlined self-improvement.

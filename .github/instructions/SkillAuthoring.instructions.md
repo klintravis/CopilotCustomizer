@@ -280,7 +280,7 @@ Generate tests using the webapp-testing skill approach...
 # In agent file
 ---
 description: Test automation specialist
-tools: ['terminal', 'files']
+tools: ['terminal', 'edit', 'new']
 ---
 
 Use the webapp-testing skill for test structure, then execute with terminal tools.
@@ -433,6 +433,19 @@ When generating skills, update:
 **Compatible Platforms**: VS Code, GitHub Copilot CLI, Claude, Cursor, Goose, and more  
 **Invocation**: Slash commands (`/skill-name`) + automatic relevance loading  
 **Extension Distribution**: `chatSkills` contribution point in `package.json`
+
+---
+
+## Processing Metadata
+
+- **Standards Version**: VS Code Copilot v2025.11 (Agent Skills v1.109)
+- **Role**: Framework for creating Agent Skills following agentskills.io open standard
+- **Scope**: Cross-platform AI capabilities for VS Code, CLI, Claude, Cursor
+- **Format**: Portable skills with YAML frontmatter, instructions, examples, and resources
+
+*Generated following CopilotCustomizer instruction generation standards*
+
+---
 
 ## Change History
 
