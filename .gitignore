@@ -1,4 +1,3 @@
 .github/output
-.github/logs
-nul
+.github/logs/sessions/*
 docs/plans/*
