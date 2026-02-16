@@ -21,7 +21,7 @@ Primary URLs for VS Code Copilot release monitoring:
 |--------|-----|---------|
 | Release notes | `https://code.visualstudio.com/updates/` | Monthly feature announcements |
 | Customization overview | `https://code.visualstudio.com/docs/copilot/customization/overview` | High-level changes |
-| Agent files | `https://code.visualstudio.com/docs/copilot/customization/custom-chat-modes` | Agent schema updates |
+| Agent files | `https://code.visualstudio.com/docs/copilot/customization/custom-agents` | Agent schema updates |
 | Instructions | `https://code.visualstudio.com/docs/copilot/customization/custom-instructions` | Instruction patterns |
 | Prompts | `https://code.visualstudio.com/docs/copilot/customization/prompt-files` | Prompt enhancements |
 | MCP servers | `https://code.visualstudio.com/docs/copilot/customization/mcp-servers` | MCP integration |
@@ -235,7 +235,7 @@ Look for these common duplication patterns:
 4. Propose extractions and consolidations
 5. Estimate token savings per optimization
 6. Present ranked recommendations (highest savings first)
-7. On approval: execute via ChangeExecutor → verify via VerificationAgent
+7. On approval: execute via Editor → verify via Verifier
 ```
 
 #### Quality Preservation Rules
@@ -255,15 +255,15 @@ During any optimization, maintain:
 
 | Feature Type | Risk Level | Approval | Workflow |
 |-------------|-----------|----------|----------|
-| Typo or formatting fix | Low | No | ChangeExecutor → VerificationAgent |
-| Documentation update | Low | No | ChangeExecutor → VerificationAgent |
-| New example or explanation | Low | No | ChangeExecutor → VerificationAgent |
-| New instruction file | Medium | Yes | AssetPlanner → ChangeExecutor → VerificationAgent |
-| New prompt file | Medium | Yes | AssetPlanner → ChangeExecutor → VerificationAgent |
-| New skill | Medium | Yes | AssetPlanner → ChangeExecutor → VerificationAgent |
-| New agent | High | Yes | AssetPlanner → ChangeExecutor → VerificationAgent |
-| Orchestrator changes | High | Yes | AssetPlanner → ChangeExecutor → VerificationAgent |
-| Schema version update | High | Yes | AssetPlanner → multi-file ChangeExecutor → VerificationAgent |
+| Typo or formatting fix | Low | No | Editor → Verifier |
+| Documentation update | Low | No | Editor → Verifier |
+| New example or explanation | Low | No | Editor → Verifier |
+| New instruction file | Medium | Yes | Planner → Editor → Verifier |
+| New prompt file | Medium | Yes | Planner → Editor → Verifier |
+| New skill | Medium | Yes | Planner → Editor → Verifier |
+| New agent | High | Yes | Planner → Editor → Verifier |
+| Orchestrator changes | High | Yes | Planner → Editor → Verifier |
+| Schema version update | High | Yes | Planner → multi-file Editor → Verifier |
 
 #### Impact Assessment
 

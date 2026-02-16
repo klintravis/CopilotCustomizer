@@ -68,7 +68,7 @@ EXPLORER
 3. **Iterate and Refine**:
    - Use `/Review` to analyze what was created
    - Use individual generators (`/NewAgent`, `/NewInstructions`) to add more
-   - Use `/Maintain` to improve and format existing assets
+   - Use `/Evolve` to improve and format existing assets
 
 ---
 
@@ -94,9 +94,8 @@ Tip: Type `/` in Copilot Chat to see all available commands.
 
 These are available as standard slash commands in the VS Code palette:
 
-- `/Maintain` — Unified maintenance (optimize, harmonize, validate with configurable modes)
 - `/QuickFix` — Fast minimal-diff changes with single approval gate
-- `/Evolve` — Toolkit self-improvement (release monitoring, audits, optimization, features)
+- `/Evolve` — Toolkit self-improvement (release monitoring, audits, optimization, features, asset maintenance)
 
 ---
 
@@ -347,8 +346,8 @@ Provides: Tech stack detection, asset inventory, gap analysis, recommendations
 
 ### Maintain Assets
 
-`/Maintain TARGET_PATH: ".github/", MODE: "all"`  
-**Modes**: `optimize` (token efficiency) | `harmonize` (cross-refs) | `validate` (compliance) | `all`
+`/Evolve TASK: "audit-assets", SCOPE: "all"`  
+**Tasks**: `audit-assets` (comprehensive) | `optimize-assets` (token efficiency) | `harmonize-assets` (cross-refs) | `validate-assets` (compliance)
 
 ### Creating Multi-Agent Systems
 
@@ -410,7 +409,7 @@ Store tech-stack-specific standards in `.github/standards/` (languages/, framewo
 
 ### Maintenance
 
-**Monthly**: `/Review` for audits | **Quarterly**: `/Maintain MODE: "all"` | **After changes**: `/Maintain MODE: "validate"`  
+**Monthly**: `/Review` for audits | **Quarterly**: `/Evolve TASK: "audit-assets"` | **After changes**: `/Evolve TASK: "validate-assets"`  
 **Team**: Commit `.github/` folder, review asset changes in PRs, share patterns
 
 ### Toolkit Evolution
@@ -428,7 +427,7 @@ Store tech-stack-specific standards in `.github/standards/` (languages/, framewo
 | Assets in wrong location | Use absolute paths in `REPOSITORY_PATH` |
 | Agent not in picker | Check `.github/agents/`, YAML `description`, reload |
 | Instructions ignored | Validate `applyTo` glob, check YAML syntax |
-| Broken cross-references | Run `/Maintain MODE: "harmonize"` |
+| Broken cross-references | Run `/Evolve TASK: "harmonize-assets"` |
 | Slow responses | Use specific file refs, optimize assets, close unused workspaces |
 | Handoff buttons missing | Requires VS Code 1.109+, check `.agent.md`, validate YAML |
 

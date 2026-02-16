@@ -9,7 +9,8 @@ name: Bootstrap
 
 ## Bootstrap Workflow (v1.0)
 
-**Orchestrator**: [CopilotCustomizer.agent.md](../agents/CopilotCustomizer.agent.md) (routes to [Bootstrap.agent.md](../agents/Bootstrap.agent.md))
+**Orchestrator**: [CopilotCustomizer.agent.md](../agents/CopilotCustomizer.agent.md) (routes to [Bootstrap.agent.md](../agents/Bootstrap.agent.md))  
+**Paired Instructions**: [Framework.instructions.md](../instructions/Framework.instructions.md), [RepoReview.instructions.md](../instructions/RepoReview.instructions.md)
 
 ## Purpose
 Fully autonomous workflow for generating Copilot customization assets for a target repository in the same workspace. **Skills-first approach** - prioritizes cross-platform capabilities (Skills) alongside VS Code-specific assets. Single entry point that orchestrates complete lifecycle: analysis → planning → generation → validation → harmonization → documentation.

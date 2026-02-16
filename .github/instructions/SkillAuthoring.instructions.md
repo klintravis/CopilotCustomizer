@@ -447,10 +447,16 @@ When generating skills, update:
 
 ---
 
+## Related Assets
+
+**Paired Prompt**: [NewSkill.prompt.md](../prompts/NewSkill.prompt.md) — Interactive skill generation with guided workflow
+
+---
+
 ## Change History
 
 | Version | Date | Changes |
-|---------|------|---------|
+|---------|---------|
 | v1.0 | 2026-01-15 | Initial release |
 
 ---

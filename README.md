@@ -111,9 +111,8 @@ See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for complete architecture docum
 
 All maintenance and toolkit evolution commands are available as standard slash commands:
 
-- `/Maintain` — Unified asset maintenance via AssetMaintenance instruction (optimize, harmonize, format, validate)
 - `/QuickFix` — Fast minimal-diff changes with single approval gate
-- `/Evolve` — Monitor VS Code Copilot releases, audit toolkit assets, review documentation, optimize performance, and implement feature requests
+- `/Evolve` — Monitor VS Code Copilot releases, audit toolkit assets, review documentation, optimize performance, implement feature requests, and maintain assets (optimize, harmonize, validate)
 
 **Toolkit Self-Improvement**: Use `/Evolve` to evolve the framework itself. The CopilotCustomizer orchestrator routes these requests to the Evolve specialist subagent.
 

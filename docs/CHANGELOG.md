@@ -48,15 +48,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Streamlined documentation**: Condensed HOW-TO.md from 1,520 to 889 lines while preserving all essential content
 
 ### Asset File Renames
-- **Agents**: No renames (7 files stable) — *Note: HarmonizationAgent removed in v1.2.0 was functionally replaced by enhanced VerificationAgent with harmonization capability; agent count remained at 7*
+- **Agents**: No renames (7 files stable) — *Note: HarmonizationAgent removed in v1.2.0 was functionally replaced by enhanced Verifier with harmonization capability; agent count remained at 7*
 - **Instructions**: `ResolveStandards.instructions.md` → `Standards.instructions.md`, `CopilotFramework.instructions.md` → `Framework.instructions.md`, `CopilotSecurity.instructions.md` → `Security.instructions.md`, `AssetMaintenance.instructions.md` → `Maintenance.instructions.md`, `ToolkitMaintenance.instructions.md` → `ToolkitOps.instructions.md` — Reduced from 13 to 12 files via consolidation mergers
-- **Prompts**: `BootstrapRepo.prompt.md` → `Bootstrap.prompt.md`, `RepoReview.prompt.md` → `Review.prompt.md`, `NewCopilotAgent.prompt.md` → `NewAgent.prompt.md`, `QuickChange.prompt.md` → `QuickFix.prompt.md`, `EvolveTool.prompt.md` → `Evolve.prompt.md`
+- **Prompts**: `BootstrapRepo.prompt.md` → `Bootstrap.prompt.md`, `RepoReview.prompt.md` → `Review.prompt.md`, `NewCopilotAgent.prompt.md` → `NewAgent.prompt.md`, `QuickChange.prompt.md` → `QuickFix.prompt.md`; Note: Evolve.prompt.md represents consolidated functionality, not a direct rename
 - **Skills**: `repository-analysis/` → `repo-analysis/`, `implementation-planning/` → `planning/`, `copilot-asset-design/` → `asset-design/`, `technical-documentation/` → `documentation/`, `multi-agent-orchestration/` → `orchestration/`
 
 ### Fixed
 - **Critical**: Removed 80-line duplicate section in GenerateCopilotAgent.instructions.md
-- **Critical**: Fixed corrupted output template in VerificationAgent.agent.md
-- **Critical**: Corrected relative paths (../../ → ../) in VerificationAgent.agent.md
+- **Critical**: Fixed corrupted output template in Verifier.agent.md
+- **Critical**: Corrected relative paths (../../ → ../) in Verifier.agent.md
 - **Critical**: Removed contradictory `edit` tool from CopilotCustomizer.agent.md
 
 ### Removed
@@ -77,9 +77,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - `NewWorkflow.prompt.md` → `NewHandoffChain.prompt.md` (simple sequential A→B→C workflows)
   - `NewWorkflowSystem.prompt.md` → `NewOrchestratedSystem.prompt.md` (conductor + subagent systems)
   - `GenerateWorkflow.instructions.md` → `GenerateHandoffChain.instructions.md`
-- **Consolidated HarmonizationAgent into VerificationAgent**:
-  - VerificationAgent now handles both validation AND harmonization
-  - Added `edit` tool to VerificationAgent
+- **Consolidated HarmonizationAgent into Verifier**:
+  - Verifier now handles both validation AND harmonization
+  - Added `edit` tool to Verifier
   - Updated workflow to include harmonization phase
   - Agent count reduced from 7 to 6
 - **Merged dev maintenance prompts into unified Maintain prompt**:
@@ -88,7 +88,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Dev prompt count reduced from 4 to 2
 
 ### Removed
-- `HarmonizationAgent.agent.md` (functionality absorbed into VerificationAgent)
+- `HarmonizationAgent.agent.md` (functionality absorbed into Verifier)
 - `OptimizeAndFormat.prompt.md` (replaced by Maintain with mode: optimize)
 - `HarmonizeAndValidate.prompt.md` (replaced by Maintain with mode: harmonize/validate)
 - `AgentResume.prompt.md` (deprecated)
@@ -100,7 +100,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Updated
 - All documentation updated to reflect new names and consolidated structure
-- Bootstrap workflow chain simplified: AssetGenerator → VerificationAgent (includes harmonization)
+- Bootstrap workflow chain simplified: Generator → Verifier (includes harmonization)
 - README agent count: 7 → 6 agents
 - README dev prompt count: 4 → 2 prompts
 
@@ -119,10 +119,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - Initial release of CopilotCustomizer framework
-- 6 cross-platform skills
-- 7 workflow agents (including HarmonizationAgent)
-- 14 instruction files
-- 9 user prompts + 4 dev prompts
+- 6 cross-platform skills (asset-design, deployment-automation, documentation, orchestration, planning, repo-analysis)
+- 7 workflow agents (CopilotCustomizer orchestrator, Bootstrap, Planner, Generator, Editor, Verifier, Evolve)
+- 12 instruction files
+- 10 user prompts
 - 4 templates
 - Multi-workspace pattern support
-- Bootstrap automation workflow
+- Bootstrap automation workflow with autonomous orchestration

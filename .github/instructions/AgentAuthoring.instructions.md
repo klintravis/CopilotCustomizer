@@ -567,4 +567,4 @@ When generating this asset type, integrate matched enterprise standards via [Sta
 | v1.0 | 2026-01-15 | Initial release |
 
 *Complete framework: [Framework.instructions.md](Framework.instructions.md)*
-*VS Code: [Agent Files](https://code.visualstudio.com/docs/copilot/customization/custom-chat-modes)*
+*VS Code: [Agent Files](https://code.visualstudio.com/docs/copilot/customization/custom-agents)*

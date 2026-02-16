@@ -9,6 +9,8 @@ tools: ['execute', 'read', 'edit', 'search', 'web', 'agent', 'todo']
 
 ## QuickFix (v1.0)
 
+**Paired Instructions**: [Framework.instructions.md](../instructions/Framework.instructions.md), [Maintenance.instructions.md](../instructions/Maintenance.instructions.md)
+
 ### Task Intent
 Perform a small, targeted change with a fast approval gate and automated verification and documentation, minimizing touched files.
 
@@ -59,7 +61,7 @@ QuickFix → CopilotCustomizer orchestrator → repo-analysis skill → planning
 
 ### Notes
 - Optimized for small diffs (typos, minor refactors, config/documentation tweaks)
-- For asset maintenance (optimize, harmonize, validate), use `/Maintain`
+- For asset maintenance (optimize, harmonize, validate), use `/Evolve`
 
 ### Framework References
 *Framework: [Framework.instructions.md](../instructions/Framework.instructions.md)*

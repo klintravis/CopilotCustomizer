@@ -111,17 +111,17 @@ Generate multi-agent systems ranging from simple sequential handoff chains to co
 
 **Linear handoff chain (simple)**:
 ```
-/NewMultiAgent SYSTEM_NAME: "DataFlow", SYSTEM_PATTERN: "linear", REPOSITORY_PATH: "/Users/dev/my-project", DOMAIN: "Data processing"
+/NewMultiAgent systemName: "DataFlow", systemPattern: "linear", repositoryPath: "/Users/dev/my-project", domain: "Data processing"
 ```
 
 **Orchestra pattern (medium complexity)**:
 ```
-/NewMultiAgent SYSTEM_NAME: "FeatureOrchestra", SYSTEM_PATTERN: "orchestra", REPOSITORY_PATH: "/Users/dev/my-api-project", DOMAIN: "Node.js REST API"
+/NewMultiAgent systemName: "FeatureOrchestra", systemPattern: "orchestra", repositoryPath: "/Users/dev/my-api-project", domain: "Node.js REST API"
 ```
 
 ### Example with Custom Pattern
 ```
-/NewMultiAgent SYSTEM_NAME: "DataPipeline", SYSTEM_PATTERN: "custom", REPOSITORY_PATH: "/Users/dev/etl-project", DOMAIN: "Python ETL", CUSTOM_AGENTS: "planner, extractor, transformer, loader, validator", TDD_ENFORCEMENT: "relaxed"
+/NewMultiAgent systemName: "DataPipeline", systemPattern: "custom", repositoryPath: "/Users/dev/etl-project", domain: "Python ETL", customAgents: "planner, extractor, transformer, loader, validator", tddEnforcement: "relaxed"
 ```
 
 **Generated using**: [Orchestration.instructions.md](../instructions/Orchestration.instructions.md)

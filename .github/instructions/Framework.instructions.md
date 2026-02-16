@@ -53,7 +53,7 @@ Universal validation criteria for all Copilot customization work:
 
 ### Documentation Sources
 - [Customization Overview](https://code.visualstudio.com/docs/copilot/customization/overview)
-- [Agent Files](https://code.visualstudio.com/docs/copilot/customization/custom-chat-modes)
+- [Agent Files](https://code.visualstudio.com/docs/copilot/customization/custom-agents)
 - [Custom Instructions](https://code.visualstudio.com/docs/copilot/customization/custom-instructions)
 - [Prompt Files](https://code.visualstudio.com/docs/copilot/customization/prompt-files)
 - [MCP Servers](https://code.visualstudio.com/docs/copilot/customization/mcp-servers)

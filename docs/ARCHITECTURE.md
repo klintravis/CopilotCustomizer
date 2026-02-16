@@ -59,7 +59,7 @@ All orchestration is programmatic via the `agent` tool — no manual handoff but
 
 **Instructions** (12): Generation frameworks (`SkillAuthoring`, `AgentAuthoring`, `PromptAuthoring`, `InstructionAuthoring`, `Orchestration`, `AgentsFile`), Standards (`Standards`), Quality (`Framework`, `Security`, `Maintenance`, `RepoReview`, `ToolkitOps`)
 
-**Prompts** (11): Core (`Bootstrap`, `Review`), Generation (`NewSkill`, `NewAgent`, `NewInstructions`, `NewPrompt`, `NewMultiAgent`, `NewAgentsFile`), Evolution (`Evolve`), Maintenance (`Maintain`, `QuickFix`)
+**Prompts** (10): Core (`Bootstrap`, `Review`), Generation (`NewSkill`, `NewAgent`, `NewInstructions`, `NewPrompt`, `NewMultiAgent`, `NewAgentsFile`), Evolution (`Evolve`, `QuickFix`)
 
 **Templates** (4): `Analysis`, `ImplementationPlan`, `OrchestrationPlan`, `ChangeLog`
 
@@ -149,7 +149,6 @@ Custom Agent ←→ Agent Files (Contextual binding)
 | `PromptAuthoring.instructions.md` | `NewPrompt.prompt.md` | CopilotCustomizer | Prompt file creation |
 | `SkillAuthoring.instructions.md` | `NewSkill.prompt.md` | CopilotCustomizer | Cross-platform skill creation |
 | `Orchestration.instructions.md` | `NewMultiAgent.prompt.md` | CopilotCustomizer | Multi-agent orchestrated system creation |
-| `Maintenance.instructions.md` | `Maintain.prompt.md` | CopilotCustomizer | Asset maintenance (optimize, harmonize, validate) |
 | `RepoReview.instructions.md` | `Review.prompt.md` | CopilotCustomizer | Repository analysis |
 | `Standards.instructions.md` | N/A | CopilotCustomizer | Standards resolution (generation-time) |
 | `Framework.instructions.md` | N/A | CopilotCustomizer | Universal quality patterns |

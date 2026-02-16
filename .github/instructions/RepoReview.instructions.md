@@ -137,7 +137,7 @@ Guide AI agents to audit Copilot customization assets and deliver actionable imp
 ### Workflow References
 **Bootstrap autonomous workflow**: Use [Bootstrap.prompt.md](../prompts/Bootstrap.prompt.md) to generate complete asset set for a repository
 - [Orchestration.instructions.md](Orchestration.instructions.md) - Conductor/subagent patterns
-- Use `Maintain` for integrated validation
+- Use `/Evolve` for integrated validation
 
 ### Analysis Guidelines
 

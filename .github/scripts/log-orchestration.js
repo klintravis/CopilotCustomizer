@@ -75,7 +75,7 @@ const SUBAGENT_REGISTRY = [
   "Verifier",
   "Evolve",
 ];
-const CAPTURE_STDIN = true; // Set to false to disable stdin capture
+const CAPTURE_STDIN = false; // Set to false to disable stdin capture
 
 // Global to store event context from stdin and current session info
 let eventContext = {};

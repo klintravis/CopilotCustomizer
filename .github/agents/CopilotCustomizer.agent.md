@@ -16,7 +16,7 @@ Unified orchestrator for the CopilotCustomizer framework. Analyzes user requests
 
 **Key references**:
 * https://code.visualstudio.com/docs/copilot/customization/overview — comprehensive customization overview and workflow guidance
-* https://code.visualstudio.com/docs/copilot/customization/custom-chat-modes — agent files and handoff workflows
+* https://code.visualstudio.com/docs/copilot/customization/custom-agents — agent files and handoff workflows
 * https://code.visualstudio.com/docs/copilot/customization/custom-instructions — instructions files and AGENTS.md patterns
 * https://code.visualstudio.com/docs/copilot/customization/prompt-files — prompt files and variable systems
 * https://code.visualstudio.com/docs/copilot/customization/mcp-servers — MCP servers and external tool integration

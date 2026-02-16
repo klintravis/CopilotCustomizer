@@ -18,7 +18,7 @@ Operates exclusively on the **CopilotCustomizer toolkit itself** — never on ex
 **Key references**:
 * https://code.visualstudio.com/docs/copilot/customization/overview — customization overview
 * https://code.visualstudio.com/updates/ — monthly VS Code release notes
-* https://code.visualstudio.com/docs/copilot/customization/custom-chat-modes — agent file schema
+* https://code.visualstudio.com/docs/copilot/customization/custom-agents — agent file schema
 * https://code.visualstudio.com/docs/copilot/customization/custom-instructions — instruction patterns
 * https://code.visualstudio.com/docs/copilot/customization/prompt-files — prompt file system
 * https://code.visualstudio.com/docs/copilot/customization/mcp-servers — MCP server integration
@@ -86,7 +86,7 @@ Before returning results to the orchestrator, verify:
 **Documentation Sources** (fetch via `web/fetch`):
 - `https://code.visualstudio.com/updates/` — Release notes
 - `https://code.visualstudio.com/docs/copilot/customization/overview` — Overview
-- `https://code.visualstudio.com/docs/copilot/customization/custom-chat-modes` — Agent schema
+- `https://code.visualstudio.com/docs/copilot/customization/custom-agents` — Agent schema
 - `https://code.visualstudio.com/docs/copilot/customization/custom-instructions` — Instructions
 - `https://code.visualstudio.com/docs/copilot/customization/prompt-files` — Prompts
 - `https://code.visualstudio.com/docs/copilot/customization/mcp-servers` — MCP

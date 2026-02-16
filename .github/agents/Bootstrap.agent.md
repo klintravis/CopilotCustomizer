@@ -230,14 +230,18 @@ All other phases run autonomously with automatic handoffs.
 
 ---
 
-## Processing Metadata
+## Standards Compliance & Processing Metadata
 
+**VS Code Copilot Compliance**: Agent Files v1.109 — Full compliance achieved
+
+**Processing Metadata**:
 - **Standards Version**: VS Code Copilot v2025.11 (Agent Files v1.109)
 - **Role**: Repository bootstrap entry point with autonomous 6-phase workflow
 - **Archetype**: Planner (repo-analysis skill integration)
-- **Tools**: ['search', 'search/codebase'] — Analysis tools only; no implementation tools (delegates to subagents)
+- **Tools**: Analysis and coordination only — no implementation tools (delegates to subagents)
+- **Subagents**: Invokes Planner, Generator, Verifier via orchestrator
 
-*Generated following CopilotCustomizer agent generation standards*
+*Generated and optimized following VS Code GitHub Copilot official documentation standards*
 
 ---
 

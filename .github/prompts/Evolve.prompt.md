@@ -7,7 +7,7 @@ name: Evolve
 tools: ['execute', 'read', 'edit', 'search', 'web', 'agent', 'todo']
 ---
 
-## EvolveTool (v2.0)
+## Evolve (v2.0)
 
 ### Task Intent
 Quick entry point for common CopilotCustomizer toolkit improvement workflows. Routes through the CopilotCustomizer orchestrator to the Evolve specialist subagent with pre-configured task context for streamlined self-improvement.
@@ -62,44 +62,44 @@ Quick entry point for common CopilotCustomizer toolkit improvement workflows. Ro
 
 ### Orchestration Chain
 ```
-EvolveTool → CopilotCustomizer orchestrator → Evolve → [Editor] → [Verifier] → Complete
+Evolve → CopilotCustomizer orchestrator → Evolve → [Editor] → [Verifier] → Complete
 ```
 
 ### Example Invocations
 
 **Default audit** (most common):
 ```
-/EvolveTool
+/Evolve
 ```
 Runs asset audit with standard depth across all toolkit assets.
 
 **Quick release check**:
 ```
-/EvolveTool task: "monitor-releases", depth: "quick-check"
+/Evolve task: "monitor-releases", depth: "quick-check"
 ```
 Fast scan of VS Code Copilot docs for new features.
 
 **Comprehensive doc review**:
 ```
-/EvolveTool task: "review-docs", scope: "docs", depth: "comprehensive"
+/Evolve task: "review-docs", scope: "docs", depth: "comprehensive"
 ```
 Deep review of all toolkit documentation.
 
 **Optimize agents only**:
 ```
-/EvolveTool task: "optimize", scope: "agents", autoExecute: "false"
+/Evolve task: "optimize", scope: "agents", autoExecute: "false"
 ```
 Analyze agent token usage with manual approval before changes.
 
 **Pre-release validation**:
 ```
-/EvolveTool task: "self-validate", depth: "comprehensive"
+/Evolve task: "self-validate", depth: "comprehensive"
 ```
 Full validation suite before a toolkit release.
 
 **Implement a feature**:
 ```
-/EvolveTool task: "feature-request"
+/Evolve task: "feature-request"
 ```
 Then describe the feature in the chat. The orchestrator routes to Evolve, which will classify, plan, and implement the feature.
 

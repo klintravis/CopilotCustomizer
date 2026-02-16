@@ -59,7 +59,7 @@ INPUT: Asset specifications from Planner
    NOTE: Orchestration specs are included by default when Planner recommends 3+ agents.
    Follow Orchestration.instructions.md for conductor/subagent generation details.
   ↓
-4b. Generate Prompt Files (.prompt.md)
+4c. Generate Prompt Files (.prompt.md)
    - YAML front matter (agent/mode)
    - Variable blocks
    - Usage instructions

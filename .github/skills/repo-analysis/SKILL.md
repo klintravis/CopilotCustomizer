@@ -388,34 +388,3 @@ A complete repository analysis should provide:
 **Prerequisites**: Repository access, ability to search codebase
 
 **Cross-Platform**: Works in VS Code, GitHub Copilot CLI, Claude, Cursor, and other Skills-compatible agents.
-
-## Integration with Other Skills
-
-**Downstream** (feeds to):
-- **planning** — Use analysis results to create implementation strategies
-- **asset-design** — Inform design decisions for customization assets
-- **documentation** — Document architecture and patterns discovered
-- **orchestration** — Plan orchestrated systems based on complexity analysis
-
-**Typical workflow**: 
-```
-repo-analysis (understand codebase) ← THIS SKILL
-  ↓
-planning (create strategy)
-  ↓
-[USER APPROVAL GATE] ✋
-  ↓
-Implementation
-  ↓
-documentation (capture outcomes)
-```
-
-**Works well with**:
-- **planning** — Analyze codebase before creating implementation plan
-- **asset-design** — Understand architecture before designing customizations
-- **documentation** — Generate technical documentation from analysis
-- **orchestration** — Assess complexity to recommend orchestration patterns
-
-**Integration benefits**: Analysis output provides essential context for downstream skills, reducing redundant discovery and improving decisions.
-
----
