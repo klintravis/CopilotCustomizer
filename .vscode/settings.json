@@ -1,12 +1,7 @@
 {
-  "github.copilot.chat.search.semanticTextResults": 5,
-  "chat.customAgentInSubagent.enabled": true,
-  "files.exclude": {
-    "**/.git": false
-  },
   "search.exclude": {
     "**/node_modules": true,
     "**/bower_components": true,
-    "**/.github/logs": true
+    "**/.github/logs/sessions/": true
   }
 }
