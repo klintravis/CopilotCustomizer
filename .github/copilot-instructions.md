@@ -230,7 +230,7 @@ Skills are portable AI capabilities following the [agentskills.io](https://agent
 | **asset-design** | Design and validate Copilot assets | Generator, Planner | Architecture patterns, quality criteria, integration strategies |
 | **deployment-automation** | CI/CD and release workflows | Generator, Evolve | GitHub Actions, container deployments, infrastructure automation |
 | **documentation** | Technical documentation generation | All agents | Change summaries, API docs, technical reports |
-| **orchestration** | Orchestrated multi-agent system design | CopilotCustomizer, Planner | Orchestra, Atlas, Pipeline, Custom patterns; TDD lifecycle; parallel execution; multi-orchestrator pipelines |
+| **orchestration** | Orchestrated multi-agent system design | CopilotCustomizer, Planner | Orchestra, Atlas, Pipeline, Custom patterns; spec-driven lifecycle; parallel execution; multi-orchestrator pipelines |
 | **planning** | Strategic implementation planning | Planner, Bootstrap | Step-by-step execution plans, risk mitigation, validation strategies |
 | **repo-analysis** | Deep repository analysis | Bootstrap, Planner | Tech stack detection, dependency analysis, pattern recognition |
 

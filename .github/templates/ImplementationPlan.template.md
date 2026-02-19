@@ -34,12 +34,29 @@ Design and execute a stepwise implementation plan for the assigned project task.
 | [Phase/Checkpoint] | [Rough timeframe] | [Measurable completion signal] |
 | [Integration point] | [Dependencies resolved] | [Validation completed] |
 
-## 6. Workflow
-1. **Requirements clarification** - Validate assumptions, gather missing details
-2. **Design outline** - Create lightweight architecture/approach
-3. **Incremental implementation** - Build/deliver in testable chunks
-4. **Review & refinement** - Incorporate feedback, address gaps
-5. **Final verification** - Complete testing, documentation, handoff
+## 6. Task Breakdown with Agent Assignments
+
+| Task | Description | Assigned Agent | Parallel Group | Dependencies | Files Scope | Status |
+|------|-------------|----------------|----------------|--------------|-------------|--------|
+| 1 | [Task description] | [Agent or "self"] | — | None | [glob pattern] | pending |
+| 2 | [Task description] | [Agent or "self"] | **A** | Task 1 | [glob pattern] | pending |
+| 3 | [Task description] | [Agent or "self"] | **A** | Task 1 | [glob pattern] | pending |
+| 4 | [Task description] | [Agent or "self"] | — | Tasks 2, 3 | [glob pattern] | pending |
+
+> **Parallel Group**: Tasks sharing the same letter run concurrently. `—` = sequential.
+> **Assigned Agent**: Which subagent owns this task. Use "self" for conductor-handled tasks.
+> **Dependencies**: Which tasks must complete before this one starts.
+> **Files Scope**: Parallel tasks MUST have disjoint file scopes.
+
+### Parallel Execution Flow
+```
+Task 1 [Agent] (sequential)
+  ↓
+┌─ Task 2 [Agent] ─┐
+│  (Group A)        │── sync ──→ Task 4 [Agent]
+└─ Task 3 [Agent] ─┘
+   (Group A)
+```
 
 ## 7. Assumptions
 - [Technical/environmental assumptions that affect the plan]

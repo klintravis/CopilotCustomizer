@@ -8,7 +8,7 @@ This example shows a complete Pipeline pattern output for a full-stack monorepo 
 **Pattern**: Pipeline (4 sub-orchestrators + 5 shared specialists)
 **Target Repository**: `/Users/dev/fullstack-monorepo`
 **Domain**: Full-stack monorepo (React + Node.js + PostgreSQL)
-**TDD Enforcement**: strict
+**Spec Enforcement**: full
 **Stages**: Planning → Implementation → Testing → Review
 
 ## Generated Files
@@ -293,7 +293,7 @@ FullStackController (Pipeline Controller)
 - **System**: FullStackPipeline (Pipeline pattern)
 - **Controller**: FullStackController
 - **Sub-Orchestrators**: FullStackPlanningOrch, FullStackImplementationOrch, FullStackTestingOrch, FullStackReviewOrch
-- **TDD Enforcement**: strict
+- **Spec Enforcement**: full
 - **Parallel Execution**: true (within stages)
 
 ## 7b. Pipeline Stages

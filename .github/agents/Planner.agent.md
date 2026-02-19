@@ -71,7 +71,7 @@ Orchestration assessment is MANDATORY for every plan. Evaluate:
 Auto-include orchestration when ANY of these are true:
   - Plan recommends 3 or more agents (lightweight conductor minimum)
   - Repository has 50+ files or multiple specialized domains
-  - TDD lifecycle enforcement is required
+  - Spec-driven lifecycle is required
   - Multiple specialized roles need coordinated execution
   - Parallel execution would improve throughput
 
@@ -81,9 +81,9 @@ Tier selection:
     - Existing agents become subagents with I/O contracts
     - plans/PLAN.md with simplified phase tracking
     - .vscode/settings.json with chat.customAgentInSubagent.enabled: true
-  orchestra: 4-5 agents, sequential phases, TDD lifecycle
+  orchestra: 4-5 agents, sequential phases, spec-driven lifecycle
     - Full conductor + dedicated subagents
-    - 3+ quality gates, TDD lifecycle, full plan file tracking
+    - 3+ quality gates, spec-driven lifecycle, full plan file tracking
   atlas: 6-10 agents, parallel execution, large/complex codebases
     - Full conductor + subagents with scoped contexts
     - Parallel groups, context conservation, disjoint write sets
@@ -202,7 +202,7 @@ Output: Session-specific folders in .github/logs/sessions/<timestamp>/
 
 - **Conductor/Controller**: {ConductorName}.agent.md with agent tool, handoffs to subagents/sub-orchestrators
 - **Subagents**: I/O contracts (receives X → produces Y, scope: paths)
-- **Plan File**: plans/PLAN.md (or plans/PIPELINE-PLAN.md for pipeline) with phases/stages and TDD enforcement
+- **Plan File**: plans/PLAN.md (or plans/PIPELINE-PLAN.md for pipeline) with phases/stages and spec enforcement
 - **VS Code Config**: .vscode/settings.json (chat.customAgentInSubagent.enabled: true)
 
 #### Pipeline System (pipeline tier only)
@@ -214,6 +214,17 @@ Output: Session-specific folders in .github/logs/sessions/<timestamp>/
 - **Stages**: {ordered list of stages, e.g., planning, implementation, testing, review}
 - **Inter-Stage Gates**: Quality gate between each stage transition
 - **Plan File**: plans/PIPELINE-PLAN.md with stage definitions and shared pool manifest
+
+### Task Breakdown with Agent Assignments
+> Decompose each phase into tasks. Assign each task to a specific subagent.
+> Mark tasks that can run in parallel with the same group letter.
+
+| Task | Description | Assigned Agent | Parallel Group | Dependencies | Files Scope |
+|------|-------------|----------------|----------------|--------------|-------------|
+| 1.1 | {task} | {agent} | — | None | {glob} |
+| 2.1 | {task} | {agent} | **A** | Phase 1 | {glob} |
+| 2.2 | {task} | {agent} | **A** | Phase 1 | {glob} |
+| 3.1 | {task} | {agent} | — | Tasks 2.1, 2.2 | {glob} |
 
 ### Implementation Specifications
 {Detailed creation parameters for each asset, including skill structure}
@@ -262,7 +273,7 @@ orchestration:
   tier: {lightweight-conductor | orchestra | atlas | pipeline}
   conductor: {name, description, tools, handoffs, qualityGates}
   subagents: [{name, inputContract, outputContract, scopeBoundaries}]
-  planFile: {template, tddEnforcement}
+  planFile: {template, specEnforcement}
   vsCodeConfig: {chatCustomAgentInSubagentEnabled}
   pipeline:  # Pipeline tier only
     controller: {name, description, stages, interStageGates}
@@ -289,7 +300,7 @@ orchestration:
 ### Orchestration Assessment
 - **Tier**: lightweight-conductor (3 agents recommended)
 - **Conductor**: APIConductor.agent.md (agent tool only, no implementation tools)
-- **TDD**: strict
+- **Spec Enforcement**: full
 
 ### Recommended Assets
 
@@ -315,7 +326,7 @@ orchestration:
 
 ### Expected Outcomes
 - 1 conductor + 3 subagents + 3 instructions + 2 prompts + plan file + VS Code config
-- Complete orchestrated system with TDD lifecycle
+- Complete orchestrated system with spec-driven lifecycle
 
 **Reply "confirm" to generate all assets autonomously.**
 ```

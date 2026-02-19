@@ -134,7 +134,7 @@ When validating orchestrated multi-agent systems (conductor + subagents), apply 
 - [ ] All conductor agent references resolve to existing subagent files
 - [ ] No circular dependencies in agent invocations
 - [ ] Plan files exist (`plans/PLAN.md` with correct template structure)
-- [ ] TDD lifecycle documented per enforcement level
+- [ ] Spec-driven lifecycle documented per enforcement level
 - [ ] Quality gate flow is sequential (no skipped gates)
 - [ ] AGENTS.md updated with orchestrated system inventory (if using custom agents as subagents)
 - [ ] Model assignments valid per agent archetype

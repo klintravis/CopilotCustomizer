@@ -157,7 +157,7 @@ Structured technical documentation generation for changes, APIs, and architectur
 CI/CD pipeline design, deployment strategies, GitHub Actions workflows, monitoring and rollback.
 
 **6. orchestration** 🎭  
-Conductor/subagent systems with TDD lifecycle, quality gates, plan tracking, and parallel execution.
+Conductor/subagent systems with spec-driven lifecycle, quality gates, plan tracking, and parallel execution.
 
 ### How to Use Skills
 
@@ -352,7 +352,7 @@ Provides: Tech stack detection, asset inventory, gap analysis, recommendations
 ### Creating Multi-Agent Systems
 
 **Handoff Chains** (VS Code 1.106+): Define `handoffs` in YAML for guided workflows  
-**Orchestrated Systems**: `/NewMultiAgent` for conductor-managed phases with TDD and quality gates
+**Orchestrated Systems**: `/NewMultiAgent` for conductor-managed phases with spec-driven design and quality gates
 
 **Patterns**: Linear (sequential) | Orchestra (3-5 agents) | Atlas (5-10 agents, parallel) | Pipeline (6-15+ agents, multi-orchestrator lifecycle)
 
@@ -398,7 +398,7 @@ SHARED_AGENTS: "codebase-analyzer, frontend-dev, backend-dev, database-dev, secu
 - VS Code settings (`chat.customAgentInSubagent.enabled: true`)
 - Updated AGENTS.md with system inventory
 
-**Skills Reference**: The `orchestration` skill provides the complete methodology for orchestration patterns (Orchestra, Atlas, Pipeline, Custom), conductor/controller design, subagent archetypes, TDD lifecycle, and quality gates.
+**Skills Reference**: The `orchestration` skill provides the complete methodology for orchestration patterns (Orchestra, Atlas, Pipeline, Custom), conductor/controller design, subagent archetypes, spec-driven lifecycle, and quality gates.
 
 ---
 

@@ -14,7 +14,7 @@ tools: ['execute', 'read', 'edit', 'search', 'web', 'agent', 'todo']
 **Skill Reference**: [orchestration](../skills/orchestration/SKILL.md)
 
 ### Task Intent
-Generate multi-agent systems ranging from simple sequential handoff chains to complex conductor/subagent orchestration with TDD lifecycle enforcement, quality gates, and plan file tracking.
+Generate multi-agent systems ranging from simple sequential handoff chains to complex conductor/subagent orchestration with spec-driven lifecycle, quality gates, and plan file tracking.
 
 ### System Patterns
 
@@ -35,7 +35,7 @@ Generate multi-agent systems ranging from simple sequential handoff chains to co
 **Custom Agents** [OPTIONAL]: ${input:customAgents:Comma-separated roles for custom pattern}
 **Stages** [OPTIONAL]: ${input:stages:Comma-separated lifecycle stages for pipeline pattern (default: planning, implementation, testing, review)}
 **Shared Agents** [OPTIONAL]: ${input:sharedAgents:Comma-separated shared specialist roles for pipeline pattern}
-**TDD Enforcement** [OPTIONAL]: ${input:tddEnforcement:strict, relaxed, or none (default: strict)}
+**Spec Enforcement** [OPTIONAL]: ${input:specEnforcement:full, lightweight, or none (default: full)}
 **Parallel Enabled** [OPTIONAL]: ${input:parallelEnabled:true or false (default: pattern-dependent)}
 ---
 
@@ -53,7 +53,7 @@ Generate multi-agent systems ranging from simple sequential handoff chains to co
 - **customAgents**: Only for `custom` pattern — comma-separated roles (e.g., "planner, implementer, tester, deployer")
 - **stages**: Only for `pipeline` pattern — comma-separated lifecycle stages (default: "planning, implementation, testing, review"). Each stage gets its own sub-orchestrator agent.
 - **sharedAgents**: Only for `pipeline` pattern — comma-separated shared specialist roles (e.g., "codebase-analyzer, frontend-dev, backend-dev, database-dev, security-auditor"). All specialists are available to all sub-orchestrators.
-- **tddEnforcement**: `strict` = Plan→Test→Implement→Review→Commit per phase; `relaxed` = tests optional; `none` = disabled (note: linear patterns typically use `relaxed`)
+- **specEnforcement**: `full` = Spec→Implement→Validate→Review→Commit per phase; `lightweight` = validation optional; `none` = disabled (note: linear patterns typically use `lightweight`)
 - **parallelEnabled**: Atlas default: true, Orchestra default: false, Pipeline default: true (within stages), Linear: N/A
 
 ### Generation Workflow
@@ -73,7 +73,7 @@ Generate multi-agent systems ranging from simple sequential handoff chains to co
   - Conductor definition
   - Subagent list with roles, models, tools
   - Phase sequence with quality gates
-  - TDD enforcement level
+  - Spec enforcement level
 - **Wait for user to type `confirm` before generating files**
 
 **Phase 4: Agent Generation**
@@ -101,7 +101,7 @@ Generate multi-agent systems ranging from simple sequential handoff chains to co
 |---------|--------|
 | `refine: agents` | Adjust agent composition (add, remove, modify roles) |
 | `refine: gates` | Modify quality gate criteria and placement |
-| `refine: tdd` | Change TDD enforcement level or per-phase requirements |
+| `refine: spec` | Change spec enforcement level or per-phase requirements |
 | `refine: parallel` | Enable/disable parallel execution, adjust groups |
 | `refine: models` | Change model tier assignments for agents |
 
@@ -143,7 +143,7 @@ Generate multi-agent systems ranging from simple sequential handoff chains to co
 
 ### Example with Custom Pattern
 ```
-/NewMultiAgent systemName: "DataPipeline", systemPattern: "custom", repositoryPath: "/Users/dev/etl-project", domain: "Python ETL", customAgents: "planner, extractor, transformer, loader, validator", tddEnforcement: "relaxed"
+/NewMultiAgent systemName: "DataPipeline", systemPattern: "custom", repositoryPath: "/Users/dev/etl-project", domain: "Python ETL", customAgents: "planner, extractor, transformer, loader, validator", specEnforcement: "lightweight"
 ```
 
 **Generated using**: [Orchestration.instructions.md](../instructions/Orchestration.instructions.md)

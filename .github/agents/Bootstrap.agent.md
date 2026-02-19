@@ -156,7 +156,7 @@ Agent: "Ready to generate:
 - SecurityReviewer.agent.md (subagent: security audits)
 - 3 instruction files, 2 prompt files
 - .github/hooks/orchestration-logging.json (optional lifecycle logging)
-- plans/PLAN.md (lightweight-conductor, strict TDD)
+- plans/PLAN.md (lightweight-conductor, full spec enforcement)
 - .vscode/settings.json (subagent config)
 - AGENTS.md with orchestrated system inventory
 

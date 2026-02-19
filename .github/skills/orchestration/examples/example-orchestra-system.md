@@ -1,6 +1,6 @@
 # Example: Orchestra Pattern — Feature Implementation System
 
-This example shows a complete Orchestra pattern output for a Node.js/TypeScript API project. The system coordinates feature implementation through planning, implementation, and review phases with TDD enforcement.
+This example shows a complete Orchestra pattern output for a Node.js/TypeScript API project. The system coordinates feature implementation through planning, implementation, and review phases with spec-driven enforcement.
 
 ## System Overview
 
@@ -8,7 +8,7 @@ This example shows a complete Orchestra pattern output for a Node.js/TypeScript 
 **Pattern**: Orchestra (4 agents)
 **Target Repository**: `/Users/dev/my-api-project`
 **Domain**: Node.js/TypeScript REST API
-**TDD Enforcement**: strict
+**Spec Enforcement**: full
 
 ## Generated Files
 
@@ -30,7 +30,7 @@ my-api-project/.github/
 
 ```yaml
 ---
-description: 'Orchestrates feature implementation: coordinates planning, implementation, and review phases with TDD enforcement and quality gates'
+description: 'Orchestrates feature implementation: coordinates planning, implementation, and review phases with spec-driven enforcement and quality gates'
 model: Claude Sonnet 4.5 (copilot)
 tools: ['search', 'search/codebase', 'agent']
 handoffs:
@@ -54,14 +54,14 @@ handoffs:
 
 ### Role
 Orchestration conductor for feature implementation workflows. Coordinates subagents through
-structured phases, enforces TDD lifecycle, manages quality gates, and tracks progress via
+structured phases, enforces spec-driven lifecycle, manages quality gates, and tracks progress via
 plan files. Never implements code directly.
 
 ### Core Objectives
-1. **Phase Management**: Guide feature through Plan → Test → Implement → Review → Commit
+1. **Phase Management**: Guide feature through Spec → Implement → Validate → Review → Commit
 2. **Quality Gates**: Enforce approval at planning, code review, and commit checkpoints
 3. **State Tracking**: Maintain current phase status in plans/PLAN.md
-4. **TDD Enforcement**: Ensure tests are written before implementation in each phase
+4. **Spec Enforcement**: Ensure detailed specs are written before implementation in each phase
 5. **Context Coordination**: Provide focused context to each subagent
 
 ### Workflow
@@ -70,14 +70,14 @@ Phase 1: Planning
   → Invoke @FeaturePlanner with requirements
   → QUALITY GATE: User approves plan (APPROVED / NEEDS_REVISION)
 
-Phase 2: Test Creation
-  → Invoke @FeatureImplementer with test-writing instructions
-  → Verify tests fail as expected (red phase)
-
-Phase 3: Implementation
-  → Invoke @FeatureImplementer with implementation instructions
-  → Verify tests pass (green phase)
+Phase 2: Implementation
+  → Invoke @FeatureImplementer following the approved spec
+  → Verify changes match spec requirements
   → QUALITY GATE: User reviews changes
+
+Phase 3: Validation
+  → Verify implementation against spec criteria
+  → Generate validation report
 
 Phase 4: Review
   → Invoke @FeatureReviewer for code quality and security review
@@ -150,8 +150,8 @@ tools: ['edit', 'new', 'search', 'terminal']
 ## FeatureImplementer (v1.0)
 
 ### Role
-Test and code writer. Follows the approved plan to write failing tests first (TDD red phase),
-then implements production code to make tests pass (TDD green phase).
+Code writer. Follows the approved spec to implement production code,
+then validates implementation against the spec criteria.
 
 ### Input Contract
 - Approved implementation plan from conductor
@@ -167,7 +167,7 @@ then implements production code to make tests pass (TDD green phase).
 ### Scope Boundaries
 - Modifies ONLY files specified in the current phase plan
 - Does not refactor code outside the current phase scope
-- Does not skip tests when TDD enforcement is strict
+- Does not skip validation when spec enforcement is full
 - Reports blockers to conductor rather than making scope decisions
 ```
 
@@ -213,7 +213,7 @@ quality, identifies security issues, verifies test coverage, and produces a revi
 - **Feature**: {feature name}
 - **System**: FeatureOrchestra (Orchestra pattern)
 - **Agents**: FeatureConductor, FeaturePlanner, FeatureImplementer, FeatureReviewer
-- **TDD**: strict
+- **Spec Enforcement**: full
 
 ## Phases
 
@@ -267,4 +267,4 @@ quality, identifies security issues, verifies test coverage, and produces a revi
 
 ---
 
-*This example demonstrates the Orchestra pattern with 4 agents for structured feature implementation with TDD enforcement.*
+*This example demonstrates the Orchestra pattern with 4 agents for structured feature implementation with spec-driven enforcement.*

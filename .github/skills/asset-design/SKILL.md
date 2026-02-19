@@ -312,7 +312,7 @@ mode: ask                       # ask/agent/generate
 |----------|-------------|-------------|-------------|
 | **Standalone Agent** | Single-purpose task, no coordination needed | 1 | None |
 | **Handoff Chain** | Linear workflow, sequential steps (plan → implement → review) | 2-4 | Sequential handoffs |
-| **Orchestra System** | Structured multi-phase projects, TDD required, quality gates needed | 3-5 | Conductor-managed |
+| **Orchestra System** | Structured multi-phase projects, spec-driven design, quality gates needed | 3-5 | Conductor-managed |
 | **Atlas System** | Large codebases (50+ files), parallel work opportunities, context conservation critical | 5-10 | Conductor + parallel |
 
 ### Pattern Selection Matrix
@@ -321,7 +321,7 @@ mode: ask                       # ask/agent/generate
 |----------|-----------|---------------|----------------------|-----------|-------|
 | Agent count | 1 | 2 | 3+ | 4-5 | 6-10 |
 | Files affected | <10 | <20 | <50 | <50 | 50+ |
-| TDD enforcement | Manual | Per-agent | Simplified | Per-phase | Per-phase + parallel |
+| Spec enforcement | Manual | Per-agent | Simplified | Per-phase | Per-phase + parallel |
 | Quality gates | None | Optional | 2-3 | 3+ mandatory | 3+ mandatory |
 | Parallel execution | No | No | No | No | Yes |
 | Plan file tracking | No | No | Yes (simplified) | Yes | Yes |
@@ -342,7 +342,7 @@ Q2b (Bootstrap context): Are 3+ agents being generated?
   → YES: Auto-include lightweight conductor (minimum orchestration tier)
   → NO: Standalone agent or handoff chain
 
-Q3: Does the project need TDD enforcement, quality gates, or plan tracking?
+Q3: Does the project need spec enforcement, quality gates, or plan tracking?
   → YES: Go to Q4
   → NO: Lightweight conductor is sufficient
 

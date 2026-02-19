@@ -1,6 +1,6 @@
 ---
 applyTo: '.github/**/*.{agent.md,prompt.md}'
-description: 'Framework for generating orchestrated multi-agent systems (Orchestra, Atlas, Pipeline, Custom) with TDD lifecycle, quality gates, and plan file tracking'
+description: 'Framework for generating orchestrated multi-agent systems (Orchestra, Atlas, Pipeline, Custom) with spec-driven lifecycle, quality gates, and plan file tracking'
 ---
 
 # Multi-Agent Orchestration Guide (v2.1)
@@ -44,7 +44,7 @@ handoffs:
 4. Launch agent chain
 
 **Quality Gates**: <3 (between agents, optional)
-**TDD Enforcement**: Not enforced (relaxed or none)
+**Spec Enforcement**: Not enforced (lightweight or none)
 
 ## System Archetypes
 
@@ -53,7 +53,7 @@ handoffs:
 Conductor → Planner → Implementer → Reviewer
 ```
 - Best for: Structured feature implementation, refactoring
-- Phases: Plan → Test → Implement → Review → Commit
+- Phases: Spec → Implement → Validate → Review → Commit
 - Quality gates: 3 (planning, code review, commit)
 
 ### Atlas (default: 7 agents)
@@ -203,7 +203,7 @@ Generate `plans/PIPELINE-PLAN.md` using extended OrchestrationPlan template:
 ### Required YAML Fields
 ```yaml
 ---
-description: 'Orchestrates {SystemName}: coordinates {subagent list} through phases with quality gates and TDD enforcement'
+description: 'Orchestrates {SystemName}: coordinates {subagent list} through phases with quality gates and spec-driven enforcement'
 model: Claude Sonnet 4.5 (copilot)
 tools: ['search', 'search/codebase', 'agent']
 agents: ['Planner', 'Implementer', 'Reviewer']  # Explicit allowed subagents list
@@ -217,7 +217,7 @@ handoffs:
 
 ### Required Markdown Sections
 1. **Role** — Orchestration conductor, never implements directly
-2. **Core Objectives** — Phase management, quality gates, state tracking, TDD enforcement
+2. **Core Objectives** — Phase management, quality gates, state tracking, spec-driven enforcement
 3. **Workflow** — Phase sequence with quality gate checkpoints
 4. **State Tracking** — Template for plans/PLAN.md updates
 5. **Pause Points** — Minimum 3 mandatory user approval points
@@ -284,10 +284,10 @@ Each subagent must include:
 
 ### plans/PLAN.md
 Generate using [OrchestrationPlan.template.md](../templates/OrchestrationPlan.template.md):
-- Fill Summary with system name, pattern, agents, TDD level
+- Fill Summary with system name, pattern, agents, spec enforcement level
 - Define all phases with agents, inputs, outputs, quality gates
 - Create quality gate definitions (minimum 3)
-- Include TDD lifecycle requirements per enforcement level
+- Include spec-driven lifecycle requirements per enforcement level
 - Initialize state tracking section
 
 ### Phase Completion Records
@@ -299,7 +299,7 @@ Generate template for `plans/phase-{N}-complete.md`:
 **Agent**: {agent name}
 **Artifacts**: {files created/modified}
 **Quality Gate**: {APPROVED | N/A}
-**TDD Results**: {test count, pass/fail}
+**Spec Compliance**: {criteria met, validation status}
 **Notes**: {observations}
 ```
 
@@ -312,7 +312,7 @@ Generate template for `plans/FINAL-REPORT.md`:
 - **Phases Completed**: {count}/{total}
 - **Quality Gates Passed**: {count}/{total}
 - **Files Created/Modified**: {list}
-- **TDD Results**: {total tests}, {passing}
+- **Spec Compliance**: {criteria met}, {validated}
 
 ## Phase Results
 {Per-phase summary}
@@ -329,7 +329,7 @@ Generate template for `plans/FINAL-REPORT.md`:
 - [ ] Implementation plan is complete with all phases defined
 - [ ] Acceptance criteria specified for each phase
 - [ ] Risk assessment completed
-- [ ] Test specifications included (if TDD = strict)
+- [ ] Spec detail included (if spec enforcement = full)
 **Outcomes**: APPROVED / NEEDS_REVISION
 ```
 
@@ -413,7 +413,7 @@ Generated systems should pass the **Orchestrated System Verification Checklist**
 - Each subagent has role description, I/O contract, model tier, scoped tools
 - All agent references resolve to existing files
 - Plan files exist with correct structure
-- TDD lifecycle documented per enforcement level
+- Spec-driven lifecycle documented per enforcement level
 
 ### Pipeline-Specific Validation
 - Pipeline Controller has `agent` tool and handoffs to ALL sub-orchestrators
@@ -438,7 +438,7 @@ Generated systems should pass the **Orchestrated System Verification Checklist**
 
 - **Standards Version**: VS Code Copilot v2025.11 (Agent Files v1.109)
 - **Role**: Framework for generating conductor/subagent orchestrated systems
-- **Scope**: Multi-agent workflows with TDD lifecycle, quality gates, and plan files
+- **Scope**: Multi-agent workflows with spec-driven lifecycle, quality gates, and plan files
 - **Patterns**: Lightweight, Orchestra, Atlas, Pipeline with parallel execution strategies
 
 *Generated following CopilotCustomizer instruction generation standards*

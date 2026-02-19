@@ -95,7 +95,7 @@ Context:
 When the implementation plan involves 3+ specialized agents:
 - Assess whether a conductor/subagent pattern would improve coordination
 - Lightweight conductor: 3 agents, sequential coordination, basic quality gates
-- Orchestra pattern: 4-5 agents, TDD lifecycle, full quality gate framework
+- Orchestra pattern: 4-5 agents, spec-driven lifecycle, full quality gate framework
 - Atlas pattern: 6-10 agents, parallel execution, context conservation
 - Include orchestration specification in the plan output (do not defer to separate workflow)
 - See `orchestration` skill for complete methodology
@@ -230,12 +230,12 @@ packages:
      - Handle 100 concurrent updates
    ```
 
-**Test-First Approach** (TDD):
+**Spec-First Approach**:
 ```
-1. Write failing test for getUserPreferences()
-2. Implement minimal code to pass
-3. Refactor for quality
-4. Repeat for each function
+1. Write detailed spec for getUserPreferences()
+2. Implement to match spec
+3. Validate against spec criteria
+4. Refine until spec criteria met
 ```
 
 **Output**: Test plan with specific test cases

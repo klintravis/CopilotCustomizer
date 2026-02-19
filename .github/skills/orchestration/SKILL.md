@@ -1,6 +1,6 @@
 ---
 name: orchestration
-description: Design and generate orchestrated multi-agent systems for complex repositories. Covers Orchestra, Atlas, Pipeline, and Custom patterns with TDD lifecycle enforcement, quality gates, plan file architecture, and parallel execution strategies. Use when a project needs coordinated multi-agent workflows beyond simple handoff chains.
+description: Design and generate orchestrated multi-agent systems for complex repositories. Covers Orchestra, Atlas, Pipeline, and Custom patterns with spec-driven lifecycle, quality gates, plan file architecture, and parallel execution strategies. Use when a project needs coordinated multi-agent workflows beyond simple handoff chains.
 ---
 
 # Multi-Agent Orchestration Skill
@@ -8,17 +8,17 @@ description: Design and generate orchestrated multi-agent systems for complex re
 ```
 ✨ SKILL ACTIVATED: orchestration
    Purpose: Design orchestrated multi-agent systems
-   Functionality: Orchestration patterns (Orchestra, Atlas, Pipeline, Custom), conductor design, subagent archetypes, TDD lifecycle, quality gates
+   Functionality: Orchestration patterns (Orchestra, Atlas, Pipeline, Custom), conductor design, subagent archetypes, spec-driven design, quality gates
    Output: Orchestrated system architecture with conductor/controller, subagents, and plan files
    Scope: Portable across VS Code, CLI, Claude, Cursor, and compatible agents
 ```
 
 ## Purpose
-Comprehensive methodology for designing and generating orchestrated multi-agent systems — from single-conductor setups (Orchestra/Atlas) to multi-orchestrator pipeline workflows (Pipeline) — with quality gates, TDD enforcement, and plan file tracking. Goes beyond simple handoff chains to provide full project lifecycle orchestration.
+Comprehensive methodology for designing and generating orchestrated multi-agent systems — from single-conductor setups (Orchestra/Atlas) to multi-orchestrator pipeline workflows (Pipeline) — with quality gates, spec-driven enforcement, and plan file tracking. Goes beyond simple handoff chains to provide full project lifecycle orchestration.
 
 ## When to Use This Skill
 - Repository has 50+ files or multiple specialized domains
-- TDD lifecycle enforcement is required across implementation phases
+- Spec-driven lifecycle is required across implementation phases
 - Multiple specialized roles need coordinated execution (planning, implementation, review, research)
 - Parallel execution of independent tasks would improve throughput
 - Context conservation is critical (large codebases where agents need focused scope)
@@ -34,7 +34,7 @@ Comprehensive methodology for designing and generating orchestrated multi-agent 
 |----------|-------------------|----------------|-----------|-------|----------|
 | **Agent Count** | 1 | 2-4 | 3-5 | 5-10 | 6-15+ |
 | **Coordination** | None | Sequential | Conductor-managed | Conductor + parallel | Chained sub-orchestrators |
-| **TDD Enforcement** | Manual | Per-agent | Per-phase | Per-phase + parallel | Per-stage + per-phase |
+| **Spec Enforcement** | Manual | Per-agent | Per-phase | Per-phase + parallel | Per-stage + per-phase |
 | **Quality Gates** | None | Between agents | 3+ mandatory | 3+ mandatory | Inter-stage + intra-stage |
 | **Parallel Execution** | No | No | No | Yes (max 10) | Yes (within stages) |
 | **Context Conservation** | N/A | Prompt transfer | Plan file | Plan file + scoped contexts | Stage-scoped + shared pool |
@@ -204,7 +204,7 @@ The conductor is the central orchestration agent that manages the entire workflo
 ### Conductor YAML Structure
 ```yaml
 ---
-description: 'Orchestrates {SystemName} workflow: coordinates subagents through phases with quality gates and TDD enforcement'
+description: 'Orchestrates {SystemName} workflow: coordinates subagents through phases with quality gates and spec-driven enforcement'
 model: Claude Sonnet 4.5 (copilot)
 tools: ['search', 'search/codebase', 'agent']
 user-invokable: true
@@ -264,29 +264,30 @@ tools: ['{tool1}', '{tool2}']
 ---
 ```
 
-## TDD Lifecycle Enforcement
+## Spec-Driven Lifecycle
 
-Every implementation phase follows the TDD lifecycle:
+Every implementation phase follows the spec-driven lifecycle:
 
 ```
-Plan → Test → Implement → Review → Commit
+Spec → Implement → Validate → Review → Commit
 ```
 
-### Per-Phase TDD Template
+### Per-Phase Spec Template
 ```markdown
 ### Phase {N}: {Phase Name}
 
-**Plan**: Define requirements and acceptance criteria
+**Spec**: Define requirements, acceptance criteria, and agent assignments
   - [ ] Requirements documented in PLAN.md
   - [ ] Acceptance criteria specified
+  - [ ] Agent assignments defined
 
-**Test**: Write failing tests that define expected behavior
-  - [ ] Test files created
-  - [ ] Tests fail as expected (red phase)
+**Implement**: Build changes following spec
+  - [ ] Implementation follows spec specifications
+  - [ ] Changes match spec requirements
 
-**Implement**: Write code to make tests pass
-  - [ ] Implementation follows plan specifications
-  - [ ] All tests pass (green phase)
+**Validate**: Verify implementation against spec criteria
+  - [ ] Validation report generated
+  - [ ] All acceptance criteria verified
 
 **Review**: Validate quality and correctness
   - [ ] Code review completed
@@ -299,10 +300,10 @@ Plan → Test → Implement → Review → Commit
   - [ ] PLAN.md updated with completion status
 ```
 
-### TDD Enforcement Levels
-- **strict** (default): All phases require Plan → Test → Implement → Review → Commit
-- **relaxed**: Plan → Implement → Review → Commit (tests optional per phase)
-- **none**: No TDD enforcement (phases proceed without test gates)
+### Spec Enforcement Levels
+- **full** (default): All phases require Spec → Implement → Validate → Review → Commit
+- **lightweight**: Spec → Implement → Review → Commit (validation optional per phase)
+- **none**: No spec enforcement (phases proceed without spec gates)
 
 ## Plan File Architecture
 
@@ -322,7 +323,7 @@ Key sections:
 1. **Summary** — Project goal and system configuration
 2. **Phase Definitions** — Ordered list of phases with agents, inputs, outputs
 3. **Quality Gates** — Gate definitions with approval criteria
-4. **TDD Lifecycle** — Per-phase TDD requirements
+4. **Spec-Driven Lifecycle** — Per-phase spec requirements
 5. **State Tracking** — Current phase, completed phases, blockers
 6. **Progress Log** — Timestamped entries of phase transitions
 
@@ -335,7 +336,7 @@ Key sections:
 **Duration**: {time}
 **Artifacts**: {files created/modified}
 **Quality Gate**: {APPROVED | N/A}
-**TDD Results**: {test count, pass/fail}
+**Spec Compliance**: {criteria met, validation status}
 **Notes**: {any relevant observations}
 ```
 
@@ -425,7 +426,7 @@ Configure per-agent model assignments in VS Code settings or agent YAML `model` 
 A well-designed orchestrated system provides:
 - ✅ Clear conductor/controller with state tracking and quality gates
 - ✅ Focused subagents with defined input/output contracts
-- ✅ TDD lifecycle enforcement at configurable strictness
+- ✅ Spec-driven lifecycle at configurable strictness
 - ✅ Plan file tracking with phase/stage completion records
 - ✅ Quality gates at critical decision points (minimum 3)
 - ✅ Appropriate model tiers matched to agent roles
