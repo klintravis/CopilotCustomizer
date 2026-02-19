@@ -5,6 +5,28 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.6.0] - 2026-02-19
+
+### Added
+- **Pipeline orchestration pattern**: New multi-orchestrator workflow where a Pipeline Controller chains sub-orchestrators through lifecycle stages (planning, implementation, testing, review, etc.), each with access to a shared pool of all specialist subagents
+- **Shared agent pool concept**: Every sub-orchestrator can invoke any specialist — the `agents` YAML array lists ALL shared specialists, enabling cross-stage specialist access
+- **Pluggable stage architecture**: New lifecycle stages can be inserted into a Pipeline without restructuring existing sub-orchestrators or specialists
+- **Two-level quality gates**: Inter-stage gates (enforced by Pipeline Controller between stages) and intra-stage gates (enforced by sub-orchestrators within stages)
+- **Pipeline plan file**: `plans/PIPELINE-PLAN.md` template with stage definitions, shared agent pool manifest, and stage-level state tracking
+- **Pipeline example**: `example-pipeline-system.md` in orchestration skill examples showing a complete Pipeline pattern implementation
+- **New `/NewMultiAgent` variables**: `stages` (lifecycle stages) and `sharedAgents` (shared specialist roles) for pipeline pattern generation
+
+### Changed
+- **Orchestration skill**: Added Pipeline to Pattern Decision Matrix, Pipeline Controller design, Sub-Orchestrator design, Shared Agent Pool rules, and Pluggable Stage guidance
+- **Orchestration instructions**: Added Pipeline Pattern Generation Rules (controller, sub-orchestrators, shared pool, stage handoff protocol, pluggable insertion rules, quality gate schema)
+- **OrchestrationPlan template**: Extended with Pipeline Stages section (stage definitions, inter-stage gates, shared pool manifest, stage-level state tracking)
+- **Planner agent**: Added `pipeline` tier to orchestration assessment with auto-include criteria (6+ agents, distinct lifecycle stages, pluggable workflow)
+- **Generator agent**: Added Pipeline System generation step and Pipeline-specific quality assurance checks
+- **Verifier agent**: Added Pipeline System Validation checklist (controller→sub-orchestrators→specialists validation chain)
+- **CopilotCustomizer agent**: Added Pipeline system creation routing entry
+- **NewMultiAgent prompt**: Added `pipeline` pattern with new variables, usage example, and updated output descriptions
+- **All documentation**: Updated ARCHITECTURE, HOW-TO, EXAMPLES, README, AGENTS.md, and copilot-instructions with Pipeline pattern coverage
+
 ## [1.5.0] - 2026-02-15
 
 ### Changed

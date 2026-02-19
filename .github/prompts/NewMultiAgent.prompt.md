@@ -23,6 +23,7 @@ Generate multi-agent systems ranging from simple sequential handoff chains to co
 | **linear** | Simple | 2-4 | Sequential handoff chains (A→B→C) with automated transitions |
 | **orchestra** | Medium | 3-5 | Conductor-driven workflow with specialized subagents |
 | **atlas** | High | 5-10 | Complex orchestration with parallel execution and quality gates |
+| **pipeline** | Very High | 6-15+ | Multi-orchestrator lifecycle stages with shared agent pool |
 | **custom** | Variable | User-defined | Fully customized agent composition and workflow |
 
 ### Variable Block
@@ -32,23 +33,28 @@ Generate multi-agent systems ranging from simple sequential handoff chains to co
 **System Pattern** [OPTIONAL]: ${input:systemPattern:linear, orchestra, atlas, or custom (default: orchestra)}
 **Domain** [OPTIONAL]: ${input:domain:e.g., REST API, React frontend, data pipeline}
 **Custom Agents** [OPTIONAL]: ${input:customAgents:Comma-separated roles for custom pattern}
+**Stages** [OPTIONAL]: ${input:stages:Comma-separated lifecycle stages for pipeline pattern (default: planning, implementation, testing, review)}
+**Shared Agents** [OPTIONAL]: ${input:sharedAgents:Comma-separated shared specialist roles for pipeline pattern}
 **TDD Enforcement** [OPTIONAL]: ${input:tddEnforcement:strict, relaxed, or none (default: strict)}
 **Parallel Enabled** [OPTIONAL]: ${input:parallelEnabled:true or false (default: pattern-dependent)}
 ---
 
 ### Variable Descriptions
 - **systemName**: Used as prefix for agent files (e.g., "FeatureOrchestra" → FeatureConductor.agent.md; "DataFlow" → DataFlowEntry.agent.md for linear)
-- **systemPattern**: 
+- **systemPattern**:
   - `linear`: Simple sequential handoff chain (2-4 agents, A→B→C)
   - `orchestra`: Conductor + 3-5 specialized subagents with quality gates
   - `atlas`: Conductor + 5-10 subagents with parallel execution
+  - `pipeline`: Pipeline Controller + sub-orchestrators per lifecycle stage + shared specialist pool (6-15+ agents)
   - `custom`: User-defined agent composition
   - Default: orchestra
 - **repositoryPath**: Absolute path to the target repository where agents will be generated
 - **domain**: Project domain for tailoring agent expertise
 - **customAgents**: Only for `custom` pattern — comma-separated roles (e.g., "planner, implementer, tester, deployer")
+- **stages**: Only for `pipeline` pattern — comma-separated lifecycle stages (default: "planning, implementation, testing, review"). Each stage gets its own sub-orchestrator agent.
+- **sharedAgents**: Only for `pipeline` pattern — comma-separated shared specialist roles (e.g., "codebase-analyzer, frontend-dev, backend-dev, database-dev, security-auditor"). All specialists are available to all sub-orchestrators.
 - **tddEnforcement**: `strict` = Plan→Test→Implement→Review→Commit per phase; `relaxed` = tests optional; `none` = disabled (note: linear patterns typically use `relaxed`)
-- **parallelEnabled**: Atlas default: true, Orchestra default: false, Linear: N/A
+- **parallelEnabled**: Atlas default: true, Orchestra default: false, Pipeline default: true (within stages), Linear: N/A
 
 ### Generation Workflow
 
@@ -100,9 +106,20 @@ Generate multi-agent systems ranging from simple sequential handoff chains to co
 | `refine: models` | Change model tier assignments for agents |
 
 ### Output
+
+**Orchestra/Atlas patterns**:
 - Conductor agent file (`.github/agents/{Name}Conductor.agent.md`)
 - Subagent files (`.github/agents/{Name}{Role}.agent.md` per subagent)
 - Plan file template (`plans/PLAN.md`)
+- VS Code settings update (`.vscode/settings.json`)
+- Updated AGENTS.md with system inventory
+- Generation summary with usage instructions
+
+**Pipeline pattern**:
+- Pipeline Controller agent file (`.github/agents/{Name}Controller.agent.md`)
+- Sub-orchestrator files (`.github/agents/{Name}{Stage}Orchestrator.agent.md` per stage)
+- Shared specialist files (`.github/agents/{Name}{Role}.agent.md` per specialist)
+- Pipeline plan file (`plans/PIPELINE-PLAN.md`)
 - VS Code settings update (`.vscode/settings.json`)
 - Updated AGENTS.md with system inventory
 - Generation summary with usage instructions
@@ -117,6 +134,11 @@ Generate multi-agent systems ranging from simple sequential handoff chains to co
 **Orchestra pattern (medium complexity)**:
 ```
 /NewMultiAgent systemName: "FeatureOrchestra", systemPattern: "orchestra", repositoryPath: "/Users/dev/my-api-project", domain: "Node.js REST API"
+```
+
+**Pipeline pattern (full lifecycle orchestration)**:
+```
+/NewMultiAgent systemName: "FullStack", systemPattern: "pipeline", repositoryPath: "/Users/dev/fullstack-app", domain: "Full-stack monorepo", stages: "planning, implementation, testing, review, deployment", sharedAgents: "codebase-analyzer, frontend-dev, backend-dev, database-dev, api-designer, security-auditor, test-writer"
 ```
 
 ### Example with Custom Pattern

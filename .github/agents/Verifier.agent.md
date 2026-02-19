@@ -147,6 +147,20 @@ When validating orchestrated multi-agent systems (conductor + subagents), apply 
 - [ ] Parallel agents have disjoint write sets
 - [ ] Synchronization points defined between parallel groups
 
+**Pipeline System Validation (Pipeline Pattern Only)**:
+- [ ] Pipeline Controller has `agent` tool and `handoffs` to all sub-orchestrators
+- [ ] Pipeline Controller's `agents` array lists sub-orchestrators only (not specialists)
+- [ ] Pipeline Controller does NOT invoke specialists directly
+- [ ] Each sub-orchestrator has `agent` tool and `agents` array listing ALL shared specialists
+- [ ] Sub-orchestrators have `user-invokable: false`
+- [ ] All shared specialists have `user-invokable: false`
+- [ ] Shared specialists do NOT have `agent` tool (they are leaf nodes)
+- [ ] Stage ordering in Pipeline Controller handoffs matches pipeline plan
+- [ ] Inter-stage quality gates defined between each stage boundary
+- [ ] `plans/PIPELINE-PLAN.md` exists with stage definitions and shared agent pool manifest
+- [ ] Every sub-orchestrator's `agents` array is identical (same full shared pool)
+- [ ] Pluggable stage protocol documented in Pipeline Controller
+
 ### Verification Output Structure
 ```
 Verification & Harmonization Results
@@ -180,6 +194,13 @@ Orchestrated System Validation (if applicable):
 ✅ System integrity: references valid, no circular deps, plan files exist
 ✅ VS Code config: settings.json updated
 ✅ V1.109 compliance: orchestration controls validated, deprecated tools flagged
+
+Pipeline System Validation (if applicable):
+✅ Pipeline Controller: handoffs to sub-orchestrators only, inter-stage gates defined
+✅ Sub-Orchestrators: agents array lists ALL shared specialists, user-invokable: false
+✅ Shared Specialists: user-invokable: false, no agent tool (leaf nodes)
+✅ Stage ordering: matches pipeline plan, sequential execution
+✅ Plan file: plans/PIPELINE-PLAN.md with stage definitions and shared pool manifest
 
 Overall Status: PASSED / FAILED
 - [Summary and recommendations]

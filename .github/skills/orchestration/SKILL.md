@@ -1,20 +1,20 @@
 ---
 name: orchestration
-description: Design and generate conductor/subagent orchestrated systems for complex repositories. Covers Orchestra, Atlas, and Custom patterns with TDD lifecycle enforcement, quality gates, plan file architecture, and parallel execution strategies. Use when a project needs coordinated multi-agent workflows beyond simple handoff chains.
+description: Design and generate orchestrated multi-agent systems for complex repositories. Covers Orchestra, Atlas, Pipeline, and Custom patterns with TDD lifecycle enforcement, quality gates, plan file architecture, and parallel execution strategies. Use when a project needs coordinated multi-agent workflows beyond simple handoff chains.
 ---
 
 # Multi-Agent Orchestration Skill
 
 ```
 ✨ SKILL ACTIVATED: orchestration
-   Purpose: Design conductor/subagent orchestrated systems
-   Functionality: Orchestration patterns, conductor design, subagent archetypes, TDD lifecycle, quality gates
-   Output: Orchestrated system architecture with conductor, subagents, and plan files
+   Purpose: Design orchestrated multi-agent systems
+   Functionality: Orchestration patterns (Orchestra, Atlas, Pipeline, Custom), conductor design, subagent archetypes, TDD lifecycle, quality gates
+   Output: Orchestrated system architecture with conductor/controller, subagents, and plan files
    Scope: Portable across VS Code, CLI, Claude, Cursor, and compatible agents
 ```
 
 ## Purpose
-Comprehensive methodology for designing and generating orchestrated multi-agent systems where a **conductor agent** coordinates multiple **subagents** through structured phases with quality gates, TDD enforcement, and plan file tracking. Goes beyond simple handoff chains to provide full project lifecycle orchestration.
+Comprehensive methodology for designing and generating orchestrated multi-agent systems — from single-conductor setups (Orchestra/Atlas) to multi-orchestrator pipeline workflows (Pipeline) — with quality gates, TDD enforcement, and plan file tracking. Goes beyond simple handoff chains to provide full project lifecycle orchestration.
 
 ## When to Use This Skill
 - Repository has 50+ files or multiple specialized domains
@@ -23,21 +23,23 @@ Comprehensive methodology for designing and generating orchestrated multi-agent 
 - Parallel execution of independent tasks would improve throughput
 - Context conservation is critical (large codebases where agents need focused scope)
 - Quality gates are needed between phases (planning approval, code review, commit gate)
+- Development lifecycle has distinct stages that benefit from independent orchestration (Pipeline)
+- Pluggable, extensible workflow is needed where new lifecycle stages can be added without restructuring
 
 ## Orchestration Patterns
 
 ### Pattern Decision Matrix
 
-| Criteria | Standalone Agents | Handoff Chains | Orchestra | Atlas |
-|----------|-------------------|----------------|-----------|-------|
-| **Agent Count** | 1 | 2-4 | 3-5 | 5-10 |
-| **Coordination** | None | Sequential | Conductor-managed | Conductor + parallel |
-| **TDD Enforcement** | Manual | Per-agent | Per-phase | Per-phase + parallel |
-| **Quality Gates** | None | Between agents | 3+ mandatory | 3+ mandatory |
-| **Parallel Execution** | No | No | No | Yes (max 10) |
-| **Context Conservation** | N/A | Prompt transfer | Plan file | Plan file + scoped contexts |
-| **Complexity** | Low | Medium | Medium-High | High |
-| **Best For** | Single tasks | Linear workflows | Structured projects | Large/complex projects |
+| Criteria | Standalone Agents | Handoff Chains | Orchestra | Atlas | Pipeline |
+|----------|-------------------|----------------|-----------|-------|----------|
+| **Agent Count** | 1 | 2-4 | 3-5 | 5-10 | 6-15+ |
+| **Coordination** | None | Sequential | Conductor-managed | Conductor + parallel | Chained sub-orchestrators |
+| **TDD Enforcement** | Manual | Per-agent | Per-phase | Per-phase + parallel | Per-stage + per-phase |
+| **Quality Gates** | None | Between agents | 3+ mandatory | 3+ mandatory | Inter-stage + intra-stage |
+| **Parallel Execution** | No | No | No | Yes (max 10) | Yes (within stages) |
+| **Context Conservation** | N/A | Prompt transfer | Plan file | Plan file + scoped contexts | Stage-scoped + shared pool |
+| **Complexity** | Low | Medium | Medium-High | High | Very High |
+| **Best For** | Single tasks | Linear workflows | Structured projects | Large/complex projects | Full lifecycle orchestration |
 
 ### Orchestra Pattern (3-5 agents)
 Standard orchestration for structured project work. One conductor coordinates subagents through sequential phases.
@@ -63,6 +65,125 @@ Conductor (orchestrates + manages parallel execution)
   ├─→ Reviewer (code quality, security)
   └─→ Domain Specialist (API design, testing, etc.)
 ```
+
+### Pipeline Pattern (6-15+ agents)
+Multi-orchestrator workflow where a **Pipeline Controller** chains **sub-orchestrators** — each responsible for a distinct lifecycle stage — with access to a **shared pool of all specialist subagents**. Enables pluggable development lifecycle stages with parallel specialist execution within each stage.
+
+```
+Pipeline Controller (top-level orchestrator, manages stage transitions)
+  ├─→ Planning Orchestrator (stage 1 — sub-orchestrator)
+  │     ├─→ spawns: CodebaseAnalyzer, SpecWriter, Researcher
+  │     └─→ (any specialist from shared pool)
+  ├─→ Implementation Orchestrator (stage 2 — sub-orchestrator)
+  │     ├─→ spawns: FrontendDev, BackendDev, DatabaseDev  ←── parallel
+  │     └─→ (any specialist from shared pool)
+  ├─→ Testing Orchestrator (stage 3 — sub-orchestrator)
+  │     ├─→ spawns: UnitTester, IntegrationTester, E2ETester  ←── parallel
+  │     └─→ (any specialist from shared pool)
+  ├─→ Review Orchestrator (stage 4 — sub-orchestrator)
+  │     ├─→ spawns: CodeReviewer, SecurityAuditor
+  │     └─→ (any specialist from shared pool)
+  └─→ [Pluggable: Deployment Orchestrator, Documentation Orchestrator, etc.]
+```
+
+**Key characteristics**:
+- **Sub-orchestrators**: Each lifecycle stage has its own orchestrator agent with `agent` tool access
+- **Shared agent pool**: Every sub-orchestrator can invoke ANY specialist, not just its "own" — all specialists listed in every sub-orchestrator's `agents` array
+- **Pluggable stages**: New sub-orchestrators can be inserted into the handoff chain without restructuring existing agents
+- **Two-level quality gates**: Inter-stage gates (enforced by Pipeline Controller) and intra-stage gates (enforced by each sub-orchestrator)
+- **Parallel within stages**: Sub-orchestrators can spawn parallel specialists (e.g., frontend + backend + database simultaneously)
+- **Sequential between stages**: Pipeline Controller advances stages sequentially with quality gates between each
+
+**When to choose Pipeline over Atlas**:
+- Project has distinct lifecycle stages (planning, implementation, testing, review, deployment)
+- Each stage requires its own orchestration logic and specialist coordination
+- Need to add or remove lifecycle stages without restructuring existing agents
+- Multiple teams or workflows need to plug into the same pipeline
+- Atlas's single-conductor model is too rigid for the project's lifecycle complexity
+
+### Pipeline Controller Design
+
+The Pipeline Controller is the top-level orchestrator that manages stage transitions:
+
+1. **`agent` tool + `handoffs` array** — Defines transitions to all sub-orchestrators
+2. **`agents` field** — Lists all sub-orchestrators (not individual specialists)
+3. **Stage Tracking** — Maintains current stage, completed stages, and blocking issues
+4. **Inter-Stage Quality Gates** — Enforces approval checkpoints between stages
+5. **No Direct Implementation** — Controller never writes code or invokes specialists directly
+6. **Pipeline Plan File** — Creates and updates `plans/PIPELINE-PLAN.md` for stage-level tracking
+
+### Pipeline Controller YAML Structure
+```yaml
+---
+description: 'Pipeline Controller for {SystemName}: chains sub-orchestrators through lifecycle stages with quality gates'
+model: Claude Sonnet 4.5 (copilot)
+tools: ['search', 'search/codebase', 'agent']
+user-invokable: true
+agents: ['{PlanningOrchestrator}', '{ImplementationOrchestrator}', '{TestingOrchestrator}', '{ReviewOrchestrator}']
+handoffs:
+  - label: 'Begin planning stage'
+    agent: '{PlanningOrchestrator}'
+    prompt: 'Execute planning stage: analyze codebase and produce implementation spec'
+    send: false
+  - label: 'Begin implementation stage'
+    agent: '{ImplementationOrchestrator}'
+    prompt: 'Execute implementation stage following the approved plan'
+    send: false
+  - label: 'Begin testing stage'
+    agent: '{TestingOrchestrator}'
+    prompt: 'Execute testing stage: validate all implementation changes'
+    send: false
+  - label: 'Begin review stage'
+    agent: '{ReviewOrchestrator}'
+    prompt: 'Execute review stage: code review and security audit'
+    send: false
+---
+```
+
+### Sub-Orchestrator Design
+
+Each sub-orchestrator manages one lifecycle stage and has access to the full shared agent pool:
+
+```yaml
+---
+description: '{Stage} Orchestrator: coordinates specialists for the {stage} lifecycle stage'
+model: Claude Sonnet 4.5 (copilot)
+tools: ['search', 'search/codebase', 'agent']
+user-invokable: false
+agents: ['{Specialist1}', '{Specialist2}', '{Specialist3}', ...]  # ALL shared specialists
+---
+```
+
+**Sub-Orchestrator Requirements**:
+1. **`agent` tool** — Must be able to invoke any specialist from the shared pool
+2. **`agents` array** — Lists ALL shared specialists (not just stage-typical ones)
+3. **Intra-stage coordination** — Manages specialist sequencing and parallelism within its stage
+4. **Intra-stage quality gates** — Optional quality checkpoints within the stage
+5. **Stage completion report** — Produces structured output for the Pipeline Controller
+6. **No cross-stage work** — Stays within its lifecycle stage boundaries
+
+### Shared Agent Pool
+
+The shared agent pool is the set of all specialist subagents available to every sub-orchestrator:
+
+```yaml
+Shared Agent Pool Design:
+  - All specialist agents have user-invokable: false
+  - Every sub-orchestrator's agents array lists ALL specialists
+  - Sub-orchestrator role/prompt determines which specialists it typically uses
+  - Any sub-orchestrator CAN invoke any specialist when needed
+  - Specialists have focused I/O contracts and scoped tools
+```
+
+### Pluggable Stage Design
+
+Adding a new lifecycle stage to an existing Pipeline:
+1. Create a new sub-orchestrator agent file (e.g., `{SystemName}DeployOrchestrator.agent.md`)
+2. Give it `agents` array listing all shared specialists
+3. Add it to the Pipeline Controller's `handoffs` array at the desired position
+4. Add it to the Pipeline Controller's `agents` array
+5. Update `plans/PIPELINE-PLAN.md` with the new stage definition
+6. No changes needed to existing sub-orchestrators or specialists
 
 ### Custom Pattern
 User-defined agent composition tailored to specific project needs.
@@ -254,6 +375,7 @@ Key sections:
 - Multiple test suites that don't share state
 - Documentation generation alongside implementation
 - Research tasks that don't modify files
+- **Pipeline pattern**: Specialists within a single stage working on disjoint areas
 
 ### Parallel Execution Rules
 1. **Maximum 10 concurrent subagents** — Prevents resource contention
@@ -301,14 +423,22 @@ Configure per-agent model assignments in VS Code settings or agent YAML `model` 
 ## Success Criteria
 
 A well-designed orchestrated system provides:
-- ✅ Clear conductor with state tracking and quality gates
+- ✅ Clear conductor/controller with state tracking and quality gates
 - ✅ Focused subagents with defined input/output contracts
 - ✅ TDD lifecycle enforcement at configurable strictness
-- ✅ Plan file tracking with phase completion records
+- ✅ Plan file tracking with phase/stage completion records
 - ✅ Quality gates at critical decision points (minimum 3)
 - ✅ Appropriate model tiers matched to agent roles
-- ✅ Parallel execution support when applicable (Atlas pattern)
+- ✅ Parallel execution support when applicable (Atlas and Pipeline patterns)
 - ✅ Context conservation for large codebases
+
+**Additional Pipeline success criteria**:
+- ✅ Pipeline Controller chains sub-orchestrators through sequential stages
+- ✅ Each sub-orchestrator has access to the full shared agent pool
+- ✅ Inter-stage quality gates enforced by Pipeline Controller
+- ✅ Intra-stage coordination managed by each sub-orchestrator
+- ✅ Pluggable architecture — new stages insertable without restructuring
+- ✅ Stage-level tracking in `plans/PIPELINE-PLAN.md`
 
 ---
 

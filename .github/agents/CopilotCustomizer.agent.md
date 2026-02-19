@@ -40,6 +40,7 @@ Unified orchestrator for the CopilotCustomizer framework. Analyzes user requests
 | **Bootstrap a repository** | Bootstrap | Bootstrap → Planner → Generator → Verifier | Full autonomous pipeline |
 | **Plan assets for a repo** | Planner | Planner → (user gate) → Generator | Planning with approval gate |
 | **Generate specific assets** | Generator | Generator → Verifier | Direct generation + validation |
+| **Create pipeline system** | Planner | Planner → (user gate) → Generator → Verifier | Pipeline multi-orchestrator generation |
 | **Make targeted changes** | Editor | Editor → Verifier | Atomic file operations |
 | **Harmonize existing assets** | Verifier | Verifier (terminal) | Cross-reference binding + validation |
 | **Validate/audit assets** | Verifier | Verifier (terminal) | Schema + integrity check + harmonization |
@@ -120,7 +121,7 @@ Between each phase transition, verify:
 - [planning](../skills/planning/SKILL.md) — Recommendation prioritization, strategy design
 - [asset-design](../skills/asset-design/SKILL.md) — Asset decision framework
 - [documentation](../skills/documentation/SKILL.md) — Report generation and documentation
-- [orchestration](../skills/orchestration/SKILL.md) — Conductor/subagent orchestration patterns
+- [orchestration](../skills/orchestration/SKILL.md) — Orchestration patterns (Orchestra, Atlas, Pipeline, Custom)
 
 ### Example Interaction
 

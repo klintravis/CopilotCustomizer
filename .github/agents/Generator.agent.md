@@ -59,6 +59,15 @@ INPUT: Asset specifications from Planner
    NOTE: Orchestration specs are included by default when Planner recommends 3+ agents.
    Follow Orchestration.instructions.md for conductor/subagent generation details.
   ↓
+4b-pipeline. Generate Pipeline System (when plan specifies pipeline tier)
+   - Pipeline Controller agent file (agent tool, handoffs to sub-orchestrators only)
+   - Sub-Orchestrator agent files (one per lifecycle stage, each with agents array listing ALL shared specialists)
+   - Shared specialist agent files (user-invokable: false, no agent tool — leaf nodes)
+   - Pipeline plan file (plans/PIPELINE-PLAN.md with stage definitions and shared pool manifest)
+   - VS Code settings update (.vscode/settings.json)
+   NOTE: Pipeline tier auto-selected when plan has 6+ agents with distinct lifecycle stages.
+   Follow Orchestration.instructions.md Pipeline Pattern Generation Rules.
+  ↓
 4c. Generate Prompt Files (.prompt.md)
    - YAML front matter (agent/mode)
    - Variable blocks
@@ -177,10 +186,18 @@ See [AgentAuthoring.instructions.md](../instructions/AgentAuthoring.instructions
 ✓ plans/PLAN.md (orchestration plan)
 ✓ .vscode/settings.json (updated)
 
-### Orchestrated System
+### Orchestrated System (Orchestra/Atlas)
 - Conductor: {ConductorName} (agent tool + handoffs, no implementation tools)
 - Subagents: {count} ({list})
 - Plan File: plans/PLAN.md
+- VS Code: chat.customAgentInSubagent.enabled = true
+
+### Pipeline System (Pipeline tier)
+- Pipeline Controller: {ControllerName} (agent tool + handoffs to sub-orchestrators)
+- Sub-Orchestrators: {count} ({list of stage orchestrators})
+- Shared Specialists: {count} ({list of specialists — available to all sub-orchestrators})
+- Stages: {ordered list of lifecycle stages}
+- Plan File: plans/PIPELINE-PLAN.md
 - VS Code: chat.customAgentInSubagent.enabled = true
 
 ### Cross-References Established
@@ -237,6 +254,10 @@ if (crossReferenceInvalid) {
 - [ ] Subagents have I/O contracts, scoped tools, model tiers
 - [ ] Plan file uses OrchestrationPlan.template.md structure
 - [ ] .vscode/settings.json includes chat.customAgentInSubagent.enabled: true
+- [ ] Pipeline Controller handoffs target sub-orchestrators only (not specialists)
+- [ ] All sub-orchestrators have agents array listing ALL shared specialists
+- [ ] Shared specialists have user-invokable: false and no agent tool
+- [ ] Pipeline plan file includes stage definitions and shared agent pool manifest
 
 ### Framework References
 *Asset generation instructions: AgentAuthoring, InstructionAuthoring, PromptAuthoring, SkillAuthoring, AgentsFile, Orchestration*  

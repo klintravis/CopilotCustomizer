@@ -111,7 +111,7 @@ model: claude-sonnet-4             # Model preference
 | `/NewPrompt` | Build slash command prompt | ~30-45s | `.github/prompts/[Name].prompt.md` |
 | `/NewSkill` | Create cross-platform skill | ~45-60s | `.github/skills/[name]/SKILL.md` |
 | `/NewAgentsFile` | Generate `AGENTS.md` | ~60-90s | `AGENTS.md` at repo root |
-| `/NewMultiAgent` | Create orchestrated agent system | ~90-120s | Multiple agents + orchestration plan |
+| `/NewMultiAgent` | Create orchestrated agent system (Orchestra, Atlas, Pipeline, Custom) | ~90-120s | Multiple agents + orchestration plan |
 
 ### Repository Workflows
 
@@ -230,7 +230,7 @@ Skills are portable AI capabilities following the [agentskills.io](https://agent
 | **asset-design** | Design and validate Copilot assets | Generator, Planner | Architecture patterns, quality criteria, integration strategies |
 | **deployment-automation** | CI/CD and release workflows | Generator, Evolve | GitHub Actions, container deployments, infrastructure automation |
 | **documentation** | Technical documentation generation | All agents | Change summaries, API docs, technical reports |
-| **orchestration** | Conductor/subagent system design | CopilotCustomizer, Planner | Orchestra, Atlas, Custom patterns; TDD lifecycle; parallel execution |
+| **orchestration** | Orchestrated multi-agent system design | CopilotCustomizer, Planner | Orchestra, Atlas, Pipeline, Custom patterns; TDD lifecycle; parallel execution; multi-orchestrator pipelines |
 | **planning** | Strategic implementation planning | Planner, Bootstrap | Step-by-step execution plans, risk mitigation, validation strategies |
 | **repo-analysis** | Deep repository analysis | Bootstrap, Planner | Tech stack detection, dependency analysis, pattern recognition |
 

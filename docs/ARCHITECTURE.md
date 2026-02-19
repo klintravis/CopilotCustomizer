@@ -32,7 +32,7 @@ For setup and usage, see:
 
 **Orchestration model**: All workflows are driven programmatically via the `agent` tool. No manual handoff buttons — the orchestrator manages the full subagent chain autonomously.
 
-All orchestration is programmatic via the `agent` tool — no manual handoff buttons.
+**Generated orchestration patterns**: When generating assets for user repositories, the toolkit produces orchestrated multi-agent systems at varying complexity levels — from simple handoff chains (Linear) through single-conductor systems (Orchestra, Atlas) to multi-orchestrator pipelines (Pipeline) where chained sub-orchestrators each manage a lifecycle stage with access to a shared pool of all specialist subagents.
 
 ---
 
@@ -198,7 +198,7 @@ To avoid inventory drift, treat the folders as the source of truth:
 **File Organization**: Consistent naming, clear separation, skills for cross-platform, agents for VS Code  
 **Schema Compliance**: VS Code v1.109 standards, required YAML only, relative paths  
 **Version Management**: Track schema versions, maintain backward compatibility  
-**Orchestration**: Programmatic handoffs via `agent` tool, focused subagents, parallel execution (v1.109)
+**Orchestration**: Programmatic handoffs via `agent` tool, focused subagents, parallel execution (v1.109), Pipeline pattern for multi-orchestrator lifecycle workflows
 
 ---
 

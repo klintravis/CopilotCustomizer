@@ -359,6 +359,100 @@ AI understands context based on **which file you're editing**:
 
 ---
 
+## Example 7: Pipeline Multi-Orchestrator Workflow
+
+### Scenario
+Full-stack e-commerce monorepo with React frontend, Node.js API, PostgreSQL database, and Redis caching. The team needs a pluggable development lifecycle where planning, implementation, testing, and review each have their own orchestration — and new stages (like deployment or documentation) can be added later without restructuring.
+
+### Setup
+```bash
+# Open existing monorepo
+cd /Users/dev/ecommerce-monorepo
+code .
+
+# Add CopilotCustomizer
+# File → Add Folder to Workspace → select CopilotCustomizer
+```
+
+### Generate Pipeline System
+```
+/NewMultiAgent SYSTEM_NAME: "EcommercePipeline",
+SYSTEM_PATTERN: "pipeline",
+REPOSITORY_PATH: "/Users/dev/ecommerce-monorepo",
+DOMAIN: "Full-stack e-commerce monorepo",
+STAGES: "planning, implementation, testing, review",
+SHARED_AGENTS: "codebase-analyzer, frontend-dev, backend-dev, database-dev, api-designer, security-auditor, test-writer"
+```
+
+### What You Get
+```
+ecommerce-monorepo/.github/
+├── agents/
+│   ├── EcommerceController.agent.md          # Pipeline Controller (top-level)
+│   ├── EcommercePlanningOrch.agent.md        # Planning stage sub-orchestrator
+│   ├── EcommerceImplementationOrch.agent.md  # Implementation stage sub-orchestrator
+│   ├── EcommerceTestingOrch.agent.md         # Testing stage sub-orchestrator
+│   ├── EcommerceReviewOrch.agent.md          # Review stage sub-orchestrator
+│   ├── EcommerceCodebaseAnalyzer.agent.md    # Shared specialist
+│   ├── EcommerceFrontendDev.agent.md         # Shared specialist
+│   ├── EcommerceBackendDev.agent.md          # Shared specialist
+│   ├── EcommerceDatabaseDev.agent.md         # Shared specialist
+│   ├── EcommerceApiDesigner.agent.md         # Shared specialist
+│   ├── EcommerceSecurityAuditor.agent.md     # Shared specialist
+│   └── EcommerceTestWriter.agent.md          # Shared specialist
+├── plans/
+│   └── PIPELINE-PLAN.md                      # Stage-level tracking + shared pool manifest
+└── ...
+.vscode/
+└── settings.json                              # chat.customAgentInSubagent.enabled: true
+```
+
+### How It Works
+
+**Stage flow** (managed by Pipeline Controller):
+```
+Pipeline Controller
+  │
+  ├─ Stage 1: Planning Orchestrator
+  │    ├─ Invokes CodebaseAnalyzer → analyze repo structure
+  │    ├─ Invokes ApiDesigner → design API changes
+  │    └─ Produces: implementation spec
+  │    [Inter-Stage Gate: plan approved?]
+  │
+  ├─ Stage 2: Implementation Orchestrator
+  │    ├─ Invokes FrontendDev → React components (parallel)
+  │    ├─ Invokes BackendDev → Node.js API routes (parallel)
+  │    ├─ Invokes DatabaseDev → PostgreSQL migrations (parallel)
+  │    └─ Produces: implemented changes
+  │    [Inter-Stage Gate: implementation complete?]
+  │
+  ├─ Stage 3: Testing Orchestrator
+  │    ├─ Invokes TestWriter → unit + integration tests (parallel)
+  │    ├─ Invokes SecurityAuditor → security scan
+  │    └─ Produces: test results + security report
+  │    [Inter-Stage Gate: tests passing?]
+  │
+  └─ Stage 4: Review Orchestrator
+       ├─ Invokes CodebaseAnalyzer → diff analysis
+       ├─ Invokes SecurityAuditor → final security review
+       └─ Produces: review report with approval recommendation
+       [Inter-Stage Gate: approved for commit?]
+```
+
+**Key**: Every sub-orchestrator can invoke ANY specialist — the Implementation Orchestrator could invoke SecurityAuditor for a quick check, and the Testing Orchestrator could invoke BackendDev to fix a failing test.
+
+### Adding a Deployment Stage Later
+To plug in a deployment stage, just:
+1. Create `EcommerceDeploymentOrch.agent.md` with `agents` array listing all shared specialists
+2. Add it to the Pipeline Controller's `handoffs` and `agents` arrays
+3. Update `plans/PIPELINE-PLAN.md` with the new stage
+4. No changes to existing sub-orchestrators or specialists
+
+### Time to Value
+**5 minutes** for complete pipeline system with 12 coordinated agents
+
+---
+
 ## Common Patterns Across Examples
 
 ### 1. Tech Stack Auto-Detection

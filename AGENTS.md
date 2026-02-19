@@ -21,6 +21,8 @@ A VS Code GitHub Copilot customization framework for generating tech-stack-speci
 
 **Orchestration model**: All workflows are driven programmatically via the `agent` tool. No manual handoff buttons — the orchestrator manages the full subagent chain autonomously.
 
+**Generated orchestration patterns**: Linear (sequential handoffs) | Orchestra (single conductor) | Atlas (parallel execution) | **Pipeline** (multi-orchestrator lifecycle stages with shared agent pool) | Custom
+
 ## Asset Types
 
 - **Agents** (7): CopilotCustomizer (orchestrator), Bootstrap, Planner, Generator, Editor, Verifier, Evolve  

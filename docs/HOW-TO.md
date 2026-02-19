@@ -354,7 +354,7 @@ Provides: Tech stack detection, asset inventory, gap analysis, recommendations
 **Handoff Chains** (VS Code 1.106+): Define `handoffs` in YAML for guided workflows  
 **Orchestrated Systems**: `/NewMultiAgent` for conductor-managed phases with TDD and quality gates
 
-**Patterns**: Linear (sequential) | Orchestra (3-5 agents) | Atlas (5-10 agents, parallel)
+**Patterns**: Linear (sequential) | Orchestra (3-5 agents) | Atlas (5-10 agents, parallel) | Pipeline (6-15+ agents, multi-orchestrator lifecycle)
 
 **Example: Generate an Orchestra System**
 ```
@@ -373,14 +373,32 @@ DOMAIN: "Full-stack TypeScript",
 PARALLEL_ENABLED: "true"
 ```
 
-**What Gets Generated**:
+**Example: Generate a Pipeline System (Multi-Orchestrator Lifecycle)**
+```
+/NewMultiAgent SYSTEM_NAME: "FullStackPipeline",
+SYSTEM_PATTERN: "pipeline",
+REPOSITORY_PATH: "/path/to/monorepo",
+DOMAIN: "Full-stack monorepo",
+STAGES: "planning, implementation, testing, review, deployment",
+SHARED_AGENTS: "codebase-analyzer, frontend-dev, backend-dev, database-dev, security-auditor"
+```
+
+**What Gets Generated (Orchestra/Atlas)**:
 - Conductor agent (orchestrates phases, manages quality gates)
 - Subagent files (planner, implementer, reviewer, etc.)
 - Plan file template (`plans/PLAN.md`)
 - VS Code settings (`chat.customAgentInSubagent.enabled: true`)
 - Updated AGENTS.md with system inventory
 
-**Skills Reference**: The `orchestration` skill provides the complete methodology for orchestration patterns, conductor design, subagent archetypes, TDD lifecycle, and quality gates.
+**What Gets Generated (Pipeline)**:
+- Pipeline Controller (chains sub-orchestrators, manages inter-stage gates)
+- Sub-orchestrator files (one per lifecycle stage — each with access to ALL shared specialists)
+- Shared specialist files (available to every sub-orchestrator)
+- Pipeline plan file (`plans/PIPELINE-PLAN.md` with stage tracking and shared pool manifest)
+- VS Code settings (`chat.customAgentInSubagent.enabled: true`)
+- Updated AGENTS.md with system inventory
+
+**Skills Reference**: The `orchestration` skill provides the complete methodology for orchestration patterns (Orchestra, Atlas, Pipeline, Custom), conductor/controller design, subagent archetypes, TDD lifecycle, and quality gates.
 
 ---
 

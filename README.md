@@ -25,7 +25,7 @@ GitHub Copilot is powerful, but generic. Your team needs AI that understands *yo
 
 **What makes it different**:
 - ✅ **Autonomous generation** - Analyzes your repo and generates tailored assets automatically in 3-4 minutes
-- ✅ **True orchestration** - Agents coordinate via handoffs with context preservation, not just isolated specialists
+- ✅ **True orchestration** - From single-conductor systems to multi-orchestrator pipelines where chained sub-orchestrators coordinate shared specialist pools across lifecycle stages
 - ✅ **Skills-first architecture** - Portable capabilities work across VS Code, GitHub CLI, Claude, Cursor, and beyond
 - ✅ **Quality built-in** - Automatic schema validation, cross-reference binding, and integrity verification
 - ✅ **Enterprise-ready** - Standards system for organization-wide consistency and scalable governance
@@ -76,6 +76,7 @@ All commands work via slash commands in Copilot Chat or natural language:
 # Advanced workflows
 /NewMultiAgent SYSTEM_NAME: "name", SYSTEM_PATTERN: "linear"
 /NewMultiAgent SYSTEM_NAME: "name", SYSTEM_PATTERN: "orchestra"
+/NewMultiAgent SYSTEM_NAME: "name", SYSTEM_PATTERN: "pipeline"
 /NewAgentsFile REPOSITORY_PATH: "/path/to/project"
 ```
 

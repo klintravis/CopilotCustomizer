@@ -87,6 +87,12 @@ Tier selection:
   atlas: 6-10 agents, parallel execution, large/complex codebases
     - Full conductor + subagents with scoped contexts
     - Parallel groups, context conservation, disjoint write sets
+  pipeline: 6-15+ agents, multiple lifecycle stages, pluggable workflow
+    - Pipeline Controller + sub-orchestrators per lifecycle stage
+    - Shared agent pool — all specialists available to all sub-orchestrators
+    - Inter-stage quality gates (between stages) + intra-stage gates (within stages)
+    - Pluggable architecture — insert new stages without restructuring
+    - Auto-include when: 6+ agents with distinct lifecycle stages (planning, implementation, testing, review), multiple parallel workstreams within a single stage, or need for pluggable/extensible development lifecycle
 
 Specification: Include full orchestration spec in this plan (do NOT defer to /NewOrchestratedSystem)
 Reference: orchestration skill, Orchestration.instructions.md
@@ -192,12 +198,22 @@ Output: Session-specific folders in .github/logs/sessions/<timestamp>/
    - Output: {expected result}
 
 #### Orchestrated System ({tier})
-> Auto-included when 3+ agents recommended. Tier: {lightweight-conductor | orchestra | atlas}
+> Auto-included when 3+ agents recommended. Tier: {lightweight-conductor | orchestra | atlas | pipeline}
 
-- **Conductor**: {ConductorName}.agent.md with agent tool, handoffs to subagents
+- **Conductor/Controller**: {ConductorName}.agent.md with agent tool, handoffs to subagents/sub-orchestrators
 - **Subagents**: I/O contracts (receives X → produces Y, scope: paths)
-- **Plan File**: plans/PLAN.md with phases and TDD enforcement
+- **Plan File**: plans/PLAN.md (or plans/PIPELINE-PLAN.md for pipeline) with phases/stages and TDD enforcement
 - **VS Code Config**: .vscode/settings.json (chat.customAgentInSubagent.enabled: true)
+
+#### Pipeline System (pipeline tier only)
+> Auto-included when pipeline tier selected. Requires 6+ agents with distinct lifecycle stages.
+
+- **Pipeline Controller**: {SystemName}Controller.agent.md — chains sub-orchestrators, manages inter-stage gates
+- **Sub-Orchestrators**: {Stage}Orchestrator.agent.md per lifecycle stage — each has `agents` array listing ALL shared specialists
+- **Shared Agent Pool**: All specialists available to all sub-orchestrators
+- **Stages**: {ordered list of stages, e.g., planning, implementation, testing, review}
+- **Inter-Stage Gates**: Quality gate between each stage transition
+- **Plan File**: plans/PIPELINE-PLAN.md with stage definitions and shared pool manifest
 
 ### Implementation Specifications
 {Detailed creation parameters for each asset, including skill structure}
@@ -243,11 +259,16 @@ repositoryContext: {path, techStack, patterns}
 standardsContext: {matched standards with principles}
 validationRequirements: {schema v1.106+, crossReferences, toolApprovals}
 orchestration:
-  tier: {lightweight-conductor | orchestra | atlas}
+  tier: {lightweight-conductor | orchestra | atlas | pipeline}
   conductor: {name, description, tools, handoffs, qualityGates}
   subagents: [{name, inputContract, outputContract, scopeBoundaries}]
   planFile: {template, tddEnforcement}
   vsCodeConfig: {chatCustomAgentInSubagentEnabled}
+  pipeline:  # Pipeline tier only
+    controller: {name, description, stages, interStageGates}
+    subOrchestrators: [{stageName, orchestratorName, typicalSpecialists}]
+    sharedAgentPool: [{specialistName, role, modelTier, tools}]
+    stages: [{name, order, subOrchestrator, interStageGate}]
 ```
 
 ### Reused Instructions
