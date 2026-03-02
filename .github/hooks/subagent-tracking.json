@@ -3,56 +3,56 @@
     "SessionStart": [
       {
         "type": "command",
-        "command": "node .github/scripts/log-orchestration.js SessionStart",
+        "command": "node -e \"var f='.github/scripts/log-orchestration.js';if(require('fs').existsSync(f)){process.argv[2]='SessionStart';require('./'+f)}\"",
         "timeout": 5
       }
     ],
     "UserPromptSubmit": [
       {
         "type": "command",
-        "command": "node .github/scripts/log-orchestration.js UserPromptSubmit",
+        "command": "node -e \"var f='.github/scripts/log-orchestration.js';if(require('fs').existsSync(f)){process.argv[2]='UserPromptSubmit';require('./'+f)}\"",
         "timeout": 3
       }
     ],
     "SubagentStart": [
       {
         "type": "command",
-        "command": "node .github/scripts/log-orchestration.js SubagentStart",
+        "command": "node -e \"var f='.github/scripts/log-orchestration.js';if(require('fs').existsSync(f)){process.argv[2]='SubagentStart';require('./'+f)}\"",
         "timeout": 5
       }
     ],
     "SubagentStop": [
       {
         "type": "command",
-        "command": "node .github/scripts/log-orchestration.js SubagentStop",
+        "command": "node -e \"var f='.github/scripts/log-orchestration.js';if(require('fs').existsSync(f)){process.argv[2]='SubagentStop';require('./'+f)}\"",
         "timeout": 5
       }
     ],
     "PreToolUse": [
       {
         "type": "command",
-        "command": "node .github/scripts/log-orchestration.js PreToolUse",
+        "command": "node -e \"var f='.github/scripts/log-orchestration.js';if(require('fs').existsSync(f)){process.argv[2]='PreToolUse';require('./'+f)}\"",
         "timeout": 3
       }
     ],
     "PostToolUse": [
       {
         "type": "command",
-        "command": "node .github/scripts/log-orchestration.js PostToolUse",
+        "command": "node -e \"var f='.github/scripts/log-orchestration.js';if(require('fs').existsSync(f)){process.argv[2]='PostToolUse';require('./'+f)}\"",
         "timeout": 3
       }
     ],
     "PreCompact": [
       {
         "type": "command",
-        "command": "node .github/scripts/log-orchestration.js PreCompact",
+        "command": "node -e \"var f='.github/scripts/log-orchestration.js';if(require('fs').existsSync(f)){process.argv[2]='PreCompact';require('./'+f)}\"",
         "timeout": 3
       }
     ],
     "Stop": [
       {
         "type": "command",
-        "command": "node .github/scripts/log-orchestration.js Stop",
+        "command": "node -e \"var f='.github/scripts/log-orchestration.js';if(require('fs').existsSync(f)){process.argv[2]='Stop';require('./'+f)}\"",
         "timeout": 10
       }
     ]
