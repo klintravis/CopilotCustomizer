@@ -52,7 +52,7 @@ All orchestration is programmatic via the `agent` tool — no manual handoff but
 | **Plugins** | `.github/plugins/*/` | Bundled customization packages | `plugin.json` |
 | **AGENTS.md** | Repository root | Project guidance | None |
 
-**Skills** (6 core + project-specific): `repo-analysis`, `planning`, `asset-design`, `documentation`, `deployment-automation`, `orchestration` | Bootstrap generates project-specific skills based on tech stack
+**Skills** (12 core + project-specific): asset-audit, asset-design, deployment-automation, documentation, execution-strategy, orchestration, planning, quality-validation, repo-analysis, security-hardening, standards-resolution, tool-selection | Bootstrap generates project-specific skills based on tech stack
 
 **Agents** (7 in orchestrator hierarchy): `CopilotCustomizer` (orchestrator) → `Bootstrap`, `Planner`, `Generator`, `Editor`, `Verifier`, `Evolve` (subagents)
 
@@ -88,6 +88,23 @@ Standards in `.github/standards/` define organizational conventions. During gene
 
 Workflow: Skill (analysis) → Agent (VS Code operations) → Skill (documentation)  
 Example: `repo-analysis` → Editor agent → Verifier agent → `documentation`
+
+### Orchestration Paradigms
+
+**Nested Subagent Support**: Subagents can invoke other subagents (max 2 levels deep) for hierarchical delegation. Conductors remain the primary orchestrators, but reviewers can delegate to security specialists, implementers can delegate to test generators, etc.
+
+**Reflection Phases**: A structured self-assessment step between Implementation and Review. The orchestration flow is `Plan → Test → Implement → REFLECT → Review → Commit`. Proven to improve output quality by 14-20%.
+
+**Failure & Recovery**: Four failure types (transient, validation, dependency, catastrophic) with five recovery strategies (retry, fix-and-retry, rollback, escalate, degrade). Circuit breaker pattern for external service interactions.
+
+**Context Engineering**: Explicit context budgets per orchestration phase. Conductors inject only phase-relevant context into subagents (plan excerpts, relevant files, prior phase summaries) rather than passing everything. Semantic compression between phases prevents context overflow.
+
+**Memory Strategy**: Three-tier model:
+- **Working memory**: Current context window (session only)
+- **Short-term memory**: Plan files with phase checkpoints (workflow lifecycle)
+- **Long-term memory**: AGENTS.md annotations, architecture decisions (cross-session)
+
+**Evaluation Rubrics**: Trajectory metrics (was the process correct?) and outcome metrics (did the result succeed?) with per-asset scoring rubrics (out of 100) for agents, skills, and instructions.
 
 ### Asset Naming Conventions
 
@@ -193,7 +210,7 @@ To avoid inventory drift, treat the folders as the source of truth:
 **File Organization**: Consistent naming, clear separation, skills for cross-platform, agents for VS Code  
 **Schema Compliance**: VS Code v1.112 standards, required YAML only, relative paths  
 **Version Management**: Track schema versions, maintain backward compatibility  
-**Orchestration**: Programmatic handoffs via `agent` tool, focused subagents, parallel execution (v1.112)
+**Orchestration**: Programmatic handoffs via `agent` tool, focused subagents, parallel execution (v1.112), nested delegation (max 2 levels), reflection phases, failure recovery, context engineering
 
 ---
 

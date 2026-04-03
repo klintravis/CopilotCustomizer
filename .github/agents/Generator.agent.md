@@ -81,27 +81,7 @@ INPUT: Asset specifications from Planner
 
 **Full template**: [AgentAuthoring.instructions.md](../instructions/AgentAuthoring.instructions.md)
 
-**Tool Selection Guide for Agent Generation**:
-
-| Agent Task | Recommended Tools | Why |
-|------------|-------------------|-----|
-| **Create/modify code** | `edit`, `new`, `search` | File operations and code lookup |
-| **Analyze code** | `search`, `problems`, `search/codebase` | Find issues and patterns |
-| **Test creation** | `new`, `edit`, `terminal` | Create tests and run them |
-| **Documentation** | `new`, `edit`, `search`, `fetch` | Write docs, research content |
-| **Planning** | `search`, `search/codebase`, `todos` | Understand structure, track work |
-| **Orchestrator** | `search`, `search/codebase`, `agent` | Coordinate subagents, manage phases |
-| **Review changes** | `search`, `changes`, `problems` | Inspect diffs and issues |
-| **Debug issues** | `search`, `problems`, `terminal` | Find errors, run diagnostics |
-| **E2E Testing** | `new`, `edit`, `terminal` | `openBrowserPage`, `screenshotPage`, `clickElement` | Create tests, browser interaction |
-| **Refactoring** | `edit`, `search`, `rename` | `usages`, `getDiagnostics` | Rename symbols, find references |
-
-**Tool Selection Principles**:
-- Include only tools needed for core objectives
-- Start minimal: most agents need `search`, `edit`, `new`
-- Add `terminal` only if commands must be run
-- Use `problems` for error-focused agents
-- Use `changes` for review-focused agents
+**Tool Selection**: Use the [tool-selection](../skills/tool-selection/SKILL.md) skill for archetype-to-tool mapping, risk classification, and selection principles.
 
 #### Instruction File Structure
 **Required sections**: YAML front matter (applyTo, description) → Purpose → Objectives → Workflow → Quality Criteria
@@ -143,18 +123,12 @@ When target repository requests plugin-style packaging, generate:
 *Related patterns: See other instructions in `.github/instructions/` or generate via `/NewInstructions`
 ```
 
-### Tool Approval Patterns
-**Safe (auto-approve)**: `search`, `search/codebase`, `fetch`  
-**Low-risk (single)**: `edit`, `new`  
-**Medium-risk (session)**: `terminal`, `runCommands`  
-**High-risk (persistent)**: `runTasks`, `changes`
-
-*Security patterns: [Security.instructions.md](../instructions/Security.instructions.md)*
+**Tool Approvals**: See [security-hardening](../skills/security-hardening/SKILL.md) skill for risk-based approval workflows.
 
 ### Conductor/Subagent System Structure
 **Conductor requirements**: agent tool + handoffs array, Claude Sonnet 4.5, no implementation tools, pause points after each phase
 
-**Subagent requirements**: I/O contracts, scoped tools, model tiers, focused scope boundaries
+**Subagent requirements**: I/O contracts, scoped tools (may include `agent` for nested delegation with `agents` field), model tiers, focused scope boundaries
 
 **Plan files**: PLAN.md (uses OrchestrationPlan.template.md), phase-{N}-complete.md, FINAL-REPORT.md
 

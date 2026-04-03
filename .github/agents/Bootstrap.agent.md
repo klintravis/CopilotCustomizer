@@ -103,6 +103,10 @@ if (repo.name.contains("CopilotCustomizer")) {
 
 **Instructions**: Framework, RepoReview, SkillAuthoring, AgentAuthoring, InstructionAuthoring, PromptAuthoring, Maintenance, Standards
 
+- [tool-selection](../skills/tool-selection/SKILL.md) — Agent tool set recommendations
+- [standards-resolution](../skills/standards-resolution/SKILL.md) — Enterprise standards matching
+- [quality-validation](../skills/quality-validation/SKILL.md) — Post-generation validation
+
 ### Success Criteria
 - [ ] Tech stack validated against actual repo usage
 - [ ] User confirmed detection or provided refinements
@@ -118,66 +122,18 @@ if (repo.name.contains("CopilotCustomizer")) {
 ```
 User: "Bootstrap Copilot assets for /Users/dev/my-api-project"
 
-Agent:
-1. Validates: Not CopilotCustomizer ✓
-2. Scans: Node.js/TypeScript API project detected
-3. Uses `repo-analysis` skill...
+Agent: Validates target → scans repo → uses repo-analysis skill...
 
-[After analysis, shows validation]
-
-Agent: "📋 Tech Stack Detected:
-- Language: TypeScript 5.x
-- Framework: Express.js 4.x
-- Testing: Jest 29.x
-- Mocking: Found 'FakeItEasy' references (unusual for Node/Jest)
-- Assertions: No FluentAssertions found
-- Build: Rollup
-
-⚠️ Validation Check: 'FakeItEasy' is .NET library but detected in Node project.
-Actual usage scan: Only Jest mocks found in tests.
-
-Options:
-- Type 'confirm' if detection looks accurate
-- Type 'refine' to correct any misdetections"
-
-User: "refine"
-
-Agent: "Refinement Mode:
-1. Testing framework: Jest ✓ (correct)
-2. Mocking library: [Detected: FakeItEasy ❌] → Correction options:
-   - jest.mock (native)
-   - sinon
-   - none (native only)
-3. Assertions: [Detected: FluentAssertions ❌] → Using Jest expect (native)
-
-Please specify corrections or type 'done'."
-
-User: "Use jest.mock for mocking, jest expect for assertions"
-
-Agent: "✓ Updated: Jest native mocking + assertions
-
-[Proceeds to planning]
-
-Agent: "Ready to generate:
-- APIConductor.agent.md (conductor: agent tool + handoffs)
-- APIExpert.agent.md (subagent: endpoint design)
-- TestOrchestrator.agent.md (subagent: Jest testing)
-- SecurityReviewer.agent.md (subagent: security audits)
-- 3 instruction files, 2 prompt files
-- plans/PLAN.md (lightweight-conductor, strict TDD)
-- .vscode/settings.json (subagent config)
-- AGENTS.md with orchestrated system inventory
-
-Orchestration: lightweight-conductor (3 agents, 120+ files)
-
-Reply 'confirm' to proceed."
+"Tech Stack Detected: TypeScript 5.x, Express.js 4.x, Jest 29.x
+Reply 'confirm' to proceed or 'refine' to correct."
 
 User: "confirm"
 
-[Fully autonomous execution]
+[Plans 4 agents, 3 instructions, 2 prompts, 1 conductor]
+[USER GATE: confirm plan]
+[Autonomous: Generation → Verification → Documentation]
 
-Agent: "✓ Complete: 12+ assets generated (1 conductor + 3 subagents + 3 instructions + 2 prompts + 1 plan + VS Code config + AGENTS.md), verified and harmonized.
-Documentation: /output/Bootstrap-Report.md"
+"✓ Complete: 12+ assets generated, verified, and harmonized."
 ```
 
 ### Handoff Chain (Skills-First)

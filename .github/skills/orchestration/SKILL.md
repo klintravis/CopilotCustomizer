@@ -79,6 +79,7 @@ The conductor is the central orchestration agent that manages the entire workflo
 5. **No Direct Implementation** — Conductor never writes code or modifies files directly
 6. **Plan File Management** — Creates and updates `plans/PLAN.md` for progress tracking
 7. **Model Tier** — Uses highest-capability model (e.g., `Claude Sonnet 4.5`, `GPT-4`)
+8. **Supports Nested Delegation** — Subagents may include `agent` tool for hierarchical orchestration (max 2 levels deep)
 
 ### Conductor YAML Structure
 ```yaml
@@ -99,6 +100,18 @@ handoffs:
     send: false
 ---
 ```
+
+### Nested Orchestration Support
+Subagents may invoke other subagents when their workflow benefits from delegation:
+
+**Hierarchical tree**:
+```
+Conductor → Subagent-A → Sub-subagent-A1
+                       → Sub-subagent-A2
+          → Subagent-B (leaf — no nesting)
+```
+
+**Rules**: Max 2 levels, explicit `agents` field, context passed explicitly, quality gates at conductor level only.
 
 ### Mandatory Pause Points
 Every conductor must include at least 3 pause points:
@@ -205,6 +218,30 @@ Key sections:
 5. **State Tracking** — Current phase, completed phases, blockers
 6. **Progress Log** — Timestamped entries of phase transitions
 
+### Memory & Checkpoint Strategy
+
+The plan file serves as the orchestration's short-term memory. At each phase transition:
+
+**Conductor checkpoints**:
+```markdown
+## Phase {N} Checkpoint
+- **Key decisions**: {architecture choices, trade-offs}
+- **Discovered patterns**: {code conventions, existing abstractions}
+- **Context for next phase**: {2-3 sentences for context injection}
+- **Blockers**: {resolved: X, outstanding: Y}
+```
+
+**Cross-session recovery**: If a session ends mid-workflow, the conductor reads `PLAN.md` to resume:
+1. Parse state tracking section for current phase
+2. Load latest phase completion record
+3. Inject checkpoint context into next subagent
+4. Continue from last completed phase
+
+**Long-term persistence**: After workflow completion, the conductor (or documentation skill) captures durable learnings in `AGENTS.md`:
+- Architecture decisions that affect future work
+- Discovered project conventions
+- Known issues or technical debt
+
 ### Phase Completion Record
 ```markdown
 # Phase {N} Complete: {Phase Name}
@@ -244,6 +281,91 @@ Key sections:
 **Action**: {next step based on result}
 ```
 
+## Reflection Phases
+
+A **reflection phase** is a structured self-assessment step inserted between implementation and final review. Research shows reflection improves output quality by 14-20%.
+
+### When to Include Reflection
+- After any Implementation phase, before Review
+- After complex planning phases, before user approval
+- After failed quality gates, before retry
+
+### Reflection Template
+```markdown
+## Reflection: {Phase Name}
+
+**What was accomplished**: {summary of changes made}
+**What went well**: {successful patterns, clean implementations}
+**What was difficult**: {challenges encountered, workarounds used}
+**What could be improved**: {specific improvements for next iteration}
+**Confidence level**: HIGH | MEDIUM | LOW
+**Recommendation**: PROCEED_TO_REVIEW | REVISE_FIRST | ESCALATE_TO_USER
+```
+
+### Integration into Orchestration Flow
+```
+Plan → Test → Implement → REFLECT → Review → Commit
+```
+
+The conductor invokes the Implementer, then asks it (or a dedicated Reflector subagent) to self-assess before handing off to the Reviewer. This catches issues the Implementer notices but might not surface otherwise.
+
+### Reflection in Generated Systems
+When generating orchestrated systems, include reflection as a standard phase:
+- Orchestra pattern: Add reflection between Implement and Review phases
+- Atlas pattern: Each parallel implementer reflects before synchronization point
+- The reflection output is appended to the plan file for audit trail
+
+## Failure & Recovery
+
+Every orchestration phase should define failure modes and recovery strategies. Production agent systems need predictable failure handling, not ad-hoc retries.
+
+### Failure Classification
+
+| Failure Type | Examples | Default Recovery |
+|-------------|---------|-----------------|
+| **Transient** | Tool timeout, API rate limit, network error | Retry with backoff (max 3 attempts) |
+| **Validation** | Schema error, test failure, lint error | Fix and retry within same phase |
+| **Dependency** | Missing file, broken import, unavailable service | Escalate to conductor for re-routing |
+| **Catastrophic** | Corrupted state, circular dependency, unrecoverable error | Rollback to last checkpoint, escalate to user |
+
+### Recovery Strategies
+
+**Retry with backoff**: For transient failures. Conductor retries the subagent with the same input, up to 3 times with increasing delay.
+
+**Fix-and-retry**: For validation failures. Subagent receives the error details and attempts self-correction within the same phase.
+
+**Rollback to checkpoint**: For dependency/catastrophic failures. Conductor reverts plan state to the last successful phase completion record and re-routes.
+
+**Escalate to user**: When automated recovery fails or the failure requires human judgment. Conductor presents the failure context and asks for direction.
+
+**Degrade gracefully**: Skip the failed phase if it's optional (e.g., documentation generation) and continue with remaining phases. Note the skip in the plan file.
+
+### Per-Phase Failure Handling
+```markdown
+### Phase {N}: {Phase Name}
+**On failure**:
+  - transient: retry (max 3)
+  - validation: fix-and-retry
+  - dependency: rollback to Phase {N-1}
+  - catastrophic: escalate to user
+**Checkpoint**: plans/phase-{N-1}-complete.md
+```
+
+### Circuit Breaker Pattern
+For phases that interact with external services (MCP servers, APIs):
+- **Closed** (normal): Requests pass through
+- **Open** (failing): After 3 consecutive failures, stop attempting — escalate immediately
+- **Half-open** (testing): After cooldown, try one request to test recovery
+
+### Failure Logging
+All failures are recorded in the plan file:
+```markdown
+## Failure Log
+| Phase | Type | Error | Recovery | Outcome |
+|-------|------|-------|----------|---------|
+| {N} | {type} | {description} | {strategy used} | {resolved/escalated} |
+```
+
 ## Parallel Execution (v1.112)
 
 ### Automatic Parallel Execution
@@ -261,15 +383,49 @@ Key sections:
 3. **Conductor synchronization** — Conductor waits for all parallel agents before next phase
 4. **Failure isolation** — One agent's failure doesn't block others (conductor handles retry)
 
-### Context Conservation Strategy
-For large codebases, limit each subagent's context to relevant files:
+### Context Engineering
+
+Context engineering is the deliberate design of what information enters each agent's context window. Rather than passing everything, define explicit context budgets and sources per phase.
+
+#### Context Budget Per Phase
+| Phase | Context Sources | Budget |
+|-------|----------------|--------|
+| Planning | Full repo structure, tech stack summary, standards context | Large (broad view) |
+| Implementation | Plan excerpt for current phase, relevant source files only | Focused (20 files max) |
+| Reflection | Implementation diff, plan criteria, test results | Minimal (results only) |
+| Review | Implementation diff, original plan, reflection notes | Moderate (changes + plan) |
+
+#### Context Injection Protocol
+When the conductor invokes a subagent, it should inject exactly:
+1. **Phase-specific plan excerpt** — Only the current phase from PLAN.md, not the entire plan
+2. **Relevant file list** — Glob pattern of files the subagent needs (max 20)
+3. **Prior phase summary** — 2-3 sentence summary of what previous phases accomplished (not full output)
+4. **Standards context** — Only matched standards relevant to this phase's work
+5. **Failure context** — If retrying, include the specific error from the previous attempt
+
+#### What NOT to Inject
+- Full conversation history from prior phases
+- Unrelated file contents
+- Standards that don't match the tech stack
+- Verbose logs from completed phases (use summaries)
+
+#### Subagent Context Scope Template
 ```markdown
-### Subagent Context Scope
-- **Files**: {glob pattern of relevant files}
-- **Max Files**: 20 (prefer focused context)
-- **Dependencies**: {list of files the agent may read but not modify}
-- **Exclusions**: {files explicitly out of scope}
+### Context for {SubagentName}
+- **Phase**: {N} — {Phase Name}
+- **Files**: {glob pattern} (max 20 files)
+- **Plan excerpt**: {current phase section only}
+- **Prior summary**: {2-3 sentences from previous phase}
+- **Standards**: {matched standards for this work}
+- **Exclusions**: {files out of scope}
 ```
+
+#### Semantic Compression
+Between phases, the conductor compresses prior phase output into summaries:
+- **Implementation output** → "Modified 5 files: added UserPreferences model, updated API routes, created tests. All tests passing."
+- **Review output** → "3 findings: 1 security issue (fixed), 2 style suggestions (deferred). Approved with notes."
+
+This prevents context window overflow in long multi-phase workflows.
 
 ## VS Code Configuration
 

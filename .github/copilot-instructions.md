@@ -18,7 +18,7 @@
 - **Targeted Edits**: Editor → Verifier
 
 **Key Principles**:
-- Fully programmatic orchestration — no manual handoffs
+- Fully programmatic orchestration — nested subagent delegation supported (max 2 levels)
 - State tracking via `todo` tool for multi-step workflows
 - Quality gates between all phase transitions
 - Context passing with explicit instructions to each subagent
@@ -32,7 +32,7 @@
 ├── agents/*.agent.md               # 7 agents (CopilotCustomizer + 6 subagents)
 ├── instructions/*.instructions.md  # 12 instruction files
 ├── prompts/*.prompt.md             # 11 slash commands
-├── skills/[name]/SKILL.md          # 6 cross-platform skills (agentskills.io)
+├── skills/[name]/SKILL.md          # 12 cross-platform skills (agentskills.io)
 ├── standards/[category]/           # 43+ standards across 8 categories
 └── templates/                      # 4 structured output templates
 ```
@@ -41,7 +41,7 @@
 - **Agents**: 7 (1 orchestrator + 6 subagents)
 - **Instructions**: 12 (scoped via `applyTo` patterns)
 - **Prompts**: 11 (user-facing slash commands)
-- **Skills**: 6 (cross-platform, agentskills.io compatible)
+- **Skills**: 12 (cross-platform, agentskills.io compatible)
 - **Standards**: 43 (architecture, databases, devops, frameworks, languages, practices, security, testing)
 - **Templates**: 4 (Analysis, ChangeLog, ImplementationPlan, OrchestrationPlan)
 
@@ -235,6 +235,12 @@ Skills are portable AI capabilities following the [agentskills.io](https://agent
 | **orchestration** | Conductor/subagent system design | CopilotCustomizer, Planner | Orchestra, Atlas, Custom patterns; TDD lifecycle; parallel execution |
 | **planning** | Strategic implementation planning | Planner, Bootstrap | Step-by-step execution plans, risk mitigation, validation strategies |
 | **repo-analysis** | Deep repository analysis | Bootstrap, Planner | Tech stack detection, dependency analysis, pattern recognition |
+| **execution-strategy** | Multi-file change execution methodology | Editor | Depth modes, atomic operations, rollback strategies |
+| **quality-validation** | Asset validation and harmonization | Verifier, Evolve | Schema compliance, cross-references, eval rubrics |
+| **tool-selection** | Tool-to-task mapping framework | Generator, Planner | Archetype mapping, risk classification, approval patterns |
+| **standards-resolution** | Enterprise standards matching | Bootstrap, Planner, Generator | Discovery, matching algorithm, integration protocol |
+| **asset-audit** | Audit methodology for AI assets | Evolve, Verifier | Inventory, workflow analysis, gap identification |
+| **security-hardening** | Security patterns for agent systems | Generator, all agents | Tool approvals, MCP trust, hook enforcement, sandboxing |
 
 ---
 

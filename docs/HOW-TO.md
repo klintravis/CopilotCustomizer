@@ -140,7 +140,7 @@ Question 3: Is this reusable across many files/projects?
   → NO: Create a Prompt
 ```
 
-### The 6 Available Skills
+### The 12 Available Skills
 
 **1. repo-analysis** 🔍  
 Analyze code structure, tech stack, patterns, dependencies. Use when starting projects or assessing customization needs.
@@ -159,6 +159,24 @@ CI/CD pipeline design, deployment strategies, GitHub Actions workflows, monitori
 
 **6. orchestration** 🎭  
 Conductor/subagent systems with TDD lifecycle, quality gates, plan tracking, and parallel execution.
+
+**7. execution-strategy** ⚡
+Multi-file change execution with depth modes (Quick-Edit, Standard, Careful), atomic operations, and rollback strategies.
+
+**8. quality-validation** ✅
+Asset validation and harmonization — schema compliance, cross-reference integrity, terminology standardization.
+
+**9. tool-selection** 🔧
+Tool-to-task mapping framework — agent archetype recommendations, risk classification, approval patterns.
+
+**10. standards-resolution** 📏
+Enterprise standards discovery, tech-stack matching, and natural integration into generated assets.
+
+**11. asset-audit** 🔍
+Audit methodology — inventory scanning, workflow analysis, gap identification, improvement prioritization.
+
+**12. security-hardening** 🔒
+Security patterns — tool approval workflows, MCP trust levels, hook-based enforcement, sandboxing.
 
 ### How to Use Skills
 
@@ -397,6 +415,27 @@ PARALLEL_ENABLED: "true"
 - Updated AGENTS.md with system inventory
 
 **Skills Reference**: The `orchestration` skill provides the complete methodology for orchestration patterns, conductor design, subagent archetypes, TDD lifecycle, and quality gates.
+
+### Orchestration Best Practices (v1.6.0)
+
+**Nested Subagents**: Subagents can now invoke other subagents for hierarchical delegation:
+```
+Conductor → Reviewer → SecurityReviewer (nested)
+Conductor → Implementer → TestGenerator (nested)
+```
+Use `agents` field in YAML to constrain which agents a subagent can invoke. Max 2 levels deep.
+
+**Reflection Phases**: Generated orchestration systems include a reflection step between Implementation and Review. This self-assessment catches issues before formal review, improving quality by 14-20%.
+
+**Failure Recovery**: Each orchestration phase defines failure handling:
+- `retry` — Transient failures (tool timeout, rate limit)
+- `fix-and-retry` — Validation failures (schema error, test failure)
+- `rollback` — Dependency failures (revert to last checkpoint)
+- `escalate` — Catastrophic failures (present to user)
+
+**Context Budgets**: Conductors inject only phase-relevant context into subagents. Planning gets broad context; implementation gets focused file lists (max 20 files). Semantic compression summarizes prior phases.
+
+**Memory & Continuity**: Plan files serve as short-term memory with checkpoints at each phase. Long-term learnings (architecture decisions, team preferences) persist in AGENTS.md across sessions.
 
 ---
 

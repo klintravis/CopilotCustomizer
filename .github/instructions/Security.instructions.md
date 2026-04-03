@@ -38,109 +38,22 @@ description: 'Security guardrails and tool management safety protocols'
 **Runtime**: Monitor execution time, implement timeouts, log security events
 **Post-execution**: Audit trails, compliance checks, performance review
 
-## Tool Management Security
+## Tool & MCP Security
 
-### MCP Server Trust Levels
-| Level | Description | Monitoring | Use Case |
-|-------|-------------|------------|----------|
-| **Full** | Internal/org-developed | Standard | Production workflows |
-| **Conditional** | Verified third-party | Enhanced | Trusted external tools |
-| **Limited** | Public servers | Restricted | Public integrations |
-| **No Trust** | Unverified/suspicious | Blocked | Security threats |
+**Skill Reference**: Use the [security-hardening](../skills/security-hardening/SKILL.md) skill for complete methodology:
+- Tool risk classification and approval workflows
+- MCP server trust levels and configuration security
+- Hook-based policy enforcement (PreToolUse validation)
+- Terminal and MCP sandboxing configuration
 
-### Tool Approval Workflows
-| Risk Level | Approval Type | Examples | Requirements |
-|------------|---------------|----------|--------------|
-| **Auto-approve** | None | Search, fetch (internal) | Safe, read-only operations |
-| **Pre-approval** | User confirmation | File read, terminal | Review tool invocation before execution |
-| **Post-approval** | Content review | External fetch, MCP openWorldHint | Review fetched data before use (VS Code 1.109+) |
-| **Session** | Session scope | Terminal commands | Medium-risk, current session |
-| **Persistent** | Permanent | System access | High-trust, ongoing operations |
-| **Source-level** | Trust all from source | MCP server, extension | Trust all tools from a provider (VS Code 1.109+) |
-| **Always Deny** | Blocked | Destructive ops | Never automated |
+### Key Principles
+- **Least privilege**: Start minimal, add tools only when required
+- **Source-level trust**: Manage MCP servers and extensions at source level
+- **Post-approval**: Review external data before it enters context
+- **Workspace config**: Share MCP settings via `.vscode/mcp.json`
 
-### Risk Assessment Matrix
-**Factors**: File system access (R/W/X), network operations (internal/external), system commands, data sensitivity, impact scope
-**Default Posture**: Least privilege, explicit approval for elevation, regular audits, automated monitoring
-
-## MCP Security Implementation
-
-### Server Configuration Security
-**Validation**: Executable integrity, environment variables, SSL certificates
-**Connection**: Encrypted communications, authentication protocols, secure transport (CIMD/DCR support)
-**Runtime**: Permission boundaries, resource limits, audit logging
-**Organization Control**: MCP registry endpoints, access restrictions, policy enforcement (VS Code 1.109+)
-
-**Workspace MCP Configuration** (`.vscode/mcp.json`):
-- Team-shared MCP servers under version control
-- Project-specific tool configurations
-- Isolated from user-level global MCP settings
-
-**Organization Policies**:
-- `chat.mcp.gallery.serviceUrl`: Custom MCP registry endpoint
-- `chat.mcp.access`: Restrict to organization-approved servers only
-- Enterprise control over MCP server availability
-
-### MCP Server Sandboxing (VS Code 1.112)
-
-MCP servers can run in sandboxed environments for enhanced security:
-
-```json
-{
-  "mcpServers": {
-    "my-server": {
-      "command": "node",
-      "args": ["server.js"],
-      "sandboxEnabled": true
-    }
-  }
-}
-```
-
-**Sandbox Restrictions**: Sandboxed servers have limited file system and network access, preventing data exfiltration.
-
-### Terminal Sandboxing (VS Code 1.110+)
-
-Terminal tool execution can be sandboxed with granular controls:
-
-```json
-{
-  "chat.tools.terminal.sandbox.enabled": true,
-  "chat.tools.terminal.sandbox.linuxFileSystem": "readonly",
-  "chat.tools.terminal.sandbox.macFileSystem": "readonly",
-  "chat.tools.terminal.sandbox.network": "none"
-}
-```
-
-**Recommendation**: Enable terminal sandboxing for security-sensitive agents that need limited terminal access.
-
-### Hook Security Patterns (VS Code 1.111+)
-
-Hooks provide security enforcement capabilities via output fields:
-
-**PreToolUse hook output**:
-- `permissionDecision`: `"allow"` / `"deny"` / `"ask"` — control tool execution
-- `permissionDecisionReason`: Human-readable explanation for the decision
-- `updatedInput`: Modify tool input before execution (sanitization)
-- `additionalContext`: Inject context into agent's awareness
-
-**Priority resolution**: When multiple hooks fire, `deny` > `ask` > `allow`.
-
-**Exit codes**: `0` = success, `2` = blocking error, other = non-blocking warning.
-
-**Platform-specific commands**: Use `windows`, `linux`, `osx` fields for cross-platform hook scripts:
-```json
-{
-  "hooks": {
-    "PreToolUse": [{
-      "type": "command",
-      "command": "./scripts/validate.sh",
-      "windows": { "command": ".\\scripts\\validate.ps1" },
-      "timeout": 15
-    }]
-  }
-}
-```
+### Sandboxing & Hooks
+MCP server sandboxing (`sandboxEnabled: true`) and terminal sandboxing (`chat.tools.terminal.sandbox.*`) restrict file system and network access. Hook-based security (PreToolUse `permissionDecision`: allow/deny/ask) enforces policy at tool invocation time. See [security-hardening](../skills/security-hardening/SKILL.md) skill for configuration details.
 
 ### Security Checklists
 

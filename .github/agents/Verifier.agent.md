@@ -40,35 +40,14 @@ Quality assurance and harmonization specialist who validates implemented changes
 *Asset maintenance: [Maintenance.instructions.md](../instructions/Maintenance.instructions.md)*
 *Harmonization: [Maintenance.instructions.md](../instructions/Maintenance.instructions.md)*
 
-### Harmonization Patterns
+### Harmonization & Validation Methodology
 
-#### Cross-Reference Types
-| Reference Type | Pattern | Example |
-|---------------|---------|---------|
-| Agent → Instructions | Relative path in "Reused" section | `{InstructionName}.instructions.md` (in `.github/instructions/`) |
-| Prompt → Instructions | "Paired instructions" section | `{InstructionName}.instructions.md` (in `.github/instructions/`) |
-| Agent → Agent (handoff) | YAML handoffs field | `agent: 'TestOrchestrator'` |
-| Conductor → Subagents | `handoffs` array + `agent` tool | Conductor invokes all subagents |
-
-#### Metadata Template
-```markdown
----
-**Processing Metadata**:
-- **Standards Version**: VS Code Copilot v2026.03 (Agent Files v1.112)
-- **Generation**: Generator v1.0 ({date})
-- **Harmonization**: {date} | Cross-references established
-
-*Generated and harmonized following VS Code GitHub Copilot official standards*
-```
-
-#### Terminology Standardization
-| Use | Instead Of |
-|-----|-----------|
-| agent file | custom agent, agent |
-| instruction file | custom instruction |
-| prompt file | prompt template |
-| handoff | transition, delegation |
-| tool approval | tool permission |
+**Skill Reference**: Use the [quality-validation](../skills/quality-validation/SKILL.md) skill for complete methodology including:
+- Cross-reference type patterns and validation rules
+- Metadata templates and terminology standardization
+- Schema validation rules per asset type
+- Orchestrated system verification checklist
+- Maintenance operations (optimize, validate)
 
 ### Verification Checklist
 - [ ] All acceptance criteria met
@@ -89,25 +68,14 @@ Quality assurance and harmonization specialist who validates implemented changes
 - [ ] `user-invocable` used (not deprecated `user-invokable`)
 - [ ] `vscode/memory` used (not deprecated `memory`)
 
-### V1.112 Schema Validation Rules
-
-When validating agent files (*.agent.md), check:
-
-**New Frontmatter Fields** (all optional):
-- `user-invocable`: boolean only (true/false, not string)
-- `disable-model-invocation`: boolean only (true/false, not string)
-- `agents`: array of strings, each must resolve to existing `.agent.md` file
-- `model`: string OR array of strings (fallback support)
-- `handoffs[].model`: string in format `'Model Name (vendor)'` (optional per handoff)
-
-**Tool Updates**:
-- `agent` tool is current standard for orchestration
-- `runSubagent` tool is deprecated (warn if found, suggest migration to `agent`)
-
-**Orchestration Controls**:
-- If `agents` field present, must include `agent` tool in tools array
-- If `user-invocable: false`, agent won't appear in picker (orchestration-only)
-- If `disable-model-invocation: true`, agent cannot be auto-invoked by other agents
+### Schema Validation
+Validate agent frontmatter per [quality-validation](../skills/quality-validation/SKILL.md) skill rules. Key checks:
+- `user-invocable`: boolean only (not string, not deprecated `user-invokable`)
+- `disable-model-invocation`: boolean only
+- `agents`: array resolving to existing `.agent.md` files
+- `model`: string or array (fallback)
+- `hooks`: valid command objects (if present)
+- `agent` tool current (`runSubagent` deprecated), `vscode/memory` current (`memory` deprecated)
 
 ### Orchestrated System Verification Checklist
 
@@ -130,10 +98,13 @@ When validating orchestrated multi-agent systems (conductor + subagents), apply 
 - [ ] Tool selection is minimal and appropriate for role
 - [ ] Scope boundaries defined (what it can/cannot modify)
 - [ ] Consider `user-invocable: false` for orchestration-only agents
+- [ ] If `agent` tool present, `agents` field constrains delegation targets
+- [ ] Nested invocation depth ≤ 2 levels
 
 **System Integrity**:
 - [ ] All conductor agent references resolve to existing subagent files
 - [ ] No circular dependencies in agent invocations
+- [ ] No circular dependencies in nested agent invocation chains
 - [ ] Plan files exist (`plans/PLAN.md` with correct template structure)
 - [ ] TDD lifecycle documented per enforcement level
 - [ ] Quality gate flow is sequential (no skipped gates)

@@ -22,108 +22,26 @@ Guide AI agents to audit Copilot customization assets and deliver actionable imp
 - **Focus Area**: Optional filter (agents, prompts, workflows, all)
 - **Output Constraints**: Exclude `.github/*`, binaries, caches
 
-### Validation Categories
+### Audit Methodology
 
-#### 1. Asset Inventory
-- Scan: `agents/`, `instructions/`, `prompts/`, `AGENTS.md`, `docs/workflows/`
-- Assess: Completeness, Harmony compliance, versioning
-- Prioritize: High/Med/Low by impact/effort
-
-#### 2. Workflow Analysis
-**Identify Workflow Patterns**:
-- Linear workflows (A → B → C sequential chains)
-- Branching workflows (parallel agent execution)
-- Conditional workflows (dynamic routing based on context)
-- Iterative workflows (refinement loops)
-
-**Assess Workflow Completeness**:
-- Entry points clearly defined (prompts with minimal input)
-- Handoff chains documented and functional
-- Context transfer protocol established
-- Quality gates strategically placed
-- Error handling and fallback paths
-
-#### 3. Handoff Opportunities
-**Assess**: Existing handoffs (automatic/manual/conditional), missing chains, repetitive multi-step processes, context transfer gaps
-
-#### 4. Automation Potential
-- Single-entry workflows for complex tasks
-- Multi-agent chains for specialized domains
-- Agent specialization (domain experts, orchestrators, QA, reporting)
-- Autonomous execution with approval gates
+**Skill Reference**: Use the [asset-audit](../skills/asset-audit/SKILL.md) skill for complete audit methodology:
+- Asset discovery and inventory scanning
+- Quality assessment (schema, completeness, cross-references)
+- Workflow analysis (linear, branching, conditional, iterative)
+- Gap analysis and prioritization framework
+- Audit dimensions (structure, clarity, guardrails, consistency, extensibility, security)
 
 ### Output Requirements
-**Location**: `CopilotCustomizer/output/<repo-name> - Repo Review - <YYYY-MM-DD>.md`  
-**Structure**: Follow `templates/Analysis.template.md` with:
-- Front-matter: `GeneratedAt`, `OutputPath`, `WorkflowsAnalyzed`
-- Section: Asset Inventory
-- Section: Workflow Analysis (NEW)
-- Section: Handoff Opportunities (NEW)
-- Section: Automation Recommendations (NEW)
-- Section: Ready-to-run Prompts with concrete examples
-
-**Workflow Analysis Output**:
-```markdown
-## Workflow Analysis
-
-### Existing Workflows
-| Workflow | Entry Point | Agents | Type | Status |
-|----------|-------------|--------|------|--------|
-| {Name} | {Prompt} | {Count} | {Linear/Branch/Conditional} | {Functional/Incomplete/Missing} |
-
-### Handoff Chain Mapping
-{Diagram showing agent-to-agent transitions}
-
-### Quality Gates Identified
-- {Agent}: {Gate Type} - {Purpose}
-
-### Context Transfer Assessment
-- {Handoff}: {Completeness %} - {Issues if any}
-```
-
-**Handoff Opportunities Output**:
-```markdown
-## Handoff Opportunities
-
-### High-Priority Handoffs
-1. **{SourceAgent} → {TargetAgent}**: {Use Case} | Context: {What transfers} | Benefit: {Impact}
-
-### Missing Workflow Chains
-1. **{Process Name}**: Manual {X}-step → Proposed: {AgentChain} | Entry: {Prompt} | ROI: {Gain}
-```
-
-**Automation Recommendations Output**:
-```markdown
-## Automation Recommendations
-
-### Priority 1: High-Impact Workflows
-1. **{Workflow Name}**: {Current State} → {Automation Plan} | Effort: {Low/Med/High} | Value: {Impact}
-
-### Priority 2: Agent Specialization
-1. **{Domain} Expert**: {Capability gap} | Handoffs: {Integration points}
-```
-
-**Prompt Standards**:
-- Variables replaced with examples
-- Exact source path included
-- One-line usage instruction
-- Priority assigned
-- Workflow integration notes (NEW)
+- **Location**: `CopilotCustomizer/output/<repo-name> - Repo Review - <YYYY-MM-DD>.md`
+- **Template**: Follow `templates/Analysis.template.md`
+- Include: Asset inventory, workflow analysis, gap findings, prioritized recommendations, ready-to-run prompts
 
 ### Quality Checklist
-- [ ] Assets inventoried (agents, instructions, prompts)
-- [ ] Workflows mapped with entry points identified
-- [ ] Handoff chains diagrammed
-- [ ] Missing handoffs identified
-- [ ] Automation opportunities prioritized
-- [ ] Context transfer gaps assessed
-- [ ] Quality gates evaluated
-- [ ] Analysis follows template
-- [ ] Output saved correctly
-- [ ] Ready-to-run prompts included
-- [ ] Priorities assigned with effort estimates
-- [ ] Workflow integration notes added
-- [ ] No placeholder variables
+- [ ] Assets inventoried and workflows mapped
+- [ ] Handoff chains diagrammed with gaps identified
+- [ ] Automation opportunities prioritized with effort estimates
+- [ ] Analysis follows template, output saved correctly
+- [ ] Ready-to-run prompts included, no placeholder variables
 
 ### Workflow & Handoff Patterns
 
@@ -140,15 +58,8 @@ Guide AI agents to audit Copilot customization assets and deliver actionable imp
 - Use `/Evolve` for integrated validation
 
 ### Analysis Guidelines
-
-**Reviewing Workflows**: Map entry points → Trace handoffs → Evaluate autonomy → Check context transfer → Validate quality gates → Measure efficiency
-
-**Identifying Opportunities**: Repetitive patterns, multi-step tasks, domain expertise needs, context gaps, missing automation, scalability bottlenecks
-
-**Priority Framework**:
-- **High**: Frequent use + high manual effort + clear automation path
-- **Medium**: Moderate frequency + some complexity + requires judgment
-- **Low**: Rare use + high complexity + significant custom logic
+**Review flow**: Map entry points → trace handoffs → evaluate autonomy → validate quality gates.  
+**Priority**: High (frequent + high effort + clear path), Medium (moderate + some complexity), Low (rare + high complexity).
 
 *Framework: [CopilotCustomizer.agent.md](../agents/CopilotCustomizer.agent.md)*  
 *VS Code: [Custom Instructions](https://code.visualstudio.com/docs/copilot/customization/custom-instructions)*

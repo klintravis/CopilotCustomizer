@@ -107,35 +107,12 @@ Before returning results to the orchestrator, verify:
 
 ### Self-Audit Framework
 
-**Meta-Framework Compliance** (toolkit follows its own rules):
-- [ ] CopilotCustomizer agent uses Framework.instructions.md patterns
-- [ ] All agents follow AgentAuthoring.instructions.md schemas
-- [ ] All instructions follow InstructionAuthoring.instructions.md patterns
-- [ ] All prompts follow PromptAuthoring.instructions.md patterns
-- [ ] All skills follow SkillAuthoring.instructions.md patterns
-- [ ] Verifier can successfully audit CopilotCustomizer's own assets
+**Skill References**:
+- [asset-audit](../skills/asset-audit/SKILL.md) — Comprehensive audit methodology (discovery, assessment, gap analysis, prioritization)
+- [quality-validation](../skills/quality-validation/SKILL.md) — Schema validation, cross-reference integrity, harmonization
+- [security-hardening](../skills/security-hardening/SKILL.md) — Tool approval and MCP trust verification
 
-**Harmonization Depth**:
-- [ ] All agent files include cross-reference sections
-- [ ] All prompt files include paired instructions references
-- [ ] Conductor agents list subagents in `agents` YAML field
-- [ ] Processing metadata includes standards version
-- [ ] Terminology standardized across all assets
-
-**Tool Ecosystem Health**:
-- [ ] Orchestrators use `agent` tool for subagent invocation
-- [ ] Tool selections match agent archetypes
-- [ ] No unnecessary tool approvals
-- [ ] Security-sensitive tools justified
-
-**Schema Currency**:
-- [ ] Agent files: v1.112 frontmatter fields (user-invocable, not deprecated user-invokable)
-- [ ] MCP servers: v1.102+ integration patterns
-- [ ] Prompt files: Current variable systems
-- [ ] Skills: agentskills.io standard compliance
-- [ ] Agent-scoped hooks: frontmatter `hooks:` key format
-- [ ] Agent Plugins: plugin.json structure awareness
-- [ ] New tools: rename, usages, getDiagnostics, browser tools
+**Meta-framework check**: Verify toolkit follows its own standards (agents use AgentAuthoring patterns, instructions use InstructionAuthoring patterns, etc.)
 
 ### Performance Metrics
 
@@ -145,24 +122,7 @@ Before returning results to the orchestrator, verify:
 - Prompts: 100–200 lines
 - Skills: 400–800 lines (includes examples)
 
-**Redundancy Detection**:
-- Repeated workflows across multiple agents
-- Duplicated standards between instructions
-- Overlapping guidance in prompts
-- Opportunities for shared instruction extraction
-
-**Optimization Strategies**:
-- Extract shared patterns to instruction files
-- Create reusable skills for cross-platform patterns
-- Use cross-references instead of duplication
-- Refactor verbose explanations
-- Remove outdated examples
-
-**Quality Preservation** (during optimization):
-- Maintain complete context for agent functionality
-- Keep sufficient examples for clarity
-- Preserve all quality criteria
-- Ensure cross-reference integrity
+**Optimization methodology**: See [quality-validation](../skills/quality-validation/SKILL.md) skill for redundancy detection, optimization strategies, and quality preservation patterns.
 
 ### Depth Modes
 
@@ -233,6 +193,14 @@ All Evolve improvement plans are persisted to `docs/plans/` (gitignored) with st
 **Plan Status**: Track via frontmatter: `PENDING APPROVAL`, `IN PROGRESS`, `COMPLETED`, `ARCHIVED`
 
 Plans provide audit trail for toolkit evolution and enable resumption of multi-phase improvements.
+
+### Memory & Continuity
+
+When maintaining the toolkit across sessions:
+- **Read `docs/plans/` first** — Check for interrupted improvement plans to resume
+- **Capture learnings** — After each maintenance cycle, note what worked and what failed in plan completion records
+- **Update AGENTS.md** — If maintenance reveals new project patterns or conventions, persist them
+- **Context recovery** — Use plan file state tracking to resume interrupted Evolve workflows without re-analyzing
 
 ### Skills Integration
 

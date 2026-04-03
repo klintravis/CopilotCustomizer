@@ -18,6 +18,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Simplified copilot-instructions.md**: Removed lifecycle logging sections, added Agent Plugins and monorepo customization references
 - **All agent files**: Updated frontmatter for v1.112 compliance (user-invocable, vscode/memory)
 - **All authoring instructions**: Updated with new VS Code 1.110-1.112 features (agent-scoped hooks, new tools, plugins, sandboxing)
+- **Agent context reduction**: Agents slimmed by ~30% (1,887→1,364 lines) by replacing inline methodology with skill references
+- **Instruction deduplication**: Instructions reduced by ~13% (3,394→2,953 lines) by extracting portable methodology to skills
+- **Editor agent**: 401→85 lines — execution methodology extracted to `execution-strategy` skill
+- **Standards.instructions.md**: 160→51 lines — fully extracted to `standards-resolution` skill
+- **Security.instructions.md**: 196→109 lines — approval workflows extracted to `security-hardening` skill
 - **Generator agent**: Updated tool selection guide with browser and refactoring tools; plugin generation awareness
 - **Bootstrap agent**: Added monorepo detection; removed obsolete hook references
 - **Planner agent**: Added agent plugin assessment criteria
@@ -32,10 +37,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **New tools catalog**: Added `rename`, `usages`, `getDiagnostics`, and browser tools (`openBrowserPage`, `screenshotPage`, etc.) to agent tool selection guides
 - **Explore subagent awareness**: Orchestration patterns updated for native read-only research agent
 - **Autonomy tiers documentation**: Default, Bypass Approvals, and Autopilot modes documented in orchestration guidance
+- **6 new portable skills**: `execution-strategy`, `quality-validation`, `tool-selection`, `standards-resolution`, `asset-audit`, `security-hardening` — extracted from agents and instructions for progressive loading
 - **MCP/terminal sandboxing**: Security.instructions.md now covers `sandboxEnabled` and terminal sandbox settings
 - **Monorepo detection**: Bootstrap agent now detects monorepo structure and recommends nested customizations
 - **Native `/create-*` commands reference**: Framework.instructions.md documents VS Code's built-in creation commands
 - **Agent Debug Panel reference**: ToolkitOps.instructions.md now covers debug panel for customization troubleshooting
+- **Nested subagent support**: Subagents can now invoke other subagents (max 2 levels deep) with `agents` field constraints
+- **Reflection phases**: Orchestration patterns now include structured self-assessment between Implementation and Review (14-20% quality improvement)
+- **Failure/recovery framework**: Failure classification (transient, validation, dependency, catastrophic) with recovery strategies (retry, fix-and-retry, rollback, escalate, degrade)
+- **Context engineering**: Explicit context budgets per orchestration phase with injection protocol and semantic compression
+- **Evaluation rubrics**: Trajectory + outcome metrics with per-asset scoring rubrics (out of 100) in quality-validation skill
+- **Memory strategy**: Three-tier memory model (working, short-term, long-term) with checkpoint and cross-session recovery patterns
 
 ## [1.5.0] - 2026-02-15
 

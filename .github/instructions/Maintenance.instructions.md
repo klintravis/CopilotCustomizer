@@ -64,46 +64,13 @@ Verify schema compliance and reference integrity without modifications.
 
 ## Unified Workflow
 
-### Phase 1: Discovery
-1. Identify target files within scope
-2. Parse YAML front matter and content
-3. Extract metadata and identify binding points
-4. Map existing cross-references
+1. **Discovery**: Identify targets, parse YAML/content, map cross-references
+2. **Analysis**: Validate schema, check duplication/drift, generate validation report
+3. **Application** (Optimize/Harmonize only): Apply changes, verify intent preservation and reference integrity
+4. **Output**: Write files, generate change summary, report results
 
-### Phase 2: Analysis
-5. Validate YAML schema compliance by asset type
-6. Check for duplication, drift, or inconsistencies
-7. Identify optimization opportunities
-8. Generate cross-reference validation report
-
-### Phase 3: Application (Optimize/Harmonize only)
-9. **If Optimize**: Apply formatting, reduce duplication, improve clarity
-10. **If Harmonize**: Inject cross-references, add binding metadata
-11. Validate all changes preserve original intent
-12. Verify all references still resolve
-
-### Phase 4: Output
-13. Force-write modified files to disk
-14. Generate change summary with diffs
-15. Report success confirmation with file paths
-16. Provide verification checklist results
-
-## YAML Front Matter Rules (v1.112)
-
-Only use officially supported fields by asset type:
-
-**Agent files (`*.agent.md`)**:
-- Required: `description`
-- Optional: `tools`, `model` (string/array), `handoffs` (with optional model), `mcp-servers`, `target`, `name`, `argument-hint`, `user-invocable`, `disable-model-invocation`, `agents`
-
-**Instruction files (`*.instructions.md`)**:
-- Required: `applyTo`
-- Optional: `description`
-
-**Prompt files (`*.prompt.md`)**:
-- Optional: `agent`, `tools`, `model`
-
-**Do not add** unsupported fields (e.g., `schemaVersion`, `depthModes`, `refinementCommands`) to YAML front matter.
+## Schema Rules
+**Skill Reference**: See [quality-validation](../skills/quality-validation/SKILL.md) skill for complete YAML frontmatter rules per asset type and validation checklists.
 
 ## Harmonization Metadata (Markdown Content)
 
@@ -133,82 +100,16 @@ Append `-h1`, `-h2` for harmony iterations when creating backup versions.
 - **Validate**: No file output, report only
 
 ## Quality Guidelines
+- **Preservation**: All behavior, links, references, and intent must be preserved; no functional rewrites
+- **Efficiency**: <10% content change for harmonize, <15% for optimize; prefer minimal diffs; <30s processing
+- **Reference integrity**: 100% preservation; all cross-references must resolve; check for stale references
 
-### Preservation Requirements
-- Preserve all behavior and functionality
-- Preserve all links and hard references (internal/external)
-- Preserve original intent and purpose
-- No functional rewrites
-
-### Efficiency Targets
-- Minimize content modification (<10% for harmonize, <15% for optimize)
-- Prefer minimal diffs
-- Process in <30s for harmonize operations
-- Keep file size increases <15%
-
-### Reference Integrity
-- 100% reference preservation
-- All cross-references must resolve
-- Validate paired relationships
-- Check for stale references to deprecated assets
-
-## Verification Checklist
-
-### Schema Validation
-- [ ] YAML parses successfully
-- [ ] Contains only supported fields for asset type
-- [ ] Required fields present
-- [ ] No unsupported custom metadata in YAML
-
-### Cross-Reference Validation
-- [ ] All file references resolve
-- [ ] Paired relationships validated
-- [ ] No stale references to deprecated assets
-- [ ] Harmonization bindings verified (harmonize mode)
-
-### Content Integrity
-- [ ] Original functionality preserved
-- [ ] Behavior unchanged
-- [ ] Intent maintained
-- [ ] Content modification within limits
-
-### Output Success
-- [ ] All files written to disk successfully
-- [ ] Change summary generated
-- [ ] Success confirmation with paths
-- [ ] Verification report provided
+## Verification
+Use the [quality-validation](../skills/quality-validation/SKILL.md) skill's validation checklist for schema, cross-reference, content integrity, and output verification.
 
 ## Templates
-
-### Cross-Reference Binding (for harmonized files)
-```markdown
-**Related Assets**:
-- Instructions: `file.instructions.md` (path/to/file.instructions.md)
-- Prompts: `file.prompt.md` (path/to/file.prompt.md)
-- Agents: `file.agent.md` (path/to/file.agent.md)
-*Last harmonized: YYYY-MM-DD*
-```
-
-### Change Summary Report
-```markdown
-## Asset Maintenance Report
-
-**Operation**: [Optimize | Harmonize | Validate]
-**Scope**: [X files processed]
-**Status**: [Success | Partial | Failed]
-
-### Changes Applied
-- [File 1]: [Description of changes]
-- [File 2]: [Description of changes]
-
-### Verification Results
-- Schema validation: [Pass/Fail]
-- Reference integrity: [Pass/Fail]
-- Content preservation: [Pass/Fail]
-
-### Follow-up Actions
-- [Any manual steps or recommendations]
-```
+- **Cross-Reference Binding**: Related Assets list with Instructions/Prompts/Agents links and harmonization date
+- **Change Summary Report**: Operation, scope, status, changes applied, verification results (schema/references/content), follow-up actions
 
 ---
 

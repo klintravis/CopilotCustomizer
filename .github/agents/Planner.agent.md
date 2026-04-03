@@ -168,77 +168,12 @@ Reference: https://code.visualstudio.com/docs/copilot/customization/agent-plugin
 ```
 
 ### Specification Template
-```markdown
-## Asset Generation Plan
 
-### Repository Context
-- **Project Type**: {type}
-- **Tech Stack**: {languages/frameworks}
-- **Patterns Identified**: {list}
-- **Existing Assets**: {current state}
-
-### Recommended Assets
-
-#### 🆕 Skills ({count}) - Cross-platform, auto-loading
-1. **{skill-name}/** (`.github/skills/{skill-name}/`)
-   - Purpose: {capability description}
-   - When: {activation scenarios}
-   - Content: SKILL.md + {examples/scripts/resources}
-   - Platforms: VS Code, CLI, Claude, Cursor
-
-#### Agent Files ({count}) - VS Code specialists
-1. **{AgentName}.agent.md**
-   - Purpose: {clear role description}
-   - Tools: {approved tools array}
-   - Handoffs: {workflow transitions}
-   - Reuses: {shared instructions + skills}
-
-#### Instruction Files ({count}) - Coding standards
-1. **{InstructionName}.instructions.md**
-   - ApplyTo: {glob pattern}
-   - Purpose: {workflow description}
-   - Key Sections: {list}
-
-#### Prompt Files ({count}) - Task templates
-1. **{PromptName}.prompt.md**
-   - Mode: {ask/agent/generate}
-   - Variables: {required inputs}
-   - Output: {expected result}
-
-#### Orchestrated System ({tier})
-> Auto-included when 3+ agents recommended. Tier: {lightweight-conductor | orchestra | atlas}
-
-- **Conductor**: {ConductorName}.agent.md with agent tool, handoffs to subagents
-- **Subagents**: I/O contracts (receives X → produces Y, scope: paths)
-- **Plan File**: plans/PLAN.md with phases and TDD enforcement
-- **VS Code Config**: .vscode/settings.json (chat.customAgentInSubagent.enabled: true)
-
-### Implementation Specifications
-{Detailed creation parameters for each asset, including skill structure}
-
-### Risk Assessment
-- Complexity: {LOW/MEDIUM/HIGH}
-- Dependencies: {list}
-- Potential Conflicts: {list}
-
-### Validation Plan
-- Skills format (agentskills.io)
-- Schema compliance checks
-- Cross-reference validation
-- Tool approval verification
-
-### Expected Outcomes
-- {count} skills created (cross-platform)
-- {count} agent files created
-- {count} instruction files created
-- {count} prompt files created
-- Complete cross-reference binding
-- AGENTS.md generated/updated
-- Orchestrated system specified (conductor + subagent structure, plan files, VS Code config)
-
----
-**Reply "confirm" to proceed with asset generation.**
-```
+**Specification Template**: Follow the [planning](../skills/planning/SKILL.md) skill's Implementation Plan Template, adapted for asset generation. Include:
+- Repository context (project type, tech stack, patterns, existing assets)
+- Recommended assets by type: Skills (cross-platform) → Agents (VS Code) → Instructions → Prompts
+- Orchestration specification (if 3+ agents, auto-included via [orchestration](../skills/orchestration/SKILL.md) skill)
+- Standards integration (if `.github/standards/` present, via [standards-resolution](../skills/standards-resolution/SKILL.md) skill)
 
 ### Quality Gate Protocol
 **User Input Required**: "confirm" (case-insensitive)

@@ -494,6 +494,62 @@ tests/* (depends on implementations)
 **Next Step**: Hand off to Editor agent (VS Code)
 ```
 
+## Memory Strategy
+
+Define what information persists across sessions to prevent re-discovery and enable continuity.
+
+### Memory Tiers
+
+| Tier | Scope | Persistence | Location | Examples |
+|------|-------|-------------|----------|---------|
+| **Working** | Current context window | Session only | Context | Current file contents, conversation |
+| **Short-term** | Current workflow | Plan file lifecycle | `plans/PLAN.md` | Phase progress, decisions, blockers |
+| **Long-term** | Cross-session | Permanent until removed | `AGENTS.md`, `.github/memory/` | Architecture decisions, team preferences, discovered patterns |
+
+### What to Checkpoint (Short-term)
+At each phase transition, the conductor should record in the plan file:
+- **Decisions made**: Architecture choices, trade-offs accepted
+- **Patterns discovered**: Code conventions, naming patterns, existing abstractions found
+- **Context gathered**: Tech stack details, dependency versions, test framework configuration
+- **Blockers resolved**: Issues encountered and how they were solved
+
+### What to Persist (Long-term)
+After workflow completion, capture in AGENTS.md or project documentation:
+- **Architecture decisions**: "We chose X over Y because Z" (survives across sessions)
+- **Team preferences**: Coding style discoveries, PR conventions, testing requirements
+- **Project-specific patterns**: Custom abstractions, naming conventions, module boundaries
+- **Known issues**: Gotchas, workarounds, technical debt items
+
+### Memory Integration in Plans
+
+Add a memory section to the implementation plan template:
+
+```markdown
+## Memory & Continuity
+
+### Checkpoints (saved to plan file)
+- [ ] Phase 1 complete: {key decisions and findings}
+- [ ] Phase 2 complete: {key decisions and findings}
+
+### Long-term Learnings (save to AGENTS.md after completion)
+- Architecture: {decisions worth preserving}
+- Patterns: {discovered conventions}
+- Preferences: {team/project preferences learned}
+```
+
+### Context Recovery
+When resuming an interrupted workflow:
+1. Read `plans/PLAN.md` for current state and phase progress
+2. Read latest `plans/phase-{N}-complete.md` for last checkpoint
+3. Read `AGENTS.md` for project-level context
+4. Resume from the last completed phase — don't restart
+
+### Memory Anti-Patterns
+- ❌ Don't store raw file contents in memory (read files fresh)
+- ❌ Don't store conversation history (context window handles this)
+- ❌ Don't duplicate information already in git history
+- ❌ Don't persist ephemeral state (temp files, build artifacts)
+
 ## Quality Gates
 
 ### Before Starting Implementation

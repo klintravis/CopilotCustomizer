@@ -92,7 +92,7 @@ CopilotCustomizer uses an **orchestrated agent system** where a unified orchestr
 **Core Components**:
 - **Unified Orchestrator** — Routes all workflows (user repos + toolkit) to specialized subagents
 - **7 Agents** — CopilotCustomizer (orchestrator), Bootstrap, Planner, Generator, Editor, Verifier, Evolve
-- **6 Core Skills** — repo-analysis, planning, asset-design, documentation, deployment-automation, orchestration
+- **12 Core Skills** — asset-audit, asset-design, deployment-automation, documentation, execution-strategy, orchestration, planning, quality-validation, repo-analysis, security-hardening, standards-resolution, tool-selection
 - **12 Instructions** — Generation frameworks, quality patterns, standards resolution, toolkit maintenance
 - **11 Prompts** — Interactive commands for workflows, asset generation, plugins, maintenance, and toolkit evolution
 - **Enterprise Standards** — Organization-wide conventions (43 standards across 8 categories)
@@ -102,6 +102,8 @@ CopilotCustomizer uses an **orchestrated agent system** where a unified orchestr
 - **Skills-First Strategy** — Cross-platform analysis and planning before VS Code-specific operations
 - **Quality Gates** — Automatic schema validation, harmonization, and integrity verification
 - **Programmatic Orchestration** — All subagent invocation via `agent` tool (no manual handoffs)
+- **Hierarchical Orchestration** — Nested subagent delegation, reflection phases, failure recovery, and context engineering
+- **Progressive Skills** — 12 portable skills load on demand (not every session), keeping agent context lean
 
 See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for complete architecture documentation:
 - Full asset inventory with file counts and purposes

@@ -19,14 +19,14 @@ A VS Code GitHub Copilot customization framework for generating tech-stack-speci
   - `Verifier.agent.md` — Schema validation + harmonization (subagent)
   - `Evolve.agent.md` — Toolkit self-improvement specialist (subagent)
 
-**Orchestration model**: All workflows are driven programmatically via the `agent` tool. No manual handoff buttons — the orchestrator manages the full subagent chain autonomously.
+**Orchestration model**: All workflows are driven programmatically via the `agent` tool. Supports nested subagent delegation (max 2 levels deep). The orchestrator manages the full subagent chain autonomously.
 
 ## Asset Types
 
 - **Agents** (7): CopilotCustomizer (orchestrator), Bootstrap, Planner, Generator, Editor, Verifier, Evolve  
 - **Instructions** (12): AgentAuthoring, AgentsFile, Framework, InstructionAuthoring, Maintenance, Orchestration, PromptAuthoring, RepoReview, Security, SkillAuthoring, Standards, ToolkitOps  
 - **Prompts** (11): Bootstrap, Evolve, NewAgent, NewAgentsFile, NewInstructions, NewMultiAgent, NewPlugin, NewPrompt, NewSkill, QuickFix, Review  
-- **Skills** (6): asset-design, deployment-automation, documentation, orchestration, planning, repo-analysis  
+- **Skills** (12): asset-audit, asset-design, deployment-automation, documentation, execution-strategy, orchestration, planning, quality-validation, repo-analysis, security-hardening, standards-resolution, tool-selection  
 - **Standards** (43 across 8 categories): architecture, databases, devops, frameworks, languages, practices, security, testing
 - **Templates** (4): Analysis, ChangeLog, ImplementationPlan, OrchestrationPlan
 

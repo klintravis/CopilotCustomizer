@@ -31,59 +31,15 @@ Standardized approach for creating VS Code Copilot `.agent.md` custom agent file
 | Tool Integration | Conditional | Approved tools and usage |
 | Handoffs | Optional | Agent transitions |
 
-### Tool Selection Guide
+### Tool Selection
+**Skill Reference**: Use the [tool-selection](../skills/tool-selection/SKILL.md) skill for:
+- Complete VS Code tool catalog with risk levels
+- Agent archetype → tool mapping table
+- Tool approval patterns and risk classification
+- Selection principles and decision framework
+- Conductor-specific tool rules
 
-**Common Tools by Agent Type**:
-
-| Agent Type | Required Tools | Optional Tools | Rationale |
-|------------|----------------|----------------|-----------|
-| **Code Generator** | `edit`, `new`, `search` | `terminal`, `problems` | Create/modify files, find patterns, run commands |
-| **Analyzer/Reviewer** | `search`, `problems`, `changes` | `search/codebase` | Inspect code, find issues, review diffs |
-| **Tester** | `new`, `edit`, `terminal` | `testFailure`, `problems` | Create tests, run test commands, analyze failures |
-| **Documentation** | `new`, `edit`, `search` | `fetch`, `openSimpleBrowser` | Create docs, research external sources |
-| **Planner/Architect** | `search`, `search/codebase` | `todos`, `usages` | Understand codebase structure, track tasks |
-| **Debugger** | `search`, `problems`, `terminal` | `testFailure`, `changes` | Find errors, run debug commands |
-| **Security Reviewer** | `search`, `search/codebase`, `problems` | `changes` | Scan for vulnerabilities, review changes |
-| **Conductor/Orchestrator** | `search`, `search/codebase`, `agent` | `problems` (diagnostics) | Coordinate subagents, manage phases |
-| **E2E Tester** | `new`, `edit`, `terminal` | `openBrowserPage`, `screenshotPage`, `clickElement`, `typeInPage` | Create tests, interact with browser |
-
-**Available VS Code Tools**:
-- `edit` - Modify existing files
-- `new` - Create new files
-- `search` - Search within files
-- `search/codebase` - Semantic codebase search
-- `terminal` - Run shell commands (requires approval)
-- `problems` - Access VS Code problems panel
-- `changes` - View git changes/diffs
-- `testFailure` - Access test failure information
-- `todos` - Manage task lists
-- `usages` - Find code references
-- `search/usages` - Find all references via LSP (qualified name for usages)
-- `read/terminalLastCommand` - Read last terminal command output
-- `fetch` - Fetch web content
-- `web/fetch` - Fetch web content (qualified name for fetch)
-- `openSimpleBrowser` - Open URLs in VS Code
-- `runCommands` - Execute VS Code commands
-- `runTasks` - Run VS Code tasks
-- `vscodeAPI` - Access VS Code extension API
-- `extensions` - Manage VS Code extensions
-- `githubRepo` - Search GitHub repositories
-- `agent` - Invoke subagents for orchestration (enables parallel execution)
-- `rename` - LSP-powered symbol renaming (v1.110+)
-- `usages` - Find all references via LSP (updated v1.110+)
-- `getDiagnostics` - Access editor/workspace diagnostics (v1.110+)
-- `openBrowserPage` - Open browser page for testing (experimental, v1.110+)
-- `screenshotPage` - Screenshot browser page (experimental, v1.110+)
-- `navigatePage` - Navigate browser to URL (experimental, v1.110+)
-- `clickElement` - Click browser element (experimental, v1.110+)
-- `typeInPage` - Type in browser page (experimental, v1.110+)
-- `runSubagent` - *Deprecated: use `agent` tool instead*
-
-**Tool Selection Principles**:
-1. **Minimal Set**: Include only tools needed for core objectives
-2. **Task-Aligned**: Match tools to agent's workflow steps
-3. **Security**: Avoid `terminal` unless necessary (requires user approval)
-4. **Progressive**: Start minimal, add tools based on actual needs
+**Principles**: Minimal set, task-aligned, security-conscious, progressive addition.
 
 ### Quality Guidelines
 - Clear expertise boundaries
@@ -94,19 +50,6 @@ Standardized approach for creating VS Code Copilot `.agent.md` custom agent file
 - Minimal tool set (only what's needed)
 - Clear handoff conditions
 
-### Tool Integration Best Practices
-**Do**:
-✅ Choose tools that directly support core objectives  
-✅ Start with minimal set (`search`, `edit`, `new`)  
-✅ Add `terminal` only if agent needs to run commands  
-✅ Use `problems` for error analysis agents  
-✅ Use `changes` for review/diff agents  
-
-**Don't**:
-❌ Include all available tools "just in case"  
-❌ Add `terminal` without security justification  
-❌ Use tools unrelated to agent's domain  
-❌ Forget to document why specific tools are needed
 
 ### Orchestrated System Agent Archetypes
 
@@ -139,6 +82,19 @@ When generating agents for conductor/subagent orchestrated systems, use these ar
 - Tool set should be minimal for the role
 - Use `disable-model-invocation: true` to prevent automatic invocation by other agents
 
+**Nested Subagent Invocation**:
+Subagents may include the `agent` tool when they need to delegate work:
+- **Reviewer → Security Specialist**: Reviewer invokes security-focused sub-review
+- **Implementer → Test Generator**: Implementer delegates test creation
+- **Planner → Researcher**: Planner delegates deep codebase analysis
+
+**Rules for nested invocation**:
+- Use `agents` field to constrain allowed targets
+- Max 2 levels of nesting (conductor → subagent → sub-subagent)
+- Nested agents should be `user-invocable: false`
+- Each level must pass context explicitly
+- Quality gates remain at conductor level (not nested)
+
 **References**: [orchestration skill](../skills/orchestration/SKILL.md) | [Orchestration.instructions.md](Orchestration.instructions.md)
 
 ### Orchestration by Default (Bootstrap Workflow)
@@ -149,7 +105,7 @@ When generating 3 or more agents for a repository via the bootstrap workflow:
 
 2. **Convert standalone agents to subagents** — Place subagents in `.github/agents/` directory and add `user-invocable: false` to their YAML frontmatter. Add I/O contracts, scope boundaries, and model tier assignments. The conductor manages all transitions.
 
-3. **Conductor is the only agent with `agent` tool** — Subagents do not invoke each other directly.
+3. **Conductors are the primary orchestrators** — Subagents MAY include the `agent` tool when their workflow requires delegating to other subagents (nested orchestration). Use the `agents` field to constrain which subagents they can invoke. Keep nesting shallow (max 2 levels deep).
 
 4. **Minimum viable conductor** includes:
    - Tools: `['search', 'search/codebase', 'agent']`

@@ -103,7 +103,7 @@ handoffs:
 ---
 description: '{Archetype}: {specific capability for this project}'
 model: {tier per archetype table}
-tools: ['{minimum necessary tools}']
+tools: ['{minimum necessary tools}']  # May include 'agent' for nested delegation
 user-invocable: false  # Hidden from picker
 ---
 ```
@@ -131,6 +131,66 @@ user-invocable: false  # Hidden from picker
 | Researcher | `search`, `search/codebase` | `fetch`, `githubRepo` |
 | Scout | `search` | `search/codebase` |
 | Domain Specialist | Varies by domain | Varies by domain |
+
+## Nested Subagent Patterns (Hierarchical Orchestration)
+
+Subagents may invoke other subagents when their workflow benefits from delegation. This creates a hierarchical orchestration tree rather than a flat conductor→subagent model.
+
+### When to Use Nested Invocation
+- A subagent's task naturally decomposes into sub-tasks requiring different expertise
+- A reviewer needs to delegate specialized validation (security, performance, accessibility)
+- An implementer needs to spawn test generation alongside implementation
+- A researcher needs to delegate parallel file discovery to scouts
+
+### Nesting Rules
+1. **Max depth: 2 levels** — Conductor → Subagent → Sub-subagent (no deeper)
+2. **Explicit `agents` field** — Nested subagents must declare which agents they can invoke
+3. **Context passing** — Each level passes explicit context (no implicit state sharing)
+4. **Quality gates stay at conductor level** — Sub-subagents don't create their own gates
+5. **`user-invocable: false`** — All nested agents hidden from picker
+6. **Scoped tools** — Nested agents get minimal tool sets appropriate to their sub-task
+
+### Hierarchical Architecture Example
+```
+Conductor (orchestrates phases)
+  ├─→ Planner (architecture decisions)
+  │     └─→ Researcher (codebase deep-dive)  ← nested
+  ├─→ Implementer (code changes)
+  │     └─→ TestGenerator (test creation)    ← nested
+  ├─→ Reviewer (quality checks)
+  │     ├─→ SecurityReviewer (security audit) ← nested
+  │     └─→ PerfReviewer (performance audit)  ← nested
+  └─→ Documenter (final docs)
+```
+
+### Nested Subagent YAML
+```yaml
+---
+description: 'Code reviewer with security delegation'
+model: Claude Sonnet 4.5 (copilot)
+tools: ['search', 'problems', 'changes', 'agent']
+user-invocable: false
+agents: ['SecurityReviewer', 'PerfReviewer']
+handoffs:
+  - label: 'Security audit'
+    agent: 'SecurityReviewer'
+    prompt: 'Audit these changes for security vulnerabilities'
+    send: true
+  - label: 'Performance review'
+    agent: 'PerfReviewer'
+    prompt: 'Check for performance regressions'
+    send: true
+---
+```
+
+### VS Code Configuration
+Nested invocation requires:
+```json
+{
+  "chat.customAgentInSubagent.enabled": true
+}
+```
+This setting is already included in generated `.vscode/settings.json` for orchestrated systems.
 
 ### Input/Output Contract Template
 Each subagent must include:
@@ -220,6 +280,19 @@ Generate template for `plans/FINAL-REPORT.md`:
 - [ ] No unresolved blocking issues
 **Outcomes**: APPROVED / FAILED
 ```
+
+## Reflection & Recovery
+
+**Reflection**: Insert a self-assessment step between Implementation and Review phases. See [orchestration](../skills/orchestration/SKILL.md) skill for the reflection template and integration pattern.
+
+**Failure recovery**: Define `on-failure` handling per phase:
+- `retry`: Transient failures (tool timeout, rate limit) — max 3 attempts
+- `fix-and-retry`: Validation failures (schema error, test failure) — self-correct within phase
+- `rollback`: Dependency failures — revert to last checkpoint
+- `escalate`: Catastrophic failures — present to user with context
+- `degrade`: Optional phases — skip and continue
+
+See [orchestration](../skills/orchestration/SKILL.md) skill for the complete failure classification and circuit breaker pattern.
 
 ## Context Conservation Rules (Atlas Pattern)
 
