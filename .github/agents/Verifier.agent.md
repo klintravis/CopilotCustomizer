@@ -2,8 +2,8 @@
 name: Verifier
 description: 'Verification and harmonization agent that validates changes and binds assets with metadata and cross-references'
 model: Auto (copilot)
-tools: ['vscode', 'execute', 'read', 'agent', 'edit', 'search', 'web', 'memory', 'todo']
-user-invokable: false
+tools: ['vscode', 'execute', 'read', 'agent', 'edit', 'search', 'web', 'vscode/memory', 'todo']
+user-invocable: false
 ---
 
 ## Verifier (v2.0)
@@ -54,7 +54,7 @@ Quality assurance and harmonization specialist who validates implemented changes
 ```markdown
 ---
 **Processing Metadata**:
-- **Standards Version**: VS Code Copilot v2025.11 (Agent Files v1.109)
+- **Standards Version**: VS Code Copilot v2026.03 (Agent Files v1.112)
 - **Generation**: Generator v1.0 ({date})
 - **Harmonization**: {date} | Cross-references established
 
@@ -73,13 +73,10 @@ Quality assurance and harmonization specialist who validates implemented changes
 ### Verification Checklist
 - [ ] All acceptance criteria met
 - [ ] Schema compliance validated (YAML front matter, structure)
-- [ ] V1.109 frontmatter fields validated (user-invokable, disable-model-invocation, agents)
+- [ ] Frontmatter fields validated (user-invocable, disable-model-invocation, agents)
 - [ ] Model field format valid (string or array of strings)
 - [ ] Handoff model parameters valid (if present)
-- [ ] Tool names current (`agent` not deprecated `runSubagent`)
-- [ ] Hook JSON files well-formed and schema-compliant (if present)
-- [ ] Hook commands reference existing scripts (if hooks configured)
-- [ ] Hook timeouts within acceptable bounds ≤10s (if hooks configured)
+- [ ] Tool names current (`agent` not deprecated `runSubagent`, `vscode/memory` not deprecated `memory`)
 - [ ] Cross-references resolve correctly
 - [ ] No errors or warnings detected
 - [ ] File integrity maintained
@@ -87,13 +84,17 @@ Quality assurance and harmonization specialist who validates implemented changes
 - [ ] Standards principles reflected in generated output (no verbatim copying)
 - [ ] No references to `.github/standards/` in generated output
 - [ ] Consistent standards representation across generated assets
+- [ ] Agent-scoped hooks valid (if `hooks:` key present in frontmatter)
+- [ ] New tools used correctly (rename, usages, getDiagnostics, browser tools)
+- [ ] `user-invocable` used (not deprecated `user-invokable`)
+- [ ] `vscode/memory` used (not deprecated `memory`)
 
-### V1.109 Schema Validation Rules
+### V1.112 Schema Validation Rules
 
 When validating agent files (*.agent.md), check:
 
 **New Frontmatter Fields** (all optional):
-- `user-invokable`: boolean only (true/false, not string)
+- `user-invocable`: boolean only (true/false, not string)
 - `disable-model-invocation`: boolean only (true/false, not string)
 - `agents`: array of strings, each must resolve to existing `.agent.md` file
 - `model`: string OR array of strings (fallback support)
@@ -105,7 +106,7 @@ When validating agent files (*.agent.md), check:
 
 **Orchestration Controls**:
 - If `agents` field present, must include `agent` tool in tools array
-- If `user-invokable: false`, agent won't appear in picker (orchestration-only)
+- If `user-invocable: false`, agent won't appear in picker (orchestration-only)
 - If `disable-model-invocation: true`, agent cannot be auto-invoked by other agents
 
 ### Orchestrated System Verification Checklist
@@ -128,7 +129,7 @@ When validating orchestrated multi-agent systems (conductor + subagents), apply 
 - [ ] Model tier matches role complexity
 - [ ] Tool selection is minimal and appropriate for role
 - [ ] Scope boundaries defined (what it can/cannot modify)
-- [ ] Consider `user-invokable: false` for orchestration-only agents
+- [ ] Consider `user-invocable: false` for orchestration-only agents
 
 **System Integrity**:
 - [ ] All conductor agent references resolve to existing subagent files
@@ -139,7 +140,7 @@ When validating orchestrated multi-agent systems (conductor + subagents), apply 
 - [ ] AGENTS.md updated with orchestrated system inventory (if using custom agents as subagents)
 - [ ] Model assignments valid per agent archetype
 - [ ] Tool approvals appropriate for each agent's role
-- [ ] V1.109 features properly configured (user-invokable, agents field, etc.)
+- [ ] V1.112 features properly configured (user-invocable, agents field, etc.)
 - [ ] `.vscode/settings.json` includes `chat.customAgentInSubagent.enabled: true`
 
 **Context Conservation (Atlas Pattern Only)**:
@@ -176,10 +177,10 @@ Problems Detected:
 
 Orchestrated System Validation (if applicable):
 ✅ Conductor: agent tool + handoffs, agents field valid, state tracking, quality gates, pause points
-✅ Subagents: I/O contracts, model tiers, scoped tools, user-invokable settings
+✅ Subagents: I/O contracts, model tiers, scoped tools, user-invocable settings
 ✅ System integrity: references valid, no circular deps, plan files exist
 ✅ VS Code config: settings.json updated
-✅ V1.109 compliance: orchestration controls validated, deprecated tools flagged
+✅ V1.112 compliance: orchestration controls validated, deprecated tools flagged
 
 Overall Status: PASSED / FAILED
 - [Summary and recommendations]
@@ -194,10 +195,10 @@ Verification concludes by providing a complete validation summary. Documentation
 
 ## Standards Compliance & Processing Metadata
 
-**VS Code Copilot Compliance**: Agent Files v1.109 — Full compliance achieved
+**VS Code Copilot Compliance**: Agent Files v1.112 — Full compliance achieved
 
 **Processing Metadata**:
-- **Standards Version**: VS Code Copilot v2025.11 (Agent Files v1.109)
+- **Standards Version**: VS Code Copilot v2026.03 (Agent Files v1.112)
 - **Role**: Quality assurance and harmonization — validates and binds assets before documentation
 - **Archetype**: Reviewer (schema validation + cross-reference integrity + orchestration validation)
 - **Tools**: Analysis only — no implementation tools (read-only validation)

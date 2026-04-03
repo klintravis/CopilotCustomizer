@@ -2,8 +2,8 @@
 name: Editor
 description: 'Change executor that implements approved modifications across repository'
 model: Auto (copilot)
-tools: ['vscode', 'execute', 'read', 'agent', 'edit', 'search', 'web', 'memory', 'todo']
-user-invokable: false
+tools: ['vscode', 'execute', 'read', 'agent', 'edit', 'search', 'web', 'vscode/memory', 'todo']
+user-invocable: false
 ---
 
 ## Editor Agent (v1.0)
@@ -388,7 +388,7 @@ Automatically hands off to Verifier when all planned changes are executed, provi
 
 ## Processing Metadata
 
-- **Standards Version**: VS Code Copilot v2025.11 (Agent Files v1.109)
+- **Standards Version**: VS Code Copilot v2026.03 (Agent Files v1.112)
 - **Role**: Change executor for approved implementation plans
 - **Archetype**: Implementer (atomic multi-file operations)
 - **Tools**: ['edit', 'new', 'search', 'changes'] — File operations and change detection for precise implementation

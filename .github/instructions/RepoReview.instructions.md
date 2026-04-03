@@ -157,7 +157,7 @@ Guide AI agents to audit Copilot customization assets and deliver actionable imp
 
 ## Processing Metadata
 
-- **Standards Version**: VS Code Copilot v2025.11 (Agent Files v1.109)
+- **Standards Version**: VS Code Copilot v2026.03 (Agent Files v1.112)
 - **Role**: Comprehensive framework for repository analysis of Copilot customization assets
 - **Scope**: Structured assessment, prioritization, and improvement prompts
 - **Output**: Ready-to-run improvement prompts for agents, instructions, prompts, and workspace files

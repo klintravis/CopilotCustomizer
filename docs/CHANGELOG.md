@@ -5,6 +5,38 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.6.0] - 2026-04-02
+
+### Removed
+- **Custom hooks infrastructure**: Deleted `.github/hooks/`, `.github/scripts/`, and `.github/logs/` directories — hooks are now fully native in VS Code (since v1.110)
+- **Lifecycle logging system**: Removed `subagent-tracking.json`, `log-orchestration.js`, session logs — no longer needed with native VS Code hooks
+
+### Changed
+- **Version compliance updated**: Bumped from VS Code Copilot v1.109 to v1.112 across all assets
+- **Deprecated field renames**: `user-invokable` → `user-invocable`, `memory` → `vscode/memory` across all agent files
+- **Framework.instructions.md**: Replaced detailed custom hooks section with native hooks reference; added Agent Plugins guidance
+- **Simplified copilot-instructions.md**: Removed lifecycle logging sections, added Agent Plugins and monorepo customization references
+- **All agent files**: Updated frontmatter for v1.112 compliance (user-invocable, vscode/memory)
+- **All authoring instructions**: Updated with new VS Code 1.110-1.112 features (agent-scoped hooks, new tools, plugins, sandboxing)
+- **Generator agent**: Updated tool selection guide with browser and refactoring tools; plugin generation awareness
+- **Bootstrap agent**: Added monorepo detection; removed obsolete hook references
+- **Planner agent**: Added agent plugin assessment criteria
+- **Verifier agent**: Added validation rules for agent-scoped hooks, new tool names, deprecated field detection
+
+### Added
+- **Agent Plugins guidance**: New section in Framework.instructions.md for VS Code v1.110+ plugin bundles
+- **Monorepo customization awareness**: References to v1.112 monorepo support
+- **Chat Customizations Editor**: References to native VS Code customization management UI
+- **`/NewPlugin` prompt**: New slash command for generating Agent Plugin packages (skills + agents + hooks + MCP bundles)
+- **Agent-scoped hooks guidance**: AgentAuthoring.instructions.md now documents frontmatter `hooks:` key for per-agent lifecycle automation
+- **New tools catalog**: Added `rename`, `usages`, `getDiagnostics`, and browser tools (`openBrowserPage`, `screenshotPage`, etc.) to agent tool selection guides
+- **Explore subagent awareness**: Orchestration patterns updated for native read-only research agent
+- **Autonomy tiers documentation**: Default, Bypass Approvals, and Autopilot modes documented in orchestration guidance
+- **MCP/terminal sandboxing**: Security.instructions.md now covers `sandboxEnabled` and terminal sandbox settings
+- **Monorepo detection**: Bootstrap agent now detects monorepo structure and recommends nested customizations
+- **Native `/create-*` commands reference**: Framework.instructions.md documents VS Code's built-in creation commands
+- **Agent Debug Panel reference**: ToolkitOps.instructions.md now covers debug panel for customization troubleshooting
+
 ## [1.5.0] - 2026-02-15
 
 ### Changed

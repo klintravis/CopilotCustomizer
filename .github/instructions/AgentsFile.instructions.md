@@ -91,7 +91,7 @@ Never explicitly reference `.github/standards/` files in the generated AGENTS.md
 
 ## Processing Metadata
 
-- **Standards Version**: VS Code Copilot v2025.11 (Custom Instructions latest)
+- **Standards Version**: VS Code Copilot v2026.03 (Custom Instructions latest)
 - **Role**: Framework for generating AGENTS.md coding guidance files
 - **Scope**: Applies to AGENTS.md files in external repositories
 - **Distinction**: Workspace guidance files, not VS Code .agent.md custom agents

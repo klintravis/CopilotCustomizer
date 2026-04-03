@@ -3,7 +3,7 @@ applyTo: '.github/**/*.agent.md'
 description: 'Framework for creating VS Code Copilot custom agent files with roles, tools, handoffs, and workflows'
 ---
 
-# VS Code Copilot Agent File Guide (v1.2 - VS Code 1.109)
+# VS Code Copilot Agent File Guide (v1.2 - VS Code 1.112)
 
 **Paired Prompt**: [NewAgent.prompt.md](../prompts/NewAgent.prompt.md)
 
@@ -12,13 +12,13 @@ Standardized approach for creating VS Code Copilot `.agent.md` custom agent file
 
 **Distinction**: Creates VS Code `.agent.md` custom agents, NOT workspace `AGENTS.md` coding guidance files.
 
-### VS Code Agent Schema (v1.109)
+### VS Code Agent Schema (v1.112)
 **Required**: `description` (clear agent role)  
-**Optional**: `target` (vscode/github-copilot), `name` (display override), `argument-hint` (input guidance), `tools` (approved tools array), `model` (AI model or array for fallback), `handoffs` (workflow transitions), `mcp-servers` (external tools), `user-invokable` (visibility control), `disable-model-invocation` (prevent auto-invocation), `agents` (constrain subagent access)
+**Optional**: `target` (vscode/github-copilot), `name` (display override), `argument-hint` (input guidance), `tools` (approved tools array), `model` (AI model or array for fallback), `handoffs` (workflow transitions), `mcp-servers` (external tools), `user-invocable` (visibility control), `disable-model-invocation` (prevent auto-invocation), `agents` (constrain subagent access)
 
-> **Deprecation Notice**: The `infer` frontmatter field is deprecated as of VS Code 1.109. Use `user-invokable` and `disable-model-invocation` instead.  
-> Migration: `infer: true` → `user-invokable: true, disable-model-invocation: false` (default behavior)  
-> Migration: `infer: false` → `user-invokable: false, disable-model-invocation: true`
+> **Deprecation Notice**: The `infer` frontmatter field is deprecated as of VS Code 1.112. Use `user-invocable` and `disable-model-invocation` instead.  
+> Migration: `infer: true` → `user-invocable: true, disable-model-invocation: false` (default behavior)  
+> Migration: `infer: false` → `user-invocable: false, disable-model-invocation: true`
 
 ### Recommended Sections
 | Section | Required | Purpose |
@@ -45,6 +45,7 @@ Standardized approach for creating VS Code Copilot `.agent.md` custom agent file
 | **Debugger** | `search`, `problems`, `terminal` | `testFailure`, `changes` | Find errors, run debug commands |
 | **Security Reviewer** | `search`, `search/codebase`, `problems` | `changes` | Scan for vulnerabilities, review changes |
 | **Conductor/Orchestrator** | `search`, `search/codebase`, `agent` | `problems` (diagnostics) | Coordinate subagents, manage phases |
+| **E2E Tester** | `new`, `edit`, `terminal` | `openBrowserPage`, `screenshotPage`, `clickElement`, `typeInPage` | Create tests, interact with browser |
 
 **Available VS Code Tools**:
 - `edit` - Modify existing files
@@ -57,7 +58,10 @@ Standardized approach for creating VS Code Copilot `.agent.md` custom agent file
 - `testFailure` - Access test failure information
 - `todos` - Manage task lists
 - `usages` - Find code references
+- `search/usages` - Find all references via LSP (qualified name for usages)
+- `read/terminalLastCommand` - Read last terminal command output
 - `fetch` - Fetch web content
+- `web/fetch` - Fetch web content (qualified name for fetch)
 - `openSimpleBrowser` - Open URLs in VS Code
 - `runCommands` - Execute VS Code commands
 - `runTasks` - Run VS Code tasks
@@ -65,6 +69,14 @@ Standardized approach for creating VS Code Copilot `.agent.md` custom agent file
 - `extensions` - Manage VS Code extensions
 - `githubRepo` - Search GitHub repositories
 - `agent` - Invoke subagents for orchestration (enables parallel execution)
+- `rename` - LSP-powered symbol renaming (v1.110+)
+- `usages` - Find all references via LSP (updated v1.110+)
+- `getDiagnostics` - Access editor/workspace diagnostics (v1.110+)
+- `openBrowserPage` - Open browser page for testing (experimental, v1.110+)
+- `screenshotPage` - Screenshot browser page (experimental, v1.110+)
+- `navigatePage` - Navigate browser to URL (experimental, v1.110+)
+- `clickElement` - Click browser element (experimental, v1.110+)
+- `typeInPage` - Type in browser page (experimental, v1.110+)
 - `runSubagent` - *Deprecated: use `agent` tool instead*
 
 **Tool Selection Principles**:
@@ -103,11 +115,12 @@ When generating agents for conductor/subagent orchestrated systems, use these ar
 | Archetype | YAML Key | Model Tier | Required Tools | Handoff Pattern |
 |-----------|----------|------------|----------------|-----------------|
 | **Conductor** | `handoffs: [...]`, `agents: [...]` | High (Claude Sonnet 4.5) | `search`, `search/codebase`, `agent` | Invokes subagents via `agent` tool + `handoffs` (parallel capable) |
-| **Planner** | `user-invokable: false` | High (Claude Sonnet 4.5) | `search`, `search/codebase` | Conductor → Planner → Conductor |
-| **Implementer** | `user-invokable: false` | Medium (Auto) | `edit`, `new`, `search`, `terminal` | Conductor → Implementer → Conductor |
-| **Reviewer** | `user-invokable: false` | High (Claude Sonnet 4.5) | `search`, `problems`, `changes` | Conductor → Reviewer → Conductor |
-| **Researcher/Scout** | `user-invokable: false` | Low-Medium (Auto) | `search`, `search/codebase` | Conductor → Scout → Conductor |
+| **Planner** | `user-invocable: false` | High (Claude Sonnet 4.5) | `search`, `search/codebase` | Conductor → Planner → Conductor |
+| **Implementer** | `user-invocable: false` | Medium (Auto) | `edit`, `new`, `search`, `terminal` | Conductor → Implementer → Conductor |
+| **Reviewer** | `user-invocable: false` | High (Claude Sonnet 4.5) | `search`, `problems`, `changes` | Conductor → Reviewer → Conductor |
+| **Researcher/Scout** | `user-invocable: false` | Low-Medium (Auto) | `search`, `search/codebase` | Conductor → Scout → Conductor |
 | **Domain Specialist** | `disable-model-invocation: true` | Medium-High | Domain-specific | Conductor → Specialist → Conductor |
+| **Explorer/Research** | `user-invocable: false` | Low (Haiku 4.5/Flash) | `search`, `search/codebase` | Conductor → Explorer → Conductor (read-only research, auto-delegated) |
 
 **Conductor-Specific Requirements**:
 - Must include `agent` tool in tools array and define `handoffs` array with all subagent transitions
@@ -116,10 +129,10 @@ When generating agents for conductor/subagent orchestrated systems, use these ar
 - Must enforce quality gates (minimum 3 pause points)
 - Must NOT include implementation tools (`edit`, `terminal`) for code changes
 - Only writes to plan files, never to source code
-- Subagents execute in parallel when independent (automatic in v1.109+)
+- Subagents execute in parallel when independent (automatic in v1.112+)
 
 **Subagent-Specific Requirements**:
-- Should set `user-invokable: false` for orchestration-only agents (not shown in agent picker)
+- Should set `user-invocable: false` for orchestration-only agents (not shown in agent picker)
 - Must define input/output contract (what it receives, what it produces)
 - Must define scope boundaries (what it can and cannot modify)
 - Model tier should match role complexity
@@ -134,7 +147,7 @@ When generating 3 or more agents for a repository via the bootstrap workflow:
 
 1. **Always include a conductor agent** — Even for simple multi-agent setups, a lightweight conductor provides workflow coordination, quality gates, and plan tracking.
 
-2. **Convert standalone agents to subagents** — Place subagents in `.github/agents/` directory and add `user-invokable: false` to their YAML frontmatter. Add I/O contracts, scope boundaries, and model tier assignments. The conductor manages all transitions.
+2. **Convert standalone agents to subagents** — Place subagents in `.github/agents/` directory and add `user-invocable: false` to their YAML frontmatter. Add I/O contracts, scope boundaries, and model tier assignments. The conductor manages all transitions.
 
 3. **Conductor is the only agent with `agent` tool** — Subagents do not invoke each other directly.
 
@@ -145,7 +158,7 @@ When generating 3 or more agents for a repository via the bootstrap workflow:
    - State tracking via plans/PLAN.md
    - 3 quality gates (planning, review, commit)
    - No implementation tools (`edit`, `new`, `terminal`)
-   - Note: Subagents run in parallel automatically when independent (v1.109+)
+   - Note: Subagents run in parallel automatically when independent (v1.112+)
 
 5. **Exception**: Only 1-2 agents → standalone agents or handoff chain (no conductor needed).
 
@@ -223,13 +236,13 @@ Available transitions: [list other agents]
 
 ---
 
-## Orchestration Control Properties (VS Code 1.109)
+## Orchestration Control Properties (VS Code 1.112)
 
-### `user-invokable` Property
+### `user-invocable` Property
 Controls whether agent appears in the agent picker dropdown:
 
 ```yaml
-user-invokable: false     # Hidden from picker, only accessible programmatically
+user-invocable: false     # Hidden from picker, only accessible programmatically
 ```
 
 **Use Cases**:
@@ -270,7 +283,7 @@ agents: ['Planner', 'Implementer', 'Reviewer']  # Can only invoke these three
 
 ---
 
-## Model Configuration (VS Code 1.109)
+## Model Configuration (VS Code 1.112)
 
 ### Single Model
 ```yaml
@@ -286,7 +299,7 @@ The first available model in the list is used. Fallback provides resilience when
 
 ---
 
-## Handoff Model Parameter (VS Code 1.109)
+## Handoff Model Parameter (VS Code 1.112)
 
 Specify which model to use when handoff executes:
 
@@ -303,7 +316,7 @@ Format: `'Model Name (vendor)'` (e.g., `'GPT-5 (copilot)'`, `'Claude Sonnet 4.5 
 
 ---
 
-## New Metadata Properties (VS Code 1.106+)
+## New Metadata Properties (VS Code 1.109+)
 
 ### `target` Property
 Specifies optimization target for agent execution:
@@ -348,7 +361,7 @@ Requires MCP servers configured in `.vscode/mcp.json` or user settings.
 
 ---
 
-## Complete Example (VS Code 1.109)
+## Complete Example (VS Code 1.112)
 
 ```yaml
 ---
@@ -400,7 +413,7 @@ Expert in REST API architecture specializing in OpenAPI 3.0+ specifications, end
 
 ---
 
-## Orchestration Example (VS Code 1.109)
+## Orchestration Example (VS Code 1.112)
 
 ```yaml
 ---
@@ -408,7 +421,7 @@ description: 'Orchestrates full-stack feature development with quality gates'
 name: 'Feature Conductor'
 model: 'Claude Sonnet 4.5 (copilot)'
 tools: ['search', 'codebase', 'agent', 'problems']
-user-invokable: true
+user-invocable: true
 agents: ['Planner', 'BackendDev', 'FrontendDev', 'Reviewer', 'Tester']
 handoffs:
   - label: 'Plan Feature'
@@ -452,8 +465,8 @@ Conductor agent orchestrating feature development through planning, parallel imp
 5. **Complete**: Generate summary, update plan file
 
 ### Orchestration Notes
-- BackendDev and FrontendDev execute in parallel (automatic in v1.109+)
-- All subagents have `user-invokable: false` (orchestration-only)
+- BackendDev and FrontendDev execute in parallel (automatic in v1.112+)
+- All subagents have `user-invocable: false` (orchestration-only)
 - State tracked in plans/FEATURE.md throughout workflow
 - Quality gates at plan, review, and test phases
 ```
@@ -462,9 +475,9 @@ Conductor agent orchestrating feature development through planning, parallel imp
 
 *Related Instructions*: [Maintenance.instructions.md](Maintenance.instructions.md), [Framework.instructions.md](Framework.instructions.md)
 
-## Claude Agent Format Compatibility (VS Code 1.109)
+## Claude Agent Format Compatibility (VS Code 1.112)
 
-VS Code 1.109 reads agent files from both `.github/agents/` (VS Code native) and `.claude/agents/` (Claude Code format). This enables cross-tool compatibility.
+VS Code 1.112 reads agent files from both `.github/agents/` (VS Code native) and `.claude/agents/` (Claude Code format). This enables cross-tool compatibility.
 
 ### Format Comparison
 
@@ -508,7 +521,7 @@ VS Code 1.109 reads agent files from both `.github/agents/` (VS Code native) and
 | Claude Code primary | `.claude/agents/` only |
 | Simple agents (no VS Code features) | Either or both |
 
-## Hooks Integration (VS Code 1.109 Preview)
+## Hooks Integration (VS Code 1.112 Preview)
 
 Agent Hooks provide deterministic lifecycle automation that complements agent behavior.
 
@@ -523,6 +536,31 @@ Agent Hooks provide deterministic lifecycle automation that complements agent be
 - **Audit Agent** + `SessionStart` hook: Hook logs session context before agent begins analysis
 
 **Agent Design Consideration**: When designing agents expected to work with hooks, document the expected hook events in the agent's workflow section. Reference: [Framework.instructions.md](Framework.instructions.md) (Agent Hooks section)
+
+### Agent-Scoped Hooks (VS Code 1.111+)
+
+Agents can define their own hooks directly in YAML frontmatter. These hooks only fire when that specific agent is active.
+
+```yaml
+hooks:
+  PreToolUse:
+    - type: command
+      command: "./scripts/validate-tool.sh"
+      timeout: 15
+  PostToolUse:
+    - type: command
+      command: "./scripts/format-changes.sh"
+      timeout: 30
+```
+
+**Setting**: Requires `chat.useCustomAgentHooks: true` in VS Code settings.
+
+**Use Cases**:
+- Security agents with PreToolUse validation hooks
+- Code quality agents with PostToolUse formatters
+- Audit agents with SessionStart/Stop logging hooks
+
+**Design Principle**: Prefer agent-scoped hooks over workspace hooks when the automation is specific to one agent's workflow.
 
 ### Refinement Commands
 - refine: [domain] | refine: optimize | refine: validate
@@ -551,7 +589,7 @@ When generating this asset type, integrate matched enterprise standards via [Sta
 
 ## Processing Metadata
 
-- **Standards Version**: VS Code Copilot v2025.11 (Agent Files v1.109)
+- **Standards Version**: VS Code Copilot v2026.03 (Agent Files v1.112)
 - **Role**: Framework for creating VS Code Copilot custom agent files
 - **Scope**: Applies to all .agent.md files in .github/agents/
 - **Tools Guidance**: Archetype-based tool selection with minimal sets

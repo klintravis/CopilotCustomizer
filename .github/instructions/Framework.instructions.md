@@ -44,8 +44,8 @@ Universal validation criteria for all Copilot customization work:
 
 ## Standards Compliance
 
-### VS Code Copilot Schema (v1.109)
-**Agent Files**: `description` (required), `target`, `name`, `argument-hint`, `tools`, `model` (string or array), `handoffs` (with optional model parameter), `mcp-servers`, `user-invokable`, `disable-model-invocation`, `agents` (optional)  
+### VS Code Copilot Schema (v1.112)
+**Agent Files**: `description` (required), `target`, `name`, `argument-hint`, `tools`, `model` (string or array), `handoffs` (with optional model parameter), `mcp-servers`, `user-invocable`, `disable-model-invocation`, `agents` (optional)  
 **Agent Skills**: Generally available (GA), enabled by default; custom locations via `chat.agentSkillsLocations`  
 **Instructions**: `applyTo` (required), `description` (optional); organization-wide instructions supported  
 **Prompts**: variable blocks, usage instructions; optional `agent`, `tools`, `model`  
@@ -59,75 +59,50 @@ Universal validation criteria for all Copilot customization work:
 - [MCP Servers](https://code.visualstudio.com/docs/copilot/customization/mcp-servers)
 - [Tool Management](https://code.visualstudio.com/docs/copilot/chat/chat-tools)
 - [Agent Hooks](https://code.visualstudio.com/docs/copilot/customization/hooks)
+- [Agent Plugins](https://code.visualstudio.com/docs/copilot/customization/agent-plugins)
+- [Agent Skills](https://code.visualstudio.com/docs/copilot/customization/agent-skills)
 
-## Agent Hooks (VS Code 1.109 Preview)
+## Agent Hooks (Native in VS Code)
 
-Hooks execute deterministic shell commands at agent lifecycle points. Unlike agents (AI-driven), hooks are predictable automation that runs every time a lifecycle event fires.
+Hooks are **natively supported** in VS Code Copilot — they execute deterministic shell commands at agent lifecycle points. No custom hook infrastructure is needed; VS Code handles hook discovery and execution automatically.
 
-### Use Cases
-- **Security policies**: Block dangerous tool operations before execution
-- **Code quality**: Run formatters/linters after file modifications
-- **Audit trails**: Log all agent sessions and tool usage
-- **Context injection**: Add environment data to agent prompts
-- **Notifications**: Send alerts on session completion or failures
+### Lifecycle Events (8 total)
+`SessionStart`, `UserPromptSubmit`, `PreToolUse`, `PostToolUse`, `PreCompact`, `SubagentStart`, `SubagentStop`, `Stop`
 
-### Hook Configuration Locations
-
-| Location | Scope | Format |
-|----------|-------|--------|
-| `.github/hooks/*.json` | Workspace (VS Code native) | JSON |
-| `.claude/settings.json` | Workspace (Claude compatible) | JSON (`hooks` key) |
-| `~/.claude/settings.json` | User-level | JSON (`hooks` key) |
-
-### Lifecycle Events
-
-| Event | When It Fires | Common Use Cases |
-|-------|---------------|-----------------|
-| `SessionStart` | Agent session begins | Initialize resources, log session start, inject context |
-| `UserPromptSubmit` | User sends a message | Audit requests, inject environment context, validate input |
-| `PreToolUse` | Before a tool executes | Block risky ops, require approval, modify tool input |
-| `PostToolUse` | After a tool completes | Run formatters, log results, trigger follow-up actions |
-| `PreCompact` | Before context compaction | Export important context, save checkpoints |
-| `SubagentStart` | Nested agent invoked | Track subagent usage, log delegation chain |
-| `SubagentStop` | Nested agent completes | Aggregate results, cleanup resources |
-| `Stop` | Agent session ends | Generate reports, cleanup, send notifications |
-
-### Configuration Example
-
+### Hook Command Properties
 ```json
 {
-  "hooks": {
-    "PreToolUse": [
-      {
-        "type": "command",
-        "command": "./scripts/validate-tool.sh",
-        "timeout": 15
-      }
-    ],
-    "PostToolUse": [
-      {
-        "type": "command",
-        "command": "./scripts/format-changed-files.sh",
-        "timeout": 30
-      }
-    ],
-    "Stop": [
-      {
-        "type": "command",
-        "command": "./scripts/generate-session-report.sh",
-        "timeout": 60
-      }
-    ]
-  }
+  "type": "command",
+  "command": "./script.sh",
+  "windows": { "command": ".\\script.ps1" },
+  "linux": { "command": "./script.sh" },
+  "osx": { "command": "./script.sh" },
+  "cwd": "${workspaceFolder}",
+  "env": { "KEY": "value" },
+  "timeout": 30
 }
 ```
 
-### Hook Design Principles
-1. **Deterministic**: Hooks run the same command every time (no AI variance)
-2. **Fast**: Set reasonable timeouts; hooks block the agent pipeline
-3. **Non-destructive**: Prefer read-only or logging hooks; use caution with file-modifying hooks
-4. **Scoped**: Use `PreToolUse` for specific tool filtering, not blanket blocking
-5. **Complementary**: Hooks enhance agents, not replace them
+**Exit codes**: `0` = success, `2` = blocking error, other = non-blocking warning.
+
+**PreToolUse output fields**: `permissionDecision` (allow/deny/ask), `updatedInput` (modify tool input), `additionalContext`.
+
+### Hook Configuration Locations
+
+| Location | Scope |
+|----------|-------|
+| `.github/hooks/*.json` | Workspace (VS Code native) |
+| Agent frontmatter `hooks:` key | Per-agent (v1.111+) |
+| `~/.copilot/hooks/` | User-level |
+| Plugin `hooks/hooks.json` | Plugin-scoped |
+| Custom via `chat.hookFilesLocations` | Custom directories |
+
+### When to Generate Hooks
+When bootstrapping repositories that need:
+- **Security policies**: Block dangerous tool operations before execution
+- **Code quality**: Run formatters/linters after file modifications
+- **Audit trails**: Log agent sessions and tool usage
+- **Context injection**: Add environment data to agent prompts
 
 ### Hooks vs Agents vs Instructions
 
@@ -138,6 +113,50 @@ Hooks execute deterministic shell commands at agent lifecycle points. Unlike age
 | **Instructions** | Static guidelines | Coding standards, project conventions |
 
 **Reference**: [Agent Hooks Documentation](https://code.visualstudio.com/docs/copilot/customization/hooks)
+
+## Agent Plugins (VS Code v1.110+)
+
+Agent Plugins are pre-packaged bundles of skills, tools, hooks, and MCP servers — discoverable and installable from the VS Code Extensions view.
+
+### When to Recommend Plugins
+- When a repository needs a combination of skills + hooks + MCP servers for a specific domain
+- When distributing customizations via VS Code Marketplace
+- When teams want one-click installation of a complete AI customization set
+
+**Reference**: [Agent Plugins Documentation](https://code.visualstudio.com/docs/copilot/customization/agent-plugins)
+
+### Plugin Directory Structure
+```
+plugin-name/
+├── plugin.json           # Required: name, version, description, engines
+├── skills/               # Optional: SKILL.md files
+├── agents/               # Optional: .agent.md files
+├── hooks/                # Optional: hooks.json
+│   └── hooks.json
+├── scripts/              # Optional: hook command scripts
+└── .mcp.json             # Optional: MCP servers (uses mcpServers key, not servers)
+```
+
+**Key Details**:
+- Use `${CLAUDE_PLUGIN_ROOT}` token in script paths for portability
+- MCP config uses `mcpServers` key (not `servers`)
+- Setting: `chat.plugins.enabled`, browse via `@agentPlugins` in Extensions view
+- Custom locations: `chat.pluginLocations`
+
+## Native Creation Commands (VS Code 1.110+)
+
+VS Code provides built-in slash commands for creating customizations:
+
+| Command | Creates | Storage Options |
+|---------|---------|-----------------|
+| `/create-agent` | Agent file (.agent.md) | User-level or workspace |
+| `/create-skill` | Skill (SKILL.md) | User-level or workspace |
+| `/create-instruction` | Instruction file | User-level or workspace |
+| `/create-prompt` | Prompt file (.prompt.md) | User-level or workspace |
+| `/create-hook` | Hook configuration | User-level or workspace |
+| `/init` | copilot-instructions.md | Workspace |
+
+**Note**: CopilotCustomizer's `/NewAgent`, `/NewSkill`, etc. provide richer generation with standards integration, orchestration assessment, and cross-reference binding beyond what native `/create-*` commands offer.
 
 ## MCP Apps (VS Code 1.109)
 
@@ -272,7 +291,7 @@ Security: Strengthen approval patterns and trust
 
 ## Processing Metadata
 
-- **Standards Version**: VS Code Copilot v2025.11 (Agent Files v1.109)
+- **Standards Version**: VS Code Copilot v2026.03 (Agent Files v1.112)
 - **Role**: Universal Copilot customization workflows, standards, and quality patterns
 - **Scope**: Applies to all assets (.github/**/*)
 - **Audit Framework**: 6-dimensional quality assessment criteria

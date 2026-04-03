@@ -2,8 +2,8 @@
 name: Planner
 description: 'Strategic asset planning with single approval gate for external repository customization'
 model: Auto (copilot)
-tools: ['vscode', 'execute', 'read', 'agent', 'edit', 'search', 'web', 'memory', 'todo']
-user-invokable: false
+tools: ['vscode', 'execute', 'read', 'agent', 'edit', 'search', 'web', 'vscode/memory', 'todo']
+user-invocable: false
 ---
 
 ## Planner Agent (v1.0)
@@ -138,19 +138,33 @@ Naming convention: {Action}{Target}.prompt.md
 Example: GenerateEndpoint.prompt.md, DocumentAPI.prompt.md
 ```
 
-**Hook Configuration Criteria**:
+**Hook Guidance** (native VS Code hooks):
 ```yaml
-When to recommend .github/hooks/*.json:
-  - Orchestration lifecycle logging (all 8 events: SessionStart, UserPromptSubmit, SubagentStart, SubagentStop, PreToolUse, PostToolUse, PreCompact, Stop)
-  - Security policy enforcement (PreToolUse validation, permission decisions)
-  - Audit trail generation (track all subagent invocations and tool calls)
-  - Context injection (modify agent environment before execution via hookSpecificOutput)
+When to recommend hooks in generated projects:
+  - Security policy enforcement (PreToolUse validation)
+  - Code quality automation (PostToolUse formatters/linters)
+  - Audit trail generation (SessionStart/Stop logging)
+  - Context injection (UserPromptSubmit environment data)
 
-Location: .github/hooks/{purpose}.json
-Paired with: .github/scripts/ (hook command implementations)
-Example: subagent-tracking.json (orchestration logging with session-based output)
-Stdin schema: VS Code passes JSON via stdin with snake_case fields (tool_name, agent_type, agent_id, etc.)
-Output: Session-specific folders in .github/logs/sessions/<timestamp>/
+Note: Hooks are native in VS Code — no custom infrastructure needed.
+Reference: https://code.visualstudio.com/docs/copilot/customization/hooks
+```
+
+**Agent Plugin Assessment**:
+```yaml
+When to recommend agent plugin packaging:
+  - Team wants one-click installation of complete AI customization
+  - Multiple skills + hooks + MCP servers work together
+  - Distribution via VS Code Marketplace is desired
+
+Plugin structure:
+  plugin.json — Metadata (name, version, engines)
+  skills/ — Bundled skills
+  agents/ — Bundled agents
+  hooks/ — Bundled hooks
+  .mcp.json — MCP server configs (uses mcpServers key)
+
+Reference: https://code.visualstudio.com/docs/copilot/customization/agent-plugins
 ```
 
 ### Specification Template
@@ -308,7 +322,7 @@ orchestration:
 
 ## Processing Metadata
 
-- **Standards Version**: VS Code Copilot v2025.11 (Agent Files v1.109)
+- **Standards Version**: VS Code Copilot v2026.03 (Agent Files v1.112)
 - **Role**: Strategic asset planning with single approval gate
 - **Archetype**: Planner (repo-analysis output processing)
 - **Tools**: ['search', 'search/codebase'] — Analysis tools only for context gathering and specification creation

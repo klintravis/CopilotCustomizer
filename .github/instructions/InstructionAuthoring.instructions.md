@@ -46,7 +46,7 @@ name: 'Display Name'          # Optional: UI display name (defaults to filename 
 | `description` | No | string | Brief description of instruction content |
 | `name` | No | string | Display name in VS Code UI (defaults to filename) |
 
-The `name` field (VS Code 1.109+) provides a user-friendly display name instead of the filename. Example: `name: 'Python Standards'` displays as "Python Standards" instead of `python-standards.instructions.md`.
+The `name` field (VS Code 1.112+) provides a user-friendly display name instead of the filename. Example: `name: 'Python Standards'` displays as "Python Standards" instead of `python-standards.instructions.md`.
 
 ### Refinement Commands
 - `refine: concise` - Compress prose
@@ -114,10 +114,10 @@ Append discovered tool documentation links to generated instructions.
 - Include: `OutputPath`, `GeneratedAt`, `SourceInstruction`, `Type` in front matter
 
 ### Standards Compliance
-**VS Code Copilot v2025.11** - [Documentation](https://code.visualstudio.com/docs/copilot/customization/custom-instructions)
+**VS Code Copilot v2026.03** - [Documentation](https://code.visualstudio.com/docs/copilot/customization/custom-instructions)
 
 **Processing Metadata**:
-- **Standards Version**: VS Code Copilot v2025.11 (Custom Instructions latest)
+- **Standards Version**: VS Code Copilot v2026.03 (Custom Instructions latest)
 - **Harmonization**: comprehensive-harmony-v1.1 (enhanced cross-references)
 - **Content Preservation**: 100% functionality maintained with enhanced standards
 - **Formatting Applied**: 2025-09-15 | Standards compliance verified
@@ -139,9 +139,9 @@ When generating this asset type, integrate matched enterprise standards via [Sta
 ### Conformance Note
 This instruction file aligns with the broader Copilot customization ecosystem and integrates with [NewInstructions.prompt.md](../prompts/NewInstructions.prompt.md) for execution workflow. Focuses on maintainable, high-quality instruction file generation following established patterns.
 
-## Claude Instructions Format Compatibility (VS Code 1.109)
+## Claude Instructions Format Compatibility (VS Code 1.112)
 
-VS Code 1.109 reads instruction content from both VS Code native formats and Claude Code formats, enabling cross-tool compatibility.
+VS Code 1.112 reads instruction content from both VS Code native formats and Claude Code formats, enabling cross-tool compatibility.
 
 ### Format Comparison
 
@@ -155,6 +155,34 @@ VS Code 1.109 reads instruction content from both VS Code native formats and Cla
 | `~/.claude/CLAUDE.md` | Claude Code + VS Code | Always-on | User-level |
 | `CLAUDE.local.md` | Claude Code + VS Code | Always-on (local) | Not committed to VCS |
 | `.claude/rules/*.md` | Claude Code + VS Code | `paths` glob pattern | File-scoped |
+
+### Nested AGENTS.md Support (Experimental)
+
+VS Code supports AGENTS.md files in subdirectories for monorepo projects:
+```
+project/
+├── AGENTS.md              ← Root-level guidance
+├── packages/
+│   ├── frontend/
+│   │   └── AGENTS.md      ← Frontend-specific guidance
+│   └── backend/
+│       └── AGENTS.md      ← Backend-specific guidance
+```
+
+Enable via: `chat.useNestedAgentsMdFiles` (experimental).
+
+### Custom Instruction Locations
+
+Instructions can be stored in custom directories:
+```json
+{
+  "chat.instructionsFilesLocations": [
+    ".github/instructions",
+    ".copilot/rules",
+    "docs/ai-instructions"
+  ]
+}
+```
 
 ### Claude Rules Format
 

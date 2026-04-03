@@ -36,10 +36,31 @@ All fields optional. Recommended minimum: `description` and `agent`.
 ---
 description: Short description shown in slash command picker
 argument-hint: Hint text shown in chat input field to guide users
-agent: CopilotCustomizer  # or: ask, agent, plan, custom agent name
+agent: CopilotCustomizer  # Valid: "ask", "agent", "plan", or custom agent name
 model: # language model override (optional)
 tools: # list of tool/tool set names (optional)
 ---
+```
+
+### Agent Field Values
+
+| Value | Behavior |
+|-------|----------|
+| `"ask"` | Uses the Ask agent (conversational, no tools) |
+| `"agent"` | Uses Agent mode (full tool access, agentic) |
+| `"plan"` | Uses Plan mode (read-only planning with Explore subagent) |
+| `CustomName` | Routes to a specific custom agent by name |
+
+### Tools Field — Wildcard Syntax
+
+The `tools` field supports MCP server wildcards:
+```yaml
+tools: ['search', 'edit', 'github-mcp/*']  # All tools from github-mcp server
+```
+
+Reference tools in the prompt body with `#tool:toolName` syntax:
+```markdown
+Use #tool:search to find relevant files, then #tool:edit to make changes.
 ```
 
 - `name`: Override slash command name (defaults to filename if omitted)
@@ -53,6 +74,7 @@ Use VS Code `${input:variableName:placeholder}` for user-provided values:
 - Minimize mandatory inputs — prefer inference from repo context
 - Use `---` delimiters (NOT code fences) so VS Code processes variables
 - Use camelCase for variable names (e.g., `targetPath`, `agentName`)
+- Built-in variables: `${selection}` (current editor selection), `${input:name:hint}` (user input)
 - Reference tools in body text with `#tool:toolName` syntax
 
 ### Variable Template
@@ -94,7 +116,7 @@ When generating this asset type, integrate matched enterprise standards via [Sta
 
 ## Processing Metadata
 
-- **Standards Version**: VS Code Copilot v2025.11 (Prompt Files latest)
+- **Standards Version**: VS Code Copilot v2026.03 (Prompt Files latest)
 - **Role**: Standardized framework for building high-quality prompt files
 - **Scope**: Applies to all .prompt.md files in .github/prompts/
 - **Integration**: Pairs with custom agents and instruction files

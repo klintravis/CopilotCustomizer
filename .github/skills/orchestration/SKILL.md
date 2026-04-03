@@ -86,7 +86,7 @@ The conductor is the central orchestration agent that manages the entire workflo
 description: 'Orchestrates {SystemName} workflow: coordinates subagents through phases with quality gates and TDD enforcement'
 model: Claude Sonnet 4.5 (copilot)
 tools: ['search', 'search/codebase', 'agent']
-user-invokable: true
+user-invocable: true
 agents: ['Planner', 'Implementer', 'Reviewer']  # Optional: explicit subagent list
 handoffs:
   - label: '{Phase 1 action}'
@@ -244,7 +244,7 @@ Key sections:
 **Action**: {next step based on result}
 ```
 
-## Parallel Execution (v1.109)
+## Parallel Execution (v1.112)
 
 ### Automatic Parallel Execution
 **VS Code 1.109+**: Independent subagents automatically run in parallel when invoked by the conductor. No manual configuration needed — the system detects independence and executes concurrently.
@@ -280,10 +280,10 @@ For large codebases, limit each subagent's context to relevant files:
 }
 ```
 
-VS Code 1.109+ enables the `agent` tool for subagent invocation. Independent subagents run in parallel automatically, improving throughput for multi-agent workflows.
+VS Code 1.112+ enables the `agent` tool for subagent invocation. Independent subagents run in parallel automatically, improving throughput for multi-agent workflows.
 
-**New Frontmatter Controls (v1.109)**:
-- `user-invokable: false` — Hide subagents from picker (orchestration-only)
+**Frontmatter Controls**:
+- `user-invocable: false` — Hide subagents from picker (orchestration-only)
 - `disable-model-invocation: true` — Prevent auto-invocation by other agents  
 - `agents: ['AgentA', 'AgentB']` — Limit which subagents can be invoked (requires `agent` tool)
 

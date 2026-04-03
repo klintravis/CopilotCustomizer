@@ -104,7 +104,7 @@ handoffs:
 description: '{Archetype}: {specific capability for this project}'
 model: {tier per archetype table}
 tools: ['{minimum necessary tools}']
-user-invokable: false  # Hidden from picker
+user-invocable: false  # Hidden from picker
 ---
 ```
 
@@ -245,6 +245,33 @@ Generate `.vscode/settings.json` snippet (merge with existing if present):
 }
 ```
 
+## Explore Subagent Integration (VS Code 1.110+)
+
+VS Code provides a native **Explore subagent** — a read-only research agent using fast models (Claude Haiku 4.5, Gemini Flash). The Plan agent auto-delegates codebase research to it.
+
+**Impact on Orchestration**:
+- Explorer/Researcher archetype can leverage native Explore subagent
+- Fast model tier (Low) is appropriate for read-only research tasks
+- Setting: `chat.exploreAgent.defaultModel` controls the model used
+
+**Integration Pattern**:
+When generating orchestration systems, the Researcher/Scout archetype maps naturally to the Explore subagent pattern — read-only tools, low model tier, parallel-capable.
+
+## Autonomy Tiers (VS Code 1.111+)
+
+VS Code supports three autonomy levels that affect how agents operate:
+
+| Tier | Description | Setting |
+|------|-------------|---------|
+| **Default** | Standard approval prompts | Default behavior |
+| **Bypass Approvals** | Skip tool confirmations | `/autoApprove` or `/yolo` |
+| **Autopilot** | Fully autonomous with `task_complete` tool | `chat.autopilot.enabled` |
+
+**Impact on Generated Systems**:
+- Conductor agents should document which autonomy tier they're designed for
+- Security-sensitive systems should note that Autopilot mode is not recommended
+- Generated AGENTS.md files should mention autonomy tier compatibility
+
 ## Output Artifact List
 
 A complete orchestrated system generation produces:
@@ -263,9 +290,9 @@ A complete orchestrated system generation produces:
 
 Generated systems should pass the **Orchestrated System Verification Checklist** in [Verifier.agent.md](../agents/Verifier.agent.md):
 - Conductor has `agent` tool in tools, `agents` field listing allowed subagents, `handoffs` array defined, state tracking, quality gates, pause points
-- Subagents have `user-invokable: false` (orchestration-only, hidden from picker)
+- Subagents have `user-invocable: false` (orchestration-only, hidden from picker)
 - Optional: `disable-model-invocation: true` for security-sensitive agents
-- Parallel execution: Independent subagents run in parallel automatically (v1.109+)
+- Parallel execution: Independent subagents run in parallel automatically (v1.112+)
 - Each subagent has role description, I/O contract, model tier, scoped tools
 - All agent references resolve to existing files
 - Plan files exist with correct structure
@@ -281,7 +308,7 @@ Generated systems should pass the **Orchestrated System Verification Checklist**
 
 ## Processing Metadata
 
-- **Standards Version**: VS Code Copilot v2025.11 (Agent Files v1.109)
+- **Standards Version**: VS Code Copilot v2026.03 (Agent Files v1.112)
 - **Role**: Framework for generating conductor/subagent orchestrated systems
 - **Scope**: Multi-agent workflows with TDD lifecycle, quality gates, and plan files
 - **Patterns**: Lightweight, Orchestra, Atlas with parallel execution strategies

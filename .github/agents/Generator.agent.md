@@ -2,8 +2,8 @@
 name: Generator
 description: 'Autonomous asset creation engine for agents, instructions, and prompts'
 model: Auto (copilot)
-tools: ['vscode', 'execute', 'read', 'agent', 'edit', 'search', 'web', 'memory', 'todo']
-user-invokable: false
+tools: ['vscode', 'execute', 'read', 'agent', 'edit', 'search', 'web', 'vscode/memory', 'todo']
+user-invocable: false
 ---
 
 ## Generator Agent (v1.0)
@@ -14,7 +14,7 @@ Execution engine for Copilot customization asset creation. Receives approved spe
 ### Core Objectives
 1. **Specification Processing**: Parse asset creation plans
 2. **File Generation**: Create agents, instructions, prompts
-3. **Schema Compliance**: Follow VS Code v1.109 standards
+3. **Schema Compliance**: Follow VS Code v1.112 standards
 4. **Cross-Reference Binding**: Establish asset relationships
 5. **Results Summary**: Return generation report to orchestrator
 
@@ -46,12 +46,7 @@ INPUT: Asset specifications from Planner
    - Workflow patterns
    - Quality criteria
   ↓
-4. Generate Hook Configurations (when plan includes hooks)
-   - .github/hooks/*.json with lifecycle event definitions
-   - .github/scripts/ companion scripts for hook commands
-   - Orchestration logging, security validation, or audit workflows
-  ↓
-4b. Generate Orchestrated System (standard when plan includes 3+ agents)
+4. Generate Orchestrated System (standard when plan includes 3+ agents)
    - Conductor agent file with agent tool, handoffs array, state tracking, quality gates
    - Subagent files with I/O contracts, model tiers, scoped tools
    - Plan file template (plans/PLAN.md)
@@ -98,6 +93,8 @@ INPUT: Asset specifications from Planner
 | **Orchestrator** | `search`, `search/codebase`, `agent` | Coordinate subagents, manage phases |
 | **Review changes** | `search`, `changes`, `problems` | Inspect diffs and issues |
 | **Debug issues** | `search`, `problems`, `terminal` | Find errors, run diagnostics |
+| **E2E Testing** | `new`, `edit`, `terminal` | `openBrowserPage`, `screenshotPage`, `clickElement` | Create tests, browser interaction |
+| **Refactoring** | `edit`, `search`, `rename` | `usages`, `getDiagnostics` | Rename symbols, find references |
 
 **Tool Selection Principles**:
 - Include only tools needed for core objectives
@@ -133,6 +130,13 @@ When target repository contains a `.claude/` folder, also generate:
 - `CLAUDE.md` — Workspace-level instructions (mirrors `copilot-instructions.md` content)
 
 See [AgentAuthoring.instructions.md](../instructions/AgentAuthoring.instructions.md) (Claude Agent Format Compatibility) for format mapping details.
+
+**Agent Plugin Awareness**:
+When target repository requests plugin-style packaging, generate:
+- `plugin.json` — Plugin metadata (name, version, description)
+- Bundle skills, agents, and hooks into plugin directory structure
+- Use `${CLAUDE_PLUGIN_ROOT}` token for path references in MCP config
+- Reference: [Agent Plugins](https://code.visualstudio.com/docs/copilot/customization/agent-plugins)
 
 **Example**:
 ```markdown
@@ -188,7 +192,7 @@ See [AgentAuthoring.instructions.md](../instructions/AgentAuthoring.instructions
 - {PromptName} → {InstructionName}
 
 ### Schema Compliance
-- Agent YAML: v1.109 ✓
+- Agent YAML: v1.112 ✓
 - Instructions YAML: Valid ✓
 - Prompt YAML: Valid ✓
 
@@ -228,9 +232,7 @@ if (crossReferenceInvalid) {
 - [ ] Cross-references use relative paths
 - [ ] Tool lists use approved tools only
 - [ ] Handoff syntax correct
-- [ ] Hook JSON files valid (if generated)
-- [ ] Hook scripts executable and commands reference existing files (if generated)
-- [ ] Hook timeouts configured reasonably ≤10s (if generated)
+- [ ] Agent-scoped hooks valid in frontmatter (if included)
 - [ ] AGENTS.md generated/updated
 - [ ] Summary report complete
 - [ ] Conductor has agent tool + handoffs, no implementation tools
@@ -247,7 +249,7 @@ if (crossReferenceInvalid) {
 
 ## Processing Metadata
 
-- **Standards Version**: VS Code Copilot v2025.11 (Agent Files v1.109)
+- **Standards Version**: VS Code Copilot v2026.03 (Agent Files v1.112)
 - **Role**: Autonomous asset creation engine for agents, instructions, and prompts
 - **Archetype**: Implementer (file generation and schema compliance)
 - **Tools**: ['edit', 'new', 'search'] — File operations and content search for asset creation

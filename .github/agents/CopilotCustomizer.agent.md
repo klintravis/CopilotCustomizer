@@ -2,9 +2,9 @@
 name: CopilotCustomizer
 description: 'Central orchestrator for CopilotCustomizer — routes all workflows through specialized subagents via programmatic orchestration'
 model: Claude Sonnet 4.5 (copilot)
-tools: ['vscode', 'execute', 'read', 'agent', 'edit', 'search', 'web', 'memory', 'todo']
+tools: ['vscode', 'execute', 'read', 'agent', 'edit', 'search', 'web', 'vscode/memory', 'todo']
 agents: ['Bootstrap', 'Planner', 'Generator', 'Editor', 'Verifier', 'Evolve']
-user-invokable: true
+user-invocable: true
 ---
 
 ## CopilotCustomizer — Unified Orchestrator (v3.0)
@@ -22,6 +22,8 @@ Unified orchestrator for the CopilotCustomizer framework. Analyzes user requests
 * https://code.visualstudio.com/docs/copilot/customization/mcp-servers — MCP servers and external tool integration
 * https://code.visualstudio.com/docs/copilot/chat/chat-tools — tool sets, approval management, and tool ecosystem
 * https://code.visualstudio.com/docs/copilot/customization/hooks — agent hooks and lifecycle events
+* https://code.visualstudio.com/docs/copilot/customization/agent-skills — agent skills (agentskills.io)
+* https://code.visualstudio.com/docs/copilot/customization/agent-plugins — agent plugins (bundled customizations)
 * https://agents.md/#examples — agent design patterns and examples
 
 ### Core Objectives
@@ -49,6 +51,7 @@ Unified orchestrator for the CopilotCustomizer framework. Analyzes user requests
 | **Monitor VS Code releases** | Evolve | Evolve (fetch + analysis) → Editor (if needed) | Release tracking |
 | **Maintain toolkit assets** | Evolve | Evolve (analysis) → Editor → Verifier | Optimize/harmonize/validate |
 | **Quick targeted change** | Editor | Editor → Verifier | Fast minimal-diff changes |
+| **Create agent plugin** | Generator | Planner → Generator → Verifier | Plugin packaging workflow |
 
 ### Subagent Registry
 
@@ -79,8 +82,6 @@ Unified orchestrator for the CopilotCustomizer framework. Analyzes user requests
 5. Track progress via `todo` tool for multi-step workflows
 6. Final summary when chain completes
 ```
-
-**Lifecycle Logging**: VS Code automatically invokes hooks from [.github/hooks/subagent-tracking.json](../hooks/subagent-tracking.json) when any of the 8 lifecycle events occur (SessionStart, UserPromptSubmit, SubagentStart, SubagentStop, PreToolUse, PostToolUse, PreCompact, Stop). Hooks execute deterministically (no AI variance) — the `log-orchestration.js` script logs all orchestration activity to session-specific folders at `.github/logs/sessions/<timestamp>/orchestration.log` with metrics in `.github/logs/sessions/<timestamp>/metrics.json`. The active session is tracked via `.github/logs/current-session.txt`. **Skill invocations are automatically detected** when agents read SKILL.md files, logging which skills are used, invocation counts, and agent attribution. To verify hooks are working: check for session folders and log files after any agent workflow runs.
 
 ### Quality Gate Enforcement
 
@@ -141,10 +142,10 @@ Between each phase transition, verify:
 
 ## Standards Compliance & Processing Metadata
 
-**VS Code Copilot Compliance**: Agent Files v1.109 — Full compliance achieved
+**VS Code Copilot Compliance**: Agent Files v1.112 — Full compliance achieved
 
 **Processing Metadata**:
-- **Standards Version**: VS Code Copilot v2025.11 (Agent Files v1.109, MCP v1.102+)
+- **Standards Version**: VS Code Copilot v2026.03 (Agent Files v1.112, MCP v1.102+)
 - **Role**: Unified orchestrator — routes ALL workflows (user repos + toolkit) through specialized subagents
 - **Subagents**: 6 registered (Bootstrap, Planner, Generator, Editor, Verifier, Evolve)
 - **Orchestration**: Fully programmatic via `agent` tool — no manual handoffs

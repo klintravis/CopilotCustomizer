@@ -2,8 +2,8 @@
 name: Evolve
 description: 'Toolkit self-improvement specialist — monitors releases, reviews docs, audits assets, optimizes performance, implements features for the CopilotCustomizer framework'
 model: Claude Sonnet 4.5 (copilot)
-tools: ['vscode', 'execute', 'read', 'agent', 'edit', 'search', 'web', 'vscode.mermaid-chat-features/renderMermaidDiagram', 'memory', 'todo']
-user-invokable: false
+tools: ['vscode', 'execute', 'read', 'agent', 'edit', 'search', 'web', 'vscode.mermaid-chat-features/renderMermaidDiagram', 'vscode/memory', 'todo']
+user-invocable: false
 ---
 
 ## Evolve — Self-Improvement Specialist (v2.0)
@@ -43,7 +43,6 @@ Operates exclusively on the **CopilotCustomizer toolkit itself** — never on ex
 | **Audit toolkit assets** | Run self-audit → Generate report → Prioritize fixes | Uses toolkit's own audit criteria |
 | **Optimize performance** | Analyze token usage → Identify redundancy → Apply optimizations | Focus on token efficiency |
 | **Implement feature** | Analyze request → Design solution → Implement changes | Standard feature workflow |
-| **Maintain hooks** | Audit hook configurations → Validate scripts → Verify lifecycle coverage | Validate `.github/hooks/*.json` + scripts |
 | **Self-validate** | Pre-release check → Schema compliance → Integrity verification | Quality gate before release |
 
 ### Workflow Pattern
@@ -91,16 +90,18 @@ Before returning results to the orchestrator, verify:
 - `https://code.visualstudio.com/docs/copilot/customization/prompt-files` — Prompts
 - `https://code.visualstudio.com/docs/copilot/customization/mcp-servers` — MCP
 - `https://code.visualstudio.com/docs/copilot/chat/chat-tools` — Tools
+- `https://code.visualstudio.com/docs/copilot/customization/agent-skills` — Skills
+- `https://code.visualstudio.com/docs/copilot/customization/agent-plugins` — Plugins
 
 **Workflow**: Fetch docs → Extract customization changes → Compare vs current state → Return findings with impact assessment, schema changes, deprecations, and recommended actions
 
-**Version Tracking**: Agent Files v1.109, MCP v1.102+, Skills (agentskills.io)
+**Version Tracking**: Agent Files v1.112, MCP v1.102+, Skills (agentskills.io), Agent Plugins
 
 ### Documentation Review Process
 
 **Target Documents**: `README.md`, `QUICKSTART.md`, `HOW-TO.md`, `AGENTS.md`, `docs/ARCHITECTURE.md`, `EXAMPLES.md`
 
-**Review Criteria**: Accuracy, completeness, clarity, structure, examples, currency (v1.109+), cross-references, consistency
+**Review Criteria**: Accuracy, completeness, clarity, structure, examples, currency (v1.112+), cross-references, consistency
 
 **Output**: Outdated sections, missing content, unclear explanations, broken references, inconsistencies
 
@@ -127,18 +128,14 @@ Before returning results to the orchestrator, verify:
 - [ ] No unnecessary tool approvals
 - [ ] Security-sensitive tools justified
 
-**Hook Configuration Health**:
-- [ ] Hook JSON files well-formed and schema-compliant
-- [ ] All hook commands reference existing scripts
-- [ ] Timeout values reasonable (≤10s per hook)
-- [ ] Lifecycle events cover orchestration needs
-
 **Schema Currency**:
-- [ ] Agent files: v1.109 frontmatter fields
+- [ ] Agent files: v1.112 frontmatter fields (user-invocable, not deprecated user-invokable)
 - [ ] MCP servers: v1.102+ integration patterns
 - [ ] Prompt files: Current variable systems
 - [ ] Skills: agentskills.io standard compliance
-- [ ] Hooks: v1.109 Preview (`.github/hooks/*.json` structure, command paths, timeouts)
+- [ ] Agent-scoped hooks: frontmatter `hooks:` key format
+- [ ] Agent Plugins: plugin.json structure awareness
+- [ ] New tools: rename, usages, getDiagnostics, browser tools
 
 ### Performance Metrics
 
@@ -246,18 +243,6 @@ Plans provide audit trail for toolkit evolution and enable resumption of multi-p
 - [documentation](../skills/documentation/SKILL.md) — Report generation
 - [orchestration](../skills/orchestration/SKILL.md) — Orchestration pattern validation
 
-### Hooks Awareness
-
-**Automatic Invocation**: VS Code automatically invokes hooks from [.github/hooks/](../hooks/) when any of the 8 lifecycle events occur (SessionStart, UserPromptSubmit, SubagentStart, SubagentStop, PreToolUse, PostToolUse, PreCompact, Stop). Hook implementation scripts in [.github/scripts/](../scripts/) execute deterministically — no manual triggering required. Event context is provided via stdin as JSON using VS Code's snake_case field convention (`tool_name`, `agent_type`, `agent_id`, `tool_use_id`, `tool_response`, `sessionId`, `stop_hook_active`, `source`, `prompt`, `trigger`).
-
-**Verification**: To confirm hooks are firing:
-1. Check for session folders in `.github/logs/sessions/` after running any agent workflow
-2. Read the current session log: `cat .github/logs/sessions/$(cat .github/logs/current-session.txt)/orchestration.log`
-3. Verify `metrics.json` appears in the same session folder after session completion
-4. Run health check with mock stdin: `echo '{"sessionId":"test","source":"new"}' | node .github/scripts/log-orchestration.js SessionStart`
-
-**Maintenance**: When maintaining the toolkit, Evolve validates hook health as part of self-audit workflows. See [ToolkitOps.instructions.md](../instructions/ToolkitOps.instructions.md) Section 8 for complete maintenance patterns.
-
 ### Framework References
 *Toolkit maintenance patterns: [ToolkitOps.instructions.md](../instructions/ToolkitOps.instructions.md)*
 *Framework workflows and standards: [Framework.instructions.md](../instructions/Framework.instructions.md)*
@@ -268,10 +253,10 @@ Plans provide audit trail for toolkit evolution and enable resumption of multi-p
 
 ## Standards Compliance & Processing Metadata
 
-**VS Code Copilot Compliance**: Agent Files v1.109 — Full compliance achieved
+**VS Code Copilot Compliance**: Agent Files v1.112 — Full compliance achieved
 
 **Processing Metadata**:
-- **Standards Version**: VS Code Copilot v2025.11 (Agent Files v1.109, MCP v1.102+)
+- **Standards Version**: VS Code Copilot v2026.03 (Agent Files v1.112, MCP v1.102+)
 - **Role**: Self-improvement specialist — subagent of CopilotCustomizer orchestrator
 - **Scope**: CopilotCustomizer toolkit only (not user repositories)
 - **Invoked by**: CopilotCustomizer orchestrator via `agent` tool

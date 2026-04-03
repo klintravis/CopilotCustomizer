@@ -5,14 +5,14 @@ description: 'Security guardrails and tool management safety protocols'
 
 # Security.instructions.md
 
-## Universal Security Guardrails (v1.2 - VS Code 1.109)
+## Universal Security Guardrails (v1.2 - VS Code 1.112)
 
 ### Core Security Principles
 **Data Protection**: Never fabricate external repository contents, protect sensitive information, avoid proprietary policy language unless user-supplied.
 **Tool Safety**: Validate configurations, require approval workflows, monitor tool behavior, implement post-approval for external data.
 **MCP Security**: Trust verification, secure connections, scoped permissions, organization-level access control.
 
-### VS Code 1.106 Security Enhancements
+### VS Code 1.109 Security Enhancements
 
 **Post-Approval for External Data**:
 - Tools that pull external data (e.g., `#fetch`, MCP tools with `openWorldHint`) now support post-approval
@@ -53,10 +53,10 @@ description: 'Security guardrails and tool management safety protocols'
 |------------|---------------|----------|--------------|
 | **Auto-approve** | None | Search, fetch (internal) | Safe, read-only operations |
 | **Pre-approval** | User confirmation | File read, terminal | Review tool invocation before execution |
-| **Post-approval** | Content review | External fetch, MCP openWorldHint | Review fetched data before use (VS Code 1.106+) |
+| **Post-approval** | Content review | External fetch, MCP openWorldHint | Review fetched data before use (VS Code 1.109+) |
 | **Session** | Session scope | Terminal commands | Medium-risk, current session |
 | **Persistent** | Permanent | System access | High-trust, ongoing operations |
-| **Source-level** | Trust all from source | MCP server, extension | Trust all tools from a provider (VS Code 1.106+) |
+| **Source-level** | Trust all from source | MCP server, extension | Trust all tools from a provider (VS Code 1.109+) |
 | **Always Deny** | Blocked | Destructive ops | Never automated |
 
 ### Risk Assessment Matrix
@@ -69,7 +69,7 @@ description: 'Security guardrails and tool management safety protocols'
 **Validation**: Executable integrity, environment variables, SSL certificates
 **Connection**: Encrypted communications, authentication protocols, secure transport (CIMD/DCR support)
 **Runtime**: Permission boundaries, resource limits, audit logging
-**Organization Control**: MCP registry endpoints, access restrictions, policy enforcement (VS Code 1.106+)
+**Organization Control**: MCP registry endpoints, access restrictions, policy enforcement (VS Code 1.109+)
 
 **Workspace MCP Configuration** (`.vscode/mcp.json`):
 - Team-shared MCP servers under version control
@@ -80,6 +80,67 @@ description: 'Security guardrails and tool management safety protocols'
 - `chat.mcp.gallery.serviceUrl`: Custom MCP registry endpoint
 - `chat.mcp.access`: Restrict to organization-approved servers only
 - Enterprise control over MCP server availability
+
+### MCP Server Sandboxing (VS Code 1.112)
+
+MCP servers can run in sandboxed environments for enhanced security:
+
+```json
+{
+  "mcpServers": {
+    "my-server": {
+      "command": "node",
+      "args": ["server.js"],
+      "sandboxEnabled": true
+    }
+  }
+}
+```
+
+**Sandbox Restrictions**: Sandboxed servers have limited file system and network access, preventing data exfiltration.
+
+### Terminal Sandboxing (VS Code 1.110+)
+
+Terminal tool execution can be sandboxed with granular controls:
+
+```json
+{
+  "chat.tools.terminal.sandbox.enabled": true,
+  "chat.tools.terminal.sandbox.linuxFileSystem": "readonly",
+  "chat.tools.terminal.sandbox.macFileSystem": "readonly",
+  "chat.tools.terminal.sandbox.network": "none"
+}
+```
+
+**Recommendation**: Enable terminal sandboxing for security-sensitive agents that need limited terminal access.
+
+### Hook Security Patterns (VS Code 1.111+)
+
+Hooks provide security enforcement capabilities via output fields:
+
+**PreToolUse hook output**:
+- `permissionDecision`: `"allow"` / `"deny"` / `"ask"` — control tool execution
+- `permissionDecisionReason`: Human-readable explanation for the decision
+- `updatedInput`: Modify tool input before execution (sanitization)
+- `additionalContext`: Inject context into agent's awareness
+
+**Priority resolution**: When multiple hooks fire, `deny` > `ask` > `allow`.
+
+**Exit codes**: `0` = success, `2` = blocking error, other = non-blocking warning.
+
+**Platform-specific commands**: Use `windows`, `linux`, `osx` fields for cross-platform hook scripts:
+```json
+{
+  "hooks": {
+    "PreToolUse": [{
+      "type": "command",
+      "command": "./scripts/validate.sh",
+      "windows": { "command": ".\\scripts\\validate.ps1" },
+      "timeout": 15
+    }]
+  }
+}
+```
 
 ### Security Checklists
 
@@ -116,7 +177,7 @@ description: 'Security guardrails and tool management safety protocols'
 **MCP Breach**: Disconnect, assess data exposure, rebuild trust chain
 **Configuration Error**: Rollback, validate, test, redeploy
 
-### VS Code 1.107-1.109 Security Enhancements
+### VS Code 1.107-1.112 Security Enhancements
 
 **Agent Hooks**: Improved lifecycle management with pre/post execution hooks for security validation
 
@@ -130,7 +191,7 @@ description: 'Security guardrails and tool management safety protocols'
 
 | Version | Date | Changes |
 |---------|------|---------|
-| v1.2 | 2026-02-15 | Updated to VS Code 1.109, added v1.107-1.109 security enhancements |
+| v1.2 | 2026-02-15 | Updated to VS Code 1.112, added v1.107-1.112 security enhancements |
 | v1.0 | 2026-01-15 | Initial release |
 
 *Complete security framework: [Framework.instructions.md](Framework.instructions.md)*

@@ -44,7 +44,7 @@ Wait for `confirm`.
 
 ### Output Requirements
 Complete `.agent.md` with:
-1. YAML front matter (v1.109+)
+1. YAML front matter (v1.112+)
 2. Agent definition
 3. Core objectives
 4. Workflow process

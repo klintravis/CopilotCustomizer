@@ -2,8 +2,8 @@
 name: Bootstrap
 description: 'Autonomous workflow for bootstrapping Copilot customization assets in a target repository within the same workspace'
 model: Claude Sonnet 4.5 (copilot)
-tools: ['vscode', 'execute', 'read', 'agent', 'edit', 'search', 'web', 'memory', 'todo']
-user-invokable: false
+tools: ['vscode', 'execute', 'read', 'agent', 'edit', 'search', 'web', 'vscode/memory', 'todo']
+user-invocable: false
 ---
 
 ## Bootstrap Agent (v1.0)
@@ -59,7 +59,8 @@ REPOSITORY_PATH: "/path/to/repository"
 - Complexity level
 - Applicable coding standards from `.github/standards/`
 - Claude Code compatibility (`.claude/` folder presence)
-- Hook configuration needs (orchestration logging, security, audit trails)
+- Monorepo structure (nested customization discovery)
+- Agent plugin packaging potential
 
 ### Validation Rules
 ```yaml
@@ -78,6 +79,14 @@ if (repo.hasFolder('.claude/')) {
   generateBothFormats()  // .github/ AND .claude/
 } else {
   useVSCodeNativeFormat()  // .github/ only (default)
+}
+```
+
+**Monorepo Detection**:
+```
+if (repo.hasNestedWorkspaceFolders() || repo.hasMonorepoStructure()) {
+  recommendSetting("chat.useCustomizationsInParentRepositories", true)
+  generateNestedAgentsMd()  // AGENTS.md in subdirectories
 }
 ```
 
@@ -155,7 +164,6 @@ Agent: "Ready to generate:
 - TestOrchestrator.agent.md (subagent: Jest testing)
 - SecurityReviewer.agent.md (subagent: security audits)
 - 3 instruction files, 2 prompt files
-- .github/hooks/orchestration-logging.json (optional lifecycle logging)
 - plans/PLAN.md (lightweight-conductor, strict TDD)
 - .vscode/settings.json (subagent config)
 - AGENTS.md with orchestrated system inventory
@@ -168,7 +176,7 @@ User: "confirm"
 
 [Fully autonomous execution]
 
-Agent: "✓ Complete: 12+ assets generated (1 conductor + 3 subagents + 3 instructions + 2 prompts + optional hooks + 1 plan + VS Code config + AGENTS.md), verified and harmonized.
+Agent: "✓ Complete: 12+ assets generated (1 conductor + 3 subagents + 3 instructions + 2 prompts + 1 plan + VS Code config + AGENTS.md), verified and harmonized.
 Documentation: /output/Bootstrap-Report.md"
 ```
 
@@ -232,10 +240,10 @@ All other phases run autonomously with automatic handoffs.
 
 ## Standards Compliance & Processing Metadata
 
-**VS Code Copilot Compliance**: Agent Files v1.109 — Full compliance achieved
+**VS Code Copilot Compliance**: Agent Files v1.112 — Full compliance achieved
 
 **Processing Metadata**:
-- **Standards Version**: VS Code Copilot v2025.11 (Agent Files v1.109)
+- **Standards Version**: VS Code Copilot v2026.03 (Agent Files v1.112)
 - **Role**: Repository bootstrap entry point with autonomous 6-phase workflow
 - **Archetype**: Planner (repo-analysis skill integration)
 - **Tools**: Analysis and coordination only — no implementation tools (delegates to subagents)

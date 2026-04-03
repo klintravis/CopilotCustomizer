@@ -3,7 +3,7 @@ description: Full autonomous workflow to bootstrap Copilot customization assets 
 argument-hint: Provide the absolute path to the repository to bootstrap
 agent: CopilotCustomizer
 model: Claude Sonnet 4.5 (copilot)
-tools: ['vscode', 'execute', 'read', 'agent', 'edit', 'search', 'web', 'memory', 'todo']
+tools: ['vscode', 'execute', 'read', 'agent', 'edit', 'search', 'web', 'vscode/memory', 'todo']
 name: Bootstrap
 ---
 

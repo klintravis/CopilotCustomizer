@@ -13,6 +13,7 @@ GitHub Copilot is powerful, but generic. Your team needs AI that understands *yo
 - 📋 **Instructions** - Project-specific coding standards that guide all AI interactions. Automatically applied to matching files—no manual prompting needed.
 - ⚡ **Prompts** - Interactive slash commands for common workflows. Structured templates with variables, parameters, and refinement options.
 - 🏢 **Enterprise Standards** - Organization-wide coding conventions that naturally influence generated assets. Define once, enforce everywhere.
+- 🔌 **Agent Plugins** — Bundle skills, agents, hooks, and MCP servers into installable packages. Distribute customizations via VS Code Marketplace or share with teams.
 
 ## Why CopilotCustomizer?
 
@@ -42,7 +43,7 @@ GitHub Copilot is powerful, but generic. Your team needs AI that understands *yo
    ```
    /Bootstrap REPOSITORY_PATH: "/absolute/path/to/your-project"
    ```
-3. **Confirm generation**: Review the analysis, then type `confirm` (or click the confirm button in VS Code 1.109+)
+3. **Confirm generation**: Review the analysis, then type `confirm` (or click the confirm button in VS Code 1.112+)
 
 The framework analyzes your repository, detects your tech stack, and generates Skills, Agents, Instructions, Prompts, and Standards tailored to your codebase—all saved in `your-project/.github/`.
 
@@ -72,6 +73,7 @@ All commands work via slash commands in Copilot Chat or natural language:
 /NewAgent AGENT_NAME: "name", DOMAIN: "area"
 /NewInstructions DOMAIN: "area", APPLY_TO: "**/*.ts"
 /NewPrompt PURPOSE: "template goal"
+/NewPlugin PLUGIN_NAME: "name", PURPOSE: "description"
 
 # Advanced workflows
 /NewMultiAgent SYSTEM_NAME: "name", SYSTEM_PATTERN: "linear"
@@ -92,7 +94,7 @@ CopilotCustomizer uses an **orchestrated agent system** where a unified orchestr
 - **7 Agents** — CopilotCustomizer (orchestrator), Bootstrap, Planner, Generator, Editor, Verifier, Evolve
 - **6 Core Skills** — repo-analysis, planning, asset-design, documentation, deployment-automation, orchestration
 - **12 Instructions** — Generation frameworks, quality patterns, standards resolution, toolkit maintenance
-- **11 Prompts** — Interactive commands for workflows, asset generation, maintenance, and toolkit evolution
+- **11 Prompts** — Interactive commands for workflows, asset generation, plugins, maintenance, and toolkit evolution
 - **Enterprise Standards** — Organization-wide conventions (43 standards across 8 categories)
 
 **Key Patterns**:
@@ -119,11 +121,11 @@ All maintenance and toolkit evolution commands are available as standard slash c
 ## Requirements
 
 **Recommended**:
-- **VS Code 1.109+** - Full feature support including Skills (GA), orchestration controls, parallel subagent execution, and enhanced handoffs
+- **VS Code 1.112+** - Full feature support including Skills (GA), orchestration controls, parallel subagent execution, and enhanced handoffs
 - **GitHub Copilot** subscription (Individual, Business, or Enterprise)
 
 **Minimum**:
-- VS Code 1.106+ with GitHub Copilot extension
+- VS Code 1.109+ with GitHub Copilot extension
 
 **No additional dependencies required** - Framework uses pure Markdown with YAML frontmatter.
 

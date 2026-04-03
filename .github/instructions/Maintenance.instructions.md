@@ -88,13 +88,13 @@ Verify schema compliance and reference integrity without modifications.
 15. Report success confirmation with file paths
 16. Provide verification checklist results
 
-## YAML Front Matter Rules (v1.109)
+## YAML Front Matter Rules (v1.112)
 
 Only use officially supported fields by asset type:
 
 **Agent files (`*.agent.md`)**:
 - Required: `description`
-- Optional: `tools`, `model` (string/array), `handoffs` (with optional model), `mcp-servers`, `target`, `name`, `argument-hint`, `user-invokable`, `disable-model-invocation`, `agents`
+- Optional: `tools`, `model` (string/array), `handoffs` (with optional model), `mcp-servers`, `target`, `name`, `argument-hint`, `user-invocable`, `disable-model-invocation`, `agents`
 
 **Instruction files (`*.instructions.md`)**:
 - Required: `applyTo`
@@ -214,7 +214,7 @@ Append `-h1`, `-h2` for harmony iterations when creating backup versions.
 
 ## Processing Metadata
 
-- **Standards Version**: VS Code Copilot v2025.11 (Agent Files v1.109)
+- **Standards Version**: VS Code Copilot v2026.03 (Agent Files v1.112)
 - **Role**: Comprehensive maintenance for Copilot customization assets
 - **Scope**: Optimization, harmonization, formatting, and validation operations
 - **Operations**: Schema compliance, cross-reference preservation, content integrity

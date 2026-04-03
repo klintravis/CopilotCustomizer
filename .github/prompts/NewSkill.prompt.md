@@ -220,7 +220,7 @@ See **SkillAuthoring.instructions.md** for detailed quality criteria and validat
 ## Standards Compliance
 
 **Format**: Agent Skills (agentskills.io)
-**VS Code Support**: v1.109+ (GA - enabled by default)
+**VS Code Support**: v1.112+ (GA - enabled by default)
 **File Structure**: `.github/skills/[name]/SKILL.md`
 **Frontmatter**: YAML with required fields (name, description)
 

@@ -8,7 +8,7 @@ Get production-ready AI customization for your project in 5 minutes—no configu
 ✅ Active GitHub Copilot subscription (Individual, Business, or Enterprise)  
 ✅ Your project open in VS Code
 
-**Recommended**: VS Code 1.109+ for full feature support including Skills (GA), parallel execution, and enhanced agent orchestration.
+**Recommended**: VS Code 1.112+ for full feature support including Skills (GA), parallel execution, and enhanced agent orchestration.
 
 ## Setup Steps
 
@@ -37,7 +37,7 @@ Open Copilot Chat (`Ctrl+Shift+I` on Windows/Linux or `Cmd+Shift+I` on Mac) and 
 Bootstrap Copilot assets for my project at /absolute/path/to/your-project
 ```
 
-**Option C - Quick Start with `/init`** (VS Code 1.109+, instructions only):
+**Option C - Quick Start with `/init`** (VS Code 1.112+, instructions only):
 ```
 /init
 ```
@@ -52,7 +52,7 @@ The agent will analyze your project, detect your tech stack, and present a gener
 ### Step 3: Confirm and Wait
 
 Review the analysis, then confirm:
-- **VS Code 1.106+**: Click the `Confirm` button
+- **VS Code 1.109+**: Click the `Confirm` button
 - **Earlier versions**: Type `confirm` in the chat
 
 **Wait 3-4 minutes** while CopilotCustomizer generates your customization.

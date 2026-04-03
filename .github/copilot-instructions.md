@@ -31,26 +31,23 @@
 .github/
 ├── agents/*.agent.md               # 7 agents (CopilotCustomizer + 6 subagents)
 ├── instructions/*.instructions.md  # 12 instruction files
-├── prompts/*.prompt.md             # 10 slash commands
+├── prompts/*.prompt.md             # 11 slash commands
 ├── skills/[name]/SKILL.md          # 6 cross-platform skills (agentskills.io)
 ├── standards/[category]/           # 43+ standards across 8 categories
-├── templates/                      # 4 structured output templates
-├── hooks/subagent-tracking.json    # Lifecycle logging config (8 events)
-├── scripts/log-orchestration.js    # Auto-invoked by hooks
-└── logs/sessions/<timestamp>/      # Session-specific orchestration logs
+└── templates/                      # 4 structured output templates
 ```
 
 ### Asset Counts (Current)
 - **Agents**: 7 (1 orchestrator + 6 subagents)
 - **Instructions**: 12 (scoped via `applyTo` patterns)
-- **Prompts**: 10 (user-facing slash commands)
+- **Prompts**: 11 (user-facing slash commands)
 - **Skills**: 6 (cross-platform, agentskills.io compatible)
 - **Standards**: 43 (architecture, databases, devops, frameworks, languages, practices, security, testing)
 - **Templates**: 4 (Analysis, ChangeLog, ImplementationPlan, OrchestrationPlan)
 
 ---
 
-## Schema Compliance (VS Code v1.109)
+## Schema Compliance (VS Code v1.112)
 
 ### Agent Files (`.agent.md`)
 **Required frontmatter**:
@@ -63,13 +60,16 @@ description: "Brief description of agent role"
 tools: [editFile, createFile, runInTerminal]  # Tool access control
 model: claude-sonnet-4                         # Model preference
 agents: [Planner, Generator]                   # Subagent registry for handoffs
-user-invokable: true                           # Allow direct user invocation
+user-invocable: true                            # Allow direct user invocation
 disable-model-invocation: false                # Enable via @agent syntax
+hooks:                                          # Agent-scoped lifecycle hooks (v1.111+)
 ```
 
 **Deprecated**:
 - ❌ `infer` field (removed in v1.109)
-- Use `user-invokable: true` + `disable-model-invocation: false` instead
+- ❌ `user-invokable` (renamed to `user-invocable` in v1.112)
+- ❌ `memory` tool (renamed to `vscode/memory`)
+- Use `user-invocable: true` + `disable-model-invocation: false` instead of `infer`
 
 ### Instruction Files (`.instructions.md`)
 **Required frontmatter**:
@@ -97,6 +97,8 @@ model: claude-sonnet-4             # Model preference
 - `${MULTILINE_INPUT}` — Multi-line text area
 - `${FILE_PATH}` — File picker
 - `${OPTION: "value1|value2|value3"}` — Dropdown selection
+- `#tool:toolName` — Reference tools in prompt body
+- `${selection}` — Current editor selection (built-in)
 
 ---
 
@@ -234,12 +236,6 @@ Skills are portable AI capabilities following the [agentskills.io](https://agent
 | **planning** | Strategic implementation planning | Planner, Bootstrap | Step-by-step execution plans, risk mitigation, validation strategies |
 | **repo-analysis** | Deep repository analysis | Bootstrap, Planner | Tech stack detection, dependency analysis, pattern recognition |
 
-### Skill Invocation Tracking
-Hooks automatically log skill usage when agents read `SKILL.md` files:
-- **Metrics**: Invocation count, agent attribution, session tracking
-- **Location**: `.github/logs/sessions/<timestamp>/orchestration.log`
-- **Use case**: Understand which skills are most valuable for optimization
-
 ---
 
 ## Templates System
@@ -254,38 +250,6 @@ Structured output templates in `.github/templates/` ensure consistent formatting
 | **OrchestrationPlan.template.md** | Multi-agent workflow designs | CopilotCustomizer, Planner | Phase transitions, quality gates, context passing |
 
 **Usage**: Templates are referenced by subagents to maintain consistency across outputs. They include placeholder sections that are populated with workflow-specific content.
-
----
-
-## Lifecycle Logging & Instrumentation
-
-### Hook System
-Hooks in `.github/hooks/subagent-tracking.json` execute **deterministically** (no AI variance) on 8 lifecycle events:
-
-| Event | Trigger | Logged Data |
-|-------|---------|-------------|
-| **SessionStart** | New Copilot conversation | Timestamp, session ID, initial context |
-| **UserPromptSubmit** | User sends message | Prompt text, active files, workspace state |
-| **SubagentStart** | Orchestrator invokes subagent | Subagent name, input context, phase metadata |
-| **SubagentStop** | Subagent completes | Output artifacts, duration, success status |
-| **PreToolUse** | Before tool execution | Tool name, parameters, requesting agent |
-| **PostToolUse** | After tool execution | Tool result, execution time, error status |
-| **PreCompact** | Before context compaction | Context size, retention strategy |
-| **Stop** | Conversation ends | Total duration, artifacts created, quality metrics |
-
-### Log Structure
-```
-.github/logs/
-├── current-session.txt                         # Points to active session folder
-└── sessions/
-    └── <timestamp>/
-        ├── orchestration.log                   # Full event log with timestamps
-        ├── metrics.json                        # Aggregated statistics
-        └── artifacts/                          # Generated files (optional)
-```
-
-### Automatic Execution
-`log-orchestration.js` runs automatically via hooks — no manual invocation needed. Check `.github/logs/current-session.txt` for the active session path.
 
 ---
 
@@ -304,12 +268,13 @@ After asset creation:
 - [ ] Run Verifier subagent for schema compliance check
 - [ ] Verify cross-references resolve (agents, skills, instructions)
 - [ ] Test asset in isolation (e.g., invoke agent, run prompt)
-- [ ] Check lifecycle logs for errors or warnings
 - [ ] Validate frontmatter YAML parses correctly
 - [ ] Ensure markdown formatting is clean (no syntax errors)
 
 ### Common Pitfalls to Avoid
 - ❌ Using `infer` in agent frontmatter (deprecated in v1.109)
+- ❌ Using `user-invokable` (renamed to `user-invocable` in v1.112)
+- ❌ Using `memory` tool name (renamed to `vscode/memory`)
 - ❌ Mixing case conventions (e.g., `bootstrap.agent.md` instead of `Bootstrap.agent.md`)
 - ❌ Forgetting required frontmatter fields (`description` for agents, `applyTo` for instructions)
 - ❌ Hard-coding file paths in content (use relative references)
@@ -357,15 +322,6 @@ After asset creation:
 4. Review Planner output to confirm standards were matched
 5. Check for `scope: always` standards that should apply to all assets
 
-### Lifecycle Logs Missing
-**Symptom**: No logs in `.github/logs/sessions/`
-**Solutions**:
-1. Verify `.github/hooks/subagent-tracking.json` exists
-2. Check `.github/scripts/log-orchestration.js` is present
-3. Ensure hooks are enabled in VS Code settings
-4. Review `current-session.txt` for active session path
-5. Check file permissions on `.github/logs/` directory
-
 ---
 
 ## Key Documentation & References
@@ -390,6 +346,9 @@ After asset creation:
 - [VS Code Custom Agents](https://code.visualstudio.com/docs/copilot/customization/custom-agents) — Agent files and handoff workflows
 - [VS Code Custom Instructions](https://code.visualstudio.com/docs/copilot/customization/custom-instructions) — Instructions files and AGENTS.md patterns
 - [VS Code Prompt Files](https://code.visualstudio.com/docs/copilot/customization/prompt-files) — Prompt files and variable systems
+- [VS Code Agent Hooks](https://code.visualstudio.com/docs/copilot/customization/hooks) — Native hook lifecycle events
+- [VS Code Agent Skills](https://code.visualstudio.com/docs/copilot/customization/agent-skills) — Skills integration
+- [VS Code Agent Plugins](https://code.visualstudio.com/docs/copilot/customization/agent-plugins) — Bundled customization packages
 - [agents.md Examples](https://agents.md/#examples) — Agent design patterns and examples
 - [agentskills.io](https://agentskills.io) — Cross-platform skills standard
 
@@ -397,14 +356,16 @@ After asset creation:
 
 ## Version & Compliance
 
-**Last Updated**: February 16, 2026
-**VS Code Compatibility**: v1.109+ (Agent Files v1.109, MCP v1.102+)
-**Schema Compliance**: Full compliance with VS Code GitHub Copilot v2025.11 standards
+**Last Updated**: April 2, 2026
+**VS Code Compatibility**: v1.112+ (Agent Files v1.112, MCP v1.102+)
+**Schema Compliance**: Full compliance with VS Code GitHub Copilot v2026.03 standards
 
-**Breaking Changes from v1.108**:
-- Removed `infer` field from agent frontmatter
-- Added `user-invokable` and `disable-model-invocation` fields
-- Enhanced variable system in prompt files
-- Updated lifecycle hooks with PreCompact and Stop events
+**Notable Changes**:
+- `user-invokable` renamed to `user-invocable` (v1.112)
+- `memory` tool renamed to `vscode/memory`
+- Agent Plugins: New bundled customization format (skills + tools + hooks + MCP)
+- Hooks are now fully native in VS Code (no custom hook infrastructure needed)
+- Monorepo customization support (v1.112)
+- Chat Customizations Editor for discovering/managing all customization types
 
-**Maintenance**: This file is automatically updated by the Evolve subagent during toolkit maintenance cycles. Last maintenance run: *[tracked in orchestration logs]*
+**Maintenance**: This file is automatically updated by the Evolve subagent during toolkit maintenance cycles.

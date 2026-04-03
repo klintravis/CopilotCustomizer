@@ -48,9 +48,8 @@ All orchestration is programmatic via the `agent` tool — no manual handoff but
 | **Prompts** | `.github/prompts/*.prompt.md` | Slash commands | Optional: `agent`/`mode` |
 | **Standards** | `.github/standards/**/*.md` | Enterprise standards | `name`, `scope`, `priority` |
 | **Templates** | `.github/templates/*.template.md` | Document formats | None |
-| **Hooks** | `.github/hooks/*.json` | Lifecycle automation | Hook schema (event, command, timeout) |
-| **Scripts** | `.github/scripts/*.js` | Hook implementations | None |
 | **Plans** | `docs/plans/*.md` | Archived implementation plans | None |
+| **Plugins** | `.github/plugins/*/` | Bundled customization packages | `plugin.json` |
 | **AGENTS.md** | Repository root | Project guidance | None |
 
 **Skills** (6 core + project-specific): `repo-analysis`, `planning`, `asset-design`, `documentation`, `deployment-automation`, `orchestration` | Bootstrap generates project-specific skills based on tech stack
@@ -59,13 +58,9 @@ All orchestration is programmatic via the `agent` tool — no manual handoff but
 
 **Instructions** (12): Generation frameworks (`SkillAuthoring`, `AgentAuthoring`, `PromptAuthoring`, `InstructionAuthoring`, `Orchestration`, `AgentsFile`), Standards (`Standards`), Quality (`Framework`, `Security`, `Maintenance`, `RepoReview`, `ToolkitOps`)
 
-**Prompts** (10): Core (`Bootstrap`, `Review`), Generation (`NewSkill`, `NewAgent`, `NewInstructions`, `NewPrompt`, `NewMultiAgent`, `NewAgentsFile`), Evolution (`Evolve`, `QuickFix`)
+**Prompts** (11): Core (`Bootstrap`, `Review`), Generation (`NewSkill`, `NewAgent`, `NewInstructions`, `NewPrompt`, `NewMultiAgent`, `NewAgentsFile`, `NewPlugin`), Evolution (`Evolve`, `QuickFix`)
 
 **Templates** (4): `Analysis`, `ImplementationPlan`, `OrchestrationPlan`, `ChangeLog`
-
-**Hooks** (1): `subagent-tracking.json` — Orchestration lifecycle logging for all 8 VS Code hook events (SessionStart, UserPromptSubmit, SubagentStart, SubagentStop, PreToolUse, PostToolUse, PreCompact, Stop)
-
-**Scripts** (1): `log-orchestration.js` — Hook implementation for automated orchestration metrics with session-based logging to `.github/logs/sessions/<timestamp>/` (orchestration.log, metrics.json, session-state.json)
 
 **Plans** (2): Archived implementation plans with decision records (`Toolkit-Structure-Standardization.md`, `VSCode-v1109-Alignment.md`)
 
@@ -107,7 +102,7 @@ Example: `repo-analysis` → Editor agent → Verifier agent → `documentation`
 ## Asset Schema & Structure
 
 **Agents** (`*.agent.md`):  
-YAML: `description` (required) | Optional: `tools`, `handoffs`, `agents`, `user-invokable`, `model`  
+YAML: `description` (required) | Optional: `tools`, `handoffs`, `agents`, `user-invocable`, `model`  
 Structure: Role, Core Objectives, Workflow, Tool Configuration, Handoff Workflows
 
 **Skills** (`.github/skills/*/SKILL.md`):  
@@ -196,9 +191,9 @@ To avoid inventory drift, treat the folders as the source of truth:
 ## Best Practices
 
 **File Organization**: Consistent naming, clear separation, skills for cross-platform, agents for VS Code  
-**Schema Compliance**: VS Code v1.109 standards, required YAML only, relative paths  
+**Schema Compliance**: VS Code v1.112 standards, required YAML only, relative paths  
 **Version Management**: Track schema versions, maintain backward compatibility  
-**Orchestration**: Programmatic handoffs via `agent` tool, focused subagents, parallel execution (v1.109)
+**Orchestration**: Programmatic handoffs via `agent` tool, focused subagents, parallel execution (v1.112)
 
 ---
 
@@ -206,15 +201,15 @@ To avoid inventory drift, treat the folders as the source of truth:
 
 ### VS Code Copilot Requirements
 
-This framework complies with **VS Code Copilot Customization v1.109** standards (backwards compatible with v1.106+):
+This framework complies with **VS Code Copilot Customization v1.112** standards (backwards compatible with v1.106+):
 
-- **Custom Agents**: Required `description`; optional `target`, `name`, `argument-hint`, `tools`, `model` (string or array for fallback), `handoffs` (with optional model parameter), `mcp-servers`, `user-invokable`, `disable-model-invocation`, `agents` (VS Code 1.109; enhanced orchestration controls)
-- **Agent Skills**: Generally available (GA) in v1.109; enabled by default with custom location support
+- **Custom Agents**: Required `description`; optional `target`, `name`, `argument-hint`, `tools`, `model` (string or array for fallback), `handoffs` (with optional model parameter), `mcp-servers`, `user-invocable`, `disable-model-invocation`, `agents` (VS Code 1.109; enhanced orchestration controls)
+- **Agent Skills**: Generally available (GA) in v1.112; enabled by default with custom location support
 - **Instructions**: Required `applyTo` and `description` fields; supports organization-wide instructions
 - **Prompts**: Optional `mode` or `agent` binding, structured YAML front matter
 - **File Organization**: Standard `.github/` directory structure with configurable locations
 - **Cross-References**: Relative path linking between assets
-- **Parallel Execution**: Subagents run in parallel automatically when independent (v1.109+)
+- **Parallel Execution**: Subagents run in parallel automatically when independent (v1.112+)
 
 ### Framework Extensions
 
@@ -254,8 +249,8 @@ Refinement commands:
 
 ---
 
-**Framework**: CopilotCustomizer v1.5.0  
-**Standards**: VS Code Copilot v2025.11 (Agent Files v1.109)  
+**Framework**: CopilotCustomizer v1.6.0  
+**Standards**: VS Code Copilot v2026.03 (Agent Files v1.112)  
 **Contributors**: Asset validation via Verifier + Evolve agents
 
 ---
@@ -289,9 +284,9 @@ Refinement commands:
 ## License & Attribution
 
 **License**: MIT - See [LICENSE](../LICENSE) for full text  
-**Framework**: CopilotCustomizer v1.5.0  
-**Compliance**: VS Code GitHub Copilot Customization Standards v1.109 (v1.106+ compatible)  
-**Generated**: 2026-02-15 via Documentation Harmonization
+**Framework**: CopilotCustomizer v1.6.0  
+**Compliance**: VS Code GitHub Copilot Customization Standards v1.112 (v1.106+ compatible)  
+**Generated**: 2026-04-02 via Documentation Harmonization
 
 ---
 

@@ -139,7 +139,7 @@ Pass `standardsContext` to downstream agents as part of the context handoff:
 
 ## Processing Metadata
 
-- **Standards Version**: VS Code Copilot v2025.11 (Agent Files v1.109)
+- **Standards Version**: VS Code Copilot v2026.03 (Agent Files v1.112)
 - **Role**: Discovers, matches, and integrates enterprise coding standards
 - **Scope**: Standards from .github/standards/ into generated assets
 - **Integration**: Provides standardsContext to Planner, Generator, and Verifier

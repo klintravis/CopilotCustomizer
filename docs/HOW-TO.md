@@ -22,8 +22,8 @@ Comprehensive technical guide for using CopilotCustomizer with the multi-workspa
 - CopilotCustomizer cloned locally
 
 **VS Code Version**:
-- Recommended: **v1.109+** (full feature support including agent orchestration controls, parallel subagents, Skills GA)
-- Minimum: **v1.106** (agent files, handoffs)
+- Recommended: **v1.112+** (full feature support including agent orchestration controls, parallel subagents, Skills GA)
+- Minimum: **v1.109** (agent files, handoffs)
 - Backwards compatible with v1.105 and earlier (some advanced features unavailable)
 
 **No additional dependencies required** - Framework is pure markdown
@@ -87,6 +87,7 @@ These appear automatically in the VS Code slash-command palette:
 - `/NewSkill SKILL_NAME: "name", PURPOSE: "desc"` — Create a cross-platform skill
 - `/NewMultiAgent SYSTEM_NAME: "name", COMPLEXITY: "linear"` — Create a multi-agent workflow
 - `/NewAgentsFile REPOSITORY_PATH: "/path"` — Generate workspace AGENTS.md
+- `/NewPlugin PLUGIN_NAME: "name", PURPOSE: "description"` — Create agent plugin package
 
 Tip: Type `/` in Copilot Chat to see all available commands.
 
@@ -179,10 +180,25 @@ Conductor/subagent systems with TDD lifecycle, quality gates, plan tracking, and
 2. **Combine workflows**: repo-analysis → planning → documentation
 3. **Share cross-platform**: Skills work in VS Code, CLI, Claude, Cursor
 
+## 🔌 Agent Plugins
+
+Agent Plugins (VS Code 1.110+) are pre-packaged bundles of skills, agents, hooks, and MCP servers. They provide one-click installation of complete AI customization sets.
+
+**Create a Plugin**:
+```
+/NewPlugin PLUGIN_NAME: "python-devops", PURPOSE: "CI/CD automation for Python projects"
+```
+
+**Plugin Contents**: `plugin.json` + skills/ + agents/ + hooks/ + `.mcp.json`
+
+**Distribution**: Via VS Code Extensions Marketplace or direct folder sharing.
+
+**See**: [Agent Plugins Documentation](https://code.visualstudio.com/docs/copilot/customization/agent-plugins)
+
 ### Agent Files (`*.agent.md`)
 
 **Location**: `.github/agents/` | **Required YAML**: `description`  
-**Optional**: `tools`, `handoffs`, `agents`, `user-invokable`, `model`
+**Optional**: `tools`, `handoffs`, `agents`, `user-invocable`, `model`
 
 **See**: [VS Code Copilot Docs](https://code.visualstudio.com/docs/copilot/customization/custom-agents)
 
@@ -216,7 +232,7 @@ Conductor/subagent systems with TDD lifecycle, quality gates, plan tracking, and
    /Bootstrap with REPOSITORY_PATH: "/absolute/path/to/your-project"
    ```
 3. Confirm when agent presents the plan
-   - **VS Code 1.106+**: Click the confirmation button
+   - **VS Code 1.109+**: Click the confirmation button
    - **Earlier versions**: Type "confirm" in chat
 
 **Result**: Complete customization generated in 3-4 minutes:
@@ -244,11 +260,11 @@ Conductor/subagent systems with TDD lifecycle, quality gates, plan tracking, and
    DOMAIN: "PostgreSQL optimization"
    ```
 2. Agent will confirm details and create the file
-   - **VS Code 1.106+**: Click "Generate Agent" button
+   - **VS Code 1.109+**: Click "Generate Agent" button
    - **Earlier versions**: Type "confirm" when ready
 3. Agent created in `your-project/.github/agents/DatabaseExpert.agent.md`
 
-**Adding Handoff Workflows** (VS Code 1.106+):
+**Adding Handoff Workflows** (VS Code 1.109+):
 To enable guided transitions between agents, add handoffs to the YAML frontmatter:
 ```yaml
 ---
@@ -351,7 +367,7 @@ Provides: Tech stack detection, asset inventory, gap analysis, recommendations
 
 ### Creating Multi-Agent Systems
 
-**Handoff Chains** (VS Code 1.106+): Define `handoffs` in YAML for guided workflows  
+**Handoff Chains** (VS Code 1.109+): Define `handoffs` in YAML for guided workflows  
 **Orchestrated Systems**: `/NewMultiAgent` for conductor-managed phases with TDD and quality gates
 
 **Patterns**: Linear (sequential) | Orchestra (3-5 agents) | Atlas (5-10 agents, parallel)
@@ -430,6 +446,7 @@ Store tech-stack-specific standards in `.github/standards/` (languages/, framewo
 | Broken cross-references | Run `/Evolve TASK: "harmonize-assets"` |
 | Slow responses | Use specific file refs, optimize assets, close unused workspaces |
 | Handoff buttons missing | Requires VS Code 1.109+, check `.agent.md`, validate YAML |
+| Agent Debug Panel | Enable `github.copilot.chat.agentDebugLog.enabled` for loaded customizations view |
 
 **Diagnostics**: Right-click in Chat → Diagnostics to see loaded assets and errors
 
@@ -488,4 +505,4 @@ Store tech-stack-specific standards in `.github/standards/` (languages/, framewo
 ---
 
 *Enterprise-ready VS Code GitHub Copilot customization framework*
-**Version**: 1.5.0 | **Updated**: February 2026
+**Version**: 1.6.0 | **Updated**: April 2026
