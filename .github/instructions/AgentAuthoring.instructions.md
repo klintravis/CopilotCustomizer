@@ -42,13 +42,25 @@ Standardized approach for creating VS Code Copilot `.agent.md` custom agent file
 **Principles**: Minimal set, task-aligned, security-conscious, progressive addition.
 
 ### Quality Guidelines
-- Clear expertise boundaries
-- Concrete workflow steps
-- Proper framework references
-- Valid YAML and markdown
-- **Tools matched to tasks** (use Tool Selection Guide above)
-- Minimal tool set (only what's needed)
-- Clear handoff conditions
+
+**Generated agents must be rich enough to meaningfully change AI behavior.** A thin agent with generic advice is worse than no agent at all.
+
+**Richness checklist**:
+- [ ] Role describes expertise boundaries specific to THIS project (not generic)
+- [ ] Workflow has 5+ steps with substeps and decision points
+- [ ] Tool selection is justified (why each tool, why NOT others)
+- [ ] References real file paths and patterns from the target repository
+- [ ] Includes concrete examples of what the agent does and doesn't do
+- [ ] Refinement commands allow iterative improvement
+- [ ] Handoff conditions are specific (not "when done")
+- [ ] Minimum 80 lines for standalone agents, 50 lines for subagents
+
+**What to include from research context**:
+- Actual framework versions and configurations found
+- Specific code patterns and conventions discovered
+- Real file paths and module structure
+- User's stated priorities and pain points
+- Team workflow preferences (branching, review, deployment)
 
 
 ### Orchestrated System Agent Archetypes
@@ -57,13 +69,13 @@ When generating agents for conductor/subagent orchestrated systems, use these ar
 
 | Archetype | YAML Key | Model Tier | Required Tools | Handoff Pattern |
 |-----------|----------|------------|----------------|-----------------|
-| **Conductor** | `handoffs: [...]`, `agents: [...]` | High (Claude Sonnet 4.5) | `search`, `search/codebase`, `agent` | Invokes subagents via `agent` tool + `handoffs` (parallel capable) |
-| **Planner** | `user-invocable: false` | High (Claude Sonnet 4.5) | `search`, `search/codebase` | Conductor → Planner → Conductor |
-| **Implementer** | `user-invocable: false` | Medium (Auto) | `edit`, `new`, `search`, `terminal` | Conductor → Implementer → Conductor |
-| **Reviewer** | `user-invocable: false` | High (Claude Sonnet 4.5) | `search`, `problems`, `changes` | Conductor → Reviewer → Conductor |
-| **Researcher/Scout** | `user-invocable: false` | Low-Medium (Auto) | `search`, `search/codebase` | Conductor → Scout → Conductor |
+| **Conductor** | `handoffs: [...]`, `agents: [...]` | High (latest capable) | `search`, `search/codebase`, `agent` | Invokes subagents via `agent` tool + `handoffs` (parallel capable) |
+| **Planner** | `user-invocable: false` | High (latest capable) | `search`, `search/codebase` | Conductor → Planner → Conductor |
+| **Implementer** | `user-invocable: false` | Medium (auto) | `edit`, `new`, `search`, `terminal` | Conductor → Implementer → Conductor |
+| **Reviewer** | `user-invocable: false` | High (latest capable) | `search`, `problems`, `changes` | Conductor → Reviewer → Conductor |
+| **Researcher/Scout** | `user-invocable: false` | Low (auto) | `search`, `search/codebase` | Conductor → Scout → Conductor |
 | **Domain Specialist** | `disable-model-invocation: true` | Medium-High | Domain-specific | Conductor → Specialist → Conductor |
-| **Explorer/Research** | `user-invocable: false` | Low (Haiku 4.5/Flash) | `search`, `search/codebase` | Conductor → Explorer → Conductor (read-only research, auto-delegated) |
+| **Explorer/Research** | `user-invocable: false` | Low (fast/lightweight) | `search`, `search/codebase` | Conductor → Explorer → Conductor (read-only research, auto-delegated) |
 
 **Conductor-Specific Requirements**:
 - Must include `agent` tool in tools array and define `handoffs` array with all subagent transitions
@@ -137,7 +149,7 @@ handoffs:
 
 **`model` parameter** (string, optional):
 - Overrides the target agent's default model for this specific handoff
-- Format: `'Model Name (vendor)'` e.g., `'GPT-5 (copilot)'`, `'Claude Sonnet 4.5 (copilot)'`
+- Format: `'Model Name (vendor)'` — use current model names from your VS Code model picker
 - Use when a specific handoff benefits from a different model than the target's default
 
 Validation rules:
@@ -243,12 +255,12 @@ agents: ['Planner', 'Implementer', 'Reviewer']  # Can only invoke these three
 
 ### Single Model
 ```yaml
-model: 'Claude Sonnet 4.5 (copilot)'
+# model: omit to use default, or specify for override
 ```
 
 ### Multiple Models with Fallback
 ```yaml
-model: ['Claude Sonnet 4.5 (copilot)', 'GPT-5 (copilot)', 'GPT-4 (copilot)']
+# model: omit to inherit from caller, or specify: 'Model Name (vendor)'
 ```
 
 The first available model in the list is used. Fallback provides resilience when preferred models are unavailable.
@@ -268,7 +280,7 @@ handoffs:
     model: 'GPT-5 (copilot)'  # Use GPT-5 specifically for test generation
 ```
 
-Format: `'Model Name (vendor)'` (e.g., `'GPT-5 (copilot)'`, `'Claude Sonnet 4.5 (copilot)'`)
+Format: `'Model Name (vendor)'` — use current model names from your VS Code model picker
 
 ---
 
@@ -325,7 +337,7 @@ description: 'Expert in REST API design and implementation following OpenAPI sta
 target: 'vscode'
 name: 'API Architect'
 argument-hint: 'Describe the API endpoint or specification you need'
-model: ['Claude Sonnet 4.5 (copilot)', 'GPT-5 (copilot)']
+# model: omit to inherit from caller, or specify: 'Model Name (vendor)'
 tools: ['search', 'codebase', 'edit', 'new', 'terminal']
 handoffs:
   - label: 'Generate Tests'
@@ -375,7 +387,7 @@ Expert in REST API architecture specializing in OpenAPI 3.0+ specifications, end
 ---
 description: 'Orchestrates full-stack feature development with quality gates'
 name: 'Feature Conductor'
-model: 'Claude Sonnet 4.5 (copilot)'
+# model: omit to use default, or specify for override
 tools: ['search', 'codebase', 'agent', 'problems']
 user-invocable: true
 agents: ['Planner', 'BackendDev', 'FrontendDev', 'Reviewer', 'Tester']

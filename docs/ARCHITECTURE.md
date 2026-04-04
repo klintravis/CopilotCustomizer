@@ -58,7 +58,7 @@ All orchestration is programmatic via the `agent` tool — no manual handoff but
 
 **Instructions** (12): Generation frameworks (`SkillAuthoring`, `AgentAuthoring`, `PromptAuthoring`, `InstructionAuthoring`, `Orchestration`, `AgentsFile`), Standards (`Standards`), Quality (`Framework`, `Security`, `Maintenance`, `RepoReview`, `ToolkitOps`)
 
-**Prompts** (11): Core (`Bootstrap`, `Review`), Generation (`NewSkill`, `NewAgent`, `NewInstructions`, `NewPrompt`, `NewMultiAgent`, `NewAgentsFile`, `NewPlugin`), Evolution (`Evolve`, `QuickFix`)
+**Prompts** (12): Core (`Bootstrap`, `Review`, `HealthCheck`), Generation (`NewSkill`, `NewAgent`, `NewInstructions`, `NewPrompt`, `NewMultiAgent`, `NewAgentsFile`, `NewPlugin`), Evolution (`Evolve`, `QuickFix`)
 
 **Templates** (4): `Analysis`, `ImplementationPlan`, `OrchestrationPlan`, `ChangeLog`
 

@@ -1,4 +1,3 @@
-```markdown
 # Change Log Template
 
 **Purpose**: Standardized change documentation for releases, pull requests, and feature updates.
@@ -110,4 +109,3 @@
 - [ ] Dependencies and compatibility documented
 - [ ] Testing completed
 - [ ] References functional
-```

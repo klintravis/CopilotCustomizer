@@ -25,7 +25,7 @@ A VS Code GitHub Copilot customization framework for generating tech-stack-speci
 
 - **Agents** (7): CopilotCustomizer (orchestrator), Bootstrap, Planner, Generator, Editor, Verifier, Evolve  
 - **Instructions** (12): AgentAuthoring, AgentsFile, Framework, InstructionAuthoring, Maintenance, Orchestration, PromptAuthoring, RepoReview, Security, SkillAuthoring, Standards, ToolkitOps  
-- **Prompts** (11): Bootstrap, Evolve, NewAgent, NewAgentsFile, NewInstructions, NewMultiAgent, NewPlugin, NewPrompt, NewSkill, QuickFix, Review  
+- **Prompts** (12): Bootstrap, Evolve, HealthCheck, NewAgent, NewAgentsFile, NewInstructions, NewMultiAgent, NewPlugin, NewPrompt, NewSkill, QuickFix, Review  
 - **Skills** (12): asset-audit, asset-design, deployment-automation, documentation, execution-strategy, orchestration, planning, quality-validation, repo-analysis, security-hardening, standards-resolution, tool-selection  
 - **Standards** (43 across 8 categories): architecture, databases, devops, frameworks, languages, practices, security, testing
 - **Templates** (4): Analysis, ChangeLog, ImplementationPlan, OrchestrationPlan

@@ -2,7 +2,6 @@
 description: 'Quick entry point for CopilotCustomizer toolkit improvement tasks with smart defaults'
 argument-hint: 'All inputs optional — runs with intelligent defaults'
 agent: CopilotCustomizer
-model: Claude Sonnet 4.5 (copilot)
 name: Evolve
 tools: ['execute', 'read', 'edit', 'search', 'web', 'agent', 'todo']
 ---

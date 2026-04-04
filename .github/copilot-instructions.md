@@ -31,7 +31,7 @@
 .github/
 ├── agents/*.agent.md               # 7 agents (CopilotCustomizer + 6 subagents)
 ├── instructions/*.instructions.md  # 12 instruction files
-├── prompts/*.prompt.md             # 11 slash commands
+├── prompts/*.prompt.md             # 12 slash commands
 ├── skills/[name]/SKILL.md          # 12 cross-platform skills (agentskills.io)
 ├── standards/[category]/           # 43+ standards across 8 categories
 └── templates/                      # 4 structured output templates
@@ -40,7 +40,7 @@
 ### Asset Counts (Current)
 - **Agents**: 7 (1 orchestrator + 6 subagents)
 - **Instructions**: 12 (scoped via `applyTo` patterns)
-- **Prompts**: 11 (user-facing slash commands)
+- **Prompts**: 12 (user-facing slash commands)
 - **Skills**: 12 (cross-platform, agentskills.io compatible)
 - **Standards**: 43 (architecture, databases, devops, frameworks, languages, practices, security, testing)
 - **Templates**: 4 (Analysis, ChangeLog, ImplementationPlan, OrchestrationPlan)

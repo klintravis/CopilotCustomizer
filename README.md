@@ -43,7 +43,7 @@ GitHub Copilot is powerful, but generic. Your team needs AI that understands *yo
    ```
    /Bootstrap REPOSITORY_PATH: "/absolute/path/to/your-project"
    ```
-3. **Confirm generation**: Review the analysis, then type `confirm` (or click the confirm button in VS Code 1.112+)
+3. **Answer & confirm**: Answer a few targeted questions about your workflow, review the plan, then `confirm`
 
 The framework analyzes your repository, detects your tech stack, and generates Skills, Agents, Instructions, Prompts, and Standards tailored to your codebase—all saved in `your-project/.github/`.
 
@@ -94,7 +94,7 @@ CopilotCustomizer uses an **orchestrated agent system** where a unified orchestr
 - **7 Agents** — CopilotCustomizer (orchestrator), Bootstrap, Planner, Generator, Editor, Verifier, Evolve
 - **12 Core Skills** — asset-audit, asset-design, deployment-automation, documentation, execution-strategy, orchestration, planning, quality-validation, repo-analysis, security-hardening, standards-resolution, tool-selection
 - **12 Instructions** — Generation frameworks, quality patterns, standards resolution, toolkit maintenance
-- **11 Prompts** — Interactive commands for workflows, asset generation, plugins, maintenance, and toolkit evolution
+- **12 Prompts** — Interactive commands for workflows, asset generation, plugins, maintenance, and toolkit evolution
 - **Enterprise Standards** — Organization-wide conventions (43 standards across 8 categories)
 
 **Key Patterns**:

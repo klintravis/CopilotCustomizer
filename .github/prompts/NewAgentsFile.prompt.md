@@ -3,7 +3,6 @@ description: Generate an AGENTS.md workspace guidance file for a project
 argument-hint: Optionally provide the project name and primary tasks
 agent: CopilotCustomizer
 name: NewAgentsFile
-model: Claude Sonnet 4.5 (copilot)
 tools: ['execute', 'read', 'edit', 'search', 'web', 'agent', 'todo']
 ---
 

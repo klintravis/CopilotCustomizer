@@ -47,15 +47,19 @@ The `/init` command analyzes your workspace and generates a `copilot-instruction
 - ✅ Correct: `/Users/yourname/projects/my-app` or `C:\Users\yourname\projects\my-app`
 - ❌ Wrong: `./my-app` or `../my-app`
 
-The agent will analyze your project, detect your tech stack, and present a generation plan.
+The agent will perform deep research on your project (3 passes), ask you a few targeted questions about your workflow, then present a tailored plan with reasoning. Review, give feedback, and confirm to generate.
 
-### Step 3: Confirm and Wait
+### Step 3: Answer Questions & Confirm
 
-Review the analysis, then confirm:
-- **VS Code 1.109+**: Click the `Confirm` button
-- **Earlier versions**: Type `confirm` in the chat
+The agent will ask 3-5 targeted questions about your workflow, priorities, and pain points. Answer naturally — there's no wrong format.
 
-**Wait 3-4 minutes** while CopilotCustomizer generates your customization.
+Then review the plan. You can:
+- Say `confirm` or `looks good` to proceed
+- Say `skip: {something}` to remove an asset
+- Say `add: {description}` to request something extra
+- Say `reconsider` to have it re-evaluate
+
+**Wait 3-5 minutes** while CopilotCustomizer generates your customization.
 
 ### Step 4: Done! Your Customization is Ready
 

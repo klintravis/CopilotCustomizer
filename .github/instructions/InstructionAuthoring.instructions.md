@@ -13,7 +13,7 @@ description: 'Reusable framework for creating high-quality instruction files wit
 Framework for creating high-quality `*.instructions.md` files with consistency, guardrails, and maintainability.
 
 ### Core Principles
-1. Clarity over verbosity
+1. Specificity over generics — every rule should reference THIS project's actual patterns, not generic best practices
 2. Single source of truth
 3. Explicit iteration loop (clarify → confirm → generate → refine)
 4. Guardrails for missing info
@@ -29,7 +29,40 @@ Framework for creating high-quality `*.instructions.md` files with consistency, 
 | Testing Strategy | Yes | Frameworks, coverage |
 | Documentation | Yes | What to document |
 | Acceptance Criteria | Yes | Definition of done |
-| Change Management | Yes | Versioning |### Front Matter Template
+| Change Management | Yes | Versioning |
+
+### Richness Requirements
+
+Instructions must contain PROJECT-SPECIFIC rules, not generic advice. Compare:
+
+**THIN (useless):**
+```markdown
+### Coding Standards
+- Follow TypeScript best practices
+- Use proper error handling
+- Write tests for new code
+```
+
+**RICH (valuable):**
+```markdown
+### Coding Standards
+- Enable `strict: true` in tsconfig.json (already configured in this project)
+- Use discriminated unions for error handling (pattern: src/lib/errors.ts)
+- Barrel exports via index.ts in each module directory (existing convention)
+- Prefer `type` over `interface` for object shapes (project convention)
+- Use `zod` for runtime validation (already a dependency — see src/lib/schemas/)
+
+### Testing Standards
+- Test framework: Vitest (configured in vitest.config.ts)
+- Use the custom render wrapper at tests/utils/render.tsx for component tests
+- Minimum coverage: 80% for new modules (configured in vitest.config.ts)
+- Integration tests go in tests/integration/ (separate from unit tests in __tests__/)
+- Mock external services using MSW handlers in tests/mocks/handlers.ts
+```
+
+**The difference**: Rich instructions reference real files, real tools, real conventions. An AI reading these will produce code that fits the project. An AI reading thin instructions will produce generic code.
+
+### Front Matter Template
 ```yaml
 ---
 applyTo: '**'

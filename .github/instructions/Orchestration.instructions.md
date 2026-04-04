@@ -72,7 +72,7 @@ User-defined agent composition. Minimum: 1 conductor + 2 subagents.
 ```yaml
 ---
 description: 'Orchestrates {SystemName}: coordinates {subagent list} through phases with quality gates and TDD enforcement'
-model: Claude Sonnet 4.5 (copilot)
+# model: omit to inherit, or specify for high-capability override
 tools: ['search', 'search/codebase', 'agent']
 agents: ['Planner', 'Implementer', 'Reviewer']  # Explicit allowed subagents list
 handoffs:
@@ -112,12 +112,12 @@ user-invocable: false  # Hidden from picker
 
 | Archetype | Model Tier | Rationale |
 |-----------|-----------|-----------|
-| Conductor | High (Claude Sonnet 4.5) | Orchestration requires strong reasoning |
-| Planner | High (Claude Sonnet 4.5) | Architecture decisions need depth |
-| Implementer | Medium (Auto / copilot) | Code generation with standard capability |
-| Reviewer | High (Claude Sonnet 4.5) | Quality assessment needs strong analysis |
-| Researcher | Medium (Auto / copilot) | Information gathering, moderate reasoning |
-| Scout | Low (Auto / copilot) | Simple file discovery tasks |
+| Conductor | High (latest capable) | Orchestration requires strong reasoning |
+| Planner | High (latest capable) | Architecture decisions need depth |
+| Implementer | Medium (auto) | Code generation with standard capability |
+| Reviewer | High (latest capable) | Quality assessment needs strong analysis |
+| Researcher | Medium (auto) | Information gathering, moderate reasoning |
+| Scout | Low (auto) | Simple file discovery tasks |
 | Domain Specialist | Medium-High | Varies by domain complexity |
 
 ### Tool Selection per Archetype
@@ -167,7 +167,7 @@ Conductor (orchestrates phases)
 ```yaml
 ---
 description: 'Code reviewer with security delegation'
-model: Claude Sonnet 4.5 (copilot)
+# model: omit to inherit, or specify for high-capability override
 tools: ['search', 'problems', 'changes', 'agent']
 user-invocable: false
 agents: ['SecurityReviewer', 'PerfReviewer']
@@ -320,7 +320,7 @@ Generate `.vscode/settings.json` snippet (merge with existing if present):
 
 ## Explore Subagent Integration (VS Code 1.110+)
 
-VS Code provides a native **Explore subagent** — a read-only research agent using fast models (Claude Haiku 4.5, Gemini Flash). The Plan agent auto-delegates codebase research to it.
+VS Code provides a native **Explore subagent** — a read-only research agent using fast, lightweight models. The Plan agent auto-delegates codebase research to it.
 
 **Impact on Orchestration**:
 - Explorer/Researcher archetype can leverage native Explore subagent

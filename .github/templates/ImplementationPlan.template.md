@@ -1,6 +1,8 @@
+---
 title: Project Implementation Plan (v1.1)
 schemaVersion: 1.1
 description: 'Slim template for planning discrete project tasks across any domain'
+---
 
 ## Planning Prompt
 Design and execute a stepwise implementation plan for the assigned project task. Ensure all objectives, deliverables, and milestones are addressed, risks are mitigated, and verification steps are completed. Communicate progress, clarify requirements as needed, and update documentation to reflect changes and ownership.
@@ -80,6 +82,6 @@ Design and execute a stepwise implementation plan for the assigned project task.
 ---
 
 ### Generation Notes
-**Optimized by**: GitHub Copilot (Claude Sonnet 4.5)  
+**Optimized by**: GitHub Copilot  
 **Date**: {DATE}  
 **Process**: Asset optimization following CopilotCustomizer standards for universal project applicability

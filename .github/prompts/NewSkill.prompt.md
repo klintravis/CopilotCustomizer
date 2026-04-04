@@ -3,7 +3,6 @@ description: Generate new Agent Skill for cross-platform AI capabilities
 argument-hint: Provide the skill name and optionally its purpose
 agent: CopilotCustomizer
 name: NewSkill
-model: Claude Sonnet 4.5 (copilot)
 tools: ['execute', 'read', 'edit', 'search', 'web', 'agent', 'todo']
 ---
 
@@ -18,6 +17,15 @@ Creates Agent Skills (agentskills.io open standard) that work across VS Code, Gi
 - **Target Path** [OPTIONAL]: ${input:targetPath:defaults to current workspace}
 - **Include Examples** [OPTIONAL]: ${input:includeExamples:true or false (default: true)}
 - **Include Scripts** [OPTIONAL]: ${input:includeScripts:true or false (default: false)}
+
+### Discovery Phase
+
+Before generating, ask:
+1. **Cross-platform?** — "Do you need this skill in VS Code only, or also CLI/Claude/Cursor?"
+2. **What resources?** — "Should the skill include scripts, templates, or example files?"
+3. **Auto-load or manual?** — "Should it activate automatically on relevant prompts, or only when explicitly invoked?"
+
+Use answers to set `user-invocable` and `disable-model-invocation` appropriately.
 
 ## Usage Examples
 
@@ -197,25 +205,6 @@ After generation, provide:
 5. **Maintainable**: Clear structure, well-documented
 
 See **SkillAuthoring.instructions.md** for detailed quality criteria and validation steps.
-
-## Anti-Patterns to Avoid
-
-❌ Generic skills: "Helper utilities" (too broad)
-❌ VS Code-only: Skills that require terminal/file tools
-❌ Instruction duplication: Just copying coding standards
-❌ Absolute paths: Use relative paths only
-❌ Massive SKILL.md: Move examples/scripts to separate files
-
-## Troubleshooting
-
-| Issue | Solution |
-|-------|----------|
-| Skill doesn't auto-load | Make description more specific to use cases |
-| Resources not found | Verify relative paths from SKILL.md |
-| Name collision | Check existing skills, use more specific name |
-| Description too long | Keep under 1024 chars, move details to body |
-
----
 
 ## Standards Compliance
 

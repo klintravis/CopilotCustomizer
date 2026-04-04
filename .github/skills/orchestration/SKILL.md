@@ -78,14 +78,14 @@ The conductor is the central orchestration agent that manages the entire workflo
 4. **Quality Gates** — Enforces approval checkpoints (minimum 3 pause points)
 5. **No Direct Implementation** — Conductor never writes code or modifies files directly
 6. **Plan File Management** — Creates and updates `plans/PLAN.md` for progress tracking
-7. **Model Tier** — Uses highest-capability model (e.g., `Claude Sonnet 4.5`, `GPT-4`)
+7. **Model Tier** — Uses highest-capability model available (High tier)
 8. **Supports Nested Delegation** — Subagents may include `agent` tool for hierarchical orchestration (max 2 levels deep)
 
 ### Conductor YAML Structure
 ```yaml
 ---
 description: 'Orchestrates {SystemName} workflow: coordinates subagents through phases with quality gates and TDD enforcement'
-model: Claude Sonnet 4.5 (copilot)
+# model: omit to inherit, or specify for high-capability override
 tools: ['search', 'search/codebase', 'agent']
 user-invocable: true
 agents: ['Planner', 'Implementer', 'Reviewer']  # Optional: explicit subagent list
@@ -133,11 +133,11 @@ Every conductor must include at least 3 pause points:
 
 | Archetype | Role | Model Tier | Typical Tools | Handoff Pattern |
 |-----------|------|------------|---------------|-----------------|
-| **Planner** | Requirements analysis, architecture design, phase decomposition | High (Sonnet 4.5 / GPT-4) | `search`, `search/codebase`, `fetch` | Conductor → Planner → Conductor |
-| **Implementer** | Code changes following plan specifications | Medium (Sonnet 4 / GPT-4o) | `edit`, `new`, `search`, `terminal` | Conductor → Implementer → Conductor |
-| **Reviewer** | Code review, quality validation, security checks | High (Sonnet 4.5 / GPT-4) | `search`, `problems`, `changes` | Conductor → Reviewer → Conductor |
-| **Researcher** | Codebase analysis, dependency mapping, pattern discovery | Medium (Sonnet 4 / GPT-4o) | `search`, `search/codebase`, `fetch` | Conductor → Researcher → Conductor |
-| **Scout** | File discovery, structure mapping, quick reconnaissance | Low (Haiku / GPT-4o-mini) | `search`, `search/codebase` | Conductor → Scout → Conductor |
+| **Planner** | Requirements analysis, architecture design, phase decomposition | High (latest capable) | `search`, `search/codebase`, `fetch` | Conductor → Planner → Conductor |
+| **Implementer** | Code changes following plan specifications | Medium (auto) | `edit`, `new`, `search`, `terminal` | Conductor → Implementer → Conductor |
+| **Reviewer** | Code review, quality validation, security checks | High (latest capable) | `search`, `problems`, `changes` | Conductor → Reviewer → Conductor |
+| **Researcher** | Codebase analysis, dependency mapping, pattern discovery | Medium (auto) | `search`, `search/codebase`, `fetch` | Conductor → Researcher → Conductor |
+| **Scout** | File discovery, structure mapping, quick reconnaissance | Low (fast/lightweight) | `search`, `search/codebase` | Conductor → Scout → Conductor |
 | **Domain Specialist** | Domain-specific expertise (API, testing, database, etc.) | Medium-High | Domain-specific tools | Conductor → Specialist → Conductor |
 
 ### Subagent Requirements

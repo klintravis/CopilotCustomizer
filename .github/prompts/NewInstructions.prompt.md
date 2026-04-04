@@ -3,7 +3,6 @@ description: Create a new VS Code custom instruction file with coding standards 
 argument-hint: Describe the domain for these instructions
 agent: CopilotCustomizer
 name: NewInstructions
-model: Claude Sonnet 4.5 (copilot)
 tools: ['execute', 'read', 'edit', 'search', 'web', 'agent', 'todo']
 ---
 
@@ -22,6 +21,23 @@ Generate `*.instructions.md` files.
 - Required: `domain`
 - Optional (inferred from domain and context if omitted): `objective`
 - All other details (tech stack, security level, sections, refinement commands) inferred from domain and objective
+
+### Discovery Phase
+
+Before generating, understand what the instructions should capture:
+
+1. **What patterns exist?** — "I'll scan matching files to detect conventions already in use"
+2. **What should change?** — "Are these instructions enforcing existing patterns or introducing new ones?"
+3. **Who benefits?** — "Is this for the whole team or a specific workflow?"
+
+Auto-scan the target `applyTo` pattern to extract real conventions from existing code before generating. Instructions should reflect what the codebase ACTUALLY does, not generic best practices.
+
+### Reasoning in Output
+
+Explain why specific rules were included:
+- "Added strict null checks because 8 of your 12 TypeScript files already use them"
+- "Included middleware error handling pattern because I found it in 5 route files"
+- "Want me to add or remove any rules?"
 
 ### Generation Gate
 First respond with clarifying questions OR `ready-to-generate` + structure summary. Do not output full instructions before explicit `confirm` response.

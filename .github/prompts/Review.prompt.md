@@ -2,7 +2,6 @@
 name: Review
 description: Comprehensive Copilot customization asset audit with gap analysis and recommendations
 agent: CopilotCustomizer
-model: Claude Sonnet 4.5 (copilot)
 tools: ['execute', 'read', 'edit', 'search', 'web', 'agent', 'todo']
 argument-hint: Provide the path to the repository to review
 ---
@@ -24,12 +23,13 @@ Use `templates/Analysis.template.md` format:
 - Include ready-to-run generator prompts for each asset type
 - Priority levels: High/Med/Low with concrete improvement examples
 
-### Workflow Phases
+## Workflow Phases
 
-**Phase 1: Discovery** (Auto) — Inventory all assets in .github/ and root  
-**Phase 2: Validation** (Auto) — Schema compliance, cross-reference integrity, quality checks  
-**Phase 3: Gap Analysis** (Auto) — Compare against best practice checklist  
-**Phase 4: Recommendation** (Auto) — Generate prioritized improvement plan with ready-to-run prompts
+**Phase 1: Discovery** (Auto) — Scan repository, inventory assets, analyze workflows
+**Phase 2: Priority Check** (Interactive) — Present top findings, ask: "What matters most to you? Testing? Security? Workflow automation? Or should I prioritize everything equally?"
+**Phase 3: Deep Analysis** (Auto) — Focus analysis on user's stated priorities using asset-audit skill
+**Phase 4: Recommendations** (Interactive) — Present findings conversationally with reasoning. Explain WHY each recommendation, not just WHAT. Accept feedback: `focus: {area}`, `skip: {item}`, `more detail on: {area}`
+**Phase 5: Report** (Auto) — Generate full analysis report incorporating user priorities
 
 ### Example Invocations
 

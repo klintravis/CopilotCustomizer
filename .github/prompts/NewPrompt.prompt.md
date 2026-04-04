@@ -3,7 +3,6 @@ description: Create a new VS Code prompt file (slash command) with variables and
 argument-hint: Describe the domain and goal for this prompt
 agent: CopilotCustomizer
 name: NewPrompt
-model: Claude Sonnet 4.5 (copilot)
 tools: ['execute', 'read', 'edit', 'search', 'web', 'agent', 'todo']
 ---
 
@@ -22,6 +21,19 @@ Generate `*.prompt.md` files.
 - Required: `domain`
 - Optional (inferred from domain and context if omitted): `goal`
 - All other details (variables, output sections, refinement commands) inferred from domain and goal
+
+### Discovery Phase
+
+Before generating, ask:
+1. **What triggers this prompt?** — "What situation makes someone reach for this command?"
+2. **What's the output?** — "Code files? A report? Configuration?"
+3. **How often?** — "Daily workflow or occasional task?"
+
+### Reasoning in Output
+Explain variable choices and suggest improvements:
+- "I made `targetPath` required because every invocation needs a starting point"
+- "Added `depth` as optional because most runs work fine with the default"
+- "Want to add more variables or simplify?"
 
 ### Generation Gate
 Respond first with either:

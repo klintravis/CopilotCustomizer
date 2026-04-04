@@ -3,7 +3,6 @@ description: Fast minimal-diff change with single approval gate and automated ve
 argument-hint: Describe the change you want to make
 agent: CopilotCustomizer
 name: QuickFix
-model: Claude Sonnet 4.5 (copilot)
 tools: ['execute', 'read', 'edit', 'search', 'web', 'agent', 'todo']
 ---
 
@@ -28,6 +27,12 @@ Perform a small, targeted change with a fast approval gate and automated verific
 **Phase 5: Documentation** (Auto) - Generate concise change summary
 
 Reply `confirm` after Phase 2 to proceed.
+
+### Explanation
+Before applying changes, briefly explain:
+- What will change and why
+- Risk level (should always be LOW for QuickFix)
+- "Apply these changes?"
 
 ### Refinement Commands
 | Command | Action |

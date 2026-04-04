@@ -241,24 +241,19 @@ Agent Plugins (VS Code 1.110+) are pre-packaged bundles of skills, agents, hooks
 
 **For Complete Project Setup**:
 
-1. In Copilot Chat, ask directly with inline variables:
+1. In Copilot Chat, run the Bootstrap command:
    ```
-   Bootstrap Copilot assets for repository at: /absolute/path/to/your-project
+   /Bootstrap REPOSITORY_PATH: "/absolute/path/to/your-project"
    ```
-   Or use the `/Bootstrap` slash command:
-   ```
-   /Bootstrap with REPOSITORY_PATH: "/absolute/path/to/your-project"
-   ```
-3. Confirm when agent presents the plan
-   - **VS Code 1.109+**: Click the confirmation button
-   - **Earlier versions**: Type "confirm" in chat
+   Or ask naturally: `Bootstrap my project at /absolute/path/to/your-project`
 
-**Result**: Complete customization generated in 3-4 minutes:
-- Agents tailored to your tech stack
-- Instructions for your patterns
-- Prompts for common workflows
-- AGENTS.md with project guidance
-- All cross-referenced and harmonized
+2. **Watch the research** — Bootstrap performs 3 deep passes analyzing your codebase
+3. **Answer a few questions** — Targeted questions about your workflow, priorities, pain points
+4. **Review the plan** — See WHY each asset was recommended, not just what
+5. **Give feedback or confirm** — Say `refine`, `skip`, `add`, or `confirm`
+6. **Review generated assets** — See what was built, request adjustments, say `done`
+
+**Result**: High-quality customization informed by deep research — skills, agents, instructions, prompts, and AGENTS.md all tailored to how your team actually works.
 
 ### Creating Individual Agents
 

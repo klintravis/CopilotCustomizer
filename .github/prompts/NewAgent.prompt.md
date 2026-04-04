@@ -3,7 +3,6 @@ description: Create a new VS Code Copilot custom agent with role, tools, and han
 argument-hint: Describe the agent you want to create
 agent: CopilotCustomizer
 name: NewAgent
-model: Claude Sonnet 4.5 (copilot)
 tools: ['execute', 'read', 'edit', 'search', 'web', 'agent', 'todo']
 ---
 
@@ -32,6 +31,23 @@ Generate VS Code Copilot `.agent.md` custom agent file with role, tools, handoff
 - Optional (inferred from name and repo context if omitted): `domain`, `primaryRole`
 - If `handoffs` are included, EACH entry MUST have: `label` (string), `agent` (string), `prompt` (string), `send` (boolean)
 - All other details (tools, capabilities, handoffs, depth modes) inferred from role and domain
+
+### Discovery Phase
+
+Before generating, ask 2-3 targeted questions to understand the agent's context:
+
+1. **What problem does this agent solve?** — "What workflow or task should this agent handle? What's tedious about doing it manually?"
+2. **What does it need access to?** — "Does it need to read files, run commands, modify code, or just analyze?"
+3. **How does it fit?** — "Will this agent work alone, or be part of a multi-agent system?"
+
+Use answers to inform tool selection (via [tool-selection](../skills/tool-selection/SKILL.md) skill), role boundaries, and whether to recommend orchestration.
+
+### Reasoning in Output
+
+When presenting the generated agent, explain key choices:
+- **Why these tools**: "I chose `search` + `edit` because your agent modifies existing files but doesn't need terminal access"
+- **Why this scope**: "Focused on API routes only — a separate agent for testing keeps responsibilities clean"
+- **Iteration**: "Want me to adjust the tools, scope, or add handoffs?"
 
 ### Generation Gate
 Respond with:

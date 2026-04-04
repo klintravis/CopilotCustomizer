@@ -12,6 +12,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Lifecycle logging system**: Removed `subagent-tracking.json`, `log-orchestration.js`, session logs — no longer needed with native VS Code hooks
 
 ### Changed
+- **Bootstrap v2.0**: Complete rewrite with 8-phase workflow — 3-pass deep research, discovery conversation, iterative planning with reasoning, reflection, and present-and-iterate UX
+- **Bootstrap prompt v2.0**: Conversational UX with optional focus parameter, natural language commands (`looks good`, `reconsider`, `more detail on`)
+- **Planner v2.0**: Iterative reconsider loop — presents reasoning (WHY not just WHAT), accepts natural language feedback, researches gaps on demand
 - **Version compliance updated**: Bumped from VS Code Copilot v1.109 to v1.112 across all assets
 - **Deprecated field renames**: `user-invokable` → `user-invocable`, `memory` → `vscode/memory` across all agent files
 - **Framework.instructions.md**: Replaced detailed custom hooks section with native hooks reference; added Agent Plugins guidance
@@ -27,6 +30,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Bootstrap agent**: Added monorepo detection; removed obsolete hook references
 - **Planner agent**: Added agent plugin assessment criteria
 - **Verifier agent**: Added validation rules for agent-scoped hooks, new tool names, deprecated field detection
+- **Generator agent v2**: Explains WHY each asset is shaped the way it is; references tool-selection, asset-design, standards-resolution, quality-validation skills
+- **Editor agent v2**: Shows pre-execution preview with risk levels and file list; post-execution report with before/after context
+- **Verifier agent v2**: Actionable fix suggestions with "fix it" mode — say "fix 1" or "fix all" instead of pass/fail
+- **All creation prompts (NewAgent, NewInstructions, NewPrompt, NewSkill)**: Added discovery phases with targeted questions before generation
+- **Review prompt v2**: Interactive priority check — asks what matters most before deep analysis
+- **CopilotCustomizer orchestrator**: Complete skills registry (all 12 skills referenced)
+- **Evolve agent**: Conversational self-improvement examples with actionable recommendations
 
 ### Added
 - **Agent Plugins guidance**: New section in Framework.instructions.md for VS Code v1.110+ plugin bundles

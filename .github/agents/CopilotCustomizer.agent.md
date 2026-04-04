@@ -1,7 +1,6 @@
 ---
 name: CopilotCustomizer
 description: 'Central orchestrator for CopilotCustomizer — routes all workflows through specialized subagents via programmatic orchestration'
-model: Claude Sonnet 4.5 (copilot)
 tools: ['vscode', 'execute', 'read', 'agent', 'edit', 'search', 'web', 'vscode/memory', 'todo']
 agents: ['Bootstrap', 'Planner', 'Generator', 'Editor', 'Verifier', 'Evolve']
 user-invocable: true
@@ -39,7 +38,7 @@ Unified orchestrator for the CopilotCustomizer framework. Analyzes user requests
 
 | User Intent | Primary Subagent | Chain | Workflow |
 |-------------|-----------------|-------|----------|
-| **Bootstrap a repository** | Bootstrap | Bootstrap → Planner → Generator → Verifier | Full autonomous pipeline |
+| **Bootstrap a repository** | Bootstrap | Bootstrap (deep research) → Planner (iterative) → Generator → Verifier | Research → questions → iterate → generate |
 | **Plan assets for a repo** | Planner | Planner → (user gate) → Generator | Planning with approval gate |
 | **Generate specific assets** | Generator | Generator → Verifier | Direct generation + validation |
 | **Make targeted changes** | Editor | Editor → Verifier | Atomic file operations |
@@ -52,6 +51,7 @@ Unified orchestrator for the CopilotCustomizer framework. Analyzes user requests
 | **Maintain toolkit assets** | Evolve | Evolve (analysis) → Editor → Verifier | Optimize/harmonize/validate |
 | **Quick targeted change** | Editor | Editor → Verifier | Fast minimal-diff changes |
 | **Create agent plugin** | Generator | Planner → Generator → Verifier | Plugin packaging workflow |
+| **Health check customizations** | (self → Verifier) | Analyze repo + audit assets → report drift | Drift detection + fix suggestions |
 
 ### Subagent Registry
 
@@ -116,12 +116,19 @@ Between each phase transition, verify:
 
 ### Skills Integration
 
-**Skills Used** (cross-platform analysis and planning):
-- [repo-analysis](../skills/repo-analysis/SKILL.md) — Tech stack detection, dependency analysis
-- [planning](../skills/planning/SKILL.md) — Recommendation prioritization, strategy design
-- [asset-design](../skills/asset-design/SKILL.md) — Asset decision framework
-- [documentation](../skills/documentation/SKILL.md) — Report generation and documentation
-- [orchestration](../skills/orchestration/SKILL.md) — Conductor/subagent orchestration patterns
+**All 12 Skills** (cross-platform analysis, planning, and methodology):
+- [repo-analysis](../skills/repo-analysis/SKILL.md) — Deep codebase analysis (3-pass methodology)
+- [planning](../skills/planning/SKILL.md) — Strategic implementation planning with memory strategy
+- [asset-design](../skills/asset-design/SKILL.md) — Asset type decision framework
+- [documentation](../skills/documentation/SKILL.md) — Report generation and technical docs
+- [orchestration](../skills/orchestration/SKILL.md) — Conductor/subagent patterns with reflection + failure recovery
+- [deployment-automation](../skills/deployment-automation/SKILL.md) — CI/CD and release workflows
+- [execution-strategy](../skills/execution-strategy/SKILL.md) — Multi-file change methodology (depth modes, atomicity)
+- [quality-validation](../skills/quality-validation/SKILL.md) — Schema validation, cross-references, eval rubrics
+- [tool-selection](../skills/tool-selection/SKILL.md) — Agent tool-to-task mapping and risk classification
+- [standards-resolution](../skills/standards-resolution/SKILL.md) — Enterprise standards discovery and matching
+- [asset-audit](../skills/asset-audit/SKILL.md) — Asset inventory, workflow analysis, gap identification
+- [security-hardening](../skills/security-hardening/SKILL.md) — Tool approvals, MCP trust, hook enforcement
 
 ### Example Interaction
 

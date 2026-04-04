@@ -3,7 +3,6 @@ description: Generate a complete conductor/subagent orchestrated system for a ta
 argument-hint: Provide the system name and repository path
 agent: CopilotCustomizer
 name: NewMultiAgent
-model: Claude Sonnet 4.5 (copilot)
 tools: ['execute', 'read', 'edit', 'search', 'web', 'agent', 'todo']
 
 ---

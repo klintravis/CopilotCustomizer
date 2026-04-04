@@ -40,6 +40,6 @@
 ---
 
 ### Generation Notes
-**Optimized by**: GitHub Copilot (Claude Sonnet 4.5)  
+**Optimized by**: GitHub Copilot  
 **Date**: {DATE}  
 **Process**: Asset optimization following CopilotCustomizer standards for universal repository applicability

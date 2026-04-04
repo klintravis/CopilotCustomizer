@@ -2,7 +2,6 @@
 description: 'Create an Agent Plugin — bundled package of skills, agents, hooks, and MCP servers'
 argument-hint: 'Plugin name and purpose — e.g., "Python DevOps" for CI/CD automation'
 agent: CopilotCustomizer
-model: Claude Sonnet 4.5 (copilot)
 tools: ['execute', 'read', 'edit', 'search', 'web', 'todo']
 ---
 

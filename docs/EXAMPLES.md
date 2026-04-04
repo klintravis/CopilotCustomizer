@@ -24,12 +24,53 @@ code .
 ```
 
 ### Generate Assets
-```bash
-# In Copilot Chat, type the slash command:
+```
 /Bootstrap REPOSITORY_PATH: "/Users/dev/my-react-app"
 
-# Review analysis and recommendations
-# Type: confirm
+# Bootstrap performs 3-pass deep research...
+
+Agent: "Here's what I found:
+  - React 18 + TypeScript 5 + Vite
+  - Component library pattern with Storybook
+  - Vitest + React Testing Library for tests
+  - Zustand for state management
+
+  A few questions:
+  1. I see both Zustand and some legacy Redux in /src/store — which is the current standard?
+  2. Your components use a mix of CSS Modules and Tailwind — is there a migration happening?
+  3. What's the most tedious part of your React workflow?"
+
+User: "Zustand is current, we're migrating to Tailwind, and writing tests is painful"
+
+Agent: "Got it. Here's my plan:
+
+  HIGH IMPACT:
+  • react-testing skill — Captures your Vitest + RTL patterns with Zustand mocking
+  • ComponentExpert agent — Follows your Tailwind migration (not CSS Modules)
+
+  STANDARD:
+  • StateArchitect agent — Zustand-only patterns (ignoring legacy Redux)
+  • ReactPatterns instructions — Applied to src/components/**/*.tsx
+
+  WHY no Redux agent: Your migration is clearly toward Zustand, so
+  generating Redux patterns would create confusion.
+
+  Adjust anything? Or 'confirm' to generate."
+
+User: "confirm"
+
+# Generates all assets autonomously...
+
+Agent: "Here's what I built:
+  📁 react-testing/ skill — Your Vitest patterns, portable across tools
+  🤖 ComponentExpert — Tailwind-first, accessibility included
+  🤖 StateArchitect — Zustand patterns from your actual store files
+  📋 ReactPatterns — Applied to 24 component files
+  ⚡ /GenerateComponent — Scaffolds component + test + story
+
+  Want to adjust anything, or type 'done'?"
+
+User: "done"
 ```
 
 ### What You Get
@@ -61,7 +102,7 @@ my-react-app/.github/
 ```
 
 ### Time to Value
-**3 minutes** from npm create to working AI customization
+**3-5 minutes** from npm create to working AI customization
 
 ---
 
@@ -89,8 +130,9 @@ code .
 # In Copilot Chat, type the slash command:
 /Bootstrap REPOSITORY_PATH: "/home/dev/my-api"
 
-# Review analysis and recommendations
-# Type: confirm
+# Agent researches deeply, asks targeted questions about your workflow
+# Review plan with reasoning → give feedback or 'confirm'
+# Agent generates, then presents results → 'done' to finalize
 ```
 
 ### What You Get
@@ -122,7 +164,7 @@ my-api/.github/
 ```
 
 ### Time to Value
-**2 minutes** from pip install to AI-assisted development
+**3-5 minutes** from pip install to AI-assisted development
 
 ---
 
@@ -148,8 +190,9 @@ code .
 # In Copilot Chat, type the slash command:
 /Bootstrap REPOSITORY_PATH: "C:\Projects\MyApi"
 
-# Review analysis and recommendations
-# Type: confirm
+# Agent researches deeply, asks targeted questions about your workflow
+# Review plan with reasoning → give feedback or 'confirm'
+# Agent generates, then presents results → 'done' to finalize
 ```
 
 ### What You Get
@@ -181,7 +224,7 @@ MyApi/.github/
 ```
 
 ### Time to Value
-**3 minutes** from dotnet new to production-ready patterns
+**3-5 minutes** from dotnet new to production-ready patterns
 
 ---
 
@@ -208,8 +251,9 @@ code .
 # In Copilot Chat, type the slash command:
 /Bootstrap REPOSITORY_PATH: "/Users/dev/my-express-api"
 
-# Review analysis and recommendations
-# Type: confirm
+# Agent researches deeply, asks targeted questions about your workflow
+# Review plan with reasoning → give feedback or 'confirm'
+# Agent generates, then presents results → 'done' to finalize
 ```
 
 ### What You Get
@@ -241,7 +285,7 @@ my-express-api/.github/
 ```
 
 ### Time to Value
-**2 minutes** from npm init to secure API patterns
+**3-5 minutes** from npm init to secure API patterns
 
 ---
 
@@ -261,13 +305,13 @@ code .
 
 ### Generate Assets
 ```bash
-# In Copilot Chat, analyze first:
-/Review TARGET_PATH: "/var/www/my-laravel-app"
-
-# Review recommendations, then bootstrap:
+# Bootstrap handles existing codebases — no need to /Review first
 /Bootstrap REPOSITORY_PATH: "/var/www/my-laravel-app"
 
-# Type: confirm
+# Agent researches your existing code patterns deeply
+# Asks questions about your Laravel conventions and pain points
+# Review plan with reasoning → give feedback or 'confirm'
+# Agent generates, then presents results → 'done' to finalize
 ```
 
 ### What You Get
@@ -326,8 +370,9 @@ code my-monorepo
 # Bootstrap detects ALL languages automatically
 /Bootstrap REPOSITORY_PATH: "/Users/dev/my-monorepo"
 
-# Review multi-language analysis
-# Type: confirm
+# Agent researches deeply, asks targeted questions about your workflow
+# Review plan with reasoning → give feedback or 'confirm'
+# Agent generates, then presents results → 'done' to finalize
 ```
 
 ### What You Get
@@ -361,8 +406,8 @@ AI understands context based on **which file you're editing**:
 
 ## Common Patterns Across Examples
 
-### 1. Tech Stack Auto-Detection
-Framework identifies languages, frameworks, and tools automatically.
+### 1. Deep Research, Not Just Detection
+Bootstrap v2 performs 3-pass analysis — it understands your architecture, conventions, and pain points, not just your tech stack. It asks targeted questions and explains its reasoning.
 
 ### 2. Zero Code Modification
 CopilotCustomizer **never modifies your existing code**—only adds AI guidance.
@@ -383,7 +428,7 @@ All team members get same AI behavior when `.github/` folder committed to repo.
 **Try it yourself:**
 1. Pick your tech stack above
 2. Follow the setup steps
-3. Generate assets (2-3 minutes)
+3. Generate assets (3-5 minutes)
 4. Experience AI that understands your project
 
 **Need help?**
@@ -392,4 +437,4 @@ All team members get same AI behavior when `.github/` folder committed to repo.
 
 ---
 
-**Universal**: Works with any stack | **Fast**: 2-5 minute setup | **Non-invasive**: Adds AI, doesn't modify code
+**Universal**: Works with any stack | **Fast**: 3-5 minute setup | **Non-invasive**: Adds AI, doesn't modify code
